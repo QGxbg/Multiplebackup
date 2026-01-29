@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcommon.a CMakeFiles/common.dir/Config.cc.o CMakeFiles/common.dir/Coordinator.cc.o CMakeFiles/common.dir/DataPacket.cc.o CMakeFiles/common.dir/Stripe.cc.o CMakeFiles/common.dir/StripeStore.cc.o CMakeFiles/common.dir/TradeoffPoints.cc.o CMakeFiles/common.dir/Worker.cc.o
+/usr/bin/ranlib libcommon.a

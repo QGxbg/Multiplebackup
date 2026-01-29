@@ -1,0 +1,16 @@
+<tradeoff>
+<attribute><name>code</name><value>Clay</value></attribute>
+<attribute><name>ecn</name><value>6</value></attribute>
+<attribute><name>eck</name><value>4</value></attribute>
+<attribute><name>ecw</name><value>8</value></attribute>
+<attribute><name>digits</name><value>1</value></attribute>
+<attribute><name>point</name>
+<value>0:24132111241322224444</value>
+<value>1:00540054005433332425</value>
+<value>2:54534333141454434454</value>
+<value>3:22445255252544554545</value>
+<value>4:15350033010135351303</value>
+<value>5:44221144212101014214</value>
+</attribute>
+</tradeoff>
+

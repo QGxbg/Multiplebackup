@@ -1,0 +1,6 @@
+Enable ip forwarding in each node
+
+sudo vim /etc/sysctl.conf
+set net.ipv4.ip_forward=1
+
+sudo sysctl -p

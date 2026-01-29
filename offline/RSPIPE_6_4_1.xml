@@ -1,0 +1,13 @@
+<tradeoff>
+<attribute><name>code</name><value>RSPIPE</value></attribute>
+<attribute><name>ecn</name><value>6</value></attribute>
+<attribute><name>eck</name><value>4</value></attribute>
+<attribute><name>ecw</name><value>1</value></attribute>
+<attribute><name>digits</name><value>2</value></attribute>
+<attribute><name>point</name>
+<value>0:01020304050607080910</value>
+<value>1:00020304050607080910</value>
+<value>2:00010304050607080910</value>
+<value>3:050503040304</value>
+</attribute>
+</tradeoff>

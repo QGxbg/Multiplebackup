@@ -1,0 +1,14 @@
+<tradeoff>
+<attribute><name>code</name><value>RSCONV</value></attribute>
+<attribute><name>ecn</name><value>4</value></attribute>
+<attribute><name>eck</name><value>2</value></attribute>
+<attribute><name>ecw</name><value>1</value></attribute>
+<attribute><name>digits</name><value>1</value></attribute>
+<attribute><name>point</name>
+<value>0:0</value>
+<value>1:1</value>
+<value>2:2</value>
+<value>3:3</value>
+</attribute>
+</tradeoff>
+

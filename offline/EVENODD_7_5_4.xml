@@ -1,0 +1,17 @@
+<tradeoff>
+<attribute><name>code</name><value>EVENODD</value></attribute>
+<attribute><name>ecn</name><value>7</value></attribute>
+<attribute><name>eck</name><value>5</value></attribute>
+<attribute><name>ecw</name><value>4</value></attribute>
+<attribute><name>digits</name><value>1</value></attribute>
+<attribute><name>point</name>
+<value>0:3451</value>
+<value>1:3425</value>
+<value>2:4150</value>
+<value>3:1542</value>
+<value>4:1305</value>
+<value>5:0413</value>
+<value>6:20135</value>
+</attribute>
+</tradeoff>
+

@@ -1,0 +1,7 @@
+build/
+stripeStore/simulation*
+stripeStore/standalone*
+stripeStore/placement
+res
+
+*/*/log/*

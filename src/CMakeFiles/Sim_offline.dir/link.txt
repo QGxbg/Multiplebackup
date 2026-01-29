@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -rdynamic CMakeFiles/Sim_offline.dir/Sim_offline.cc.o -o ../Sim_offline  common/libcommon.a ec/libec.a sol/libsol.a util/libutil.a common/libcommon.a ec/libec.a -lisal protocol/libprotocol.a util/libutil.a -lgf_complete -lhiredis -lpthread 

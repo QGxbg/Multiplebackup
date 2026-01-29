@@ -1,0 +1,2143 @@
+ParallelSolution::genRepairBatches begin
+ParallelSolution::genRepairBatchesForMultipleFailure begin
+stripe0:  17 19 16 12 0 7 13 3 14 6 11 1 9 8
+stripe1:  0 7 18 17 19 5 12 16 1 3 9 6 4 10
+stripe2:  13 1 14 2 9 4 11 10 12 5 17 7 0 3
+stripe3:  8 0 11 15 17 10 4 18 9 16 3 13 7 1
+stripe4:  17 9 19 8 6 11 2 10 14 13 0 16 15 4
+stripe5:  13 1 0 18 3 15 2 6 7 19 5 9 11 8
+stripe6:  6 9 1 3 12 0 2 16 17 13 19 11 5 18
+stripe7:  14 15 4 18 17 2 1 19 3 16 6 12 11 0
+stripe8:  5 14 16 8 10 15 7 11 4 1 19 0 13 3
+stripe9:  5 4 19 12 14 11 0 3 2 18 7 17 8 1
+ParallelSolution::genRepairBatchesForMultipleFailure.stripes to repair: 10
+ParallelSolution::findRepairBatchs start
+_stripes_to_repair: 0 1 2 3 4 5 6 7 8 9 
+_num_agents 20
+standby 
+_num_stripes_per_group = 1
+_num_rebuilt_chunks = 10
+_rg_num = 30
+
+
+findReconstructionSets.stripe_id = 0
+if_insert::stripe_id = 0
+if_insert::rg_id = 0
+if_insert::cur_match_stripe = 0
+nodeids: 17 19 16 12 0 7 13 3 14 6 11 1 9 8        hungary ret1.1: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 12) = 0
+       hungary ret1.2: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 13) = 0
+       hungary ret1.2: rg_id 0, mark (0, 12) = 0
+       hungary ret1.2: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 14) = 0
+       hungary ret1.2: rg_id 0, mark (0, 13) = 0
+       hungary ret1.2: rg_id 0, mark (0, 12) = 0
+       hungary ret1.2: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 16) = 0
+       hungary ret1.2: rg_id 0, mark (0, 14) = 0
+       hungary ret1.2: rg_id 0, mark (0, 13) = 0
+       hungary ret1.2: rg_id 0, mark (0, 12) = 0
+       hungary ret1.2: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 17) = 0
+       hungary ret1.2: rg_id 0, mark (0, 16) = 0
+       hungary ret1.2: rg_id 0, mark (0, 14) = 0
+       hungary ret1.2: rg_id 0, mark (0, 13) = 0
+       hungary ret1.2: rg_id 0, mark (0, 12) = 0
+       hungary ret1.2: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 19) = 0
+       hungary ret1.2: rg_id 0, mark (0, 17) = 0
+       hungary ret1.2: rg_id 0, mark (0, 16) = 0
+       hungary ret1.2: rg_id 0, mark (0, 14) = 0
+       hungary ret1.2: rg_id 0, mark (0, 13) = 0
+       hungary ret1.2: rg_id 0, mark (0, 12) = 0
+       hungary ret1.2: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+
+
+findReconstructionSets.stripe_id = 1
+if_insert::stripe_id = 1
+if_insert::rg_id = 1
+if_insert::cur_match_stripe = 0
+nodeids: 0 7 18 17 19 5 12 16 1 3 9 6 4 10        hungary ret1.1: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 10) = 0
+       hungary ret1.2: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 12) = 0
+       hungary ret1.2: rg_id 1, mark (1, 10) = 0
+       hungary ret1.2: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 16) = 0
+       hungary ret1.2: rg_id 1, mark (1, 12) = 0
+       hungary ret1.2: rg_id 1, mark (1, 10) = 0
+       hungary ret1.2: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 17) = 0
+       hungary ret1.2: rg_id 1, mark (1, 16) = 0
+       hungary ret1.2: rg_id 1, mark (1, 12) = 0
+       hungary ret1.2: rg_id 1, mark (1, 10) = 0
+       hungary ret1.2: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 18) = 0
+       hungary ret1.2: rg_id 1, mark (1, 17) = 0
+       hungary ret1.2: rg_id 1, mark (1, 16) = 0
+       hungary ret1.2: rg_id 1, mark (1, 12) = 0
+       hungary ret1.2: rg_id 1, mark (1, 10) = 0
+       hungary ret1.2: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 19) = 0
+       hungary ret1.2: rg_id 1, mark (1, 18) = 0
+       hungary ret1.2: rg_id 1, mark (1, 17) = 0
+       hungary ret1.2: rg_id 1, mark (1, 16) = 0
+       hungary ret1.2: rg_id 1, mark (1, 12) = 0
+       hungary ret1.2: rg_id 1, mark (1, 10) = 0
+       hungary ret1.2: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+
+
+findReconstructionSets.stripe_id = 2
+if_insert::stripe_id = 2
+if_insert::rg_id = 2
+if_insert::cur_match_stripe = 0
+nodeids: 13 1 14 2 9 4 11 10 12 5 17 7 0 3        hungary ret1.1: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 10) = 0
+       hungary ret1.2: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 11) = 0
+       hungary ret1.2: rg_id 2, mark (2, 10) = 0
+       hungary ret1.2: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 12) = 0
+       hungary ret1.2: rg_id 2, mark (2, 11) = 0
+       hungary ret1.2: rg_id 2, mark (2, 10) = 0
+       hungary ret1.2: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 13) = 0
+       hungary ret1.2: rg_id 2, mark (2, 12) = 0
+       hungary ret1.2: rg_id 2, mark (2, 11) = 0
+       hungary ret1.2: rg_id 2, mark (2, 10) = 0
+       hungary ret1.2: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 14) = 0
+       hungary ret1.2: rg_id 2, mark (2, 13) = 0
+       hungary ret1.2: rg_id 2, mark (2, 12) = 0
+       hungary ret1.2: rg_id 2, mark (2, 11) = 0
+       hungary ret1.2: rg_id 2, mark (2, 10) = 0
+       hungary ret1.2: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 17) = 0
+       hungary ret1.2: rg_id 2, mark (2, 14) = 0
+       hungary ret1.2: rg_id 2, mark (2, 13) = 0
+       hungary ret1.2: rg_id 2, mark (2, 12) = 0
+       hungary ret1.2: rg_id 2, mark (2, 11) = 0
+       hungary ret1.2: rg_id 2, mark (2, 10) = 0
+       hungary ret1.2: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+
+
+findReconstructionSets.stripe_id = 3
+if_insert::stripe_id = 3
+if_insert::rg_id = 3
+if_insert::cur_match_stripe = 0
+nodeids: 8 0 11 15 17 10 4 18 9 16 3 13 7 1        hungary ret1.1: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 11) = 0
+       hungary ret1.2: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 13) = 0
+       hungary ret1.2: rg_id 3, mark (3, 11) = 0
+       hungary ret1.2: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 15) = 0
+       hungary ret1.2: rg_id 3, mark (3, 13) = 0
+       hungary ret1.2: rg_id 3, mark (3, 11) = 0
+       hungary ret1.2: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 16) = 0
+       hungary ret1.2: rg_id 3, mark (3, 15) = 0
+       hungary ret1.2: rg_id 3, mark (3, 13) = 0
+       hungary ret1.2: rg_id 3, mark (3, 11) = 0
+       hungary ret1.2: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 17) = 0
+       hungary ret1.2: rg_id 3, mark (3, 16) = 0
+       hungary ret1.2: rg_id 3, mark (3, 15) = 0
+       hungary ret1.2: rg_id 3, mark (3, 13) = 0
+       hungary ret1.2: rg_id 3, mark (3, 11) = 0
+       hungary ret1.2: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 18) = 0
+       hungary ret1.2: rg_id 3, mark (3, 17) = 0
+       hungary ret1.2: rg_id 3, mark (3, 16) = 0
+       hungary ret1.2: rg_id 3, mark (3, 15) = 0
+       hungary ret1.2: rg_id 3, mark (3, 13) = 0
+       hungary ret1.2: rg_id 3, mark (3, 11) = 0
+       hungary ret1.2: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+
+
+findReconstructionSets.stripe_id = 4
+if_insert::stripe_id = 4
+if_insert::rg_id = 4
+if_insert::cur_match_stripe = 0
+nodeids: 17 9 19 8 6 11 2 10 14 13 0 16 15 4        hungary ret1.1: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 13) = 0
+       hungary ret1.2: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 14) = 0
+       hungary ret1.2: rg_id 4, mark (4, 13) = 0
+       hungary ret1.2: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 15) = 0
+       hungary ret1.2: rg_id 4, mark (4, 14) = 0
+       hungary ret1.2: rg_id 4, mark (4, 13) = 0
+       hungary ret1.2: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 16) = 0
+       hungary ret1.2: rg_id 4, mark (4, 15) = 0
+       hungary ret1.2: rg_id 4, mark (4, 14) = 0
+       hungary ret1.2: rg_id 4, mark (4, 13) = 0
+       hungary ret1.2: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 17) = 0
+       hungary ret1.2: rg_id 4, mark (4, 16) = 0
+       hungary ret1.2: rg_id 4, mark (4, 15) = 0
+       hungary ret1.2: rg_id 4, mark (4, 14) = 0
+       hungary ret1.2: rg_id 4, mark (4, 13) = 0
+       hungary ret1.2: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 19) = 0
+       hungary ret1.2: rg_id 4, mark (4, 17) = 0
+       hungary ret1.2: rg_id 4, mark (4, 16) = 0
+       hungary ret1.2: rg_id 4, mark (4, 15) = 0
+       hungary ret1.2: rg_id 4, mark (4, 14) = 0
+       hungary ret1.2: rg_id 4, mark (4, 13) = 0
+       hungary ret1.2: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+
+
+findReconstructionSets.stripe_id = 5
+if_insert::stripe_id = 5
+if_insert::rg_id = 5
+if_insert::cur_match_stripe = 0
+nodeids: 13 1 0 18 3 15 2 6 7 19 5 9 11 8        hungary ret1.1: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 9) = 0
+       hungary ret1.2: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 11) = 0
+       hungary ret1.2: rg_id 5, mark (5, 9) = 0
+       hungary ret1.2: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 13) = 0
+       hungary ret1.2: rg_id 5, mark (5, 11) = 0
+       hungary ret1.2: rg_id 5, mark (5, 9) = 0
+       hungary ret1.2: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 15) = 0
+       hungary ret1.2: rg_id 5, mark (5, 13) = 0
+       hungary ret1.2: rg_id 5, mark (5, 11) = 0
+       hungary ret1.2: rg_id 5, mark (5, 9) = 0
+       hungary ret1.2: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 18) = 0
+       hungary ret1.2: rg_id 5, mark (5, 15) = 0
+       hungary ret1.2: rg_id 5, mark (5, 13) = 0
+       hungary ret1.2: rg_id 5, mark (5, 11) = 0
+       hungary ret1.2: rg_id 5, mark (5, 9) = 0
+       hungary ret1.2: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 19) = 0
+       hungary ret1.2: rg_id 5, mark (5, 18) = 0
+       hungary ret1.2: rg_id 5, mark (5, 15) = 0
+       hungary ret1.2: rg_id 5, mark (5, 13) = 0
+       hungary ret1.2: rg_id 5, mark (5, 11) = 0
+       hungary ret1.2: rg_id 5, mark (5, 9) = 0
+       hungary ret1.2: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+
+
+findReconstructionSets.stripe_id = 6
+if_insert::stripe_id = 6
+if_insert::rg_id = 6
+if_insert::cur_match_stripe = 0
+nodeids: 6 9 1 3 12 0 2 16 17 13 19 11 5 18        hungary ret1.1: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 12) = 0
+       hungary ret1.2: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 13) = 0
+       hungary ret1.2: rg_id 6, mark (6, 12) = 0
+       hungary ret1.2: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 16) = 0
+       hungary ret1.2: rg_id 6, mark (6, 13) = 0
+       hungary ret1.2: rg_id 6, mark (6, 12) = 0
+       hungary ret1.2: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 17) = 0
+       hungary ret1.2: rg_id 6, mark (6, 16) = 0
+       hungary ret1.2: rg_id 6, mark (6, 13) = 0
+       hungary ret1.2: rg_id 6, mark (6, 12) = 0
+       hungary ret1.2: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 18) = 0
+       hungary ret1.2: rg_id 6, mark (6, 17) = 0
+       hungary ret1.2: rg_id 6, mark (6, 16) = 0
+       hungary ret1.2: rg_id 6, mark (6, 13) = 0
+       hungary ret1.2: rg_id 6, mark (6, 12) = 0
+       hungary ret1.2: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 19) = 0
+       hungary ret1.2: rg_id 6, mark (6, 18) = 0
+       hungary ret1.2: rg_id 6, mark (6, 17) = 0
+       hungary ret1.2: rg_id 6, mark (6, 16) = 0
+       hungary ret1.2: rg_id 6, mark (6, 13) = 0
+       hungary ret1.2: rg_id 6, mark (6, 12) = 0
+       hungary ret1.2: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+
+
+findReconstructionSets.stripe_id = 7
+if_insert::stripe_id = 7
+if_insert::rg_id = 7
+if_insert::cur_match_stripe = 0
+nodeids: 14 15 4 18 17 2 1 19 3 16 6 12 11 0        hungary ret1.1: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 14) = 0
+       hungary ret1.2: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 15) = 0
+       hungary ret1.2: rg_id 7, mark (7, 14) = 0
+       hungary ret1.2: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 16) = 0
+       hungary ret1.2: rg_id 7, mark (7, 15) = 0
+       hungary ret1.2: rg_id 7, mark (7, 14) = 0
+       hungary ret1.2: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 17) = 0
+       hungary ret1.2: rg_id 7, mark (7, 16) = 0
+       hungary ret1.2: rg_id 7, mark (7, 15) = 0
+       hungary ret1.2: rg_id 7, mark (7, 14) = 0
+       hungary ret1.2: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 18) = 0
+       hungary ret1.2: rg_id 7, mark (7, 17) = 0
+       hungary ret1.2: rg_id 7, mark (7, 16) = 0
+       hungary ret1.2: rg_id 7, mark (7, 15) = 0
+       hungary ret1.2: rg_id 7, mark (7, 14) = 0
+       hungary ret1.2: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 19) = 0
+       hungary ret1.2: rg_id 7, mark (7, 18) = 0
+       hungary ret1.2: rg_id 7, mark (7, 17) = 0
+       hungary ret1.2: rg_id 7, mark (7, 16) = 0
+       hungary ret1.2: rg_id 7, mark (7, 15) = 0
+       hungary ret1.2: rg_id 7, mark (7, 14) = 0
+       hungary ret1.2: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+
+
+findReconstructionSets.stripe_id = 8
+if_insert::stripe_id = 8
+if_insert::rg_id = 8
+if_insert::cur_match_stripe = 0
+nodeids: 5 14 16 8 10 15 7 11 4 1 19 0 13 3        hungary ret1.1: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 11) = 0
+       hungary ret1.2: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 13) = 0
+       hungary ret1.2: rg_id 8, mark (8, 11) = 0
+       hungary ret1.2: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 14) = 0
+       hungary ret1.2: rg_id 8, mark (8, 13) = 0
+       hungary ret1.2: rg_id 8, mark (8, 11) = 0
+       hungary ret1.2: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 15) = 0
+       hungary ret1.2: rg_id 8, mark (8, 14) = 0
+       hungary ret1.2: rg_id 8, mark (8, 13) = 0
+       hungary ret1.2: rg_id 8, mark (8, 11) = 0
+       hungary ret1.2: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 16) = 0
+       hungary ret1.2: rg_id 8, mark (8, 15) = 0
+       hungary ret1.2: rg_id 8, mark (8, 14) = 0
+       hungary ret1.2: rg_id 8, mark (8, 13) = 0
+       hungary ret1.2: rg_id 8, mark (8, 11) = 0
+       hungary ret1.2: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 19) = 0
+       hungary ret1.2: rg_id 8, mark (8, 16) = 0
+       hungary ret1.2: rg_id 8, mark (8, 15) = 0
+       hungary ret1.2: rg_id 8, mark (8, 14) = 0
+       hungary ret1.2: rg_id 8, mark (8, 13) = 0
+       hungary ret1.2: rg_id 8, mark (8, 11) = 0
+       hungary ret1.2: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+
+
+findReconstructionSets.stripe_id = 9
+if_insert::stripe_id = 9
+if_insert::rg_id = 9
+if_insert::cur_match_stripe = 0
+nodeids: 5 4 19 12 14 11 0 3 2 18 7 17 8 1        hungary ret1.1: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 11) = 0
+       hungary ret1.2: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 12) = 0
+       hungary ret1.2: rg_id 9, mark (9, 11) = 0
+       hungary ret1.2: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 14) = 0
+       hungary ret1.2: rg_id 9, mark (9, 12) = 0
+       hungary ret1.2: rg_id 9, mark (9, 11) = 0
+       hungary ret1.2: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 17) = 0
+       hungary ret1.2: rg_id 9, mark (9, 14) = 0
+       hungary ret1.2: rg_id 9, mark (9, 12) = 0
+       hungary ret1.2: rg_id 9, mark (9, 11) = 0
+       hungary ret1.2: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 18) = 0
+       hungary ret1.2: rg_id 9, mark (9, 17) = 0
+       hungary ret1.2: rg_id 9, mark (9, 14) = 0
+       hungary ret1.2: rg_id 9, mark (9, 12) = 0
+       hungary ret1.2: rg_id 9, mark (9, 11) = 0
+       hungary ret1.2: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 19) = 0
+       hungary ret1.2: rg_id 9, mark (9, 18) = 0
+       hungary ret1.2: rg_id 9, mark (9, 17) = 0
+       hungary ret1.2: rg_id 9, mark (9, 14) = 0
+       hungary ret1.2: rg_id 9, mark (9, 12) = 0
+       hungary ret1.2: rg_id 9, mark (9, 11) = 0
+       hungary ret1.2: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+3375 hang Debug hungary
+batch0: 0
+batch1: 1
+batch2: 2
+batch3: 3
+batch4: 4
+batch5: 5
+batch6: 6
+batch7: 7
+batch8: 8
+batch9: 9
+before improve_multiple agent_num20
+ParallelSolution::improve_multiple start
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32763 choose 20
+DEBUG concact 32760 choose 21
+DEBUG concact 32756 choose 22
+ParallelSolution::SingleMLP for stripe 0
+load = 449
+bdwt =  3964
+Stripe 0
+  inmap:  0 0 0 0 0 0 382 423 0 197 0 187 348 263 363 0 366 350 0 317 256 256 256 0 
+  outmap: 0 0 0 0 0 0 426 449 0 357 0 353 378 410 417 0 390 394 0 390 0 0 0 0 
+load = 449
+bdwt = 3964
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32767 choose 20
+DEBUG concact 32759 choose 21
+DEBUG concact 32758 choose 22
+ParallelSolution::SingleMLP for stripe 1
+load = 425
+bdwt =  3816
+Stripe 1
+  inmap:  0 0 0 0 178 349 175 390 0 196 0 0 362 0 0 0 351 323 353 371 256 256 256 0 
+  outmap: 0 0 0 0 341 389 336 425 0 344 0 0 390 0 0 0 384 400 404 403 0 0 0 0 
+load = 425
+bdwt = 3816
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32766 choose 20
+DEBUG concact 32764 choose 21
+DEBUG concact 32755 choose 22
+DEBUG concact 32754 choose 23
+ParallelSolution::SingleMLP for stripe 2
+load = 492
+bdwt =  4242
+Stripe 2
+  inmap:  0 0 0 0 321 378 0 203 0 324 350 344 333 462 297 0 0 206 0 0 256 256 256 256 
+  outmap: 0 0 0 0 395 442 0 417 0 390 402 408 437 492 437 0 0 422 0 0 0 0 0 0 
+load = 492
+bdwt = 4242
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32766 choose 20
+DEBUG concact 32757 choose 21
+DEBUG concact 32754 choose 22
+ParallelSolution::SingleMLP for stripe 3
+load = 439
+bdwt =  3912
+Stripe 3
+  inmap:  0 0 0 0 308 0 0 0 327 346 283 254 0 359 0 261 358 326 322 0 256 256 256 0 
+  outmap: 0 0 0 0 370 0 0 0 407 415 361 389 0 439 0 388 414 359 370 0 0 0 0 0 
+load = 439
+bdwt = 3912
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32761 choose 20
+DEBUG concact 32757 choose 21
+ParallelSolution::SingleMLP for stripe 4
+load = 388
+bdwt =  3658
+Stripe 4
+  inmap:  0 0 0 0 0 0 331 0 322 357 286 316 0 373 358 0 114 367 0 322 256 256 0 0 
+  outmap: 0 0 0 0 0 0 387 0 349 372 371 374 0 378 388 0 320 368 0 351 0 0 0 0 
+load = 388
+bdwt = 3658
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32766 choose 20
+DEBUG concact 32765 choose 21
+DEBUG concact 32763 choose 22
+DEBUG concact 32761 choose 23
+ParallelSolution::SingleMLP for stripe 5
+load = 487
+bdwt =  4234
+Stripe 5
+  inmap:  0 0 0 0 0 284 220 373 327 314 0 338 0 453 0 237 0 0 260 404 256 256 256 256 
+  outmap: 0 0 0 0 0 388 418 465 397 392 0 396 0 487 0 423 0 0 424 444 0 0 0 0 
+load = 487
+bdwt = 4234
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32765 choose 20
+DEBUG concact 32764 choose 21
+DEBUG concact 32762 choose 22
+DEBUG concact 32761 choose 23
+ParallelSolution::SingleMLP for stripe 6
+load = 476
+bdwt =  4229
+Stripe 6
+  inmap:  0 0 0 0 0 308 296 0 0 235 0 335 201 438 0 0 336 367 361 328 256 256 256 256 
+  outmap: 0 0 0 0 0 390 422 0 0 423 0 395 419 476 0 0 452 447 407 398 0 0 0 0 
+load = 476
+bdwt = 4229
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32762 choose 20
+DEBUG concact 32761 choose 21
+DEBUG concact 32759 choose 22
+DEBUG concact 32754 choose 23
+ParallelSolution::SingleMLP for stripe 7
+load = 503
+bdwt =  4222
+Stripe 7
+  inmap:  0 0 0 0 388 0 189 0 0 0 0 258 213 0 354 386 487 311 337 275 256 256 256 256 
+  outmap: 0 0 0 0 411 0 399 0 0 0 0 406 400 0 416 416 503 432 398 441 0 0 0 0 
+load = 503
+bdwt = 4222
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32758 choose 20
+DEBUG concact 32756 choose 21
+DEBUG concact 32754 choose 22
+ParallelSolution::SingleMLP for stripe 8
+load = 509
+bdwt =  3952
+Stripe 8
+  inmap:  0 0 0 0 477 303 0 286 375 0 261 280 0 0 336 265 322 0 0 279 256 256 256 0 
+  outmap: 0 0 0 0 509 369 0 370 378 0 374 380 0 0 391 373 383 0 0 425 0 0 0 0 
+load = 509
+bdwt = 3952
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32761 choose 20
+DEBUG concact 32760 choose 21
+DEBUG concact 32759 choose 22
+DEBUG concact 32754 choose 23
+ParallelSolution::SingleMLP for stripe 9
+load = 515
+bdwt =  4220
+Stripe 9
+  inmap:  0 0 0 0 401 383 0 200 229 0 0 234 389 0 279 0 0 199 504 378 256 256 256 256 
+  outmap: 0 0 0 0 412 422 0 400 406 0 0 423 405 0 422 0 0 399 515 416 0 0 0 0 
+load = 515
+bdwt = 4220
+2457 hang ParallelSolution::improve_multiple
+RepairBatch 0: 
+    stripe 0: 17 19 16 12 0 7 13 3 14 6 11 1 9 8 
+    stirpe num = 1    load=449    avgload = 449
+
+batch: 0
+   in :0 0 0 0 0 0 382 423 0 197 0 187 348 263 363 0 366 350 0 317 256 256 256 0 
+   out:0 0 0 0 0 0 426 449 0 357 0 353 378 410 417 0 390 394 0 390 0 0 0 0 
+RepairBatch 1: 
+    stripe 1: 0 7 18 17 19 5 12 16 1 3 9 6 4 10 
+    stirpe num = 1    load=425    avgload = 425
+
+batch: 1
+   in :0 0 0 0 178 349 175 390 0 196 0 0 362 0 0 0 351 323 353 371 256 256 256 0 
+   out:0 0 0 0 341 389 336 425 0 344 0 0 390 0 0 0 384 400 404 403 0 0 0 0 
+RepairBatch 2: 
+    stripe 2: 13 1 14 2 9 4 11 10 12 5 17 7 0 3 
+    stirpe num = 1    load=492    avgload = 492
+
+batch: 2
+   in :0 0 0 0 321 378 0 203 0 324 350 344 333 462 297 0 0 206 0 0 256 256 256 256 
+   out:0 0 0 0 395 442 0 417 0 390 402 408 437 492 437 0 0 422 0 0 0 0 0 0 
+RepairBatch 3: 
+    stripe 3: 8 0 11 15 17 10 4 18 9 16 3 13 7 1 
+    stirpe num = 1    load=439    avgload = 439
+
+batch: 3
+   in :0 0 0 0 308 0 0 0 327 346 283 254 0 359 0 261 358 326 322 0 256 256 256 0 
+   out:0 0 0 0 370 0 0 0 407 415 361 389 0 439 0 388 414 359 370 0 0 0 0 0 
+RepairBatch 4: 
+    stripe 4: 17 9 19 8 6 11 2 10 14 13 0 16 15 4 
+    stirpe num = 1    load=388    avgload = 388
+
+batch: 4
+   in :0 0 0 0 0 0 331 0 322 357 286 316 0 373 358 0 114 367 0 322 256 256 0 0 
+   out:0 0 0 0 0 0 387 0 349 372 371 374 0 378 388 0 320 368 0 351 0 0 0 0 
+RepairBatch 5: 
+    stripe 5: 13 1 0 18 3 15 2 6 7 19 5 9 11 8 
+    stirpe num = 1    load=487    avgload = 487
+
+batch: 5
+   in :0 0 0 0 0 284 220 373 327 314 0 338 0 453 0 237 0 0 260 404 256 256 256 256 
+   out:0 0 0 0 0 388 418 465 397 392 0 396 0 487 0 423 0 0 424 444 0 0 0 0 
+RepairBatch 6: 
+    stripe 6: 6 9 1 3 12 0 2 16 17 13 19 11 5 18 
+    stirpe num = 1    load=476    avgload = 476
+
+batch: 6
+   in :0 0 0 0 0 308 296 0 0 235 0 335 201 438 0 0 336 367 361 328 256 256 256 256 
+   out:0 0 0 0 0 390 422 0 0 423 0 395 419 476 0 0 452 447 407 398 0 0 0 0 
+RepairBatch 7: 
+    stripe 7: 14 15 4 18 17 2 1 19 3 16 6 12 11 0 
+    stirpe num = 1    load=503    avgload = 503
+
+batch: 7
+   in :0 0 0 0 388 0 189 0 0 0 0 258 213 0 354 386 487 311 337 275 256 256 256 256 
+   out:0 0 0 0 411 0 399 0 0 0 0 406 400 0 416 416 503 432 398 441 0 0 0 0 
+RepairBatch 8: 
+    stripe 8: 5 14 16 8 10 15 7 11 4 1 19 0 13 3 
+    stirpe num = 1    load=509    avgload = 509
+
+batch: 8
+   in :0 0 0 0 477 303 0 286 375 0 261 280 0 0 336 265 322 0 0 279 256 256 256 0 
+   out:0 0 0 0 509 369 0 370 378 0 374 380 0 0 391 373 383 0 0 425 0 0 0 0 
+RepairBatch 9: 
+    stripe 9: 5 4 19 12 14 11 0 3 2 18 7 17 8 1 
+    stirpe num = 1    load=515    avgload = 515
+
+batch: 9
+   in :0 0 0 0 401 383 0 200 229 0 0 234 389 0 279 0 0 199 504 378 256 256 256 256 
+   out:0 0 0 0 412 422 0 400 406 0 0 423 405 0 422 0 0 399 515 416 0 0 0 0 
+2350 hang debug hungary
+batch(4)   4 : 388  3658
+batch(1)   1 : 425  3816
+batch(3)   3 : 439  3912
+batch(0)   0 : 449  3964
+batch(6)   6 : 476  4229
+batch(5)   5 : 487  4234
+batch(2)   2 : 492  4242
+batch(7)   7 : 503  4222
+batch(8)   8 : 509  3952
+batch(9)   9 : 515  4220
+[10 0]
+output avg = 404/2=202
+choose stripe 9
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32761 choose 20
+DEBUG concact 32760 choose 21
+DEBUG concact 32759 choose 22
+DEBUG concact 32754 choose 23
+GloballyMLP for stripe 9
+insert stripe 9 into batch 4 coloring duration = 15382.7
+best avg load = 388/1 = 388
+batch.load = 388
+avg load after = 798/2 = 399
+15.3829 1 3 31 399
+output avg = 808/3=269.333
+choose stripe 8
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32758 choose 20
+DEBUG concact 32756 choose 21
+DEBUG concact 32754 choose 22
+GloballyMLP for stripe 8
+insert stripe 8 into batch 4 coloring duration = 15517.4
+best avg load = 388/1 = 388
+batch.load = 388
+avg load after = 1201/3 = 400.333
+30.9005 2 4 47 400.333
+output avg = 1217/4=304.25
+choose stripe 7
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32762 choose 20
+DEBUG concact 32761 choose 21
+DEBUG concact 32759 choose 22
+DEBUG concact 32754 choose 23
+GloballyMLP for stripe 7
+insert stripe 7 into batch 4 coloring duration = 15471.5
+best avg load = 388/1 = 388
+batch.load = 388
+avg load after = 1616/4 = 404
+46.3721 3 6 64 404
+output avg = 1632/5=326.4
+choose stripe 2
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32766 choose 20
+DEBUG concact 32764 choose 21
+DEBUG concact 32755 choose 22
+DEBUG concact 32754 choose 23
+GloballyMLP for stripe 2
+insert stripe 2 into batch 4 coloring duration = 15426.3
+best avg load = 388/1 = 388
+batch.load = 388
+avg load after = 1968/5 = 393.6
+61.7986 4 7 80 393.6
+output avg = 1604/6=267.333
+choose stripe 5
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32766 choose 20
+DEBUG concact 32765 choose 21
+DEBUG concact 32763 choose 22
+DEBUG concact 32761 choose 23
+GloballyMLP for stripe 5
+insert stripe 5 into batch 4 coloring duration = 16058.4
+best avg load = 388/1 = 388
+batch.load = 388
+avg load after = 1968/6 = 328
+77.8571 5 7 97 328
+output avg = 1860/7=265.714
+choose stripe 6
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32765 choose 20
+DEBUG concact 32764 choose 21
+DEBUG concact 32762 choose 22
+DEBUG concact 32761 choose 23
+GloballyMLP for stripe 6
+insert stripe 6 into batch 4 coloring duration = 16040.1
+best avg load = 1968/6 = 328
+batch.load = 1968
+avg load after = 2372/7 = 338.857
+93.8973 6 9 116 338.857
+output avg = 2388/8=298.5
+choose stripe 0
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32763 choose 20
+DEBUG concact 32760 choose 21
+DEBUG concact 32756 choose 22
+GloballyMLP for stripe 0
+insert stripe 0 into batch 4 coloring duration = 15948.9
+best avg load = 1968/6 = 328
+batch.load = 1968
+avg load after = 2894/8 = 361.75
+109.846 7 11 132 361.75
+output avg = 2910/9=323.333
+choose stripe 3
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32766 choose 20
+DEBUG concact 32757 choose 21
+DEBUG concact 32754 choose 22
+GloballyMLP for stripe 3
+insert stripe 3 into batch 4 coloring duration = 15538.6
+best avg load = 1968/6 = 328
+batch.load = 1968
+avg load after = 3257/9 = 361.889
+125.385 8 12 148 361.889
+output avg = 2748/10=274.8
+choose stripe 1
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32767 choose 20
+DEBUG concact 32759 choose 21
+DEBUG concact 32758 choose 22
+GloballyMLP for stripe 1
+insert stripe 1 into batch 4 coloring duration = 15183.3
+best avg load = 1968/6 = 328
+batch.load = 1968
+avg load after = 3257/10 = 325.7
+140.569 9 12 163 325.7
+search all stripe, curr batch size = 10
+Curr batch finish
+RepairBatch 4: 
+    stripe 4: 17 9 19 8 6 11 2 10 14 13 0 16 15 4 
+    stripe 9: 5 4 19 12 14 11 0 3 2 18 7 17 8 1 
+    stripe 8: 5 14 16 8 10 15 7 11 4 1 19 0 13 3 
+    stripe 7: 14 15 4 18 17 2 1 19 3 16 6 12 11 0 
+    stripe 2: 13 1 14 2 9 4 11 10 12 5 17 7 0 3 
+    stripe 5: 13 1 0 18 3 15 2 6 7 19 5 9 11 8 
+    stripe 6: 6 9 1 3 12 0 2 16 17 13 19 11 5 18 
+    stripe 0: 17 19 16 12 0 7 13 3 14 6 11 1 9 8 
+    stripe 3: 8 0 11 15 17 10 4 18 9 16 3 13 7 1 
+    stripe 1: 0 7 18 17 19 5 12 16 1 3 9 6 4 10 
+    stirpe num = 10    load=3257    avgload = 325.7
+
+batch: 4
+   in :0 0 0 0 3161 1849 2171 1676 2024 2777 2495 3162 1790 2209 1908 1671 1985 1103 1984 1139 
+   out:0 0 0 0 2793 2643 2714 2668 2072 2982 1897 3257 2682 2677 2389 1802 2988 2793 2726 2725 
+Improve batch4 for 140569
+avg load = 3257/10 = 325
+[DEBUG] hungary_num = 10
+duration find batch = 4.807
+duration merge batch = 345357
+RepairBatch 4: 
+    stripe 4: 17 9 19 8 6 11 2 10 14 13 0 16 15 4 
+    stripe 9: 5 4 19 12 14 11 0 3 2 18 7 17 8 1 
+    stripe 8: 5 14 16 8 10 15 7 11 4 1 19 0 13 3 
+    stripe 7: 14 15 4 18 17 2 1 19 3 16 6 12 11 0 
+    stripe 2: 13 1 14 2 9 4 11 10 12 5 17 7 0 3 
+    stripe 5: 13 1 0 18 3 15 2 6 7 19 5 9 11 8 
+    stripe 6: 6 9 1 3 12 0 2 16 17 13 19 11 5 18 
+    stripe 0: 17 19 16 12 0 7 13 3 14 6 11 1 9 8 
+    stripe 3: 8 0 11 15 17 10 4 18 9 16 3 13 7 1 
+    stripe 1: 0 7 18 17 19 5 12 16 1 3 9 6 4 10 
+    stirpe num = 10    load=3257    avgload = 325.7
+
+batch: 4
+   in :0 0 0 0 3161 1849 2171 1676 2024 2777 2495 3162 1790 2209 1908 1671 1985 1103 1984 1139 2560 2560 2304 1280 
+   out:0 0 0 0 2793 2643 2714 2668 2072 2982 1897 3257 2682 2677 2389 1802 2988 2793 2726 2725 0 0 0 0 
+overall load: 3257 subblocks
+overall bdwt: 41808 subblocks
+get repair batch latency: 345362 ms
+ParallelSolution::genRepairBatches begin
+ParallelSolution::genRepairBatchesForMultipleFailure begin
+stripe0:  17 19 16 12 0 7 13 3 14 6 11 1 9 8
+stripe1:  0 7 18 17 19 5 12 16 1 3 9 6 4 10
+stripe2:  13 1 14 2 9 4 11 10 12 5 17 7 0 3
+stripe3:  8 0 11 15 17 10 4 18 9 16 3 13 7 1
+stripe4:  17 9 19 8 6 11 2 10 14 13 0 16 15 4
+stripe5:  13 1 0 18 3 15 2 6 7 19 5 9 11 8
+stripe6:  6 9 1 3 12 0 2 16 17 13 19 11 5 18
+stripe7:  14 15 4 18 17 2 1 19 3 16 6 12 11 0
+stripe8:  5 14 16 8 10 15 7 11 4 1 19 0 13 3
+stripe9:  5 4 19 12 14 11 0 3 2 18 7 17 8 1
+ParallelSolution::genRepairBatchesForMultipleFailure.stripes to repair: 10
+ParallelSolution::findRepairBatchs start
+_stripes_to_repair: 0 1 2 3 4 5 6 7 8 9 
+_num_agents 20
+standby 
+_num_stripes_per_group = 1
+_num_rebuilt_chunks = 10
+_rg_num = 30
+
+
+findReconstructionSets.stripe_id = 0
+if_insert::stripe_id = 0
+if_insert::rg_id = 0
+if_insert::cur_match_stripe = 0
+nodeids: 17 19 16 12 0 7 13 3 14 6 11 1 9 8        hungary ret1.1: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 12) = 0
+       hungary ret1.2: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 13) = 0
+       hungary ret1.2: rg_id 0, mark (0, 12) = 0
+       hungary ret1.2: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 14) = 0
+       hungary ret1.2: rg_id 0, mark (0, 13) = 0
+       hungary ret1.2: rg_id 0, mark (0, 12) = 0
+       hungary ret1.2: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 16) = 0
+       hungary ret1.2: rg_id 0, mark (0, 14) = 0
+       hungary ret1.2: rg_id 0, mark (0, 13) = 0
+       hungary ret1.2: rg_id 0, mark (0, 12) = 0
+       hungary ret1.2: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 17) = 0
+       hungary ret1.2: rg_id 0, mark (0, 16) = 0
+       hungary ret1.2: rg_id 0, mark (0, 14) = 0
+       hungary ret1.2: rg_id 0, mark (0, 13) = 0
+       hungary ret1.2: rg_id 0, mark (0, 12) = 0
+       hungary ret1.2: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+       hungary ret1.1: rg_id 0, mark (0, 19) = 0
+       hungary ret1.2: rg_id 0, mark (0, 17) = 0
+       hungary ret1.2: rg_id 0, mark (0, 16) = 0
+       hungary ret1.2: rg_id 0, mark (0, 14) = 0
+       hungary ret1.2: rg_id 0, mark (0, 13) = 0
+       hungary ret1.2: rg_id 0, mark (0, 12) = 0
+       hungary ret1.2: rg_id 0, mark (0, 11) = 0
+       hungary ret1.2: rg_id 0, mark (0, 9) = 0
+       hungary ret1.2: rg_id 0, mark (0, 8) = 0
+       hungary ret1.2: rg_id 0, mark (0, 7) = 0
+       hungary ret1.2: rg_id 0, mark (0, 6) = 0
+
+
+findReconstructionSets.stripe_id = 1
+if_insert::stripe_id = 1
+if_insert::rg_id = 1
+if_insert::cur_match_stripe = 0
+nodeids: 0 7 18 17 19 5 12 16 1 3 9 6 4 10        hungary ret1.1: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 10) = 0
+       hungary ret1.2: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 12) = 0
+       hungary ret1.2: rg_id 1, mark (1, 10) = 0
+       hungary ret1.2: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 16) = 0
+       hungary ret1.2: rg_id 1, mark (1, 12) = 0
+       hungary ret1.2: rg_id 1, mark (1, 10) = 0
+       hungary ret1.2: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 17) = 0
+       hungary ret1.2: rg_id 1, mark (1, 16) = 0
+       hungary ret1.2: rg_id 1, mark (1, 12) = 0
+       hungary ret1.2: rg_id 1, mark (1, 10) = 0
+       hungary ret1.2: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 18) = 0
+       hungary ret1.2: rg_id 1, mark (1, 17) = 0
+       hungary ret1.2: rg_id 1, mark (1, 16) = 0
+       hungary ret1.2: rg_id 1, mark (1, 12) = 0
+       hungary ret1.2: rg_id 1, mark (1, 10) = 0
+       hungary ret1.2: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+       hungary ret1.1: rg_id 1, mark (1, 19) = 0
+       hungary ret1.2: rg_id 1, mark (1, 18) = 0
+       hungary ret1.2: rg_id 1, mark (1, 17) = 0
+       hungary ret1.2: rg_id 1, mark (1, 16) = 0
+       hungary ret1.2: rg_id 1, mark (1, 12) = 0
+       hungary ret1.2: rg_id 1, mark (1, 10) = 0
+       hungary ret1.2: rg_id 1, mark (1, 9) = 0
+       hungary ret1.2: rg_id 1, mark (1, 7) = 0
+       hungary ret1.2: rg_id 1, mark (1, 6) = 0
+       hungary ret1.2: rg_id 1, mark (1, 5) = 0
+       hungary ret1.2: rg_id 1, mark (1, 4) = 0
+
+
+findReconstructionSets.stripe_id = 2
+if_insert::stripe_id = 2
+if_insert::rg_id = 2
+if_insert::cur_match_stripe = 0
+nodeids: 13 1 14 2 9 4 11 10 12 5 17 7 0 3        hungary ret1.1: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 10) = 0
+       hungary ret1.2: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 11) = 0
+       hungary ret1.2: rg_id 2, mark (2, 10) = 0
+       hungary ret1.2: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 12) = 0
+       hungary ret1.2: rg_id 2, mark (2, 11) = 0
+       hungary ret1.2: rg_id 2, mark (2, 10) = 0
+       hungary ret1.2: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 13) = 0
+       hungary ret1.2: rg_id 2, mark (2, 12) = 0
+       hungary ret1.2: rg_id 2, mark (2, 11) = 0
+       hungary ret1.2: rg_id 2, mark (2, 10) = 0
+       hungary ret1.2: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 14) = 0
+       hungary ret1.2: rg_id 2, mark (2, 13) = 0
+       hungary ret1.2: rg_id 2, mark (2, 12) = 0
+       hungary ret1.2: rg_id 2, mark (2, 11) = 0
+       hungary ret1.2: rg_id 2, mark (2, 10) = 0
+       hungary ret1.2: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+       hungary ret1.1: rg_id 2, mark (2, 17) = 0
+       hungary ret1.2: rg_id 2, mark (2, 14) = 0
+       hungary ret1.2: rg_id 2, mark (2, 13) = 0
+       hungary ret1.2: rg_id 2, mark (2, 12) = 0
+       hungary ret1.2: rg_id 2, mark (2, 11) = 0
+       hungary ret1.2: rg_id 2, mark (2, 10) = 0
+       hungary ret1.2: rg_id 2, mark (2, 9) = 0
+       hungary ret1.2: rg_id 2, mark (2, 7) = 0
+       hungary ret1.2: rg_id 2, mark (2, 5) = 0
+       hungary ret1.2: rg_id 2, mark (2, 4) = 0
+
+
+findReconstructionSets.stripe_id = 3
+if_insert::stripe_id = 3
+if_insert::rg_id = 3
+if_insert::cur_match_stripe = 0
+nodeids: 8 0 11 15 17 10 4 18 9 16 3 13 7 1        hungary ret1.1: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 11) = 0
+       hungary ret1.2: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 13) = 0
+       hungary ret1.2: rg_id 3, mark (3, 11) = 0
+       hungary ret1.2: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 15) = 0
+       hungary ret1.2: rg_id 3, mark (3, 13) = 0
+       hungary ret1.2: rg_id 3, mark (3, 11) = 0
+       hungary ret1.2: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 16) = 0
+       hungary ret1.2: rg_id 3, mark (3, 15) = 0
+       hungary ret1.2: rg_id 3, mark (3, 13) = 0
+       hungary ret1.2: rg_id 3, mark (3, 11) = 0
+       hungary ret1.2: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 17) = 0
+       hungary ret1.2: rg_id 3, mark (3, 16) = 0
+       hungary ret1.2: rg_id 3, mark (3, 15) = 0
+       hungary ret1.2: rg_id 3, mark (3, 13) = 0
+       hungary ret1.2: rg_id 3, mark (3, 11) = 0
+       hungary ret1.2: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+       hungary ret1.1: rg_id 3, mark (3, 18) = 0
+       hungary ret1.2: rg_id 3, mark (3, 17) = 0
+       hungary ret1.2: rg_id 3, mark (3, 16) = 0
+       hungary ret1.2: rg_id 3, mark (3, 15) = 0
+       hungary ret1.2: rg_id 3, mark (3, 13) = 0
+       hungary ret1.2: rg_id 3, mark (3, 11) = 0
+       hungary ret1.2: rg_id 3, mark (3, 10) = 0
+       hungary ret1.2: rg_id 3, mark (3, 9) = 0
+       hungary ret1.2: rg_id 3, mark (3, 8) = 0
+       hungary ret1.2: rg_id 3, mark (3, 7) = 0
+       hungary ret1.2: rg_id 3, mark (3, 4) = 0
+
+
+findReconstructionSets.stripe_id = 4
+if_insert::stripe_id = 4
+if_insert::rg_id = 4
+if_insert::cur_match_stripe = 0
+nodeids: 17 9 19 8 6 11 2 10 14 13 0 16 15 4        hungary ret1.1: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 13) = 0
+       hungary ret1.2: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 14) = 0
+       hungary ret1.2: rg_id 4, mark (4, 13) = 0
+       hungary ret1.2: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 15) = 0
+       hungary ret1.2: rg_id 4, mark (4, 14) = 0
+       hungary ret1.2: rg_id 4, mark (4, 13) = 0
+       hungary ret1.2: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 16) = 0
+       hungary ret1.2: rg_id 4, mark (4, 15) = 0
+       hungary ret1.2: rg_id 4, mark (4, 14) = 0
+       hungary ret1.2: rg_id 4, mark (4, 13) = 0
+       hungary ret1.2: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 17) = 0
+       hungary ret1.2: rg_id 4, mark (4, 16) = 0
+       hungary ret1.2: rg_id 4, mark (4, 15) = 0
+       hungary ret1.2: rg_id 4, mark (4, 14) = 0
+       hungary ret1.2: rg_id 4, mark (4, 13) = 0
+       hungary ret1.2: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+       hungary ret1.1: rg_id 4, mark (4, 19) = 0
+       hungary ret1.2: rg_id 4, mark (4, 17) = 0
+       hungary ret1.2: rg_id 4, mark (4, 16) = 0
+       hungary ret1.2: rg_id 4, mark (4, 15) = 0
+       hungary ret1.2: rg_id 4, mark (4, 14) = 0
+       hungary ret1.2: rg_id 4, mark (4, 13) = 0
+       hungary ret1.2: rg_id 4, mark (4, 11) = 0
+       hungary ret1.2: rg_id 4, mark (4, 10) = 0
+       hungary ret1.2: rg_id 4, mark (4, 9) = 0
+       hungary ret1.2: rg_id 4, mark (4, 8) = 0
+       hungary ret1.2: rg_id 4, mark (4, 6) = 0
+       hungary ret1.2: rg_id 4, mark (4, 4) = 0
+
+
+findReconstructionSets.stripe_id = 5
+if_insert::stripe_id = 5
+if_insert::rg_id = 5
+if_insert::cur_match_stripe = 0
+nodeids: 13 1 0 18 3 15 2 6 7 19 5 9 11 8        hungary ret1.1: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 9) = 0
+       hungary ret1.2: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 11) = 0
+       hungary ret1.2: rg_id 5, mark (5, 9) = 0
+       hungary ret1.2: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 13) = 0
+       hungary ret1.2: rg_id 5, mark (5, 11) = 0
+       hungary ret1.2: rg_id 5, mark (5, 9) = 0
+       hungary ret1.2: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 15) = 0
+       hungary ret1.2: rg_id 5, mark (5, 13) = 0
+       hungary ret1.2: rg_id 5, mark (5, 11) = 0
+       hungary ret1.2: rg_id 5, mark (5, 9) = 0
+       hungary ret1.2: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 18) = 0
+       hungary ret1.2: rg_id 5, mark (5, 15) = 0
+       hungary ret1.2: rg_id 5, mark (5, 13) = 0
+       hungary ret1.2: rg_id 5, mark (5, 11) = 0
+       hungary ret1.2: rg_id 5, mark (5, 9) = 0
+       hungary ret1.2: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+       hungary ret1.1: rg_id 5, mark (5, 19) = 0
+       hungary ret1.2: rg_id 5, mark (5, 18) = 0
+       hungary ret1.2: rg_id 5, mark (5, 15) = 0
+       hungary ret1.2: rg_id 5, mark (5, 13) = 0
+       hungary ret1.2: rg_id 5, mark (5, 11) = 0
+       hungary ret1.2: rg_id 5, mark (5, 9) = 0
+       hungary ret1.2: rg_id 5, mark (5, 8) = 0
+       hungary ret1.2: rg_id 5, mark (5, 7) = 0
+       hungary ret1.2: rg_id 5, mark (5, 6) = 0
+       hungary ret1.2: rg_id 5, mark (5, 5) = 0
+
+
+findReconstructionSets.stripe_id = 6
+if_insert::stripe_id = 6
+if_insert::rg_id = 6
+if_insert::cur_match_stripe = 0
+nodeids: 6 9 1 3 12 0 2 16 17 13 19 11 5 18        hungary ret1.1: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 12) = 0
+       hungary ret1.2: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 13) = 0
+       hungary ret1.2: rg_id 6, mark (6, 12) = 0
+       hungary ret1.2: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 16) = 0
+       hungary ret1.2: rg_id 6, mark (6, 13) = 0
+       hungary ret1.2: rg_id 6, mark (6, 12) = 0
+       hungary ret1.2: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 17) = 0
+       hungary ret1.2: rg_id 6, mark (6, 16) = 0
+       hungary ret1.2: rg_id 6, mark (6, 13) = 0
+       hungary ret1.2: rg_id 6, mark (6, 12) = 0
+       hungary ret1.2: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 18) = 0
+       hungary ret1.2: rg_id 6, mark (6, 17) = 0
+       hungary ret1.2: rg_id 6, mark (6, 16) = 0
+       hungary ret1.2: rg_id 6, mark (6, 13) = 0
+       hungary ret1.2: rg_id 6, mark (6, 12) = 0
+       hungary ret1.2: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+       hungary ret1.1: rg_id 6, mark (6, 19) = 0
+       hungary ret1.2: rg_id 6, mark (6, 18) = 0
+       hungary ret1.2: rg_id 6, mark (6, 17) = 0
+       hungary ret1.2: rg_id 6, mark (6, 16) = 0
+       hungary ret1.2: rg_id 6, mark (6, 13) = 0
+       hungary ret1.2: rg_id 6, mark (6, 12) = 0
+       hungary ret1.2: rg_id 6, mark (6, 11) = 0
+       hungary ret1.2: rg_id 6, mark (6, 9) = 0
+       hungary ret1.2: rg_id 6, mark (6, 6) = 0
+       hungary ret1.2: rg_id 6, mark (6, 5) = 0
+
+
+findReconstructionSets.stripe_id = 7
+if_insert::stripe_id = 7
+if_insert::rg_id = 7
+if_insert::cur_match_stripe = 0
+nodeids: 14 15 4 18 17 2 1 19 3 16 6 12 11 0        hungary ret1.1: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 14) = 0
+       hungary ret1.2: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 15) = 0
+       hungary ret1.2: rg_id 7, mark (7, 14) = 0
+       hungary ret1.2: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 16) = 0
+       hungary ret1.2: rg_id 7, mark (7, 15) = 0
+       hungary ret1.2: rg_id 7, mark (7, 14) = 0
+       hungary ret1.2: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 17) = 0
+       hungary ret1.2: rg_id 7, mark (7, 16) = 0
+       hungary ret1.2: rg_id 7, mark (7, 15) = 0
+       hungary ret1.2: rg_id 7, mark (7, 14) = 0
+       hungary ret1.2: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 18) = 0
+       hungary ret1.2: rg_id 7, mark (7, 17) = 0
+       hungary ret1.2: rg_id 7, mark (7, 16) = 0
+       hungary ret1.2: rg_id 7, mark (7, 15) = 0
+       hungary ret1.2: rg_id 7, mark (7, 14) = 0
+       hungary ret1.2: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+       hungary ret1.1: rg_id 7, mark (7, 19) = 0
+       hungary ret1.2: rg_id 7, mark (7, 18) = 0
+       hungary ret1.2: rg_id 7, mark (7, 17) = 0
+       hungary ret1.2: rg_id 7, mark (7, 16) = 0
+       hungary ret1.2: rg_id 7, mark (7, 15) = 0
+       hungary ret1.2: rg_id 7, mark (7, 14) = 0
+       hungary ret1.2: rg_id 7, mark (7, 12) = 0
+       hungary ret1.2: rg_id 7, mark (7, 11) = 0
+       hungary ret1.2: rg_id 7, mark (7, 6) = 0
+       hungary ret1.2: rg_id 7, mark (7, 4) = 0
+
+
+findReconstructionSets.stripe_id = 8
+if_insert::stripe_id = 8
+if_insert::rg_id = 8
+if_insert::cur_match_stripe = 0
+nodeids: 5 14 16 8 10 15 7 11 4 1 19 0 13 3        hungary ret1.1: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 11) = 0
+       hungary ret1.2: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 13) = 0
+       hungary ret1.2: rg_id 8, mark (8, 11) = 0
+       hungary ret1.2: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 14) = 0
+       hungary ret1.2: rg_id 8, mark (8, 13) = 0
+       hungary ret1.2: rg_id 8, mark (8, 11) = 0
+       hungary ret1.2: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 15) = 0
+       hungary ret1.2: rg_id 8, mark (8, 14) = 0
+       hungary ret1.2: rg_id 8, mark (8, 13) = 0
+       hungary ret1.2: rg_id 8, mark (8, 11) = 0
+       hungary ret1.2: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 16) = 0
+       hungary ret1.2: rg_id 8, mark (8, 15) = 0
+       hungary ret1.2: rg_id 8, mark (8, 14) = 0
+       hungary ret1.2: rg_id 8, mark (8, 13) = 0
+       hungary ret1.2: rg_id 8, mark (8, 11) = 0
+       hungary ret1.2: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+       hungary ret1.1: rg_id 8, mark (8, 19) = 0
+       hungary ret1.2: rg_id 8, mark (8, 16) = 0
+       hungary ret1.2: rg_id 8, mark (8, 15) = 0
+       hungary ret1.2: rg_id 8, mark (8, 14) = 0
+       hungary ret1.2: rg_id 8, mark (8, 13) = 0
+       hungary ret1.2: rg_id 8, mark (8, 11) = 0
+       hungary ret1.2: rg_id 8, mark (8, 10) = 0
+       hungary ret1.2: rg_id 8, mark (8, 8) = 0
+       hungary ret1.2: rg_id 8, mark (8, 7) = 0
+       hungary ret1.2: rg_id 8, mark (8, 5) = 0
+       hungary ret1.2: rg_id 8, mark (8, 4) = 0
+
+
+findReconstructionSets.stripe_id = 9
+if_insert::stripe_id = 9
+if_insert::rg_id = 9
+if_insert::cur_match_stripe = 0
+nodeids: 5 4 19 12 14 11 0 3 2 18 7 17 8 1        hungary ret1.1: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 11) = 0
+       hungary ret1.2: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 12) = 0
+       hungary ret1.2: rg_id 9, mark (9, 11) = 0
+       hungary ret1.2: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 14) = 0
+       hungary ret1.2: rg_id 9, mark (9, 12) = 0
+       hungary ret1.2: rg_id 9, mark (9, 11) = 0
+       hungary ret1.2: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 17) = 0
+       hungary ret1.2: rg_id 9, mark (9, 14) = 0
+       hungary ret1.2: rg_id 9, mark (9, 12) = 0
+       hungary ret1.2: rg_id 9, mark (9, 11) = 0
+       hungary ret1.2: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 18) = 0
+       hungary ret1.2: rg_id 9, mark (9, 17) = 0
+       hungary ret1.2: rg_id 9, mark (9, 14) = 0
+       hungary ret1.2: rg_id 9, mark (9, 12) = 0
+       hungary ret1.2: rg_id 9, mark (9, 11) = 0
+       hungary ret1.2: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+       hungary ret1.1: rg_id 9, mark (9, 19) = 0
+       hungary ret1.2: rg_id 9, mark (9, 18) = 0
+       hungary ret1.2: rg_id 9, mark (9, 17) = 0
+       hungary ret1.2: rg_id 9, mark (9, 14) = 0
+       hungary ret1.2: rg_id 9, mark (9, 12) = 0
+       hungary ret1.2: rg_id 9, mark (9, 11) = 0
+       hungary ret1.2: rg_id 9, mark (9, 8) = 0
+       hungary ret1.2: rg_id 9, mark (9, 7) = 0
+       hungary ret1.2: rg_id 9, mark (9, 5) = 0
+       hungary ret1.2: rg_id 9, mark (9, 4) = 0
+3375 hang Debug hungary
+batch0: 0
+batch1: 1
+batch2: 2
+batch3: 3
+batch4: 4
+batch5: 5
+batch6: 6
+batch7: 7
+batch8: 8
+batch9: 9
+before improve_multiple agent_num20
+ParallelSolution::improve_multiple start
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32763 choose 20
+DEBUG concact 32760 choose 21
+DEBUG concact 32756 choose 22
+ParallelSolution::SingleMLPLevel for stripe 0
+Stripe 0
+  inmap:  0 0 0 0 409 410 32 32 397 32 406 32 96 32 32 389 96 96 400 96 431 431 431 368 
+  outmap: 0 0 0 0 185 165 416 288 140 288 147 288 352 288 416 140 352 352 136 352 69 72 70 132 
+load = 431
+bdwt = 4648
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32767 choose 20
+DEBUG concact 32759 choose 21
+DEBUG concact 32758 choose 22
+ParallelSolution::SingleMLPLevel for stripe 1
+Stripe 1
+  inmap:  0 0 0 0 64 96 64 64 403 64 387 379 96 401 375 364 96 64 64 96 404 405 411 287 
+  outmap: 0 0 0 0 320 352 320 320 169 320 156 154 352 148 145 141 352 320 320 352 78 92 72 101 
+load = 411
+bdwt = 4584
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32766 choose 20
+DEBUG concact 32764 choose 21
+DEBUG concact 32755 choose 22
+DEBUG concact 32754 choose 23
+ParallelSolution::SingleMLPLevel for stripe 2
+Stripe 2
+  inmap:  0 0 0 0 96 32 420 32 414 96 96 96 32 32 32 418 421 32 406 411 443 444 444 443 
+  outmap: 0 0 0 0 352 416 216 288 186 352 352 352 416 288 288 188 189 288 172 173 77 80 82 85 
+load = 444
+bdwt = 4840
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32766 choose 20
+DEBUG concact 32757 choose 21
+DEBUG concact 32754 choose 22
+ParallelSolution::SingleMLPLevel for stripe 3
+Stripe 3
+  inmap:  0 0 0 0 96 467 399 353 64 32 96 64 342 0 332 64 32 96 96 344 464 490 494 288 
+  outmap: 0 0 0 0 352 168 153 139 320 416 352 320 127 256 123 320 416 352 352 125 73 74 64 111 
+load = 494
+bdwt = 4613
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32761 choose 20
+DEBUG concact 32757 choose 21
+ParallelSolution::SingleMLPLevel for stripe 4
+Stripe 4
+  inmap:  0 0 0 0 466 418 64 374 96 96 64 64 340 32 32 314 0 96 322 96 455 480 299 294 
+  outmap: 0 0 0 0 130 113 320 106 352 352 320 320 102 416 416 94 256 352 99 352 63 49 96 94 
+load = 480
+bdwt = 4402
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32766 choose 20
+DEBUG concact 32765 choose 21
+DEBUG concact 32763 choose 22
+DEBUG concact 32761 choose 23
+ParallelSolution::SingleMLPLevel for stripe 5
+Stripe 5
+  inmap:  0 0 0 0 429 96 32 32 96 96 422 96 419 32 417 32 410 416 32 32 441 442 443 443 
+  outmap: 0 0 0 0 227 352 288 416 352 352 188 352 183 288 183 288 178 184 288 416 81 80 79 83 
+load = 443
+bdwt = 4858
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32765 choose 20
+DEBUG concact 32764 choose 21
+DEBUG concact 32762 choose 22
+DEBUG concact 32761 choose 23
+ParallelSolution::SingleMLPLevel for stripe 6
+Stripe 6
+  inmap:  0 0 0 0 419 96 32 421 415 32 423 96 32 32 416 416 32 32 96 96 442 451 442 443 
+  outmap: 0 0 0 0 235 352 288 197 185 288 187 352 288 416 174 172 288 416 352 352 82 83 78 79 
+load = 451
+bdwt = 4864
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32762 choose 20
+DEBUG concact 32761 choose 21
+DEBUG concact 32759 choose 22
+DEBUG concact 32754 choose 23
+ParallelSolution::SingleMLPLevel for stripe 7
+Stripe 7
+  inmap:  0 0 0 0 96 418 64 412 413 410 412 64 64 409 96 96 0 32 96 32 430 430 430 430 
+  outmap: 0 0 0 0 352 218 320 208 183 191 188 320 320 189 352 352 384 288 352 288 86 90 81 72 
+load = 430
+bdwt = 4834
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32758 choose 20
+DEBUG concact 32756 choose 21
+DEBUG concact 32754 choose 22
+ParallelSolution::SingleMLPLevel for stripe 8
+Stripe 8
+  inmap:  0 0 0 0 0 96 453 96 96 443 96 96 321 325 96 96 96 352 303 0 437 452 461 272 
+  outmap: 0 0 0 0 384 352 157 352 352 152 352 352 134 123 352 352 352 129 125 256 95 62 59 95 
+load = 461
+bdwt = 4587
+in improve_multiple agent_num20
+1366 hang  ParallelSolution::genColoringForMultipleFailureLevel start!
+DEBUG concact 32761 choose 20
+DEBUG concact 32760 choose 21
+DEBUG concact 32759 choose 22
+DEBUG concact 32754 choose 23
+ParallelSolution::SingleMLPLevel for stripe 9
+Stripe 9
+  inmap:  0 0 0 0 96 96 438 64 64 435 418 32 96 406 32 378 359 64 0 96 440 440 437 434 
+  outmap: 0 0 0 0 352 352 239 320 320 203 188 288 352 194 288 170 165 320 384 352 92 89 85 72 
+load = 440
+bdwt = 4825
+2457 hang ParallelSolution::improve_multiple
+RepairBatch 0: 
+    stripe 0: 17 19 16 12 0 7 13 3 14 6 11 1 9 8 
+    stirpe num = 1    load=431    avgload = 431
+
+batch: 0
+   in :0 0 0 0 409 410 32 32 397 32 406 32 96 32 32 389 96 96 400 96 431 431 431 368 
+   out:0 0 0 0 185 165 416 288 140 288 147 288 352 288 416 140 352 352 136 352 69 72 70 132 
+RepairBatch 1: 
+    stripe 1: 0 7 18 17 19 5 12 16 1 3 9 6 4 10 
+    stirpe num = 1    load=411    avgload = 411
+
+batch: 1
+   in :0 0 0 0 64 96 64 64 403 64 387 379 96 401 375 364 96 64 64 96 404 405 411 287 
+   out:0 0 0 0 320 352 320 320 169 320 156 154 352 148 145 141 352 320 320 352 78 92 72 101 
+RepairBatch 2: 
+    stripe 2: 13 1 14 2 9 4 11 10 12 5 17 7 0 3 
+    stirpe num = 1    load=444    avgload = 444
+
+batch: 2
+   in :0 0 0 0 96 32 420 32 414 96 96 96 32 32 32 418 421 32 406 411 443 444 444 443 
+   out:0 0 0 0 352 416 216 288 186 352 352 352 416 288 288 188 189 288 172 173 77 80 82 85 
+RepairBatch 3: 
+    stripe 3: 8 0 11 15 17 10 4 18 9 16 3 13 7 1 
+    stirpe num = 1    load=494    avgload = 494
+
+batch: 3
+   in :0 0 0 0 96 467 399 353 64 32 96 64 342 0 332 64 32 96 96 344 464 490 494 288 
+   out:0 0 0 0 352 168 153 139 320 416 352 320 127 256 123 320 416 352 352 125 73 74 64 111 
+RepairBatch 4: 
+    stripe 4: 17 9 19 8 6 11 2 10 14 13 0 16 15 4 
+    stirpe num = 1    load=480    avgload = 480
+
+batch: 4
+   in :0 0 0 0 466 418 64 374 96 96 64 64 340 32 32 314 0 96 322 96 455 480 299 294 
+   out:0 0 0 0 130 113 320 106 352 352 320 320 102 416 416 94 256 352 99 352 63 49 96 94 
+RepairBatch 5: 
+    stripe 5: 13 1 0 18 3 15 2 6 7 19 5 9 11 8 
+    stirpe num = 1    load=443    avgload = 443
+
+batch: 5
+   in :0 0 0 0 429 96 32 32 96 96 422 96 419 32 417 32 410 416 32 32 441 442 443 443 
+   out:0 0 0 0 227 352 288 416 352 352 188 352 183 288 183 288 178 184 288 416 81 80 79 83 
+RepairBatch 6: 
+    stripe 6: 6 9 1 3 12 0 2 16 17 13 19 11 5 18 
+    stirpe num = 1    load=451    avgload = 451
+
+batch: 6
+   in :0 0 0 0 419 96 32 421 415 32 423 96 32 32 416 416 32 32 96 96 442 451 442 443 
+   out:0 0 0 0 235 352 288 197 185 288 187 352 288 416 174 172 288 416 352 352 82 83 78 79 
+RepairBatch 7: 
+    stripe 7: 14 15 4 18 17 2 1 19 3 16 6 12 11 0 
+    stirpe num = 1    load=430    avgload = 430
+
+batch: 7
+   in :0 0 0 0 96 418 64 412 413 410 412 64 64 409 96 96 0 32 96 32 430 430 430 430 
+   out:0 0 0 0 352 218 320 208 183 191 188 320 320 189 352 352 384 288 352 288 86 90 81 72 
+RepairBatch 8: 
+    stripe 8: 5 14 16 8 10 15 7 11 4 1 19 0 13 3 
+    stirpe num = 1    load=461    avgload = 461
+
+batch: 8
+   in :0 0 0 0 0 96 453 96 96 443 96 96 321 325 96 96 96 352 303 0 437 452 461 272 
+   out:0 0 0 0 384 352 157 352 352 152 352 352 134 123 352 352 352 129 125 256 95 62 59 95 
+RepairBatch 9: 
+    stripe 9: 5 4 19 12 14 11 0 3 2 18 7 17 8 1 
+    stirpe num = 1    load=440    avgload = 440
+
+batch: 9
+   in :0 0 0 0 96 96 438 64 64 435 418 32 96 406 32 378 359 64 0 96 440 440 437 434 
+   out:0 0 0 0 352 352 239 320 320 203 188 288 352 194 288 170 165 320 384 352 92 89 85 72 
+2350 hang debug hungary
+batch(1)   1 : 411  4584
+batch(7)   7 : 430  4834
+batch(0)   0 : 431  4648
+batch(9)   9 : 440  4825
+batch(5)   5 : 443  4858
+batch(2)   2 : 444  4840
+batch(6)   6 : 451  4864
+batch(8)   8 : 461  4587
+batch(4)   4 : 480  4402
+batch(3)   3 : 494  4613
+[10 0]
+output avg = 368/2=184
+choose stripe 3
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32766 choose 20
+DEBUG concact 32757 choose 21
+DEBUG concact 32754 choose 22
+GloballyMLP for stripe 3
+insert stripe 3 into batch 1 coloring duration = 15938.6
+best avg load = 411/1 = 411
+batch.load = 411
+avg load after = 811/2 = 405.5
+15.9388 1 3 33 405.5
+output avg = 827/3=275.667
+choose stripe 4
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32761 choose 20
+DEBUG concact 32757 choose 21
+GloballyMLP for stripe 4
+insert stripe 4 into batch 1 coloring duration = 16076.2
+best avg load = 811/2 = 405.5
+batch.load = 811
+avg load after = 1189/3 = 396.333
+32.0151 2 4 48 396.333
+output avg = 1055/4=263.75
+choose stripe 8
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32758 choose 20
+DEBUG concact 32756 choose 21
+DEBUG concact 32754 choose 22
+GloballyMLP for stripe 8
+insert stripe 8 into batch 1 coloring duration = 15361.4
+best avg load = 1189/3 = 396.333
+batch.load = 1189
+avg load after = 1492/4 = 373
+47.3766 3 5 64 373
+output avg = 1508/5=301.6
+choose stripe 6
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32765 choose 20
+DEBUG concact 32764 choose 21
+DEBUG concact 32762 choose 22
+DEBUG concact 32761 choose 23
+GloballyMLP for stripe 6
+insert stripe 6 into batch 1 coloring duration = 15552.9
+best avg load = 1492/4 = 373
+batch.load = 1492
+avg load after = 1856/5 = 371.2
+62.9296 4 7 82 371.2
+output avg = 1484/6=247.333
+choose stripe 2
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32766 choose 20
+DEBUG concact 32764 choose 21
+DEBUG concact 32755 choose 22
+DEBUG concact 32754 choose 23
+GloballyMLP for stripe 2
+insert stripe 2 into batch 1 coloring duration = 15678.7
+best avg load = 1856/5 = 371.2
+batch.load = 1856
+avg load after = 1882/6 = 313.667
+78.6085 5 7 98 313.667
+output avg = 1898/7=271.143
+choose stripe 5
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32766 choose 20
+DEBUG concact 32765 choose 21
+DEBUG concact 32763 choose 22
+DEBUG concact 32761 choose 23
+GloballyMLP for stripe 5
+insert stripe 5 into batch 1 coloring duration = 15999
+best avg load = 1882/6 = 313.667
+batch.load = 1882
+avg load after = 2408/7 = 344
+94.6077 6 9 116 344
+output avg = 2424/8=303
+choose stripe 9
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32761 choose 20
+DEBUG concact 32760 choose 21
+DEBUG concact 32759 choose 22
+DEBUG concact 32754 choose 23
+GloballyMLP for stripe 9
+insert stripe 9 into batch 1 coloring duration = 15634.3
+best avg load = 1882/6 = 313.667
+batch.load = 1882
+avg load after = 2849/8 = 356.125
+110.242 7 11 133 356.125
+output avg = 2450/9=272.222
+choose stripe 0
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32763 choose 20
+DEBUG concact 32760 choose 21
+DEBUG concact 32756 choose 22
+GloballyMLP for stripe 0
+insert stripe 0 into batch 1 coloring duration = 14967.7
+best avg load = 1882/6 = 313.667
+batch.load = 1882
+avg load after = 2849/9 = 316.556
+125.21 8 11 147 316.556
+output avg = 2706/10=270.6
+choose stripe 7
+1668 hang  ParallelSolution::genParallelColoringForMultipleFailure start!
+DEBUG concact 32762 choose 20
+DEBUG concact 32761 choose 21
+DEBUG concact 32759 choose 22
+DEBUG concact 32754 choose 23
+GloballyMLP for stripe 7
+insert stripe 7 into batch 1 coloring duration = 15348.1
+best avg load = 1882/6 = 313.667
+batch.load = 1882
+avg load after = 3046/10 = 304.6
+140.558 9 11 165 304.6
+search all stripe, curr batch size = 10
+Curr batch finish
+RepairBatch 1: 
+    stripe 1: 0 7 18 17 19 5 12 16 1 3 9 6 4 10 
+    stripe 3: 8 0 11 15 17 10 4 18 9 16 3 13 7 1 
+    stripe 4: 17 9 19 8 6 11 2 10 14 13 0 16 15 4 
+    stripe 8: 5 14 16 8 10 15 7 11 4 1 19 0 13 3 
+    stripe 6: 6 9 1 3 12 0 2 16 17 13 19 11 5 18 
+    stripe 2: 13 1 14 2 9 4 11 10 12 5 17 7 0 3 
+    stripe 5: 13 1 0 18 3 15 2 6 7 19 5 9 11 8 
+    stripe 9: 5 4 19 12 14 11 0 3 2 18 7 17 8 1 
+    stripe 0: 17 19 16 12 0 7 13 3 14 6 11 1 9 8 
+    stripe 7: 14 15 4 18 17 2 1 19 3 16 6 12 11 0 
+    stirpe num = 10    load=3046    avgload = 304.6
+
+batch: 1
+   in :0 0 0 0 1377 2842 3032 1986 1946 1595 1174 1157 2671 1510 2318 2288 2974 2219 2237 1670 
+   out:0 0 0 0 2501 2849 2626 2430 2288 2433 1600 2997 3001 2427 2780 2388 3039 3046 2773 2918 
+Improve batch1 for 140558
+avg load = 3046/10 = 304
+[DEBUG] hungary_num = 10
+duration find batch = 7.939
+duration merge batch = 536648
+RepairBatch 1: 
+    stripe 1: 0 7 18 17 19 5 12 16 1 3 9 6 4 10 
+    stripe 3: 8 0 11 15 17 10 4 18 9 16 3 13 7 1 
+    stripe 4: 17 9 19 8 6 11 2 10 14 13 0 16 15 4 
+    stripe 8: 5 14 16 8 10 15 7 11 4 1 19 0 13 3 
+    stripe 6: 6 9 1 3 12 0 2 16 17 13 19 11 5 18 
+    stripe 2: 13 1 14 2 9 4 11 10 12 5 17 7 0 3 
+    stripe 5: 13 1 0 18 3 15 2 6 7 19 5 9 11 8 
+    stripe 9: 5 4 19 12 14 11 0 3 2 18 7 17 8 1 
+    stripe 0: 17 19 16 12 0 7 13 3 14 6 11 1 9 8 
+    stripe 7: 14 15 4 18 17 2 1 19 3 16 6 12 11 0 
+    stirpe num = 10    load=3046    avgload = 304.6
+
+batch: 1
+   in :0 0 0 0 1377 2842 3032 1986 1946 1595 1174 1157 2671 1510 2318 2288 2974 2219 2237 1670 2708 2709 2459 1567 
+   out:0 0 0 0 2501 2849 2626 2430 2288 2433 1600 2997 3001 2427 2780 2388 3039 3046 2773 2918 78 92 72 101 
+overall load: 3046 subblocks
+overall bdwt: 42439 subblocks
+get repair batch latency: 536656 ms
