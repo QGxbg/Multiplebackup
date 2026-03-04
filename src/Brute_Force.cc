@@ -52,9 +52,9 @@ void simple_search(Stripe* currStripe,vector<int>& curres, int curidx,vector<int
         currStripe->evaluateColoring();
          int load_now = currStripe->getLoad();
         int bdwt_now = currStripe->getBdwt();
-        // cout<<"_load, load_now:"<< currStripe->getLoad()<<"   ,  "<<load_now<<endl;
+        LOG<< currStripe->getLoad()<<" "<<currStripe->getBdwt()<<endl;
 
-        // cout<<"_bdwt, bdwt_now:"<< currStripe->getBdwt()<<"   ,  "<<bdwt_now<<endl;
+        //cout<<"_bdwt, bdwt_now:"<< currStripe->getBdwt()<<"   ,  "<<bdwt_now<<endl;
         
 
         // if(load_now!=0&&load_now < *min_load){

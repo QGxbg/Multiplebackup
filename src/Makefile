@@ -368,6 +368,20 @@ NewgenMLP/fast:
 	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/NewgenMLP.dir/build.make src/CMakeFiles/NewgenMLP.dir/build
 .PHONY : NewgenMLP/fast
 
+# Convenience name for target.
+src/CMakeFiles/RepairSimulator.dir/rule:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/RepairSimulator.dir/rule
+.PHONY : src/CMakeFiles/RepairSimulator.dir/rule
+
+# Convenience name for target.
+RepairSimulator: src/CMakeFiles/RepairSimulator.dir/rule
+.PHONY : RepairSimulator
+
+# fast build rule for target.
+RepairSimulator/fast:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator.dir/build.make src/CMakeFiles/RepairSimulator.dir/build
+.PHONY : RepairSimulator/fast
+
 Brute_Force.o: Brute_Force.cc.o
 .PHONY : Brute_Force.o
 
@@ -680,6 +694,30 @@ ParaCoordinator.cc.s:
 	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ParaCoordinator.dir/build.make src/CMakeFiles/ParaCoordinator.dir/ParaCoordinator.cc.s
 .PHONY : ParaCoordinator.cc.s
 
+RepairSimulator.o: RepairSimulator.cc.o
+.PHONY : RepairSimulator.o
+
+# target to build an object file
+RepairSimulator.cc.o:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator.dir/build.make src/CMakeFiles/RepairSimulator.dir/RepairSimulator.cc.o
+.PHONY : RepairSimulator.cc.o
+
+RepairSimulator.i: RepairSimulator.cc.i
+.PHONY : RepairSimulator.i
+
+# target to preprocess a source file
+RepairSimulator.cc.i:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator.dir/build.make src/CMakeFiles/RepairSimulator.dir/RepairSimulator.cc.i
+.PHONY : RepairSimulator.cc.i
+
+RepairSimulator.s: RepairSimulator.cc.s
+.PHONY : RepairSimulator.s
+
+# target to generate assembly for a file
+RepairSimulator.cc.s:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator.dir/build.make src/CMakeFiles/RepairSimulator.dir/RepairSimulator.cc.s
+.PHONY : RepairSimulator.cc.s
+
 Sim_centralize.o: Sim_centralize.cc.o
 .PHONY : Sim_centralize.o
 
@@ -821,6 +859,7 @@ help:
 	@echo "... NewgenMLP"
 	@echo "... ParaAgent"
 	@echo "... ParaCoordinator"
+	@echo "... RepairSimulator"
 	@echo "... Sim_centralize"
 	@echo "... Sim_multiple"
 	@echo "... Sim_offline"
@@ -865,6 +904,9 @@ help:
 	@echo "... ParaCoordinator.o"
 	@echo "... ParaCoordinator.i"
 	@echo "... ParaCoordinator.s"
+	@echo "... RepairSimulator.o"
+	@echo "... RepairSimulator.i"
+	@echo "... RepairSimulator.s"
 	@echo "... Sim_centralize.o"
 	@echo "... Sim_centralize.i"
 	@echo "... Sim_centralize.s"

@@ -420,7 +420,7 @@ Solution* genSol(Stripe* currStripe,vector<int> itm_idx,vector<int> candidates,
             } 
 
             // check whether current solution is good enough
-            if (load >= target_load &&  load <= 11 &&bdwt <=46 && bdwt >= conv) {
+            if (load >= target_load &&  load <= conv &&bdwt <=target_bdwt && bdwt >= conv) {
                 //cout << "  yes" << endl;
                 find = true;
                 s = cur;
@@ -471,7 +471,7 @@ Solution* genSol(Stripe* currStripe,vector<int> itm_idx,vector<int> candidates,
 
     }
 
-    cout << "453 hang i = " << i-1 << endl;
+    //cout << "453 hang i = " << i-1 << endl;
 
     // int size = getLength(sol);
     // cout<<"645hang size:"<<size<<endl;

@@ -10,6 +10,9 @@ Coordinator::Coordinator(Config* conf, StripeStore* ss) {
     _ecw = conf->_ecw;
     _blkbytes = conf->_blkBytes;
     _pktbytes = conf->_pktBytes;
+    _agents_num = conf->_agents_num;
+    _standby_size = conf->_standby_size;
+    _batch_size = conf->_batch_size;
 
     cout << "codename: " << _codename << endl;
     cout << "ecn: " << _ecn << endl;
@@ -162,8 +165,8 @@ void Coordinator::repair() {
     while (_sol->hasNext()) {
         gettimeofday(&time2, NULL);
         
-	//cout<<"Coordinator:: repair  getRepairBatchFromQueue start "<<endl;
-	RepairBatch* curbatch = _sol->getRepairBatchFromQueue();
+	cout<<"Coordinator:: repair  getRepairBatchFromQueue start "<<endl;
+	RepairBatch* curbatch = _sol->getRepairBatchFromQueue(); //卡住了
 	
 	
 	int id_test = curbatch -> getBatchId();
@@ -189,6 +192,8 @@ void Coordinator::repair() {
     for(int i = 0; i < batch_list.size(); i++)
     {
         batch_list[i]->dump();
+
+        cout<<"!!!!!!"<<endl;
         cout << "gen batch duration = " << gen_batch_vec[i] << endl;
         cout << "repair batch duration = " << repair_batch_vec[i] << endl;
         cout << "avg time = " << repair_batch_vec[i] / batch_list[i]->getStripeList().size()  << endl;

@@ -34,15 +34,15 @@ StripeStore::StripeStore(Config* conf) {
         _stripe_list.push_back(curstripe);
     }
 
-    // LOG << "StripeStore::placement " << _stripe_list.size() << endl;
-    // for(auto stripe : _stripe_list){
-    //     auto placement = stripe->getPlacement();
-    //     for(auto it: placement){
-    //         LOG << " " << it;
-    //     }
-    //     LOG << endl;
-    // }
-    // LOG << "StripeStore::StripeStore end" <<endl;
+    LOG << "StripeStore::placement " << _stripe_list.size() << endl;
+    for(auto stripe : _stripe_list){
+        auto placement = stripe->getPlacement();
+        for(auto it: placement){
+            LOG << " " << it;
+        }
+        LOG << endl;
+    }
+    LOG << "StripeStore::StripeStore end" <<endl;
 }
 
 StripeStore::~StripeStore() {

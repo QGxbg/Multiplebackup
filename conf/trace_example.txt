@@ -1,0 +1,33 @@
+# Trace file for repair strategy simulation
+# Format: timestamp  num_failures  node_id1 node_id2 ...
+# Scenario: 40 nodes, (14,10) regenerating code, fault_tolerance=4
+# Based on Backblaze-style failure events
+#
+# timestamp = day number from start
+# node_ids are in range [0, 39], but only nodes [0, ecn-1] affect a stripe
+#
+0    1    2
+3    1    5
+7    2    3 11
+12   1    8
+18   1    5
+25   2    1 9
+30   1    7
+35   3    2 6 10
+42   1    13
+48   2    0 4
+55   1    11
+60   2    3 8
+68   1    12
+75   2    5 9
+80   1    7
+85   3    1 6 13
+92   1    0
+97   2    2 10
+104  1    4
+110  2    8 11
+115  1    3
+120  2    5 12
+128  3    0 7 9
+135  1    13
+140  2    1 6

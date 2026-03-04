@@ -62,6 +62,7 @@ void ParallelSolution::genRepairBatches(int num_failures, vector<int> fail_node_
     // enqueue == true: generated RepairBatch is pushed into a queue in SolutionBase::_batch_queue
     // enqueue == false: generated RepairBatch is added into a vector in SolutionBase::_batch_list
     _enqueue = enqueue;
+    //_method = _method; // method is set in constructor, but we set it again here just to be safe
 
     if (num_failures == 1) {
         cout<<"genRepairBatchesForSingleFailure start"<<endl;
@@ -71,8 +72,12 @@ void ParallelSolution::genRepairBatches(int num_failures, vector<int> fail_node_
         cout<<"genRepairBatchesForMultipleFailure start"<<endl;
         //cout<<fail_node_list.size()<<"  "<<num_agents<<endl;
         //genRepairBatchesForMultipleFailure(fail_node_list, num_agents, scenario , _method);
-        genRepairBatchesForMultipleFailureNew(fail_node_list, num_agents, scenario , _method);
+        //genRepairBatchesForMultipleFailureNew(fail_node_list, num_agents, scenario , 1);
+        genRepairBatchesForMultipleFailureNewFire(fail_node_list, num_agents, scenario , 1);
+        
         //genRepairBatchesForMultipleFailure
+        cout<<"genRepairBatchesForMultipleFailure end"<<endl;
+        
     }
 
     // Xiaolu comment
@@ -731,7 +736,7 @@ int ParallelSolution::chooseColor2New(Stripe* stripe, vector<int> childColors, c
         // LOG <<"bdwt = "<<state._bdwt<<endl;
         // LOG<<"currTable:"<<endl;
         // dumpTable(currTable);
-
+//ZJL ADD
         if(isBetter2(state, newColor, bestState, bestColor, currTable)){ // gloabal :3 非 ：2
             bestState = state;
             bestColor = newColor;
@@ -1911,6 +1916,7 @@ void ParallelSolution::genColoringForMultipleFailureLevelNew(Stripe* stripe,vect
 
     if(method==1){ // TODO : 根据故障数进行分类
         GloballyMLPLevel(stripe ,itm_idx, coloring,candidates,loadTable);
+
     }else{
         GloballyMLP_yh(stripe ,itm_idx, coloring,loadTable);
     }
@@ -2027,9 +2033,9 @@ void ParallelSolution::GloballyMLPLevel(Stripe* stripe, const vector<int> & itm_
             }
         }
         // 3. add into loadtable
-        dumpTable(loadTable);
-        loadTable = stripe->evalColoringGlobal(loadTable);
         //dumpTable(loadTable);
+        loadTable = stripe->evalColoringGlobal(loadTable);
+        dumpTable(loadTable);
         stripe->evaluateColoring();
         return;
     }
@@ -2796,7 +2802,8 @@ void ParallelSolution::improve_multiple(vector<int> fail_node_ids, string scenar
     // 1. color all batchs
     gettimeofday(&time1, NULL);
     for(int i = 0; i < _batch_list.size(); i++)
-    {
+    {   
+        LOG<<"2806 HANG " << i << "/" << _batch_list.size() << endl;
         RepairBatch* batch = _batch_list[i];
         vector<vector<int>> loadTable(_num_agents, {0,0}); // {out,in}
         
@@ -2831,7 +2838,7 @@ void ParallelSolution::improve_multiple(vector<int> fail_node_ids, string scenar
 
             double t_color = DistUtil::duration(time1_color, time2_color);
 
-            cout<<"!!!!!!!!!!2270 hang t_color:"<<t_color<<endl;
+            //cout<<"!!!!!!!!!!2270 hang t_color:"<<t_color<<endl;
             
             stripe->dumpLoad(_num_agents + _standby_size);
         }
@@ -2848,6 +2855,9 @@ void ParallelSolution::improve_multiple(vector<int> fail_node_ids, string scenar
 
     struct timeval improve_start, curr_improve;
     gettimeofday(&improve_start, NULL);
+
+    // MODIFICATION 1: 定义一个临时列表用来存储处理好的结果
+    vector<RepairBatch*> finished_batches;
     
     // 2. insert stripe into batch
     while(true)
@@ -2915,6 +2925,18 @@ void ParallelSolution::improve_multiple(vector<int> fail_node_ids, string scenar
         while(true)
         {
             // insert one stripe into one head_batch
+
+// ================= MODIFICATION START =================
+            // 严格控制 batch size。
+            // 当前数量 = 原有数量 + 待合并队列(batch_stripe)的数量
+            if (head_batch->getStripeList().size() + batch_stripe.size() >= _batch_size) {
+                if(DEBUG_ENABLE)
+                    LOG << "Batch full! Current size: " << head_batch->getStripeList().size() + batch_stripe.size() 
+                        << ", Limit: " << _batch_size << endl;
+                break;
+            }
+            // ================= MODIFICATION END ===================
+
             Stripe* stripe;
             RepairBatch* batch;
             bool find_stripe = false; // find a candidate
@@ -3057,7 +3079,10 @@ void ParallelSolution::improve_multiple(vector<int> fail_node_ids, string scenar
 
         LOG << "Curr batch finish" << endl;
         head_batch->dump(_num_agents + _standby_size);
-        
+
+        // MODIFICATION 2: 将处理完成的 batch 保存到临时列表中
+        finished_batches.push_back(head_batch);
+
         _batch_queue.push(head_batch);
         _batch_list.erase(_batch_list.begin());
 
@@ -3073,8 +3098,341 @@ void ParallelSolution::improve_multiple(vector<int> fail_node_ids, string scenar
         int avgload = head_batch->getLoad() / head_batch->getStripeList().size();
         LOG << "avg load = " << head_batch->getLoad() << "/" << head_batch->getStripeList().size()  << " = " << avgload << endl;
     }
+
+    // MODIFICATION 3: 将最终结果恢复到 _batch_list 中
+    // 此时 _batch_list 已经被清空，我们将 finished_batches 里的结果放回去
+    _batch_list = finished_batches;
+
+    // 此时您可以安全地统计 _batch_list 了，因为它包含了所有的最终方案
+    LOG << "Final _batch_list size: " << _batch_list.size() << endl;
     return;
 }
+
+void ParallelSolution::improve_multipleNew(vector<int> fail_node_ids, string scenario ,int method ){
+    // init
+    if(DEBUG_ENABLE)
+        LOG  << "ParallelSolution::improve_multiple start" << endl;
+    int debug_break;
+    struct timeval time1, time2;
+    struct timeval time1_color, time2_color;
+    int min_output_add = 0;
+    if(_codename == "Clay")
+    {
+        // for single clay code
+        int q = _ec->_n - _ec->_k;
+        int t = _ec->_n / q;
+        min_output_add = pow(q,t-1);
+    }
+
+    // 1. color all batchs
+    gettimeofday(&time1, NULL);
+    for(int i = 0; i < _batch_list.size(); i++)
+    {   
+        LOG<<"2806 HANG " << i << "/" << _batch_list.size() << endl;
+        RepairBatch* batch = _batch_list[i];
+        vector<vector<int>> loadTable(_num_agents, {0,0}); // {out,in}
+        
+        // gen placement
+        vector<int> placement;
+        for(auto it : batch->getStripeList())
+        {
+            for(auto idx : it->getPlacement())
+            {
+                if(find(placement.begin(), placement.end(), idx) == placement.end())
+                    placement.push_back(idx);
+            }
+        }
+
+        // gen head batch coloring solution
+        vector<Stripe*> full_stripe_list = batch->getStripeList();   
+        for (int i=0; i<full_stripe_list.size(); i++) {
+            Stripe* stripe = full_stripe_list[i];
+            ECDAG* ecdag = stripe->genRepairECDAG(_ec, fail_node_ids);
+            unordered_map<int, int> coloring; 
+            //genColoringForMultipleFailure(stripe, coloring, fail_node_ids, _num_agents, scenario, placement,0);
+            LOG<<"in improve_multiple agent_num"<<_num_agents<<endl;
+            
+            //cout<<"in improve_multiple  _conf->_blkDir:"<<_conf->_blkDir<<endl;
+            gettimeofday(&time1_color, NULL);
+            // if(stripe->getFailNum()==1){
+            //     genColoringForSingleFailure(stripe, coloring, fail_node_ids[0], _num_agents, scenario, placement);
+            // }else{
+                genColoringForMultipleFailureLevel(stripe, coloring, fail_node_ids, _num_agents, scenario, placement,method);
+//            }
+            gettimeofday(&time2_color, NULL);
+
+            double t_color = DistUtil::duration(time1_color, time2_color);
+
+            //cout<<"!!!!!!!!!!2270 hang t_color:"<<t_color<<endl;
+            
+            stripe->dumpLoad(_num_agents + _standby_size);
+        }
+        // record information
+        batch->evaluateBatch( _num_agents + _standby_size );   
+    }
+    
+    LOG << "2457 hang ParallelSolution::improve_multiple"<<endl;
+    for(auto it : _batch_list){
+        it->dump(_num_agents + _standby_size);
+    }
+    gettimeofday(&time2, NULL);
+    double color_all_batch = DistUtil::duration(time1, time2);
+
+    struct timeval improve_start, curr_improve;
+    gettimeofday(&improve_start, NULL);
+
+    // MODIFICATION 1: 定义一个临时列表用来存储处理好的结果
+    vector<RepairBatch*> finished_batches;
+    
+    // 2. insert stripe into batch
+    while(true)
+    {
+        // check if has merged all batch
+        if(_batch_list.size() == 0)
+            break;
+
+        sort(_batch_list.begin(), _batch_list.end(), [](RepairBatch* batch1, RepairBatch* batch2){
+            return batch1->getLoad()/batch1->getStripeList().size() < batch2->getLoad()/batch2->getStripeList().size();
+        });
+
+        // FIXME: test for Hungary sort, need to delete after test
+        // sort(_batch_list.begin(), _batch_list.end(), [](RepairBatch* batch1, RepairBatch* batch2){
+        //     if(batch1->getStripeList().size() != batch2->getStripeList().size()){
+        //         return batch1->getStripeList().size() > batch2->getStripeList().size();
+        //     }
+        //     return batch1->getBdwt() > batch2->getBdwt();
+        // });
+        int failure_1 = 0;
+        int failure_2 = 0;
+        int curr_size = _batch_list[0]->getStripeList().size();
+        LOG << "2350 hang debug hungary" << endl;
+        for(auto batch: _batch_list)
+        {
+            
+            auto vec = batch->getStripeList();
+            int size = vec.size();
+            if(size != curr_size){
+                LOG << "["<< failure_1 << " " << failure_2 << "]" << endl;
+                curr_size = size;
+                failure_1 = 0;
+                failure_2 = 0;
+            }
+            LOG << "batch(" << batch->getBatchId()<< ")  ";
+            sort(vec.begin(), vec.end(), [](Stripe* a, Stripe* b){
+                return a->getStripeId() < b->getStripeId();
+            });
+            for(auto stripe: vec)
+            {
+                LOG << " " << stripe->getStripeId();
+                if(stripe->getStripeId() < 200){
+                    failure_1++;
+                }else{
+                    failure_2++;
+                }
+            }
+            LOG << " : " << batch->getLoad() << "  " << batch->getBdwt() << endl; 
+        }
+        LOG << "["<< failure_1 << " " << failure_2 << "]" << endl;
+        // exit(1);
+        
+        RepairBatch* head_batch = _batch_list[0];
+        int tail_batch_idx = _batch_list.size()-1;
+        int stripe_num = head_batch->getStripeList().size();
+        float best_avg = evalTable1(head_batch->getLoadTable(_num_agents + _standby_size))._load*1.0/stripe_num;
+        
+        vector<pair<RepairBatch*, Stripe*>> batch_stripe;
+        vector<int> stripeIdx_to_insert;
+        vector<vector<int>> loadTable = head_batch->getLoadTable(_num_agents+ _standby_size); // contain the cache stripe load
+
+        // improve curr batch until the signal turn true
+        struct timeval improve1, improve2;
+        gettimeofday(&improve1, NULL);
+        while(true)
+        {
+            // insert one stripe into one head_batch
+
+// ================= MODIFICATION START =================
+            // 严格控制 batch size。
+            // 当前数量 = 原有数量 + 待合并队列(batch_stripe)的数量
+            if (head_batch->getStripeList().size() + batch_stripe.size() >= _batch_size) {
+                if(DEBUG_ENABLE)
+                    LOG << "Batch full! Current size: " << head_batch->getStripeList().size() + batch_stripe.size() 
+                        << ", Limit: " << _batch_size << endl;
+                break;
+            }
+            // ================= MODIFICATION END ===================
+
+            Stripe* stripe;
+            RepairBatch* batch;
+            bool find_stripe = false; // find a candidate
+            stripe_num = head_batch->getStripeList().size() + batch_stripe.size();
+
+            // select a candidate stripe to insert
+            struct timeval newnode1, newnode2;
+            gettimeofday(&newnode1, NULL);
+            for(int i = tail_batch_idx; i > 0; i--)
+            {   
+                RepairBatch* tail_batch = _batch_list[i];
+                for(auto tail_stripe : tail_batch->getStripeList())
+                {
+                    if(find(stripeIdx_to_insert.begin(), stripeIdx_to_insert.end(), tail_stripe->getStripeId()) != stripeIdx_to_insert.end())
+                        continue;
+
+                    // remove source nodes that we should avoid 
+                    vector<int> avoid_node_ids = tail_stripe->getPlacement();
+                    vector<int> candidates;
+                    for (int i=0; i<_num_agents; i++) {
+                        if (find(avoid_node_ids.begin(), avoid_node_ids.end(), i) == avoid_node_ids.end())
+                            candidates.push_back(i);
+                    }
+
+                    // choose the minimum inputload apart from source node 
+                    int min_load = INT_MAX;
+                    int min_load_color = -1;
+                    for(auto it : candidates)
+                    {
+                        int inload = loadTable[it][1];
+                        if(inload < min_load)
+                        {
+                            min_load = inload;
+                            min_load_color = it;
+                        }
+                    }
+                    
+                    // aovoid the new_node input_load produce new max input_load
+                    int new_node_load = loadTable[min_load_color][1] + _ec->_w;
+                    if(new_node_load*1.0/(stripe_num+1) > best_avg){
+                        if(DEBUG_ENABLE)
+                            LOG << "stripe" << tail_stripe->getStripeId() <<  " new_node input load is to large, = " << new_node_load << " avg=" << new_node_load*1.0/(stripe_num+1) << endl;
+                        continue;
+                    }
+                    
+                    // choose the maximum outputload amoung stripe source_node
+                    int max_load = 0;
+                    int max_load_color = -1;
+                    vector<int> source_node_ids = tail_stripe->getPlacement();
+
+                    for(auto failnodeid: fail_node_ids){
+                        auto it = find(source_node_ids.begin(), source_node_ids.end(), failnodeid);
+                        if(it != source_node_ids.end()){
+                            source_node_ids.erase(it);
+                        }          
+                    }   
+
+                    for(auto it : source_node_ids)
+                    {
+                        int outLoad = loadTable[it][0];
+                        if(outLoad > max_load)
+                        {
+                            max_load = outLoad;
+                            max_load_color = it;
+                        }
+                    }
+ 
+                    int max_gloabl_output = max_load+min_output_add;
+                    double avg_output = max_gloabl_output*1.0/(stripe_num+1);
+                    if(DEBUG_ENABLE)
+                        LOG << "output avg = " << max_gloabl_output << "/" << (stripe_num+1) << "=" << avg_output << endl;
+                    if(avg_output > best_avg){
+                        if(DEBUG_ENABLE)
+                            LOG << "soucenode output load is to large" << endl;
+                        continue;
+                    }
+                    find_stripe = true;
+                    stripe = tail_stripe;
+                    break;
+                }
+                if(find_stripe){
+                    batch = tail_batch;
+                    break;
+                }
+            }
+            if(!find_stripe){ // search all stripe
+                LOG << "search all stripe, curr batch size = " << head_batch->getStripeList().size() << endl;
+                break;
+            }else{
+                LOG << "choose stripe " << stripe->getStripeId() << endl;
+            }
+            gettimeofday(&newnode2, NULL);
+
+            // coloring the solution
+            gettimeofday(&time1, NULL);
+            batch_stripe.push_back(make_pair(batch,stripe));
+            // LOG << "before coloring" << endl;
+            // dumpTable(loadTable);
+            genParallelColoringForMultipleFailure(stripe, fail_node_ids, _num_agents, scenario, loadTable);
+            //stripe->dumpLoad(_num_agents);
+            //LOG << "after coloring " << endl;
+            //dumpTable(loadTable);
+
+            // calculate average load after insert tail stripe
+            int loadafter = evalTable1(loadTable)._load;
+            int bdwtafter = evalTable1(loadTable)._bdwt;
+            float avgafter = loadafter*1.0 / (stripe_num + 1);
+            gettimeofday(&time2, NULL);
+
+            // dump
+            LOG << "insert stripe " << stripe->getStripeId() << " into batch " << head_batch->getBatchId() 
+                << " coloring duration = " << DistUtil::duration(time1, time2) << endl;
+            LOG << "best avg load = " << evalTable1(head_batch->getLoadTable(_num_agents + _standby_size))._load << "/" << head_batch->getStripeList().size() << " = " << best_avg << endl;
+            LOG << "batch.load = " << head_batch->getLoad() << endl;
+            LOG << "avg load after = " << loadafter << "/" << stripe_num+1 << " = " << avgafter << endl;
+            gettimeofday(&curr_improve, NULL);
+            double curr_time = DistUtil::duration(improve_start, curr_improve);
+            LOG << curr_time/1000 << " " << stripe_num  << " " << loadafter/_ec->_w  << " " << bdwtafter/_ec->_w << " " <<  avgafter << endl; 
+            if(avgafter > best_avg){
+                // cache
+                stripeIdx_to_insert.push_back(stripe->getStripeId());
+            }else{
+                // perform cache merge
+                for(auto it : batch_stripe)
+                {
+                    RepairBatch* batch_to_delete = it.first;
+                    Stripe* stripe_to_insert = it.second;
+                    head_batch->push(stripe_to_insert);
+                    batch_to_delete->erase(stripe_to_insert);
+                    if(batch_to_delete->getStripeList().size() == 0)
+                    {
+                        _batch_list.erase(find(_batch_list.begin(), _batch_list.end(), batch_to_delete));
+                    }
+                }
+                batch_stripe.clear();
+                stripeIdx_to_insert.clear();
+                best_avg = avgafter;
+            }
+        }
+
+        LOG << "Curr batch finish" << endl;
+        head_batch->dump(_num_agents + _standby_size);
+
+        // MODIFICATION 2: 将处理完成的 batch 保存到临时列表中
+        finished_batches.push_back(head_batch);
+
+        _batch_queue.push(head_batch);
+        _batch_list.erase(_batch_list.begin());
+
+        _lock.lock();
+        _batch_request = false;
+        _lock.unlock();
+
+        gettimeofday(&improve2, NULL);
+
+
+        // dump
+        LOG << "Improve batch" << head_batch->getBatchId() << " for " << DistUtil::duration(improve1, improve2) << endl;
+        int avgload = head_batch->getLoad() / head_batch->getStripeList().size();
+        LOG << "avg load = " << head_batch->getLoad() << "/" << head_batch->getStripeList().size()  << " = " << avgload << endl;
+    }
+
+    // MODIFICATION 3: 将最终结果恢复到 _batch_list 中
+    // 此时 _batch_list 已经被清空，我们将 finished_batches 里的结果放回去
+    _batch_list = finished_batches;
+
+    // 此时您可以安全地统计 _batch_list 了，因为它包含了所有的最终方案
+    LOG << "Final _batch_list size: " << _batch_list.size() << endl;
+    return;
+}
+
 
 void ParallelSolution::improve_hybrid(int fail_node_id, string scenario){
     if(DEBUG_ENABLE)
@@ -3731,7 +4089,7 @@ void ParallelSolution::genRepairBatchesForMultipleFailure(vector<int> fail_node_
     //cout << "[INFO] fail_node_id = " << fail_node_ids << endl;
     // 0. we first figure out stripes that stores a block in $fail_node_id
     filterFailedStripes(fail_node_ids);
-    //cout << "[INFO] stripes to repair: " << _stripes_to_repair.size() << endl;
+    cout << "[INFO] stripes to repair: " << _stripes_to_repair.size() << endl;
     vector<Stripe*> stripes_to_repair_vec;
     for(auto idx : _stripes_to_repair){
         stripes_to_repair_vec.push_back(_stripe_list[idx]);
@@ -3777,12 +4135,13 @@ void ParallelSolution::genRepairBatchesForMultipleFailure(vector<int> fail_node_
     if(_enqueue){
         LOG<<"before improve_multiple agent_num"<<_num_agents<<endl;
 
-        improve_multiple(fail_node_ids,scenario,method);
+        improve_multipleNew(fail_node_ids,scenario,method);
 
     }else{
         exit(1);
     }
     gettimeofday(&time3, NULL);
+    
 
     LOG << "[DEBUG] hungary_num = " << hungary_num <<endl; //5 
     LOG << "duration find batch = " << DistUtil::duration(time1,time2)  << endl;
@@ -3881,10 +4240,6 @@ void ParallelSolution::genRepairBatchesForMultipleFailureNew(vector<int> fail_no
                 genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids, scenario, loadtable,method);
             }
 
-                
-            
-            
-            
             //genColoringForMultipleFailureLevelNN(curstripe,coloring,fail_node_ids,scenario,loadtable,method);
 
             curstripe->dumpLoad(_cluster_size);
@@ -3899,14 +4254,454 @@ void ParallelSolution::genRepairBatchesForMultipleFailureNew(vector<int> fail_no
         curbatch->evaluateBatch(_cluster_size);
         curbatch->dumpLoad(_cluster_size);
 
-        if (0) {
-            _batch_queue.push(curbatch);
+        if (_batch_request) {
+            _batch_queue.push(curbatch);//解释
+
         } else {
             _batch_list.push_back(curbatch);
         }
         curbatch->dump();
     }
     
+}
+
+void ParallelSolution::genRepairBatchesForMultipleFailureNewTest(vector<int> fail_node_ids, int num_agents, string scenario, int method) 
+{
+    LOG << "ParallelSolution::genRepairBatchesForMultipleFailureNew begin" << endl;
+
+    // 0. 找出受节点故障影响需要修复的所有条带
+    filterFailedStripes(fail_node_ids);
+    vector<Stripe*> stripes_to_repair_vec;
+    for(auto idx : _stripes_to_repair){
+        stripes_to_repair_vec.push_back(_stripe_list[idx]);
+    }
+
+    // =========================================================================
+    // 【优化 1】：精准探测每个条带在独立环境下的真实瓶颈时间 (Max(in, out))
+    // =========================================================================
+    std::unordered_map<Stripe*, int> stripe_bottleneck_weight;
+    std::unordered_map<Stripe*, vector<vector<int>>> stripe_dummy_loads; // 缓存试跑的 in/out 拓扑图
+    
+    for (auto stripe : stripes_to_repair_vec) {
+        ECDAG* curecdag = stripe->genRepairECDAG(_ec, fail_node_ids);
+        stripe->refreshECDAG(curecdag);
+        
+        vector<vector<int>> dummy_loadtable = vector<vector<int>>(_cluster_size, {0, 0});
+        genColoringForMultipleFailureLevelNew(stripe, fail_node_ids, scenario, dummy_loadtable, 1);
+        
+        stripe_dummy_loads[stripe] = dummy_loadtable; // 存下这个条带试跑后的完整节点开销
+        
+        int b_neck = 0;
+        for (const auto& node_load : dummy_loadtable) {
+            // 核心改变：修复时间取决于 max(in, out)，而非总带宽
+            int node_max_io = std::max(node_load[0], node_load[1]);
+            if (node_max_io > b_neck) {
+                b_neck = node_max_io;
+            }
+        }
+        stripe_bottleneck_weight[stripe] = b_neck; 
+    }
+
+    // 按单条带的最大耗时降序排列，先把“硬骨头”挑出来分发
+    std::sort(stripes_to_repair_vec.begin(), stripes_to_repair_vec.end(), 
+        [&stripe_bottleneck_weight](Stripe* a, Stripe* b) {
+            return stripe_bottleneck_weight[a] > stripe_bottleneck_weight[b];
+        });
+
+    // 1. 计算需要的 Batch 总数
+    _num_batches = stripes_to_repair_vec.size() / _batch_size;
+    if (stripes_to_repair_vec.size() % _batch_size != 0) _num_batches += 1; 
+    cout << "[INFO] num batches = " << _num_batches << endl;
+
+    // =========================================================================
+    // 【优化 2】：基于二维状态推演的极限装箱算法 (Min-Max Bin Packing)
+    // 彻底避免将重度依赖同一个节点（如节点21）的多个条带分到同一个批次
+    // =========================================================================
+    vector<vector<Stripe*>> balanced_batches(_num_batches);
+    // 记录每个 batch 当前累计的独立 in 和 out 状态 [batch_id][node_id][0/1]
+    vector<vector<vector<int>>> batch_node_loads(_num_batches, vector<vector<int>>(_cluster_size, {0, 0})); 
+    
+    for (size_t i = 0; i < stripes_to_repair_vec.size(); ++i) {
+        Stripe* cur_s = stripes_to_repair_vec[i];
+        
+        int best_batch_idx = 0;
+        int min_bottleneck = INT_MAX; // 我们希望放入后，整个 batch 的最高水位线尽可能低
+
+        for (int b = 0; b < _num_batches; ++b) {
+            if (balanced_batches[b].size() >= _batch_size) continue;
+            
+            int potential_batch_bottleneck = 0;
+            for(int node_id = 0; node_id < _cluster_size; ++node_id) {
+                 // 虚拟推演：假设放进这个 Batch，该节点的 in 和 out 会涨到多少
+                 int sim_in = batch_node_loads[b][node_id][0] + stripe_dummy_loads[cur_s][node_id][0];
+                 int sim_out = batch_node_loads[b][node_id][1] + stripe_dummy_loads[cur_s][node_id][1];
+                 
+                 // 该节点的预期修复时间取决于它的 max(in, out)
+                 int expected_node_time = std::max(sim_in, sim_out);
+                 if (expected_node_time > potential_batch_bottleneck) {
+                     potential_batch_bottleneck = expected_node_time;
+                 }
+            }
+            
+            // 找到能让“放入后全局最高水位线”保持最低的那个 Batch
+            if (potential_batch_bottleneck < min_bottleneck) {
+                min_bottleneck = potential_batch_bottleneck;
+                best_batch_idx = b;
+            }
+        }
+        
+        // 正式装箱并更新该 Batch 的精确二维状态
+        balanced_batches[best_batch_idx].push_back(cur_s);
+        for(int node_id = 0; node_id < _cluster_size; ++node_id) {
+            batch_node_loads[best_batch_idx][node_id][0] += stripe_dummy_loads[cur_s][node_id][0];
+            batch_node_loads[best_batch_idx][node_id][1] += stripe_dummy_loads[cur_s][node_id][1];
+        }
+    }
+
+    // =========================================================================
+    // 3. 遍历并执行最终的路由算法
+    // =========================================================================
+    for(int batchid = 0 ; batchid < _num_batches; batchid ++) {
+        cout << "[INFO] INIT BATCH = " << batchid << endl;
+
+        vector<Stripe*> cur_stripe_list;
+        vector<vector<int>> loadtable = vector<vector<int>> (_cluster_size, {0,0});
+
+        vector<Stripe*>& allocated_stripes = balanced_batches[batchid];
+        
+        for (size_t i = 0; i < allocated_stripes.size(); i++) {
+            Stripe* curstripe = allocated_stripes[i];
+            
+            ECDAG* curecdag = curstripe->genRepairECDAG(_ec, fail_node_ids);
+            curstripe->refreshECDAG(curecdag);
+            
+            // =========================================================================
+            // 【优化 3】：微观自适应路由 - 纯粹为了压低单点极限时间
+            // =========================================================================
+            if(method == 1) {
+                auto get_max_time = [](const vector<vector<int>>& lt) {
+                    int max_node_time = 0;
+                    for (const auto& node_load : lt) {
+                        // 核心改变：比较 max(in, out) 而非 in+out
+                        int current_node_max = std::max(node_load[0], node_load[1]); 
+                        if (current_node_max > max_node_time) {
+                            max_node_time = current_node_max;
+                        }
+                    }
+                    return max_node_time;
+                };
+
+                // 模拟策略 0 (Hyper)
+                vector<vector<int>> loadtable_hyper = loadtable; 
+                genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids, scenario, loadtable_hyper, 0);
+                int time_hyper = get_max_time(loadtable_hyper);
+                int total_load_hyper = curstripe->_load; // 仅作备用裁决
+                unordered_map<int, int> coloring_hyper = curstripe->_coloring;
+
+                // 模拟策略 1 (Multi)
+                vector<vector<int>> loadtable_multi = loadtable; 
+                genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids, scenario, loadtable_multi, 1);
+                int time_multi = get_max_time(loadtable_multi);
+                int total_load_multi = curstripe->_load; // 仅作备用裁决
+                unordered_map<int, int> coloring_multi = curstripe->_coloring;
+
+                // 决策：谁能把这批次的“最慢节点所需时间”压得更低，就选谁
+                // 如果最慢节点所需时间一样，再看谁消耗的总网络带宽(total_load)更少
+                if (time_multi < time_hyper || 
+                   (time_multi == time_hyper && total_load_multi <= total_load_hyper)) {
+                    curstripe->_coloring = coloring_multi;
+                    curstripe->setColoring(coloring_multi);
+                    curstripe->evaluateColoring();
+                    loadtable = loadtable_multi; 
+                } else {
+                    curstripe->_coloring = coloring_hyper;
+                    curstripe->setColoring(coloring_hyper);
+                    curstripe->evaluateColoring();
+                    loadtable = loadtable_hyper; 
+                }
+            } else {
+                genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids, scenario, loadtable, method);
+            }
+
+            curstripe->dumpLoad(_cluster_size);
+            cur_stripe_list.push_back(curstripe);
+        }
+
+        RepairBatch* curbatch = new RepairBatch(batchid, cur_stripe_list);
+        curbatch->evaluateBatch(_cluster_size);
+        curbatch->dumpLoad(_cluster_size);
+
+        if (_batch_request) {
+            _batch_queue.push(curbatch);
+        } else {
+            _batch_list.push_back(curbatch);
+        }
+        curbatch->dump();
+    }
+}
+
+void ParallelSolution::genRepairBatchesForMultipleFailureNewFire(vector<int> fail_node_ids, int num_agents, string scenario, int method) 
+{
+    LOG << "ParallelSolution::genRepairBatchesForMultipleFailureNew begin" << endl;
+
+    // 0. 找出受节点故障影响需要修复的所有条带
+    filterFailedStripes(fail_node_ids);
+    vector<Stripe*> stripes_to_repair_vec;
+    for(auto idx : _stripes_to_repair){
+        stripes_to_repair_vec.push_back(_stripe_list[idx]);
+    }
+
+    if (stripes_to_repair_vec.empty()) return;
+
+    // =========================================================================
+    // 【优化 1】：精准探测每个条带在独立环境下的真实瓶颈时间 (Max(in, out))
+    // =========================================================================
+    std::unordered_map<Stripe*, int> stripe_bottleneck_weight;
+    std::unordered_map<Stripe*, vector<vector<int>>> stripe_dummy_loads; // 缓存试跑的拓扑图
+    
+    for (auto stripe : stripes_to_repair_vec) {
+        ECDAG* curecdag = stripe->genRepairECDAG(_ec, fail_node_ids);
+        stripe->refreshECDAG(curecdag);
+        
+        vector<vector<int>> dummy_loadtable(_cluster_size, vector<int>(2, 0));
+        // 使用策略 0 进行一轮预演以获取底层拓扑开销
+        genColoringForMultipleFailureLevelNew(stripe, fail_node_ids, scenario, dummy_loadtable, 0); 
+        
+        stripe_dummy_loads[stripe] = dummy_loadtable; 
+        
+        int b_neck = 0;
+        for (const auto& node_load : dummy_loadtable) {
+            // 核心改变：修复时间取决于 max(in, out)
+            int node_max_io = std::max(node_load[0], node_load[1]);
+            if (node_max_io > b_neck) {
+                b_neck = node_max_io;
+            }
+        }
+        stripe_bottleneck_weight[stripe] = b_neck; 
+    }
+
+    // 按单条带的最大耗时降序排列 (Heavy-first)
+    std::sort(stripes_to_repair_vec.begin(), stripes_to_repair_vec.end(), 
+        [&stripe_bottleneck_weight](Stripe* a, Stripe* b) {
+            return stripe_bottleneck_weight[a] > stripe_bottleneck_weight[b];
+        });
+
+    // 1. 计算需要的 Batch 总数
+    _num_batches = stripes_to_repair_vec.size() / _batch_size;
+    if (stripes_to_repair_vec.size() % _batch_size != 0) _num_batches += 1; 
+    cout << "[INFO] num batches = " << _num_batches << endl;
+
+    // =========================================================================
+    // 【优化 2】：基于二维状态推演的极限装箱算法 (构建极其优秀的贪心初始解)
+    // =========================================================================
+    vector<vector<Stripe*>> balanced_batches(_num_batches);
+    // 记录每个 batch 当前累计的独立 in 和 out 状态
+    vector<vector<vector<int>>> batch_node_loads(_num_batches, vector<vector<int>>(_cluster_size, vector<int>(2, 0))); 
+    
+    for (size_t i = 0; i < stripes_to_repair_vec.size(); ++i) {
+        Stripe* cur_s = stripes_to_repair_vec[i];
+        
+        int best_batch_idx = 0;
+        int min_bottleneck = INT_MAX; 
+
+        for (int b = 0; b < _num_batches; ++b) {
+            if (balanced_batches[b].size() >= _batch_size) continue;
+            
+            int potential_batch_bottleneck = 0;
+            for(int node_id = 0; node_id < _cluster_size; ++node_id) {
+                 int sim_in = batch_node_loads[b][node_id][0] + stripe_dummy_loads[cur_s][node_id][0];
+                 int sim_out = batch_node_loads[b][node_id][1] + stripe_dummy_loads[cur_s][node_id][1];
+                 
+                 int expected_node_time = std::max(sim_in, sim_out);
+                 if (expected_node_time > potential_batch_bottleneck) {
+                     potential_batch_bottleneck = expected_node_time;
+                 }
+            }
+            
+            if (potential_batch_bottleneck < min_bottleneck) {
+                min_bottleneck = potential_batch_bottleneck;
+                best_batch_idx = b;
+            }
+        }
+        
+        // 装箱并累加状态
+        balanced_batches[best_batch_idx].push_back(cur_s);
+        for(int node_id = 0; node_id < _cluster_size; ++node_id) {
+            batch_node_loads[best_batch_idx][node_id][0] += stripe_dummy_loads[cur_s][node_id][0];
+            batch_node_loads[best_batch_idx][node_id][1] += stripe_dummy_loads[cur_s][node_id][1];
+        }
+    }
+
+    // =========================================================================
+    // 【优化 4】：基于模拟退火 (Simulated Annealing) 的全局最优搜索
+    // =========================================================================
+
+    if (_num_batches > 1) {
+        LOG << "[INFO] Starting Simulated Annealing optimization..." << endl;
+
+        // 评估函数：计算当前调度方案所有批次的瓶颈总时间 (Energy)
+        auto calculate_total_makespan = [&](const vector<vector<Stripe*>>& current_batches) {
+            int total_time = 0;
+            for (const auto& batch : current_batches) {
+                vector<vector<int>> current_batch_load(_cluster_size, vector<int>(2, 0));
+                for (Stripe* s : batch) {
+                    for (int node_id = 0; node_id < _cluster_size; ++node_id) {
+                        current_batch_load[node_id][0] += stripe_dummy_loads[s][node_id][0];
+                        current_batch_load[node_id][1] += stripe_dummy_loads[s][node_id][1];
+                    }
+                }
+                int batch_bottleneck = 0;
+                for (const auto& node_load : current_batch_load) {
+                    batch_bottleneck = std::max(batch_bottleneck, std::max(node_load[0], node_load[1]));
+                }
+                total_time += batch_bottleneck;
+            }
+            return total_time;
+        };
+
+        // 退火参数配置
+        double current_temp = 1000.0;
+        double cooling_rate = 0.95;
+        double final_temp = 0.1;
+        int iter_per_temp = 50;
+
+        vector<vector<Stripe*>> current_solution = balanced_batches;
+        vector<vector<Stripe*>> best_solution = balanced_batches;
+        
+        int current_energy = calculate_total_makespan(current_solution);
+        int best_energy = current_energy;
+
+        // 随机数发生器
+        unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+        std::default_random_engine generator(seed);
+        std::uniform_real_distribution<double> distribution(0.0, 1.0);
+
+        while (current_temp > final_temp) {
+            for (int i = 0; i < iter_per_temp; ++i) {
+                // 随机抽取两个 Batch
+                std::uniform_int_distribution<int> batch_dist(0, _num_batches - 1);
+                int b1 = batch_dist(generator);
+                int b2 = batch_dist(generator);
+                while (b1 == b2) { b2 = batch_dist(generator); }
+
+                if (current_solution[b1].empty() || current_solution[b2].empty()) continue;
+
+                // 随机抽取两个 Stripe 准备互换
+                std::uniform_int_distribution<int> s1_dist(0, current_solution[b1].size() - 1);
+                std::uniform_int_distribution<int> s2_dist(0, current_solution[b2].size() - 1);
+                int s1_idx = s1_dist(generator);
+                int s2_idx = s2_dist(generator);
+
+                // 执行邻域动作 (Swap)
+                vector<vector<Stripe*>> neighbor_solution = current_solution;
+                std::swap(neighbor_solution[b1][s1_idx], neighbor_solution[b2][s2_idx]);
+
+                int neighbor_energy = calculate_total_makespan(neighbor_solution);
+
+                // Metropolis 准则判断
+                if (neighbor_energy < current_energy) {
+                    current_solution = neighbor_solution;
+                    current_energy = neighbor_energy;
+                    if (current_energy < best_energy) {
+                        best_solution = current_solution;
+                        best_energy = current_energy;
+                    }
+                } else {
+                    double delta = neighbor_energy - current_energy;
+                    double acceptance_probability = exp(-delta / current_temp);
+                    if (distribution(generator) < acceptance_probability) {
+                        current_solution = neighbor_solution;
+                        current_energy = neighbor_energy;
+                    }
+                }
+            }
+            current_temp *= cooling_rate; // 降温
+        }
+
+        balanced_batches = best_solution;
+        LOG << "[INFO] SA Finished. Best Makespan found: " << best_energy << endl;
+    }
+
+    // =========================================================================
+    // 【优化 3】：遍历并执行微观自适应路由算法
+    // =========================================================================
+    for(int batchid = 0 ; batchid < _num_batches; batchid ++) {
+        cout << "[INFO] INIT BATCH = " << batchid << endl;
+
+        vector<Stripe*> cur_stripe_list;
+        vector<vector<int>> loadtable(_cluster_size, vector<int>(2, 0));
+
+        vector<Stripe*>& allocated_stripes = balanced_batches[batchid];
+        
+        for (size_t i = 0; i < allocated_stripes.size(); i++) {
+            Stripe* curstripe = allocated_stripes[i];
+            
+            ECDAG* curecdag = curstripe->genRepairECDAG(_ec, fail_node_ids);
+            curstripe->refreshECDAG(curecdag);
+            
+            if(method == 1) {
+                auto get_max_time = [](const vector<vector<int>>& lt) {
+                    int max_node_time = 0;
+                    for (const auto& node_load : lt) {
+                        int current_node_max = std::max(node_load[0], node_load[1]); 
+                        if (current_node_max > max_node_time) {
+                            max_node_time = current_node_max;
+                        }
+                    }
+                    return max_node_time;
+                };
+
+                // 模拟策略 0 (Hyper)
+                vector<vector<int>> loadtable_hyper = loadtable; 
+                genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids, scenario, loadtable_hyper, 0);
+                int time_hyper = get_max_time(loadtable_hyper);
+                int total_load_hyper = curstripe->_load; 
+                unordered_map<int, int> coloring_hyper = curstripe->_coloring;
+
+                // 模拟策略 1 (Multi)
+                vector<vector<int>> loadtable_multi = loadtable; 
+                genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids, scenario, loadtable_multi, 1);
+                int time_multi = get_max_time(loadtable_multi);
+                int total_load_multi = curstripe->_load; 
+                unordered_map<int, int> coloring_multi = curstripe->_coloring;
+
+                // 核心决策逻辑：谁压低了当前批次的单点时间，就选谁
+                if (time_multi < time_hyper || 
+                   (time_multi == time_hyper && total_load_multi <= total_load_hyper)) {
+                    curstripe->_coloring = coloring_multi;
+                    curstripe->setColoring(coloring_multi);
+                    curstripe->evaluateColoring();
+                    loadtable = loadtable_multi; 
+                } else {
+                    curstripe->_coloring = coloring_hyper;
+                    curstripe->setColoring(coloring_hyper);
+                    curstripe->evaluateColoring();
+                    loadtable = loadtable_hyper; 
+                }
+            } else {
+                genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids, scenario, loadtable, method);
+            }  
+            
+            // 2. 【修改点】：不再比较 Hyper(0) 和 Multi(1)
+            // 直接调用 method = 1 进行着色和负载更新
+            // 注意：loadtable 会在函数内部被累加更新
+            //genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids, scenario, loadtable, 1);
+
+            curstripe->dumpLoad(_cluster_size);
+            cur_stripe_list.push_back(curstripe);
+        }
+
+        RepairBatch* curbatch = new RepairBatch(batchid, cur_stripe_list);
+        curbatch->evaluateBatch(_cluster_size);
+        curbatch->dumpLoad(_cluster_size);
+
+        if (_batch_request) {
+            _batch_queue.push(curbatch);
+        } else {
+            _batch_list.push_back(curbatch);
+        }
+        curbatch->dump();
+    }
 }
 
 void ParallelSolution::prepare(Stripe* stripe, vector<int> fail_node_ids, unordered_map<int, int> & res, string scenario,const vector<vector<int>> & loadTable)
@@ -4071,4 +4866,319 @@ vector<Stripe*> ParallelSolution::rearrange_stripes(vector<Stripe*> original_lis
     }
     return result;
 }
+
+
+void ParallelSolution::genColoringForMultipleFailureLevelNew1(Stripe* stripe, vector<int> fail_node_ids, string scenario, vector<vector<int>>& loadTable, int method) 
+    {
+        // 1. 基础准备
+        ECDAG* ecdag = stripe->getECDAG();
+        unordered_map<int, int> coloring;
+        
+        // 1.1 固定叶子节点和根节点 (复用你原有的逻辑)
+        prepare(stripe, fail_node_ids, coloring, scenario, loadTable);
+
+        // 1.2 生成候选物理机器列表 (Candidates)
+        // 排除故障节点，包含幸存节点和修复目标节点
+        vector<int> candidates;
+        set<int> unique_cand;
+        for (int node_id : stripe->_nodelist) {
+            bool is_failed = false;
+            for(int fail_id : fail_node_ids) if(node_id == fail_id) is_failed = true;
+            if (!is_failed) unique_cand.insert(node_id);
+        }
+        // 确保修复目标节点也在候选列表中
+        for (int i = 0; i < stripe->getFailNum(); i++) {
+            int header_id = ecdag->_ecHeaders[i];
+            if (coloring.count(header_id)) unique_cand.insert(coloring[header_id]);
+        }
+        candidates.assign(unique_cand.begin(), unique_cand.end());
+
+        // 1.3 获取拓扑序列和中间节点
+        vector<int> topoIdxs = ecdag->genTopoIdxs();
+        vector<int> itm_idx = ecdag->genItmIdxs();
+
+        // 获取集群大小（用于构建负载数组）
+        int cluster_size = 0;
+        for(int c : candidates) cluster_size = max(cluster_size, c + 1);
+        for(auto pair : coloring) if(pair.second != -1) cluster_size = max(cluster_size, pair.second + 1);
+        cluster_size += 1; // 保证数组不越界
+
+        // 2. 阶段一：快速初始贪心构造 (Initial Construction)
+        // 目的：快速生成一个合法的、基于拓扑序的初始解
+        initialGreedyColoring(ecdag, coloring, candidates, topoIdxs, cluster_size);
+
+        // 3. 阶段二：瓶颈导向的局部搜索 (Bottleneck-Driven Local Search)
+        // 目的：针对几千个节点，只移动导致最大负载的节点，极大降低复杂度
+        fastLocalSearch(ecdag, coloring, candidates, itm_idx, cluster_size);
+
+        // 4. 应用结果
+        stripe->setColoring(coloring);
+        stripe->evaluateColoring();
+        
+        // 更新外部的 loadTable (如果需要反馈给全局)
+        // loadTable = stripe->evalColoringGlobal(loadTable); 
+    }
+
+    // =========================================================
+    // 阶段一：初始贪心 (基于拓扑序)
+    // =========================================================
+    void ParallelSolution::initialGreedyColoring(ECDAG* ecdag, unordered_map<int, int>& coloring, const vector<int>& candidates, const vector<int>& topoIdxs, int cluster_size) {
+        vector<int> temp_load(cluster_size, 0); // 简单的模拟负载
+        auto nodeMap = ecdag->getECNodeMapNew();
+
+        for (int u : topoIdxs) {
+            // 如果已经被 prepare 染色了（如叶子或根），跳过
+            if (coloring.find(u) != coloring.end() && coloring[u] != -1) continue;
+
+            int best_cand = -1;
+            int min_added_load = INT_MAX;
+
+            ECNode* node = nodeMap[u];
+            vector<int> children = node->getChildIndices();
+
+            // 简单贪心：选择入站流量最小的节点
+            for (int cand : candidates) {
+                int current_cost = 0;
+                // 计算如果放在 cand，需要从孩子拉多少数据
+                for (int v : children) {
+                    if (coloring.count(v) && coloring[v] != -1 && coloring[v] != cand) {
+                        current_cost++;
+                    }
+                }
+                
+                // 结合当前机器的负载做一个简单平衡
+                int score = current_cost + temp_load[cand]; 
+
+                if (score < min_added_load) {
+                    min_added_load = score;
+                    best_cand = cand;
+                }
+            }
+            if (best_cand == -1) best_cand = candidates[0];
+            
+            coloring[u] = best_cand;
+            temp_load[best_cand]++; // 简单模拟负载增加
+        }
+    }
+
+    // =========================================================
+    // 阶段二：快速局部搜索 (核心优化逻辑)
+    // =========================================================
+    void ParallelSolution::fastLocalSearch(ECDAG* ecdag, unordered_map<int, int>& coloring, const vector<int>& candidates, const vector<int>& itm_idx, int cluster_size) {
+        
+        // 1. 初始化全局精确负载表
+        vector<int> machine_loads(cluster_size, 0);
+        recalcGlobalLoad(ecdag, coloring, machine_loads);
+
+        int max_iter = 2000; // 最大迭代次数 (针对几千节点，可以设大一点)
+        int no_improve_limit = 200; // 连续多少次没优化就退出
+        int no_improve_cnt = 0;
+        
+        auto nodeMap = ecdag->getECNodeMapNew();
+        
+        // 随机数生成器
+        random_device rd;
+        mt19937 gen(rd());
+
+        int current_max_load = getMax(machine_loads);
+
+        for (int iter = 0; iter < max_iter; iter++) {
+            
+            // A. 找出瓶颈机器 (Load = Max Load 的机器)
+            vector<int> bottlenecks;
+            for (int i = 0; i < cluster_size; i++) {
+                if (machine_loads[i] == current_max_load) {
+                    bottlenecks.push_back(i);
+                }
+            }
+
+            // B. 如果没有瓶颈（不可能）或已达到完美状态
+            if (bottlenecks.empty()) break;
+            
+            // C. 随机选一个瓶颈机器，并找出该机器上的一个中间节点
+            int target_machine = bottlenecks[gen() % bottlenecks.size()];
+            
+            // 收集该机器上的所有可移动节点 (中间节点)
+            vector<int> nodes_on_machine;
+            for (int u : itm_idx) {
+                if (coloring[u] == target_machine) {
+                    nodes_on_machine.push_back(u);
+                }
+            }
+
+            if (nodes_on_machine.empty()) {
+                // 该瓶颈机器上没有中间节点（全是固定的叶子/根），无法优化这台机器
+                // 尝试跳过或强制随机扰动其他节点，这里简单处理：终止
+                break; 
+            }
+
+            // D. 尝试移动其中的一个节点到其他机器
+            // 随机选一个节点尝试移动，避免遍历所有节点
+            int node_to_move = nodes_on_machine[gen() % nodes_on_machine.size()];
+            
+            bool found_better_move = false;
+            
+            // 尝试所有候选目标机器
+            // 为了速度，可以只随机尝试 K 个机器，或者尝试所有
+            vector<int> shuffled_candidates = candidates;
+            shuffle(shuffled_candidates.begin(), shuffled_candidates.end(), gen);
+
+            for (int new_machine : shuffled_candidates) {
+                if (new_machine == target_machine) continue;
+                
+                // 核心：快速预判移动后的 Max Load 变化
+                // 只需要计算受影响的机器的负载变化，不需要全图扫描
+                int delta_src, delta_dst; // 只需要知道源和目的的变化
+                // 注意：邻居机器的负载也可能变，但为了 Min-Max，我们主要关注
+                // 1. 源机器负载是否下降
+                // 2. 目的机器负载是否超标
+                // 3. 邻居机器负载变化通常较小，可以忽略或完整计算
+                
+                // 为了准确性，我们使用完整增量更新
+                if (tryMoveNode(nodeMap, coloring, machine_loads, node_to_move, target_machine, current_max_load)) {
+                    found_better_move = true;
+                    break; // 找到一个优化移动就立即执行，进入下一轮
+                }
+            }
+
+            if (found_better_move) {
+                current_max_load = getMax(machine_loads);
+                no_improve_cnt = 0;
+            } else {
+                no_improve_cnt++;
+                if (no_improve_cnt >= no_improve_limit) break;
+            }
+        }
+    }
+
+    // =========================================================
+    // 辅助：尝试移动节点，如果有利则真正移动并更新 Loads
+    // 返回：是否成功移动
+    // =========================================================
+    bool ParallelSolution::tryMoveNode(const unordered_map<int, ECNode*>& nodeMap, 
+                     unordered_map<int, int>& coloring, 
+                     vector<int>& machine_loads, 
+                     int u, 
+                     int new_machine, 
+                     int global_max_load) 
+    {
+        int old_machine = coloring[u];
+        
+        // 1. 计算撤销 u 在 old_machine 产生的影响 (计算 Delta)
+        // 2. 计算 u 在 new_machine 产生的影响
+        // 这是一个 O(degree) 的操作，非常快
+        
+        // 我们需要模拟 machine_loads 的变化
+        // 为了不破坏原数组，我们用一个 map 记录变化的索引
+        unordered_map<int, int> load_diff;
+        
+        // 辅助 lambda：更新链路负载
+        auto updateLink = [&](int node_loc, int neighbor_loc, int val) {
+            if (node_loc != neighbor_loc) {
+                load_diff[node_loc] += val;      // 出/入
+                load_diff[neighbor_loc] += val;  // 入/出
+            }
+        };
+
+        ECNode* node = nodeMap.at(u);
+        const vector<int>& children = node->getChildIndices();
+        const vector<int>& parents = node->getParentIndices();
+
+        // A. 模拟移除 (val = -1)
+        for (int v : children) {
+            if (coloring.count(v) && coloring[v] != -1) 
+                updateLink(old_machine, coloring[v], -1);
+        }
+        for (int p : parents) {
+            if (coloring.count(p) && coloring[p] != -1) 
+                updateLink(old_machine, coloring[p], -1);
+        }
+
+        // B. 模拟添加 (val = +1)
+        for (int v : children) {
+            if (coloring.count(v) && coloring[v] != -1) 
+                updateLink(new_machine, coloring[v], +1);
+        }
+        for (int p : parents) {
+            if (coloring.count(p) && coloring[p] != -1) 
+                updateLink(new_machine, coloring[p], +1);
+        }
+
+        // C. 判定是否是一个“好”的移动
+        int new_max_load_prediction = global_max_load;
+        bool creates_new_bottleneck = false;
+
+        // 检查所有受影响的机器
+        for (auto item : load_diff) {
+            int mach = item.first;
+            int change = item.second;
+            int predicted_load = machine_loads[mach] + change;
+
+            if (predicted_load >= global_max_load) {
+                // 如果任何一个机器的负载超过或等于当前的全局最大值
+                // 只有当它是原瓶颈机器且负载下降时才允许
+                if (mach == old_machine && predicted_load < global_max_load) {
+                    //这是好事，瓶颈下降了
+                } else if (predicted_load > global_max_load) {
+                    creates_new_bottleneck = true;
+                } else if (predicted_load == global_max_load && mach != old_machine) {
+                     // 简单策略：如果不降反平，通常不移动，防止震荡
+                     // 除非我们想做模拟退火
+                     creates_new_bottleneck = true; 
+                }
+            }
+        }
+        
+        // 只有当没有创造更坏的瓶颈，且源瓶颈机器的负载确实下降了
+        // 或者虽然源没降很多，但整体趋势向好 (这里简化为严格下降策略)
+        int predicted_old_load = machine_loads[old_machine] + load_diff[old_machine];
+        
+        if (!creates_new_bottleneck && predicted_old_load < machine_loads[old_machine]) {
+            // 确认移动！更新真实数据
+            coloring[u] = new_machine;
+            for (auto item : load_diff) {
+                machine_loads[item.first] += item.second;
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    // =========================================================
+    // 辅助：全量计算负载 (用于初始化和校验)
+    // =========================================================
+    void ParallelSolution::recalcGlobalLoad(ECDAG* ecdag, const unordered_map<int, int>& coloring, vector<int>& loads) {
+        fill(loads.begin(), loads.end(), 0);
+        auto nodeMap = ecdag->getECNodeMapNew();
+
+        for (auto& item : coloring) {
+            int u = item.first;
+            int u_loc = item.second;
+            if (u_loc == -1) continue;
+
+            ECNode* node = nodeMap[u];
+            // 只计算 In-Traffic (从孩子来)
+            // Out-Traffic 会在处理 Parent 时作为 In-Traffic 计算
+            // 或者统一逻辑：每条边跨机器，两端都+1
+            
+            // 这里我们采用 "每条跨机边导致两端负载各+1" 的逻辑
+            // 为了避免重复计算，我们只遍历 Child 边
+            for (int v : node->getChildIndices()) {
+                if (coloring.find(v) != coloring.end() && coloring.at(v) != -1) {
+                    int v_loc = coloring.at(v);
+                    if (u_loc != v_loc) {
+                        loads[u_loc]++;
+                        loads[v_loc]++;
+                    }
+                }
+            }
+        }
+    }
+
+    int ParallelSolution::getMax(const vector<int>& nums) {
+        int m = 0;
+        for (int x : nums) m = max(m, x);
+        return m;
+    }
 

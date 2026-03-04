@@ -99,14 +99,16 @@ for slave in slavelist:
     #print(cmd)
     #os.system(cmd)
 
-    cmd="ssh "+slave+" \"sudo service redis restart\""
-    print(cmd)
-    os.system(cmd)
+    #cmd="ssh "+slave+" \"echo 'hustdlmm1037' | sudo -S service redis restart\""
+    # cmd="ssh "+slave+" \"sudo service redis restart\""
+    # print(cmd)
+    # os.system(cmd)
     os.system("ssh " + slave + " \"redis-cli flushall \"")
 
     os.system("ssh " + slave + " \"killall ParaAgent \"")
-    command="scp "+proj_dir+"/build/ParaAgent "+slave+":"+proj_dir+"/build/"
+    command="scp "+proj_dir+"/ParaAgent "+slave+":"+proj_dir+"/"
+    #command="scp "+proj_dir+"/build/ParaAgent "+slave+":"+proj_dir+"/build/"
     os.system(command)
 
-    command="ssh "+slave+" \"cd "+proj_dir+"; ./build/ParaAgent &> "+proj_dir+"/agent_output &\""
+    command="ssh "+slave+" \"cd "+proj_dir+"; ./ParaAgent &> "+proj_dir+"/agent_output &\""
     os.system(command)

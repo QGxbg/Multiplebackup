@@ -202,6 +202,30 @@ DataPacket.cc.s:
 	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/common.dir/build.make src/common/CMakeFiles/common.dir/DataPacket.cc.s
 .PHONY : DataPacket.cc.s
 
+RepairScheduler.o: RepairScheduler.cc.o
+.PHONY : RepairScheduler.o
+
+# target to build an object file
+RepairScheduler.cc.o:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/common.dir/build.make src/common/CMakeFiles/common.dir/RepairScheduler.cc.o
+.PHONY : RepairScheduler.cc.o
+
+RepairScheduler.i: RepairScheduler.cc.i
+.PHONY : RepairScheduler.i
+
+# target to preprocess a source file
+RepairScheduler.cc.i:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/common.dir/build.make src/common/CMakeFiles/common.dir/RepairScheduler.cc.i
+.PHONY : RepairScheduler.cc.i
+
+RepairScheduler.s: RepairScheduler.cc.s
+.PHONY : RepairScheduler.s
+
+# target to generate assembly for a file
+RepairScheduler.cc.s:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/common.dir/build.make src/common/CMakeFiles/common.dir/RepairScheduler.cc.s
+.PHONY : RepairScheduler.cc.s
+
 Stripe.o: Stripe.cc.o
 .PHONY : Stripe.o
 
@@ -249,6 +273,30 @@ StripeStore.s: StripeStore.cc.s
 StripeStore.cc.s:
 	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/common.dir/build.make src/common/CMakeFiles/common.dir/StripeStore.cc.s
 .PHONY : StripeStore.cc.s
+
+TraceReader.o: TraceReader.cc.o
+.PHONY : TraceReader.o
+
+# target to build an object file
+TraceReader.cc.o:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/common.dir/build.make src/common/CMakeFiles/common.dir/TraceReader.cc.o
+.PHONY : TraceReader.cc.o
+
+TraceReader.i: TraceReader.cc.i
+.PHONY : TraceReader.i
+
+# target to preprocess a source file
+TraceReader.cc.i:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/common.dir/build.make src/common/CMakeFiles/common.dir/TraceReader.cc.i
+.PHONY : TraceReader.cc.i
+
+TraceReader.s: TraceReader.cc.s
+.PHONY : TraceReader.s
+
+# target to generate assembly for a file
+TraceReader.cc.s:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/common/CMakeFiles/common.dir/build.make src/common/CMakeFiles/common.dir/TraceReader.cc.s
+.PHONY : TraceReader.cc.s
 
 TradeoffPoints.o: TradeoffPoints.cc.o
 .PHONY : TradeoffPoints.o
@@ -316,12 +364,18 @@ help:
 	@echo "... DataPacket.o"
 	@echo "... DataPacket.i"
 	@echo "... DataPacket.s"
+	@echo "... RepairScheduler.o"
+	@echo "... RepairScheduler.i"
+	@echo "... RepairScheduler.s"
 	@echo "... Stripe.o"
 	@echo "... Stripe.i"
 	@echo "... Stripe.s"
 	@echo "... StripeStore.o"
 	@echo "... StripeStore.i"
 	@echo "... StripeStore.s"
+	@echo "... TraceReader.o"
+	@echo "... TraceReader.i"
+	@echo "... TraceReader.s"
 	@echo "... TradeoffPoints.o"
 	@echo "... TradeoffPoints.i"
 	@echo "... TradeoffPoints.s"

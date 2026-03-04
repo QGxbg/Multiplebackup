@@ -32,6 +32,9 @@ class Coordinator {
 
         int _blkbytes;
         int _pktbytes;
+        int _agents_num;
+        int _standby_size;
+        int _batch_size;
 
         string _method;
         string _scenario;

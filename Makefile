@@ -351,6 +351,19 @@ NewgenMLP/fast:
 .PHONY : NewgenMLP/fast
 
 #=============================================================================
+# Target rules for targets named RepairSimulator
+
+# Build rule for target.
+RepairSimulator: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 RepairSimulator
+.PHONY : RepairSimulator
+
+# fast build rule for target.
+RepairSimulator/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator.dir/build.make src/CMakeFiles/RepairSimulator.dir/build
+.PHONY : RepairSimulator/fast
+
+#=============================================================================
 # Target rules for targets named common
 
 # Build rule for target.
@@ -449,6 +462,7 @@ help:
 	@echo "... NewgenMLP"
 	@echo "... ParaAgent"
 	@echo "... ParaCoordinator"
+	@echo "... RepairSimulator"
 	@echo "... Sim_centralize"
 	@echo "... Sim_multiple"
 	@echo "... Sim_offline"

@@ -43,6 +43,7 @@ class SolutionBase {
 
         void init(vector<Stripe*> stripe_list, ECBase* ec, string codename, Config* conf);
         vector<RepairBatch*> getRepairBatches();
+        vector<RepairBatch*> getRepairBatchesNew();
         RepairBatch* getRepairBatchFromQueue();
         bool hasNext();
 
@@ -59,6 +60,7 @@ class SolutionBase {
         // if scenario == scatter, we can store a block in any node
         // if enqueue == true, please add RepairBatch* into _batch_queue when _batch_request is set true
         virtual void genRepairBatches(int num_failures, vector<int> fail_node_list, int num_agents, string scenario, bool enqueue) = 0;
-};
+    
+    };
 
 #endif

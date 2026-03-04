@@ -21,17 +21,22 @@ vector<RepairBatch*> SolutionBase::getRepairBatches() {
     return _batch_list;
 }
 
+// vector<RepairBatch*> SolutionBase::getRepairBatchesNew() {
+//     return _batch_queue;
+// }
+
+
 RepairBatch* SolutionBase::getRepairBatchFromQueue() {
     cout<<"SsolutionBase::getRepairBatchFromQueue start"<<endl;
     if(_batch_queue.getSize()== 0){
-	    //cout<<"!!!!==0"<<endl;
+	    cout<<"!!!!==0"<<endl;
         _lock.lock();
         _batch_request = true;
         _lock.unlock();
     }
-    //cout<<"here!"<<endl;
+    cout<<"here!"<<endl;
     RepairBatch* toret = _batch_queue.pop();
-    //cout<<"!!!"<<endl;
+    cout<<"!!!"<<endl;
     return toret;
 }
 

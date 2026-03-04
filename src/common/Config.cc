@@ -67,6 +67,8 @@ Config::Config(std::string& filepath) {
             _netbdwt = std::stoi(ele -> NextSiblingElement("value") -> GetText());
         }
     }
+    _agents_num = _agentsIPs.size();
+    _standby_size = _repairIPs.size();
 }
 
 Config::~Config() {

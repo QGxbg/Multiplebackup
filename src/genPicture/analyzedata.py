@@ -1,0 +1,196 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# ==========================================
+# PART 1: Analyze Your Specific Data (Figure 3a)
+# ==========================================
+
+# 1. Load the provided data
+data_str = """
+33 32 3 31 27 15 12 19 11 36 0 24 20 30
+10 13 34 36 6 0 17 30 7 14 11 32 12 38
+7 10 12 36 11 28 9 0 18 20 37 21 13 30
+22 4 5 27 16 12 3 30 17 9 8 33 25 0
+12 11 13 5 0 28 33 3 20 23 16 26 8 4
+24 2 7 35 17 23 0 5 21 28 37 1 22 38
+34 39 21 36 32 9 26 18 16 14 22 4 0 17
+4 30 16 8 9 11 34 23 17 15 29 1 0 26
+23 33 2 16 19 30 22 12 36 18 9 6 27 0
+4 18 2 33 7 29 36 1 19 24 37 0 6 8
+20 13 34 2 7 24 10 36 28 32 0 16 31 29
+9 12 36 22 37 19 17 2 25 31 15 0 39 21
+36 38 29 20 21 37 13 26 12 22 32 30 7 0
+18 1 5 25 29 33 19 20 0 4 14 35 15 9
+15 22 14 35 28 18 0 7 11 31 5 10 33 9
+0 28 21 17 38 19 33 34 6 11 24 13 9 18
+19 7 6 14 23 37 28 30 31 9 4 34 0 20
+0 34 30 39 19 15 28 6 20 13 21 17 38 1
+0 10 37 32 12 23 39 30 18 24 36 21 27 29
+27 0 8 6 34 10 22 26 20 21 29 32 31 15
+28 30 31 25 2 0 37 9 36 13 38 33 27 35
+9 23 12 13 33 28 8 11 14 25 17 22 0 20
+9 17 15 10 0 38 35 14 28 32 4 1 7 34
+30 22 33 7 24 34 5 1 38 29 13 0 10 16
+24 4 19 25 10 14 28 26 34 12 0 23 29 38
+20 8 38 22 37 35 0 17 33 29 5 6 19 2
+21 38 8 14 0 31 29 18 6 39 30 3 33 15
+36 23 32 0 14 19 12 26 8 37 34 10 20 15
+3 12 28 8 0 14 30 20 2 35 23 27 17 36
+34 0 33 30 2 11 20 29 10 16 21 28 13 26
+3 14 29 24 4 0 13 37 36 27 21 1 15 20
+23 36 8 10 3 12 22 32 5 34 0 1 31 20
+35 33 31 29 1 8 3 12 19 18 26 0 15 36
+6 24 5 39 4 19 26 21 33 11 18 12 0 28
+0 20 1 23 36 39 5 37 15 28 30 17 7 27
+26 4 2 7 12 28 27 0 19 6 29 25 3 13
+10 18 15 16 7 1 11 21 5 32 2 35 36 0
+12 39 38 24 13 20 37 26 18 0 31 11 19 23
+11 7 0 4 3 24 31 36 8 18 10 28 14 38
+13 15 8 0 22 10 29 16 21 24 7 30 39 28
+20 2 38 0 36 23 25 30 21 29 32 19 15 1
+13 12 0 1 33 32 29 4 17 7 11 26 19 9
+38 1 17 34 5 26 21 3 36 0 31 29 10 24
+4 27 28 7 25 2 17 1 18 21 13 0 20 29
+9 36 20 24 30 0 23 16 17 6 5 8 3 31
+31 6 10 7 3 25 4 37 24 34 39 5 15 0
+38 12 30 13 14 26 28 4 0 6 1 27 2 21
+33 0 17 2 37 12 14 15 27 36 39 5 38 28
+31 1 32 0 26 21 15 36 24 28 2 18 27 35
+31 36 24 0 23 30 4 28 33 22 34 6 3 2
+14 11 9 2 8 0 6 10 37 12 36 20 1 26
+5 14 36 35 22 17 11 24 0 27 16 29 23 26
+0 1 37 26 16 6 38 27 34 10 39 2 9 25
+34 24 22 11 18 0 16 33 4 23 19 10 12 20
+1 28 9 22 27 25 0 13 6 3 2 37 21 17
+11 31 34 36 3 6 0 8 16 2 15 26 4 9
+39 13 18 24 28 10 37 21 29 7 0 2 3 15
+4 22 32 27 10 14 0 35 6 36 28 8 20 16
+33 8 34 15 38 29 2 10 23 9 0 22 6 39
+29 12 34 11 1 16 27 20 0 4 31 10 33 38
+18 16 29 26 11 24 14 0 13 32 28 3 1 21
+28 13 35 15 6 29 24 2 0 9 14 1 34 20
+35 32 18 15 4 31 7 37 2 21 34 8 0 29
+2 30 27 36 20 3 6 25 38 21 28 5 0 18
+4 5 11 39 33 35 25 32 20 3 10 30 0 36
+18 0 20 12 27 37 31 17 35 14 7 5 34 11
+9 37 4 20 36 26 19 2 0 3 16 34 30 22
+8 39 25 0 27 6 20 14 17 19 26 5 35 11
+0 23 9 31 10 25 29 28 3 38 1 4 14 30
+25 22 38 19 32 34 14 37 39 24 5 26 0 16
+25 0 13 24 8 39 2 9 12 28 6 23 19 17
+23 15 20 31 7 0 37 8 32 36 3 34 2 30
+38 22 10 30 25 31 6 39 36 3 17 1 0 12
+6 33 12 38 39 13 7 36 0 8 5 27 30 20
+35 27 20 4 0 37 18 15 17 36 14 31 13 11
+9 0 27 14 5 25 1 24 29 21 22 33 35 12
+15 27 7 9 14 36 28 0 19 17 6 35 4 29
+18 33 37 8 1 12 11 28 10 30 35 5 0 29
+18 28 6 17 3 16 25 26 19 0 32 22 14 15
+29 21 0 32 35 25 28 30 24 33 27 17 4 26
+1 25 5 18 37 29 13 0 23 14 9 10 7 24
+16 37 1 0 15 2 29 14 18 38 17 21 19 35
+23 3 13 39 18 19 21 14 2 26 9 0 38 36
+33 37 32 10 34 39 28 23 8 26 21 25 38 0
+0 36 35 27 7 8 31 11 1 14 2 33 38 16
+23 9 25 34 38 0 8 5 31 37 11 28 2 7
+25 28 6 36 33 0 19 26 2 22 4 30 35 11
+16 12 37 0 35 33 6 11 5 26 36 34 15 38
+1 22 9 0 24 7 12 35 13 29 31 38 4 36
+36 0 14 18 34 20 24 5 19 17 39 29 1 30
+6 12 0 2 14 24 38 36 9 18 30 10 7 22
+8 29 20 19 28 38 39 36 9 22 5 27 0 10
+25 28 4 29 7 13 37 19 18 5 0 21 31 16
+25 33 30 21 2 0 23 39 31 17 11 32 28 36
+13 36 0 29 39 5 35 17 2 14 21 15 22 23
+0 23 34 4 21 18 29 32 26 10 17 25 1 11
+24 35 0 8 27 2 29 12 20 31 11 9 10 38
+19 13 30 35 23 17 32 22 15 0 2 24 18 29
+37 11 14 39 4 34 27 1 24 22 33 20 19 0
+29 9 6 0 20 27 17 2 7 32 11 36 37 24
+"""
+
+# Parse the data
+stripes = []
+for line in data_str.strip().split('\n'):
+    if line.strip():
+        stripes.append(list(map(int, line.strip().split())))
+
+# Count blocks per node
+num_nodes = 40
+node_counts = np.zeros(num_nodes)
+for stripe in stripes:
+    for node_id in stripe:
+        if 0 <= node_id < num_nodes:
+            node_counts[node_id] += 1
+
+# Calculate Statistics
+mean_val = np.mean(node_counts)
+std_val = np.std(node_counts)
+cv_val = std_val / mean_val
+
+print(f"--- Statistics for Provided Data ---")
+print(f"Mean Blocks per Node: {mean_val:.2f}")
+print(f"Std Dev: {std_val:.2f}")
+print(f"Coefficient of Variation (CV): {cv_val:.4f}")
+print(f"Max Blocks on a Node: {np.max(node_counts)}")
+print(f"Min Blocks on a Node: {np.min(node_counts)}")
+
+# Plot Figure 3(a): CDF of Data Distribution
+plt.figure(figsize=(8, 5))
+sorted_counts = np.sort(node_counts)
+y_vals = np.arange(1, len(sorted_counts) + 1) / len(sorted_counts)
+
+plt.step(sorted_counts, y_vals, where='post', label='Provided Data', linewidth=2)
+plt.title('Figure 3(a): Data Distribution (CDF)', fontsize=14)
+plt.xlabel('# of blocks in nodes', fontsize=12)
+plt.ylabel('CDF', fontsize=12)
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.legend()
+plt.show()
+
+# ==========================================
+# PART 2: Simulation for CV vs Nodes (Figure 3b)
+# ==========================================
+# This part simulates random placement for Clay(14,10) to generate the curve.
+
+def simulate_cv_trend(n_stripes=1000, max_nodes=1000, step=50, k_plus_m=14):
+    node_counts_list = []
+    cv_list = []
+    
+    # Range of node counts to simulate (e.g., 20 to 1000)
+    x_nodes = np.arange(40, max_nodes + 1, step)
+    
+    for N in x_nodes:
+        # Simulate random placement: Place 'n_stripes' stripes across 'N' nodes
+        # Each stripe places 'k_plus_m' chunks on distinct nodes
+        counts = np.zeros(N)
+        for _ in range(n_stripes):
+            chosen_nodes = np.random.choice(N, k_plus_m, replace=False)
+            counts[chosen_nodes] += 1
+        
+        # Calculate CV
+        mu = np.mean(counts)
+        sigma = np.std(counts)
+        cv_list.append(sigma / mu)
+
+    return x_nodes, cv_list
+
+# Run Simulation
+x_vals, cv_vals = simulate_cv_trend(n_stripes=1000, max_nodes=800, step=40, k_plus_m=14)
+theoretical_cv = np.sqrt(1 / 14)  # Theoretical limit for Clay(14,10) ~ 0.267
+
+# Plot Figure 3(b): Coefficient of Variation
+plt.figure(figsize=(8, 5))
+plt.plot(x_vals, cv_vals, marker='o', linestyle='-', color='black', label='Random Simulation (Clay 14,10)')
+plt.axhline(y=theoretical_cv, color='r', linestyle='--', label=f'Theoretical BD (~{theoretical_cv:.3f})')
+
+# Mark the specific point from your provided data
+plt.scatter([40], [cv_val], color='red', s=100, zorder=5, label='Your Data (N=40)')
+
+plt.title('Figure 3(b): Coefficient of Variation vs # of Nodes', fontsize=14)
+plt.xlabel('# of nodes', fontsize=12)
+plt.ylabel('Coefficient of variation', fontsize=12)
+plt.legend()
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.show()

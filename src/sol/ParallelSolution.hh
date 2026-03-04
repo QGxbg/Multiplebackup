@@ -6,6 +6,13 @@
 #include "SolutionBase.hh"
 #include "RepairBatch.hh"
 #include "unordered_set"
+#include <algorithm>
+#include <climits>
+#include <unordered_map>
+#include <random>
+#include <cmath>
+#include <chrono>
+#include <vector>
 
 #define DEBUG_ENABLE true 
 
@@ -19,6 +26,8 @@ class ParallelSolution : public SolutionBase {
         void genRepairBatchesForSingleFailure(int fail_node_id, int num_agents, string scenario);
         void genRepairBatchesForMultipleFailure(vector<int> fail_node_id, int num_agents, string scenario,int method);
         void genRepairBatchesForMultipleFailureNew(vector<int> fail_node_ids, int num_agents, string scenario,int method);
+        void genRepairBatchesForMultipleFailureNewTest(vector<int> fail_node_ids, int num_agents, string scenario,int method);
+        void genRepairBatchesForMultipleFailureNewFire(vector<int> fail_node_ids, int num_agents, string scenario,int method);
         
         //void genOfflineColoringForSingleFailure(Stripe* stripe, unordered_map<int, int>& res, int fail_node_id, int num_agents, string scenario);
         //void genCentralizedColoringForSingleFailure(Stripe* stripe, unordered_map<int, int>& res, int fail_node_id, int num_agents, string scenario);
@@ -51,7 +60,8 @@ class ParallelSolution : public SolutionBase {
         void improve_enqueue(int failnodeid, string);
         void improve_hybrid(int failnodeid, string);
         void improve_hungary(int failnodeid, string);
-        void improve_multiple(vector<int> fail_node_ids,string scenario,int method);;
+        void improve_multiple(vector<int> fail_node_ids,string scenario,int method);
+        void improve_multipleNew(vector<int> fail_node_ids,string scenario,int method);
         
         // vector<RepairBatch*> findRepairBatchs(int soon_to_fail_node, string scenario);
         vector<RepairBatch*> findRepairBatchs(vector<int> soon_to_fail_node, string scenario);
@@ -69,9 +79,16 @@ class ParallelSolution : public SolutionBase {
         void genColoringForMultipleFailure(Stripe* stripe, unordered_map<int, int>& res, vector<int> fail_node_id, int num_agents, string scenario, vector<int> & placement,int greedy);
         void genColoringForMultipleFailureLevel(Stripe* stripe, unordered_map<int, int>& res, vector<int> fail_node_id, int num_agents, string scenario, vector<int> & placement,int greedy);
         void genColoringForMultipleFailureLevelNew(Stripe* stripe, vector<int> fail_node_id,string scenario,vector<vector<int>> & loadTable,int method);
+        void genColoringForMultipleFailureLevelNew1(Stripe* stripe, vector<int> fail_node_id,string scenario,vector<vector<int>> & loadTable,int method);
         void genColoringForMultipleFailureLevelGlobal(Stripe* stripe, unordered_map<int, int>& res, vector<int> fail_node_id, string scenario,vector<vector<int>> & loadTable,int method);
 
         void prepare(Stripe* stripe, vector<int> fail_node_ids, unordered_map<int, int> & res, string scenario,const vector<vector<int>> & loadTable);
+
+        int getMax(const vector<int>& nums);
+        void recalcGlobalLoad(ECDAG* ecdag, const unordered_map<int, int>& coloring, vector<int>& loads) ;
+        bool tryMoveNode(const unordered_map<int, ECNode*>& nodeMap, unordered_map<int, int>& coloring, vector<int>& machine_loads, int u, int from_color, int to_color);
+        void fastLocalSearch(ECDAG* ecdag, unordered_map<int, int>& coloring, const vector<int>& candidates, const vector<int>& itm_idx, int cluster_size);
+        void initialGreedyColoring(ECDAG* ecdag, unordered_map<int, int>& coloring, const vector<int>& candidates, const vector<int>& topoIdxs, int cluster_size);
 
         
         State evalTable1(const vector<vector<int>> & table);
