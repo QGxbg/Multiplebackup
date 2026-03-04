@@ -1,0 +1,1 @@
+/usr/bin/g++  -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -g -rdynamic CMakeFiles/genMLP.dir/genMLP.cc.o -o ../genMLP  common/libcommon.a ec/libec.a sol/libsol.a util/libutil.a protocol/libprotocol.a -lpthread dist/libdist.a common/libcommon.a ec/libec.a -lisal protocol/libprotocol.a util/libutil.a -lgf_complete -lhiredis 

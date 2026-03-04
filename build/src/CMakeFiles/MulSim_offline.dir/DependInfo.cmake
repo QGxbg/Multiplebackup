@@ -1,0 +1,24 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  )
+
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/lx/Multiple_ParaRC/src/MulSim_offline.cc" "src/CMakeFiles/MulSim_offline.dir/MulSim_offline.cc.o" "gcc" "src/CMakeFiles/MulSim_offline.dir/MulSim_offline.cc.o.d"
+  )
+
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/lx/Multiple_ParaRC/build/src/common/CMakeFiles/common.dir/DependInfo.cmake"
+  "/home/lx/Multiple_ParaRC/build/src/ec/CMakeFiles/ec.dir/DependInfo.cmake"
+  "/home/lx/Multiple_ParaRC/build/src/sol/CMakeFiles/sol.dir/DependInfo.cmake"
+  "/home/lx/Multiple_ParaRC/build/src/util/CMakeFiles/util.dir/DependInfo.cmake"
+  "/home/lx/Multiple_ParaRC/build/src/protocol/CMakeFiles/protocol.dir/DependInfo.cmake"
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

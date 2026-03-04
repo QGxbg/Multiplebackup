@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdist.a CMakeFiles/dist.dir/PRSolution.cc.o CMakeFiles/dist.dir/Solution.cc.o
+/usr/bin/ranlib libdist.a

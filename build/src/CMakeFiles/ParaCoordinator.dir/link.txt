@@ -1,0 +1,1 @@
+/usr/bin/g++  -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -g -rdynamic CMakeFiles/ParaCoordinator.dir/ParaCoordinator.cc.o -o ../ParaCoordinator  common/libcommon.a ec/libec.a sol/libsol.a util/libutil.a protocol/libprotocol.a common/libcommon.a ec/libec.a -lisal protocol/libprotocol.a util/libutil.a -lgf_complete -lhiredis -lpthread 

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsol.a CMakeFiles/sol.dir/CentSolution.cc.o CMakeFiles/sol.dir/OfflineSolution.cc.o CMakeFiles/sol.dir/ParallelSolution.cc.o CMakeFiles/sol.dir/RepairBatch.cc.o CMakeFiles/sol.dir/SolutionBase.cc.o
+/usr/bin/ranlib libsol.a

@@ -1,0 +1,1 @@
+/usr/bin/g++  -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -g -rdynamic CMakeFiles/MulSim_centralize.dir/MulSim_centralize.cc.o -o ../MulSim_centralize  common/libcommon.a ec/libec.a sol/libsol.a util/libutil.a -lpthread common/libcommon.a ec/libec.a -lisal protocol/libprotocol.a util/libutil.a -lgf_complete -lhiredis 
