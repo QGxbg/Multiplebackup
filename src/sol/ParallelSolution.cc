@@ -1,11 +1,13 @@
 #include "ParallelSolution.hh"
 #include "OfflineSolution.hh"
+#include <iostream>
 
 ParallelSolution::ParallelSolution(){
     
 }
 
 ParallelSolution::ParallelSolution(int batchsize, int standbysize, int agentsnum , int method) {
+    //cout << "ParallelSolution::constructor. batchsize = " << batchsize << ", standbysize = " << standbysize << ", agentsnum = " << agentsnum << ", method = " << method << endl;
     _batch_size = batchsize;
     _standby_size = standbysize;
     _agents_num = agentsnum;
@@ -1104,7 +1106,7 @@ loadTable)
 void ParallelSolution::GloballyMLP_yh(Stripe* stripe, const vector<int> & itm_idx ,unordered_map<int, int> & coloring, vector<vector<int>> & 
     loadTable)
     {
-        LOG << "[DEBUG] GLOBALLY MLP: stripe" << stripe->getStripeId() << endl;
+        //LOG << "[DEBUG] GLOBALLY MLP: stripe" << stripe->getStripeId() << endl;
     
         // 1. init information and blank solution
         ECDAG * ecdag = stripe->getECDAG();
@@ -1344,7 +1346,7 @@ void ParallelSolution::genColoringForMultipleFailure(Stripe* stripe, unordered_m
             //repair_node_id = fail_node_ids[failnum_count];
             res.insert(make_pair(concact_idx, repair_node_id));
             failnum_count ++ ;
-            LOG << "1318 hang DEBUG concact " << concact_idx << " choose " << repair_node_id << endl;
+            //LOG << "1318 hang DEBUG concact " << concact_idx << " choose " << repair_node_id << endl;
         }
     } 
     else {
@@ -1529,7 +1531,7 @@ void ParallelSolution::genColoringForMultipleFailureLevel(Stripe* stripe, unorde
                 if (find(avoid_node_ids.begin(), avoid_node_ids.end(), i) == avoid_node_ids.end())
                     candidates.push_back(i);
             }
-            cout<<"concact_idx"<<concact_idx<<endl;
+            //cout<<"concact_idx"<<concact_idx<<endl;
             //cout<<candidates.size()<<endl;
             // random choose the replacement node for failblock
             repair_node_id = candidates[rand() % candidates.size()];
@@ -1747,7 +1749,7 @@ void ParallelSolution::genColoringForMultipleFailureLevelGlobal(Stripe* stripe, 
             repair_node_id_concact.push_back(repair_node_id);
 
             res.insert(make_pair(concact_idx, repair_node_id));
-            LOG << "1716 hang DEBUG concact " << concact_idx << " choose " << repair_node_id << endl;
+            //LOG << "1716 hang DEBUG concact " << concact_idx << " choose " << repair_node_id << endl;
         }
     } 
     else {
@@ -1761,14 +1763,14 @@ void ParallelSolution::genColoringForMultipleFailureLevelGlobal(Stripe* stripe, 
                 if (find(avoid_node_ids.begin(), avoid_node_ids.end(), i) == avoid_node_ids.end())
                     candidates.push_back(i);
             }
-            cout<<"concact_idx"<<concact_idx<<endl;
+            //cout<<"concact_idx"<<concact_idx<<endl;
             //cout<<candidates.size()<<endl;
             // random choose the replacement node for failblock
             repair_node_id = candidates[rand() % candidates.size()];
             avoid_node_ids.push_back(repair_node_id);
             //repair_node_id_concact.push_back(repair_node_id);
             res.insert(make_pair(concact_idx, repair_node_id));
-            LOG << "1737 hang DEBUG concact " << concact_idx << " choose " << repair_node_id << endl;
+            //LOG << "1737 hang DEBUG concact " << concact_idx << " choose " << repair_node_id << endl;
         }
     }
     // intermediate node idxs
@@ -1866,15 +1868,15 @@ void ParallelSolution::genColoringForMultipleFailureLevelNew(Stripe* stripe,vect
     unordered_map<int,int>coloring;
     vector<int> avoid_node_ids;
     prepare(stripe, fail_node_ids, coloring, scenario, loadTable);
-    for (auto item: coloring) {
-        int dagidx = item.first;
-        int mycolor = item.second;
-        //LOG<<"1890  hang dagidx :"<<dagidx<<" , coloring"<<mycolor<<endl;
-    }
+    // for (auto item: coloring) {
+    //     int dagidx = item.first;
+    //     int mycolor = item.second;
+    //     cout<<"1890  hang dagidx :"<<dagidx<<" , coloring"<<mycolor<<endl;
+    // }
     ECDAG* ecdag = stripe->getECDAG();
     //vector<int> ecHeaders = ecdag->getECHeaders();
     vector<int> itm_idx = ecdag->genItmIdxs();
-    stripe->dumpPlacement();
+    //stripe->dumpPlacement();
 
     LOG << stripe ->_nodelist.size()<<endl;
 
@@ -1915,6 +1917,7 @@ void ParallelSolution::genColoringForMultipleFailureLevelNew(Stripe* stripe,vect
     // dumpTable(loadTable);
 
     if(method==1){ // TODO : 根据故障数进行分类
+        //cout<<"method 1 "<<endl;
         GloballyMLPLevel(stripe ,itm_idx, coloring,candidates,loadTable);
 
     }else{
@@ -2035,7 +2038,7 @@ void ParallelSolution::GloballyMLPLevel(Stripe* stripe, const vector<int> & itm_
         // 3. add into loadtable
         //dumpTable(loadTable);
         loadTable = stripe->evalColoringGlobal(loadTable);
-        dumpTable(loadTable);
+        //dumpTable(loadTable);
         stripe->evaluateColoring();
         return;
     }
@@ -2110,7 +2113,7 @@ void ParallelSolution::genParallelColoringForMultipleFailure(Stripe* stripe,
             //     if (find(avoid_node_ids.begin(), avoid_node_ids.end(), i) == avoid_node_ids.end())
             //         candidates.push_back(i);
             // }
-            cout<<"concact_idx"<<concact_idx<<endl;
+            //cout<<"concact_idx"<<concact_idx<<endl;
             //cout<<candidates.size()<<endl;
             //int idx = stripe->getStripeId % _standby_size;
 
@@ -2122,7 +2125,7 @@ void ParallelSolution::genParallelColoringForMultipleFailure(Stripe* stripe,
             fail_node_count ++;
 
             res.insert(make_pair(concact_idx, repair_node_id));
-            LOG << "2047 hang DEBUG concact " << concact_idx << " choose " << repair_node_id << endl;
+            //LOG << "2047 hang DEBUG concact " << concact_idx << " choose " << repair_node_id << endl;
         }
 
     }
@@ -4712,6 +4715,7 @@ void ParallelSolution::prepare(Stripe* stripe, vector<int> fail_node_ids, unorde
     int ecn = _ec->_n;
     int eck = _ec->_k;
     int ecw = _ec->_w;
+    //cout<<"ecn "<<ecn<<" eck "<<eck<<" ecw "<<ecw<<endl;
 
     vector<int> fail_block_idx;
     for (int i=0; i<curplacement.size(); i++) {
@@ -4720,8 +4724,14 @@ void ParallelSolution::prepare(Stripe* stripe, vector<int> fail_node_ids, unorde
                 fail_block_idx.push_back(i);
         }
     }
+    // cout<<"fail_block_idx: ";
+    // for(auto it: fail_block_idx){
+    //     cout<<it<<" ";  
+    // }
+    // cout<<endl;
 
     // 0. get data structures of ecdag
+    //ecdag -> dump();//null
     unordered_map<int, ECNode*> ecNodeMap = ecdag->getECNodeMapNew();
     vector<int> ecHeaders = ecdag->getECHeaders();
     vector<int> ecLeaves = ecdag->getECLeaves();
@@ -4731,11 +4741,11 @@ void ParallelSolution::prepare(Stripe* stripe, vector<int> fail_node_ids, unorde
     int realLeaves = 0;
     vector<int> avoid_node_ids = fail_node_ids; // 10 12 13?
 
-    cout<<"fail_node_ids:";
-    for(int i = 0 ;i < fail_node_ids.size();i++){
-        cout<<fail_node_ids[i]<<" ";
-    }
-    cout << endl;
+    // cout<<"fail_node_ids:";
+    // for(int i = 0 ;i < fail_node_ids.size();i++){
+    //     cout<<fail_node_ids[i]<<" ";
+    // }
+    // cout << endl;
 
     int ecq = ecn - eck ;
     int ect =  log(ecw) / log(ecq);
@@ -4760,11 +4770,11 @@ void ParallelSolution::prepare(Stripe* stripe, vector<int> fail_node_ids, unorde
         //if(dagidx == 2737) cout<<"!!!"<<nodeid<<endl;
         res.insert(make_pair(dagidx, nodeid));
     }
-    cout<<"3863 hang avoid_node_ids:"<<endl;  //0 1 7 5 4 9 8 11 10 6 12 3 2 
-    for(auto it:avoid_node_ids){
-        cout<<it<<" ";
-    }
-    cout<<endl;
+    // cout<<"3863 hang avoid_node_ids:"<<endl;  //0 1 7 5 4 9 8 11 10 6 12 3 2 
+    // for(auto it:avoid_node_ids){
+    //     cout<<it<<" ";
+    // }
+    // cout<<endl;
 
     // 2. headers (concact sub pkt)
 
@@ -4802,13 +4812,13 @@ void ParallelSolution::prepare(Stripe* stripe, vector<int> fail_node_ids, unorde
                         candidates.push_back(i);
                 }
             }
-            cout<<"concact_idx"<<concact_idx<<endl;
+            //cout<<"concact_idx"<<concact_idx<<endl;
             //cout<<candidates.size()<<endl;
             // random choose the replacement node for failblock
-            for(auto it : candidates){
-                cout<<it<<" ";
-            }
-            cout<<endl;
+            // for(auto it : candidates){
+            //     cout<<it<<" ";
+            // }
+            //cout<<endl;
             repair_node_id = candidates[rand() % candidates.size()];//scatter场景下 随机选 与yuhan不同！
             avoid_node_ids.push_back(repair_node_id);
             //repair_node_id_concact.push_back(repair_node_id);

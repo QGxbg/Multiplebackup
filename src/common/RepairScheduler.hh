@@ -11,7 +11,8 @@ using namespace std;
 
 enum RepairDecision {
     REPAIR_IMMEDIATE,   // 立即修复
-    REPAIR_LAZY         // 延迟修复
+    REPAIR_LAZY,        // 延迟修复
+    REPAIR_PARTIAL      // 部分修复（新增）
 };
 
 struct RepairStats {
@@ -21,6 +22,10 @@ struct RepairStats {
     int data_loss_events;          // 数据丢失事件数
     int lazy_skip_count;           // 延迟跳过次数
     int max_concurrent_failures;   // 最大同时故障数
+    // 新增字段
+    int partial_repair_count = 0;     // 部分修复次数
+    int skipped_repair_count = 0;     // 跳过修复次数
+    double avg_risk_at_repair = 0.0;  // 触发修复时的平均风险分
 };
 
 class RepairScheduler {

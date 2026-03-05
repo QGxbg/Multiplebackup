@@ -1594,13 +1594,13 @@ int Clay::is_repair(vector<int> want_to_read,
                     if (std::find(avail.begin(), avail.end(), node) == avail.end()){
                         return 0;
                     }else{
-                        cout<<"node in avail   node:"<<node<<endl;
+                        //cout<<"node in avail   node:"<<node<<endl;
                     }
                 }
             }    
             if ((int)avail.size() < _d) {return 0;}
             else{
-                cout<<"avail.size >= _d  avail.size():"<<avail.size()<<"   _d:"<<_d<<endl;
+                //cout<<"avail.size >= _d  avail.size():"<<avail.size()<<"   _d:"<<_d<<endl;
             }
         return 1;
     }else if (want_to_read.size() > 1){
@@ -1821,7 +1821,7 @@ ECDAG* Clay::Decode(vector<int> from, vector<int> to) {
         avail.push_back(i);
     }
 
-    if (1){
+    if (0){
         cout<<"Clay::Decode  avail:"<<endl;
         for (int i = 0; i < avail.size(); i++)
         {
@@ -1832,11 +1832,11 @@ ECDAG* Clay::Decode(vector<int> from, vector<int> to) {
 
     // cout <<endl;
     //want_to_read.pop_back();
-    cout << "1104 hang Decode: lost = " << endl;  //11 12 13
-        for(int i=0;i<want_to_read.size();i++){
-            cout<<want_to_read[i]<<"  ";
-        }
-        cout<<endl;
+    // cout << "1104 hang Decode: lost = " << endl;  //11 12 13
+    //     for(int i=0;i<want_to_read.size();i++){
+    //         cout<<want_to_read[i]<<"  ";
+    //     }
+    //     cout<<endl;
 
     // minimum map records symbols we should read in each node <startid, succeed number>
     unordered_map<int, vector<pair<int, int>>> minimum_map;
@@ -1871,7 +1871,7 @@ ECDAG* Clay::Decode(vector<int> from, vector<int> to) {
 
 
     if (is_repair(want_to_read, avail)) {
-        cout<<"1772 hang is_repair return 1"<<endl;
+        //cout<<"1772 hang is_repair return 1"<<endl;
         //minimum to repair
         //claycode->repair(want_to_read, available_chunks, decoded, available_chunk_size);
 
@@ -1890,11 +1890,11 @@ ECDAG* Clay::Decode(vector<int> from, vector<int> to) {
                 //if (find(want_to_read.begin(), want_to_read.end(), i) == want_to_read.end()) {//不一致的地方
                 if (find(want_to_read.begin(), want_to_read.end(), i) == want_to_read.end()) { // aloof node case. // 11 12 13
                     int aloof_node_id = (i < _k) ? i: i+_nu;
-                    cout << "1892 hang aloof_node_id:"<<aloof_node_id<<endl;
+                    //cout << "1892 hang aloof_node_id:"<<aloof_node_id<<endl;
                     aloof_nodes.push_back(aloof_node_id);
                 } else {
                     int lost_node_id = (i < _k) ? i : i+_nu;
-                    cout << "1896 hang lost_node_id:"<<lost_node_id<<endl;
+                    //cout << "1896 hang lost_node_id:"<<lost_node_id<<endl;
                     recovered_data.insert(make_pair(lost_node_id, true));
                     get_repair_subchunks(lost_node_id, repair_sub_chunks_ind);
                 }
@@ -2020,7 +2020,7 @@ void Clay::repair_one_lost_chunk(unordered_map<int, bool>& recovered_data,
         }
     }
 
-    cout<<"1924hang plane_ind == repair_subchunks:"<<plane_ind<<"   "<<repair_subchunks<<endl;
+    //cout<<"1924hang plane_ind == repair_subchunks:"<<plane_ind<<"   "<<repair_subchunks<<endl;
 
     assert(plane_ind == repair_subchunks);
 
@@ -2042,10 +2042,10 @@ void Clay::repair_one_lost_chunk(unordered_map<int, bool>& recovered_data,
         erasures.push_back(node);
     }
 
-    cout << "erasures: ";
-    for (auto item: erasures)
-        cout << item << " ";
-    cout << endl;
+    // cout << "erasures: ";
+    // for (auto item: erasures)
+    //     cout << item << " ";
+    // cout << endl;
 
     vector<int> orderlist;
     for (auto item: ordered_planes)  {
@@ -2054,10 +2054,10 @@ void Clay::repair_one_lost_chunk(unordered_map<int, bool>& recovered_data,
     }
     sort(orderlist.begin(), orderlist.end());
 
-    cout << "orderlist: ";
-    for (auto item: orderlist)
-        cout << item << " ";
-    cout << endl;
+    // cout << "orderlist: ";
+    // for (auto item: orderlist)
+    //     cout << item << " ";
+    // cout << endl;
 
     vector<int> list1;
     vector<int> list2;

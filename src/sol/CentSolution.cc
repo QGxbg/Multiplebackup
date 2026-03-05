@@ -13,7 +13,7 @@ CentSolution::CentSolution(int batchsize, int standbysize, int agentsnum) {
 
 void CentSolution::genRepairBatches(int num_failures, vector<int> fail_node_list, int num_agents, string scenario, bool enqueue) {
     // We assume that the replacement node ids are the same with the failed ids
-    cout << "CentSolution::genRepairBatches" << endl;
+    // cout << "CentSolution::genRepairBatches" << endl;
 
     if (num_failures == 1) {
         genRepairBatchesForSingleFailure(fail_node_list[0], num_agents, scenario, enqueue);
@@ -26,18 +26,18 @@ void CentSolution::genRepairBatches(int num_failures, vector<int> fail_node_list
 
 void CentSolution::genRepairBatchesForSingleFailure(int fail_node_id, int num_agents, string scenario, bool enqueue) {
 
-    cout << "CentSolution::genRepairBatchesForSingleFailure.fail_node_id = " << fail_node_id << endl;
+    // cout << "CentSolution::genRepairBatchesForSingleFailure.fail_node_id = " << fail_node_id << endl;
 
     // 0. we first figure out stripes that stores a block in $fail_node_id
     filterFailedStripes({fail_node_id});
-    cout << "CentSolution::genRepairBatchesForSingleFailure.stripes to repair: " << _stripes_to_repair.size() << endl;
+    // cout << "CentSolution::genRepairBatchesForSingleFailure.stripes to repair: " << _stripes_to_repair.size() << endl;
 
     // 1. we divide stripes to repair into batches of size $batchsize
     _num_batches = _stripes_to_repair.size() / _batch_size;
     if (_stripes_to_repair.size() % _batch_size != 0) {        
         _num_batches += 1; 
     }
-    cout << "CentSolution::genRepairBatchesForSingleFailure.num batches = " << _num_batches << endl;
+    // cout << "CentSolution::genRepairBatchesForSingleFailure.num batches = " << _num_batches << endl;
 
     for (int batchid=0; batchid<_num_batches; batchid++) {
 
@@ -170,19 +170,19 @@ void CentSolution::genCentralizedColoringForSingleFailure(Stripe* stripe, unorde
 
     // 0. get leave vertices
     vector<int> leaves = ecdag->getECLeaves();
-    cout << "leave num: " << leaves.size() << endl;
-    cout << "  ";
-    for (int i=0; i<leaves.size(); i++)
-       cout << leaves[i] << " ";
-    cout << endl;
+    // cout << "leave num: " << leaves.size() << endl;
+    // cout << "  ";
+    // for (int i=0; i<leaves.size(); i++)
+    //    cout << leaves[i] << " ";
+    // cout << endl;
 
     // 1. get all vertices
     vector<int> allvertices = ecdag->getAllNodeIds();
-    cout << "all idx: " << allvertices.size() << endl;
-    cout << "  ";
-    for (int i=0; i<allvertices.size(); i++)
-       cout << allvertices[i] << " ";
-    cout << endl;
+    // cout << "all idx: " << allvertices.size() << endl;
+    // cout << "  ";
+    // for (int i=0; i<allvertices.size(); i++)
+    //    cout << allvertices[i] << " ";
+    // cout << endl;
 
     // 2. figure out node id of leaves
     vector<int> avoid_node_ids;
@@ -307,7 +307,7 @@ void CentSolution::genCentralizedColoringForMutipleFailure(Stripe* stripe, unord
     for(int i = 0; i < failnum; i++){
         int concact_vetex = concact[i];
         res[concact_vetex] = ret[i];
-        cout << "concact_vetex: " << concact_vetex << ", color: " <<  ret[i] << endl;
+        // cout << "concact_vetex: " << concact_vetex << ", color: " <<  ret[i] << endl;
     }
 
     LOG << "CentSolution::genCentralizedColoringForMutipleFailure end !"<<endl;

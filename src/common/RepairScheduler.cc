@@ -5,7 +5,7 @@ RepairScheduler::RepairScheduler(int ecn, int eck, int ecw) {
     _eck = eck;
     _ecw = ecw;
     _fault_tolerance = ecn - eck;
-    _stats = {0, 0.0, 0.0, 0, 0, 0};
+    _stats = RepairStats{};
 }
 
 bool RepairScheduler::addFailures(vector<int> fail_node_ids) {
@@ -55,7 +55,7 @@ RepairDecision RepairScheduler::decideTraceDriven(TraceEvent* next_event) {
 
     // 预测: 下一时间段的故障数 >= 剩余容错空间 -> 必须修复
     int next_failures = next_event->fail_node_ids.size();
-    if (next_failures >= remaining_tolerance) {
+    if (next_failures > remaining_tolerance) {
         return REPAIR_IMMEDIATE;
     }
 
@@ -92,7 +92,7 @@ RepairStats RepairScheduler::getStats() {
 
 void RepairScheduler::reset() {
     _current_failed_nodes.clear();
-    _stats = {0, 0.0, 0.0, 0, 0, 0};
+    _stats = RepairStats{};
 }
 
 int RepairScheduler::getFaultTolerance() {

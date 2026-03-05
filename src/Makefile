@@ -369,6 +369,20 @@ NewgenMLP/fast:
 .PHONY : NewgenMLP/fast
 
 # Convenience name for target.
+src/CMakeFiles/RepairSimulator_new.dir/rule:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/RepairSimulator_new.dir/rule
+.PHONY : src/CMakeFiles/RepairSimulator_new.dir/rule
+
+# Convenience name for target.
+RepairSimulator_new: src/CMakeFiles/RepairSimulator_new.dir/rule
+.PHONY : RepairSimulator_new
+
+# fast build rule for target.
+RepairSimulator_new/fast:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator_new.dir/build.make src/CMakeFiles/RepairSimulator_new.dir/build
+.PHONY : RepairSimulator_new/fast
+
+# Convenience name for target.
 src/CMakeFiles/RepairSimulator.dir/rule:
 	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/RepairSimulator.dir/rule
 .PHONY : src/CMakeFiles/RepairSimulator.dir/rule
@@ -718,6 +732,30 @@ RepairSimulator.cc.s:
 	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator.dir/build.make src/CMakeFiles/RepairSimulator.dir/RepairSimulator.cc.s
 .PHONY : RepairSimulator.cc.s
 
+RepairSimulator_new.o: RepairSimulator_new.cc.o
+.PHONY : RepairSimulator_new.o
+
+# target to build an object file
+RepairSimulator_new.cc.o:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator_new.dir/build.make src/CMakeFiles/RepairSimulator_new.dir/RepairSimulator_new.cc.o
+.PHONY : RepairSimulator_new.cc.o
+
+RepairSimulator_new.i: RepairSimulator_new.cc.i
+.PHONY : RepairSimulator_new.i
+
+# target to preprocess a source file
+RepairSimulator_new.cc.i:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator_new.dir/build.make src/CMakeFiles/RepairSimulator_new.dir/RepairSimulator_new.cc.i
+.PHONY : RepairSimulator_new.cc.i
+
+RepairSimulator_new.s: RepairSimulator_new.cc.s
+.PHONY : RepairSimulator_new.s
+
+# target to generate assembly for a file
+RepairSimulator_new.cc.s:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator_new.dir/build.make src/CMakeFiles/RepairSimulator_new.dir/RepairSimulator_new.cc.s
+.PHONY : RepairSimulator_new.cc.s
+
 Sim_centralize.o: Sim_centralize.cc.o
 .PHONY : Sim_centralize.o
 
@@ -860,6 +898,7 @@ help:
 	@echo "... ParaAgent"
 	@echo "... ParaCoordinator"
 	@echo "... RepairSimulator"
+	@echo "... RepairSimulator_new"
 	@echo "... Sim_centralize"
 	@echo "... Sim_multiple"
 	@echo "... Sim_offline"
@@ -907,6 +946,9 @@ help:
 	@echo "... RepairSimulator.o"
 	@echo "... RepairSimulator.i"
 	@echo "... RepairSimulator.s"
+	@echo "... RepairSimulator_new.o"
+	@echo "... RepairSimulator_new.i"
+	@echo "... RepairSimulator_new.s"
 	@echo "... Sim_centralize.o"
 	@echo "... Sim_centralize.i"
 	@echo "... Sim_centralize.s"

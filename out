@@ -1,61 +1,698 @@
-正在分析原始文件: stripeStore/simulation_40_100_14_10_4
-已生成两两分组差异最大化文件: stripeStore/simulation_40_100_14_10_4_pair_optimized
+============================================
+  Trace-Driven Repair Strategy Simulator
+============================================
+Code: Clay (14,10) ecw=256
+Nodes: 40
+Trace: trace.csv
+Fault tolerance: 4
+Scenario: scatter
+Method: 1
+TraceReader: Loaded 51 events from trace.csv
+Running strategy: Immediate...
 
+========================================================
+  Strategy: Immediate
+  Code: (14,10) ecw=256
+  Fault Tolerance: 4
+========================================================
+[Day 0] Failures: 34 15 1 13 
+[Immediate] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [1 13 15 34 ] affected_stripes=82
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 1] Failures: 14 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [14 ] affected_stripes=24
+[Day 2] Failures: 23 15 
+[Immediate] current_failures=2, fault_tolerance=4, remaining=2
+  -> REPAIR: 2 nodes [15 23 ] affected_stripes=57
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 3] Failures: 17 18 3 
+[Immediate] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [3 17 18 ] affected_stripes=70
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+[Day 4] Failures: 26 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [26 ] affected_stripes=39
+[Day 5] Failures: 30 38 
+[Immediate] current_failures=2, fault_tolerance=4, remaining=2
+  -> REPAIR: 2 nodes [30 38 ] affected_stripes=63
+1892 hang aloof_node_id:13
+[Day 6] Failures: 39 37 28 8 
+[Immediate] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [8 28 37 39 ] affected_stripes=82
+[Day 7] Failures: 27 0 
+[Immediate] current_failures=2, fault_tolerance=4, remaining=2
+  -> REPAIR: 2 nodes [0 27 ] affected_stripes=62
+1892 hang aloof_node_id:12
+[Day 8] Failures: 13 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [13 ] affected_stripes=49
+[Day 9] Failures: 5 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [5 ] affected_stripes=42
+[Day 10] Failures: 4 20 36 
+[Immediate] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [4 20 36 ] affected_stripes=69
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+[Day 11] Failures: 12 15 18 20 26 
+[Immediate] current_failures=5, fault_tolerance=4, remaining=-1
+  -> REPAIR: 5 nodes [12 15 18 20 26 ] affected_stripes=89
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+[Day 12] Failures: 13 27 
+[Immediate] current_failures=2, fault_tolerance=4, remaining=2
+  -> REPAIR: 2 nodes [13 27 ] affected_stripes=71
+[Day 13] Failures: 37 8 
+[Immediate] current_failures=2, fault_tolerance=4, remaining=2
+  -> REPAIR: 2 nodes [8 37 ] affected_stripes=55
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:12
+[Day 14] Failures: 25 23 22 
+[Immediate] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [22 23 25 ] affected_stripes=69
+1892 hang aloof_node_id:12
+[Day 15] Failures: 30 26 6 
+[Immediate] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [6 26 30 ] affected_stripes=78
+1892 hang aloof_node_id:13
+[Day 16] Failures: 28 22 2 
+[Immediate] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [2 22 28 ] affected_stripes=75
+[Day 17] Failures: 3 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [3 ] affected_stripes=34
+[Day 18] Failures: 34 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [34 ] affected_stripes=35
+[Day 19] Failures: 21 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [21 ] affected_stripes=35
+[Day 20] Failures: 8 23 29 
+[Immediate] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [8 23 29 ] affected_stripes=67
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 21] Failures: 8 38 13 37 
+[Immediate] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [8 13 37 38 ] affected_stripes=87
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:14
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 22] Failures: 10 7 9 17 
+[Immediate] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [7 9 10 17 ] affected_stripes=86
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+[Day 23] Failures: 24 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [24 ] affected_stripes=41
+[Day 24] Failures: 21 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [21 ] affected_stripes=35
+[Day 25] Failures: 32 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [32 ] affected_stripes=37
+[Day 26] Failures: 19 7 8 9 
+[Immediate] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [7 8 9 19 ] affected_stripes=85
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:14
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 27] Failures: 14 13 19 31 22 
+[Immediate] current_failures=5, fault_tolerance=4, remaining=-1
+  -> REPAIR: 5 nodes [13 14 19 22 31 ] affected_stripes=93
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 28] Failures: 2 10 
+[Immediate] current_failures=2, fault_tolerance=4, remaining=2
+  -> REPAIR: 2 nodes [2 10 ] affected_stripes=58
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 29] Failures: 37 23 38 
+[Immediate] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [23 37 38 ] affected_stripes=72
+1892 hang aloof_node_id:13
+[Day 30] Failures: 25 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [25 ] affected_stripes=32
+[Day 31] Failures: 4 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [4 ] affected_stripes=31
+[Day 32] Failures: 6 28 0 14 
+[Immediate] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [0 6 14 28 ] affected_stripes=78
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+[Day 33] Failures: 39 12 11 
+[Immediate] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [11 12 39 ] affected_stripes=72
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+[Day 34] Failures: 18 10 36 35 
+[Immediate] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [10 18 35 36 ] affected_stripes=76
+1892 hang aloof_node_id:13
+[Day 35] Failures: 1 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [1 ] affected_stripes=22
+[Day 36] Failures: 4 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [4 ] affected_stripes=31
+[Day 37] Failures: 35 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [35 ] affected_stripes=31
+[Day 38] Failures: 27 28 11 5 
+[Immediate] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [5 11 27 28 ] affected_stripes=88
+1892 hang aloof_node_id:14
+1892 hang aloof_node_id:13
+[Day 39] Failures: 8 38 20 
+[Immediate] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [8 20 38 ] affected_stripes=77
+[Day 40] Failures: 26 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [26 ] affected_stripes=39
+[Day 41] Failures: 29 33 19 
+[Immediate] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [19 29 33 ] affected_stripes=70
+1892 hang aloof_node_id:12
+[Day 42] Failures: 14 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [14 ] affected_stripes=24
+[Day 43] Failures: 16 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [16 ] affected_stripes=25
+[Day 44] Failures: 38 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [38 ] affected_stripes=33
+[Day 45] Failures: 19 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [19 ] affected_stripes=40
+[Day 46] Failures: 25 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [25 ] affected_stripes=32
+[Day 47] Failures: 28 8 
+[Immediate] current_failures=2, fault_tolerance=4, remaining=2
+  -> REPAIR: 2 nodes [8 28 ] affected_stripes=60
+[Day 48] Failures: 0 14 35 
+[Immediate] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [0 14 35 ] affected_stripes=65
+1892 hang aloof_node_id:13
+[Day 49] Failures: 13 
+[Immediate] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [13 ] affected_stripes=49
+[Day 50] Failures: 2 35 37 
+[Immediate] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [2 35 37 ] affected_stripes=72
 
-=== 分析两两分组差异最大化文件 ===
+--------- Immediate Results ---------
+  Repair rounds:       51
+  Total load:          3335.82 blocks
+  Total bandwidth:     21605.1 blocks
+  Data loss events:    0
+  Max concurrent fail: 5
+-------------------------------------------
+Running strategy: Lazy...
 
-两两分组差异最大化文件 的统计结果：
-总行数: 100
-目标数字数量分布: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4]
+========================================================
+  Strategy: Lazy
+  Code: (14,10) ecw=256
+  Fault Tolerance: 4
+========================================================
+[Day 0] Failures: 34 15 1 13 
+[Lazy] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [1 13 15 34 ] affected_stripes=82
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 1] Failures: 14 
+[Lazy] current_failures=1, fault_tolerance=4, remaining=3
+  -> LAZY: skip repair, 1 nodes failed currently.
+[Day 2] Failures: 23 15 
+[Lazy] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 3] Failures: 17 18 3 
+[Lazy] current_failures=6, fault_tolerance=4, remaining=-2
+  -> REPAIR: 6 nodes [3 14 15 17 18 23 ] affected_stripes=86
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+[Day 4] Failures: 26 
+[Lazy] current_failures=1, fault_tolerance=4, remaining=3
+  -> LAZY: skip repair, 1 nodes failed currently.
+[Day 5] Failures: 30 38 
+[Lazy] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 6] Failures: 39 37 28 8 
+  *** DATA LOSS! 6 stripes lost data. ***
+  -> Emergency repair: 7 nodes across 96 stripes
+[Day 7] Failures: 27 0 
+[Lazy] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 8] Failures: 13 
+[Lazy] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 9] Failures: 5 
+[Lazy] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [0 5 13 27 ] affected_stripes=88
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 10] Failures: 4 20 36 
+[Lazy] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 11] Failures: 12 15 18 20 26 
+  *** DATA LOSS! 3 stripes lost data. ***
+  -> Emergency repair: 7 nodes across 95 stripes
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+[Day 12] Failures: 13 27 
+[Lazy] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 13] Failures: 37 8 
+[Lazy] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [8 13 27 37 ] affected_stripes=87
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:14
+[Day 14] Failures: 25 23 22 
+[Lazy] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 15] Failures: 30 26 6 
+  *** DATA LOSS! 1 stripes lost data. ***
+  -> Emergency repair: 6 nodes across 94 stripes
+1892 hang aloof_node_id:13
+[Day 16] Failures: 28 22 2 
+[Lazy] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 17] Failures: 3 
+[Lazy] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [2 3 22 28 ] affected_stripes=82
+1892 hang aloof_node_id:12
+[Day 18] Failures: 34 
+[Lazy] current_failures=1, fault_tolerance=4, remaining=3
+  -> LAZY: skip repair, 1 nodes failed currently.
+[Day 19] Failures: 21 
+[Lazy] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 20] Failures: 8 23 29 
+[Lazy] current_failures=5, fault_tolerance=4, remaining=-1
+  -> REPAIR: 5 nodes [8 21 23 29 34 ] affected_stripes=88
+[Day 21] Failures: 8 38 13 37 
+[Lazy] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [8 13 37 38 ] affected_stripes=87
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:14
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 22] Failures: 10 7 9 17 
+[Lazy] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [7 9 10 17 ] affected_stripes=86
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+[Day 23] Failures: 24 
+[Lazy] current_failures=1, fault_tolerance=4, remaining=3
+  -> LAZY: skip repair, 1 nodes failed currently.
+[Day 24] Failures: 21 
+[Lazy] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 25] Failures: 32 
+[Lazy] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 26] Failures: 19 7 8 9 
+  *** DATA LOSS! 4 stripes lost data. ***
+  -> Emergency repair: 7 nodes across 95 stripes
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+[Day 27] Failures: 14 13 19 31 22 
+[Lazy] current_failures=5, fault_tolerance=4, remaining=-1
+  -> REPAIR: 5 nodes [13 14 19 22 31 ] affected_stripes=93
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 28] Failures: 2 10 
+[Lazy] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 29] Failures: 37 23 38 
+  *** DATA LOSS! 1 stripes lost data. ***
+  -> Emergency repair: 5 nodes across 93 stripes
+1892 hang aloof_node_id:12
+[Day 30] Failures: 25 
+[Lazy] current_failures=1, fault_tolerance=4, remaining=3
+  -> LAZY: skip repair, 1 nodes failed currently.
+[Day 31] Failures: 4 
+[Lazy] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 32] Failures: 6 28 0 14 
+[Lazy] current_failures=6, fault_tolerance=4, remaining=-2
+  -> REPAIR: 6 nodes [0 4 6 14 25 28 ] affected_stripes=94
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 33] Failures: 39 12 11 
+[Lazy] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 34] Failures: 18 10 36 35 
+  *** DATA LOSS! 3 stripes lost data. ***
+  -> Emergency repair: 7 nodes across 94 stripes
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+[Day 35] Failures: 1 
+[Lazy] current_failures=1, fault_tolerance=4, remaining=3
+  -> LAZY: skip repair, 1 nodes failed currently.
+[Day 36] Failures: 4 
+[Lazy] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 37] Failures: 35 
+[Lazy] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 38] Failures: 27 28 11 5 
+  *** DATA LOSS! 2 stripes lost data. ***
+  -> Emergency repair: 7 nodes across 98 stripes
+1892 hang aloof_node_id:13
+[Day 39] Failures: 8 38 20 
+[Lazy] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 40] Failures: 26 
+[Lazy] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [8 20 26 38 ] affected_stripes=87
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 41] Failures: 29 33 19 
+[Lazy] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 42] Failures: 14 
+[Lazy] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [14 19 29 33 ] affected_stripes=76
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 43] Failures: 16 
+[Lazy] current_failures=1, fault_tolerance=4, remaining=3
+  -> LAZY: skip repair, 1 nodes failed currently.
+[Day 44] Failures: 38 
+[Lazy] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 45] Failures: 19 
+[Lazy] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 46] Failures: 25 
+[Lazy] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [16 19 25 38 ] affected_stripes=85
+[Day 47] Failures: 28 8 
+[Lazy] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 48] Failures: 0 14 35 
+  *** DATA LOSS! 1 stripes lost data. ***
+  -> Emergency repair: 5 nodes across 88 stripes
+[Day 49] Failures: 13 
+[Lazy] current_failures=1, fault_tolerance=4, remaining=3
+  -> LAZY: skip repair, 1 nodes failed currently.
+[Day 50] Failures: 2 35 37 
+[Lazy] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [2 13 35 37 ] affected_stripes=82
 
-两两分组的相同数字数量：
-第1组: 2个相同数字
-第2组: 2个相同数字
-第3组: 2个相同数字
-第4组: 2个相同数字
-第5组: 2个相同数字
-第6组: 2个相同数字
-第7组: 2个相同数字
-第8组: 2个相同数字
-第9组: 3个相同数字
-第10组: 3个相同数字
-第11组: 2个相同数字
-第12组: 2个相同数字
-第13组: 2个相同数字
-第14组: 2个相同数字
-第15组: 3个相同数字
-第16组: 2个相同数字
-第17组: 3个相同数字
-第18组: 2个相同数字
-第19组: 3个相同数字
-第20组: 2个相同数字
-第21组: 3个相同数字
-第22组: 2个相同数字
-第23组: 3个相同数字
-第24组: 1个相同数字
-第25组: 3个相同数字
-第26组: 2个相同数字
-第27组: 3个相同数字
-第28组: 2个相同数字
-第29组: 3个相同数字
-第30组: 3个相同数字
-第31组: 2个相同数字
-第32组: 3个相同数字
-第33组: 2个相同数字
-第34组: 2个相同数字
-第35组: 3个相同数字
-第36组: 3个相同数字
-第37组: 3个相同数字
-第38组: 2个相同数字
-第39组: 3个相同数字
-第40组: 2个相同数字
-第41组: 2个相同数字
-第42组: 2个相同数字
-第43组: 4个相同数字
-第44组: 2个相同数字
-第45组: 4个相同数字
-第46组: 4个相同数字
-第47组: 5个相同数字
-第48组: 3个相同数字
-第49组: 4个相同数字
-第50组: 6个相同数字
+--------- Lazy Results ---------
+  Repair rounds:       22
+  Total load:          2625.53 blocks
+  Total bandwidth:     20638.9 blocks
+  Data loss events:    8
+  Max concurrent fail: 7
+-------------------------------------------
+Running strategy: TraceDriven...
+
+========================================================
+  Strategy: TraceDriven
+  Code: (14,10) ecw=256
+  Fault Tolerance: 4
+========================================================
+[Day 0] Failures: 34 15 1 13 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [1 13 15 34 ] affected_stripes=82
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 1] Failures: 14 
+[TraceDriven] current_failures=1, fault_tolerance=4, remaining=3
+  -> LAZY: skip repair, 1 nodes failed currently.
+[Day 2] Failures: 23 15 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [14 15 23 ] affected_stripes=70
+[Day 3] Failures: 17 18 3 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 4] Failures: 26 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [3 17 18 26 ] affected_stripes=81
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 5] Failures: 30 38 
+[TraceDriven] current_failures=2, fault_tolerance=4, remaining=2
+  -> REPAIR: 2 nodes [30 38 ] affected_stripes=63
+1892 hang aloof_node_id:13
+[Day 6] Failures: 39 37 28 8 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [8 28 37 39 ] affected_stripes=82
+[Day 7] Failures: 27 0 
+[TraceDriven] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 8] Failures: 13 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 9] Failures: 5 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [0 5 13 27 ] affected_stripes=88
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 10] Failures: 4 20 36 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [4 20 36 ] affected_stripes=69
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+[Day 11] Failures: 12 15 18 20 26 
+[TraceDriven] current_failures=5, fault_tolerance=4, remaining=-1
+  -> REPAIR: 5 nodes [12 15 18 20 26 ] affected_stripes=89
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+[Day 12] Failures: 13 27 
+[TraceDriven] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 13] Failures: 37 8 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [8 13 27 37 ] affected_stripes=87
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:14
+[Day 14] Failures: 25 23 22 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [22 23 25 ] affected_stripes=69
+1892 hang aloof_node_id:12
+[Day 15] Failures: 30 26 6 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [6 26 30 ] affected_stripes=78
+1892 hang aloof_node_id:13
+[Day 16] Failures: 28 22 2 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 17] Failures: 3 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [2 3 22 28 ] affected_stripes=82
+1892 hang aloof_node_id:12
+[Day 18] Failures: 34 
+[TraceDriven] current_failures=1, fault_tolerance=4, remaining=3
+  -> LAZY: skip repair, 1 nodes failed currently.
+[Day 19] Failures: 21 
+[TraceDriven] current_failures=2, fault_tolerance=4, remaining=2
+  -> REPAIR: 2 nodes [21 34 ] affected_stripes=60
+1892 hang aloof_node_id:12
+[Day 20] Failures: 8 23 29 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [8 23 29 ] affected_stripes=67
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 21] Failures: 8 38 13 37 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [8 13 37 38 ] affected_stripes=87
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:14
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 22] Failures: 10 7 9 17 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [7 9 10 17 ] affected_stripes=86
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+[Day 23] Failures: 24 
+[TraceDriven] current_failures=1, fault_tolerance=4, remaining=3
+  -> LAZY: skip repair, 1 nodes failed currently.
+[Day 24] Failures: 21 
+[TraceDriven] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 25] Failures: 32 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [21 24 32 ] affected_stripes=72
+[Day 26] Failures: 19 7 8 9 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [7 8 9 19 ] affected_stripes=85
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:14
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 27] Failures: 14 13 19 31 22 
+[TraceDriven] current_failures=5, fault_tolerance=4, remaining=-1
+  -> REPAIR: 5 nodes [13 14 19 22 31 ] affected_stripes=93
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 28] Failures: 2 10 
+[TraceDriven] current_failures=2, fault_tolerance=4, remaining=2
+  -> REPAIR: 2 nodes [2 10 ] affected_stripes=58
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 29] Failures: 37 23 38 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 30] Failures: 25 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [23 25 37 38 ] affected_stripes=85
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+[Day 31] Failures: 4 
+[TraceDriven] current_failures=1, fault_tolerance=4, remaining=3
+  -> REPAIR: 1 nodes [4 ] affected_stripes=31
+[Day 32] Failures: 6 28 0 14 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [0 6 14 28 ] affected_stripes=78
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+[Day 33] Failures: 39 12 11 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [11 12 39 ] affected_stripes=72
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:13
+[Day 34] Failures: 18 10 36 35 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [10 18 35 36 ] affected_stripes=76
+1892 hang aloof_node_id:13
+[Day 35] Failures: 1 
+[TraceDriven] current_failures=1, fault_tolerance=4, remaining=3
+  -> LAZY: skip repair, 1 nodes failed currently.
+[Day 36] Failures: 4 
+[TraceDriven] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 37] Failures: 35 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [1 4 35 ] affected_stripes=70
+1892 hang aloof_node_id:12
+[Day 38] Failures: 27 28 11 5 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [5 11 27 28 ] affected_stripes=88
+1892 hang aloof_node_id:14
+1892 hang aloof_node_id:13
+[Day 39] Failures: 8 38 20 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 40] Failures: 26 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [8 20 26 38 ] affected_stripes=87
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 41] Failures: 29 33 19 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 42] Failures: 14 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [14 19 29 33 ] affected_stripes=76
+1892 hang aloof_node_id:12
+1892 hang aloof_node_id:13
+[Day 43] Failures: 16 
+[TraceDriven] current_failures=1, fault_tolerance=4, remaining=3
+  -> LAZY: skip repair, 1 nodes failed currently.
+[Day 44] Failures: 38 
+[TraceDriven] current_failures=2, fault_tolerance=4, remaining=2
+  -> LAZY: skip repair, 2 nodes failed currently.
+[Day 45] Failures: 19 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 46] Failures: 25 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [16 19 25 38 ] affected_stripes=85
+[Day 47] Failures: 28 8 
+[TraceDriven] current_failures=2, fault_tolerance=4, remaining=2
+  -> REPAIR: 2 nodes [8 28 ] affected_stripes=60
+[Day 48] Failures: 0 14 35 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> LAZY: skip repair, 3 nodes failed currently.
+[Day 49] Failures: 13 
+[TraceDriven] current_failures=4, fault_tolerance=4, remaining=0
+  -> REPAIR: 4 nodes [0 13 14 35 ] affected_stripes=84
+1892 hang aloof_node_id:13
+1892 hang aloof_node_id:12
+[Day 50] Failures: 2 35 37 
+[TraceDriven] current_failures=3, fault_tolerance=4, remaining=1
+  -> REPAIR: 3 nodes [2 35 37 ] affected_stripes=72
+
+--------- TraceDriven Results ---------
+  Repair rounds:       33
+  Total load:          3094.48 blocks
+  Total bandwidth:     22075.1 blocks
+  Data loss events:    0
+  Max concurrent fail: 5
+-------------------------------------------
+
+========================================================
+              COMPARISON SUMMARY
+  Code: Clay (14,10)
+  Trace events: 51
+========================================================
+Strategy       | Rounds | Load(blks) | Bdwt(blks) | DataLoss | MaxFail
+---------------|--------|------------|------------|----------|--------
+Immediate      |     51 |    3335.82 |   21605.10 |        0 |       5
+Lazy           |     22 |    2625.53 |   20638.92 |        8 |       7
+TraceDriven    |     33 |    3094.48 |   22075.15 |        0 |       5
+========================================================
+
+Load savings vs Immediate:
+  Lazy:         21.3% (data loss: 8)
+  TraceDriven:  7.2% (data loss: 0)
+

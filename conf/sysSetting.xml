@@ -11,12 +11,12 @@
 <value>192.168.233.118</value>
 </attribute>
 <attribute><name>block.bytes</name><value>1048576</value></attribute>
-<attribute><name>packet.bytes</name><value>4096</value></attribute>
+<attribute><name>packet.bytes</name><value>65536</value></attribute>
 <attribute><name>code.name</name><value>Clay</value></attribute>
-<attribute><name>code.ecn</name><value>4</value></attribute>
-<attribute><name>code.eck</name><value>2</value></attribute>
-<attribute><name>code.ecw</name><value>4</value></attribute>
-<attribute><name>batch.size</name><value>4</value></attribute>
+<attribute><name>code.ecn</name><value>14</value></attribute>
+<attribute><name>code.eck</name><value>10</value></attribute>
+<attribute><name>code.ecw</name><value>256</value></attribute>
+<attribute><name>batch.size</name><value>2</value></attribute>
 <attribute><name>recvgroup.size</name><value>10</value></attribute>
 <attribute><name>sendgroup.size</name><value>10</value></attribute>
 <attribute><name>computegroup.size</name><value>10</value></attribute>

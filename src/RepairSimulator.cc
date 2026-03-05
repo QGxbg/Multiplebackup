@@ -6,6 +6,7 @@
 //   3. TraceDriven: 根据trace预测下一时间段故障决定是否修复
 //
 // 用法: ./RepairSimulator code ecn eck ecw num_agents trace_file method scenario
+// 改版说明: 利用StripeStore读取集群中真实的数据块分布(如 simulation_40_1000_14_10_4)
 
 #include "inc/include.hh"
 #include "util/DistUtil.hh"
@@ -28,6 +29,7 @@
 
 #include <fstream>
 #include <cstdio>
+#include <iostream>
 
 using namespace std;
 
@@ -39,79 +41,92 @@ void usage() {
     cout << "   4. ecw" << endl;
     cout << "   5. num_agents (total nodes, e.g. 40)" << endl;
     cout << "   6. trace_file (path to trace file)" << endl;
-    cout << "   7. method (0: default)" << endl;
     cout << "   8. scenario [standby|scatter]" << endl;
+    cout << "   9. placement_file (e.g. stripeStore/simulation_40_1000_14_10_4)" << endl;
 }
 
-// 计算一次修复的负载(load, bdwt)
-// 复用Multiple_Failure.cc中的模式: 创建Stripe -> 生成ECDAG -> 着色 -> 获取load/bdwt
-pair<double, double> computeRepairLoad(string code, int ecn, int eck, int ecw,
-                                        vector<int> failnodeids,
-                                        string scenario, int method, Config* conf) {
+// =================================================================================
+// 工具函数：直接从 placement 文件中加载简化的 Stripe 列表
+// =================================================================================
+vector<Stripe*> loadPlacement(string filepath) {
+    vector<Stripe*> stripe_list;
+    ifstream infile(filepath);
+    string line;
+    int stripeid = 0;
+    
+    if (!infile.is_open()) {
+        cerr << "Failed to open placement file: " << filepath << endl;
+        return stripe_list;
+    }
+
+    while (getline(infile, line)) {
+        if (line.empty()) continue;
+        vector<string> items = DistUtil::splitStr(line, " ");
+        vector<int> nodeidlist;
+        for (string s : items) {
+            if (!s.empty()) {
+                nodeidlist.push_back(atoi(s.c_str()));
+            }
+        }
+        // 创建简化的Stripe，只保留nodeidlist用于仿真评估
+        Stripe* curstripe = new Stripe(stripeid++, nodeidlist);
+        stripe_list.push_back(curstripe);
+    }
+    return stripe_list;
+}
+
+// =================================================================================
+// 工具函数：计算给定一群坏节点，对*一个具体Stripe*产生的修复负载 (load, bdwt)
+// =================================================================================
+pair<double, double> computeRepairLoadForStripe(string code, int ecn, int eck, int ecw,
+                                                Stripe* curStripe,
+                                                vector<int> failnodeids,
+                                                string scenario, int method, Config* conf, ECBase* ec) {
     int fail_num = failnodeids.size();
-    // 与Multiple_Failure.cc一致: num_agents = ecn + fail_num
-    int real_num_agents = ecn + fail_num;
+    if (fail_num == 0) return {0.0, 0.0};
+    
+    //cout << "DEBUG: computeRepairLoadForStripe stripe " << curStripe->getStripeId() << " fail_num " << fail_num << endl;
+    int real_num_agents = conf->_agents_num + fail_num; // 简化处理，假设修复节点是额外的
     int standby_size = fail_num;
 
-    // 创建一个标准placement的条带 (node 0 ~ ecn-1)
-    vector<int> nodeidlist;
-    for (int i = 0; i < ecn; i++) {
-        nodeidlist.push_back(i);
-    }
-    Stripe* currStripe = new Stripe(0, nodeidlist);
-
-    // 创建EC对象
-    ECBase* ec;
-    vector<string> param;
-    if (code == "Clay") {
-        ec = new Clay(ecn, eck, ecw, {to_string(ecn - 1)});
-    } else if (code == "RDP") {
-        ec = new RDP(ecn, eck, ecw, param);
-    } else if (code == "HHXORPlus") {
-        ec = new HHXORPlus(ecn, eck, ecw, param);
-    } else if (code == "BUTTERFLY") {
-        ec = new BUTTERFLY(ecn, eck, ecw, param);
-    } else if (code == "RSCONV") {
-        ec = new RSCONV(ecn, eck, ecw, param);
-    } else if (code == "RSPIPE") {
-        ec = new RSPIPE(ecn, eck, ecw, param);
-    } else {
-        cerr << "Non-supported code: " << code << endl;
-        delete currStripe;
-        return make_pair(0.0, 0.0);
-    }
-
-    // 创建ParallelSolution, 与Multiple_Failure.cc一致
     ParallelSolution* sol = new ParallelSolution(1, standby_size, real_num_agents, method);
-    sol->init({currStripe}, ec, code, conf);
+    sol->init({curStripe}, ec, code, conf);
+
+    ECDAG* ecdag = curStripe->genRepairECDAG(ec, failnodeids);
+    curStripe ->refreshECDAG(ecdag);
 
     vector<vector<int>> loadtable = vector<vector<int>>(sol->_cluster_size, {0, 0});
 
-    // 与Multiple_Failure.cc一致: 单故障和多故障走不同路径
+    // 区分单故障/多故障
     if (fail_num == 1) {
         unordered_map<int, int> coloring;
         vector<int> placement(real_num_agents);
         for (int i = 0; i < real_num_agents; i++) placement[i] = i;
-        sol->genColoringForSingleFailure(currStripe, coloring, failnodeids[0],
+        //cout<<"DEBUG: computeRepairLoadForStripe stripe " << curStripe->getStripeId() << " failnodeids[0] = " << failnodeids[0] << endl;
+        sol->genColoringForSingleFailure(curStripe, coloring, failnodeids[0],
                                           real_num_agents, scenario, placement);
     } else {
-        sol->genColoringForMultipleFailureLevelNew(currStripe, failnodeids,
+        //sol->genColoringForMultipleFailureLevelNewFire(failnodeids, real_num_agents, scenario, 1);
+        //cout<<"DEBUG: computeRepairLoadForStripe stripe " << curStripe->getStripeId() << " failnodeids size = " << failnodeids.size() << endl;
+        sol->genColoringForMultipleFailureLevelNew(curStripe, failnodeids,
                                                     scenario, loadtable, method);
     }
 
-    double load = currStripe->getLoad() * 1.0 / ecw;
-    double bdwt = currStripe->getBdwt() * 1.0 / ecw;
+    double load = curStripe->getLoad() * 1.0 / ecw;
+    double bdwt = curStripe->getBdwt() * 1.0 / ecw;
 
-    delete currStripe;
-    delete ec;
     delete sol;
 
     return make_pair(load, bdwt);
 }
 
-// 对某一策略运行完整仿真, 返回统计结果
+// =================================================================================
+// 针对一个策略，运行完整仿真
+// 返回统计结果
+// =================================================================================
 RepairStats runStrategy(int strategy, TraceReader& reader,
                         string code, int ecn, int eck, int ecw,
+                        const vector<Stripe*>& stripe_list, ECBase* ec,
                         int num_agents, string scenario, int method,
                         Config* conf, bool verbose) {
 
@@ -142,33 +157,47 @@ RepairStats runStrategy(int strategy, TraceReader& reader,
         // 添加本轮故障
         bool data_loss = scheduler.addFailures(event->fail_node_ids);
 
-        if (data_loss) {
-            if (verbose) {
-                cout << "  *** DATA LOSS! Failures ("
-                     << scheduler.getCurrentFailureCount()
-                     << ") exceed fault tolerance ("
-                     << scheduler.getFaultTolerance() << ") ***" << endl;
+        // ==== 计算哪些Stripe受到了影响，以及是否丢失数据 ====
+        vector<int> current_failed_nodes = scheduler.getCurrentFailedNodes();
+        int affected_stripes = 0;
+        int dataloss_stripes = 0;
+        
+        for(Stripe* s : stripe_list) {
+            vector<int> placement = s->getPlacement();
+            int fails_in_stripe = 0;
+            for(int nid : current_failed_nodes) {
+                if(find(placement.begin(), placement.end(), nid) != placement.end()) {
+                    fails_in_stripe++;
+                }
             }
-            scheduler.recordDataLoss();
+            if (fails_in_stripe > 0) affected_stripes++;
+            if (fails_in_stripe > (ecn - eck)) dataloss_stripes++;
+        }
 
-            // 数据丢失后必须修复
+        if (dataloss_stripes > 0) {
+            if (verbose) {
+                cout << "  *** DATA LOSS! " << dataloss_stripes << " stripes lost data. ***" << endl;
+            }
+            scheduler.recordDataLoss(); // count as 1 event
+            
+            // 必须立刻修复所有目前的故障，以拯救系统
             vector<int> failed = scheduler.executeRepair();
             if (verbose) {
-                cout << "  -> Emergency repair: " << failed.size() << " nodes" << endl;
+                cout << "  -> Emergency repair: " << failed.size() << " nodes across " << affected_stripes << " stripes" << endl;
             }
 
-            // 计算修复负载
-            vector<int> effective;
-            for (int nid : failed) {
-                if (nid < ecn) effective.push_back(nid);
-            }
-            if (!effective.empty() && (int)effective.size() <= (ecn - eck)) {
-                auto cost = computeRepairLoad(code, ecn, eck, ecw,
-                                              effective, scenario, method, conf);
-                scheduler.recordRepairLoad(cost.first, cost.second);
-                if (verbose) {
-                    cout << "  -> load=" << cost.first
-                         << ", bdwt=" << cost.second << " blocks" << endl;
+            // 对所有受影响的Stripe执行修复代价计算
+            for(Stripe* s : stripe_list) {
+                vector<int> placement = s->getPlacement();
+                vector<int> stripe_failed_nodes;
+                for(int nid : failed) {
+                    if(find(placement.begin(), placement.end(), nid) != placement.end()) {
+                        stripe_failed_nodes.push_back(nid);
+                    }
+                }
+                if (stripe_failed_nodes.size() > 0 && stripe_failed_nodes.size() <= (ecn - eck)) {
+                    auto cost = computeRepairLoadForStripe(code, ecn, eck, ecw, s, stripe_failed_nodes, scenario, method, conf, ec);
+                    scheduler.recordRepairLoad(cost.first, cost.second);
                 }
             }
 
@@ -194,28 +223,26 @@ RepairStats runStrategy(int strategy, TraceReader& reader,
             if (verbose) {
                 cout << "  -> REPAIR: " << failed.size() << " nodes [";
                 for (int id : failed) cout << id << " ";
-                cout << "]" << endl;
+                cout << "] affected_stripes=" << affected_stripes << endl;
             }
 
-            // 计算修复负载
-            vector<int> effective;
-            for (int nid : failed) {
-                if (nid < ecn) effective.push_back(nid);
-            }
-            if (!effective.empty() && (int)effective.size() <= (ecn - eck)) {
-                auto cost = computeRepairLoad(code, ecn, eck, ecw,
-                                              effective, scenario, method, conf);
-                scheduler.recordRepairLoad(cost.first, cost.second);
-                if (verbose) {
-                    cout << "  -> load=" << cost.first
-                         << ", bdwt=" << cost.second << " blocks" << endl;
+            // 对每个Stripe分别计算代价
+            for(Stripe* s : stripe_list) {
+                vector<int> placement = s->getPlacement();
+                vector<int> stripe_failed_nodes;
+                for(int nid : failed) {
+                    if(find(placement.begin(), placement.end(), nid) != placement.end()) {
+                        stripe_failed_nodes.push_back(nid);
+                    }
+                }
+                if(stripe_failed_nodes.size() > 0 && stripe_failed_nodes.size() <= (ecn-eck)) {
+                    auto cost = computeRepairLoadForStripe(code, ecn, eck, ecw, s, stripe_failed_nodes, scenario, method, conf, ec);
+                    scheduler.recordRepairLoad(cost.first, cost.second);
                 }
             }
         } else {
             if (verbose) {
-                cout << "  -> LAZY: skip repair ("
-                     << scheduler.getCurrentFailureCount() << "/"
-                     << scheduler.getFaultTolerance() << ")" << endl;
+                cout << "  -> LAZY: skip repair, " << current_failed_nodes.size() << " nodes failed currently." << endl;
             }
         }
 
@@ -223,20 +250,24 @@ RepairStats runStrategy(int strategy, TraceReader& reader,
     }
 
     // 收尾: 还有故障节点则做最后一次修复
-    if (scheduler.getCurrentFailureCount() > 0) {
+    int final_failures = scheduler.getCurrentFailureCount();
+    if (final_failures > 0) {
         if (verbose) {
-            cout << "[END] Final repair: " << scheduler.getCurrentFailureCount()
-                 << " remaining failures" << endl;
+            cout << "[END] Final repair: " << final_failures << " remaining failures" << endl;
         }
         vector<int> failed = scheduler.executeRepair();
-        vector<int> effective;
-        for (int nid : failed) {
-            if (nid < ecn) effective.push_back(nid);
-        }
-        if (!effective.empty() && (int)effective.size() <= (ecn - eck)) {
-            auto cost = computeRepairLoad(code, ecn, eck, ecw,
-                                          effective, scenario, method, conf);
-            scheduler.recordRepairLoad(cost.first, cost.second);
+        for(Stripe* s : stripe_list) {
+            vector<int> placement = s->getPlacement();
+            vector<int> stripe_failed_nodes;
+            for(int nid : failed) {
+                if(find(placement.begin(), placement.end(), nid) != placement.end()) {
+                    stripe_failed_nodes.push_back(nid);
+                }
+            }
+            if(stripe_failed_nodes.size() > 0 && stripe_failed_nodes.size() <= (ecn-eck)) {
+                auto cost = computeRepairLoadForStripe(code, ecn, eck, ecw, s, stripe_failed_nodes, scenario, method, conf, ec);
+                scheduler.recordRepairLoad(cost.first, cost.second);
+            }
         }
     }
 
@@ -258,7 +289,7 @@ RepairStats runStrategy(int strategy, TraceReader& reader,
 
 int main(int argc, char** argv) {
 
-    if (argc < 9) {
+    if (argc < 10) {
         usage();
         return 0;
     }
@@ -271,6 +302,7 @@ int main(int argc, char** argv) {
     string trace_file = string(argv[6]);
     int method = atoi(argv[7]);
     string scenario = string(argv[8]);
+    string placement_file = string(argv[9]);
 
     cout << "============================================" << endl;
     cout << "  Trace-Driven Repair Strategy Simulator" << endl;
@@ -282,8 +314,11 @@ int main(int argc, char** argv) {
     cout << "Scenario: " << scenario << endl;
     cout << "Method: " << method << endl;
 
-    string configpath = "conf/sysSetting.xml";
-    Config* conf = new Config(configpath);
+    // 临时伪造Config供部分类的初始化（不用改原有大量代码）
+    // 为了兼容，配置一个基础参数即可
+    string fake_conf = "conf/sysSetting.xml"; // 借用一下以通过构造函数
+    Config* conf = new Config(fake_conf);
+    conf->_agents_num = num_agents;
 
     // 加载trace
     TraceReader reader;
@@ -293,13 +328,46 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    // 从文件中加载Stripe Placement分布
+    // ==================
+    vector<Stripe*> stripe_list = loadPlacement(placement_file);
+    if (stripe_list.empty()) {
+        cerr << "No stripes loaded from " << placement_file << endl;
+        delete conf;
+        return 1;
+    }
+
+    // ==================
+    // 实例化EC对象 (共用，避免重复创建)
+    // ==================
+    vector<string> param;
+    ECBase* ec;
+    if (code == "Clay") {
+        ec = new Clay(ecn, eck, ecw, {to_string(ecn - 1)});
+    } else if (code == "RDP") {
+        ec = new RDP(ecn, eck, ecw, param);
+    } else if (code == "HHXORPlus") {
+        ec = new HHXORPlus(ecn, eck, ecw, param);
+    } else if (code == "BUTTERFLY") {
+        ec = new BUTTERFLY(ecn, eck, ecw, param);
+    } else if (code == "RSCONV") {
+        ec = new RSCONV(ecn, eck, ecw, param);
+    } else if (code == "RSPIPE") {
+        ec = new RSPIPE(ecn, eck, ecw, param);
+    } else {
+        cerr << "Non-supported code: " << code << endl;
+        delete conf;
+        return 1;
+    }
+
     // ====== 详细运行三种策略 ======
     RepairStats stats[3];
     string names[] = {"Immediate", "Lazy", "TraceDriven"};
 
     for (int s = 0; s < 3; s++) {
+        cout<<"Running strategy: " << names[s] << "..." << endl;
         stats[s] = runStrategy(s, reader, code, ecn, eck, ecw,
-                               num_agents, scenario, method, conf, true);
+                               stripe_list, ec, num_agents, scenario, method, conf, true);
     }
 
     // ====== 对比总结表 ======
@@ -335,6 +403,11 @@ int main(int argc, char** argv) {
     }
 
     cout << endl;
-    delete conf;
+    // for(Stripe* s : stripe_list) {
+    //     delete s;
+    // }
+
+   if (conf)
+       delete conf;
     return 0;
 }
