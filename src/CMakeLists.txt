@@ -32,6 +32,10 @@ add_executable(genMLP genMLP.cc)
 add_executable(NewgenMLP NewgenMLP.cc)
 add_executable(RepairSimulator_new RepairSimulator_new.cc)
 add_executable(RepairSimulator RepairSimulator.cc)
+add_executable(GenPredictedTrace GenPredictedTrace.cc)
+add_executable(GenTrace GenTrace.cc)
+
+
 
 
 target_link_libraries(Sim_centralize common ec sol util)
@@ -54,3 +58,5 @@ target_link_libraries(genMLP common ec sol util protocol pthread dist)
 target_link_libraries(NewgenMLP common ec sol util protocol pthread dist)
 target_link_libraries(RepairSimulator common ec sol util protocol pthread)
 target_link_libraries(RepairSimulator_new common ec sol util protocol pthread)
+target_link_libraries(GenPredictedTrace common ec sol util protocol pthread)
+target_link_libraries(GenTrace pthread)

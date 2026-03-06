@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <cmath>
 #include <numeric>
+#include <unordered_set>
 #include <iostream>
 #include <string>
 
@@ -100,7 +101,10 @@ public:
 
     vector<int> getCurrentFailedNodes() const { return _current_failed; }
     int getCurrentFailureCount() const { return (int)_current_failed.size(); }
-    void recordDataLoss() { _stats.data_loss_events++; }
+    void recordDataLoss(int lost_stripes = 1) {
+        _stats.data_loss_events++;
+        _stats.lost_stripes_count += lost_stripes;
+    }
     void recordRepairLoad(double load, double bdwt) {
         _stats.total_repair_load += load;
         _stats.total_repair_bdwt += bdwt;
@@ -154,19 +158,108 @@ public:
     // ------------------------------------------------------------------
     // Strategy 1: Lazy
     // ------------------------------------------------------------------
-    RepairDecision decideLazy() {
-        if ((int)_current_failed.size() >= tolerance) return REPAIR_IMMEDIATE;
-        return REPAIR_LAZY;
+    // Lazy Repair：条带级，某条带故障数 >= tolerance 才触发修复
+    // 返回需要修复的节点（危险条带中的故障节点）
+    pair<RepairDecision, vector<int>> decideLazy(const vector<Stripe*>& stripe_list)
+    {
+        if (_current_failed.empty()) return {REPAIR_LAZY, {}};
+
+        unordered_map<int, Stripe*> sid_map;
+        for (Stripe* s : stripe_list)
+            sid_map[s->getStripeId()] = s;
+
+        unordered_set<int> cur_set(_current_failed.begin(), _current_failed.end());
+        unordered_set<int> nodes_to_repair_set;
+
+        for (auto& kv : sid_map) {
+            Stripe* s = kv.second;
+            const vector<int>& pl = s->getPlacement();
+            vector<int> cur_in_stripe;
+            for (int nid : pl)
+                if (cur_set.count(nid)) cur_in_stripe.push_back(nid);
+
+            // 条带级触发：当前故障数 >= tolerance
+            if ((int)cur_in_stripe.size() >= tolerance) {
+                if (verbose)
+                    printf("    [Lazy] Stripe-%d TRIGGER: cur=%d >= tolerance=%d\n",
+                           s->getStripeId(), (int)cur_in_stripe.size(), tolerance);
+                for (int nid : cur_in_stripe)
+                    nodes_to_repair_set.insert(nid);
+            }
+        }
+
+        if (nodes_to_repair_set.empty()) return {REPAIR_LAZY, {}};
+
+        vector<int> nodes_to_repair(nodes_to_repair_set.begin(), nodes_to_repair_set.end());
+        sort(nodes_to_repair.begin(), nodes_to_repair.end());
+        return {REPAIR_IMMEDIATE, nodes_to_repair};
     }
 
     // ------------------------------------------------------------------
-    // Strategy 2: TraceDriven（lookahead=1）
+    // Strategy 2: TraceDriven（条带级决策）
+    //
+    // 对每个条带：当前故障数 + 预测下一步落在该条带的故障数 > 容错
+    //             → 该条带危险，需要修复
+    // 返回：(决策, 需要修复的节点列表)
+    //   节点列表 = 所有危险条带中当前已故障的节点（去重）
     // ------------------------------------------------------------------
+    pair<RepairDecision, vector<int>> decideTraceDrivenStripe(
+            const vector<Stripe*>& stripe_list,
+            const vector<int>& next_fail_ids)
+    {
+        if (_current_failed.empty()) return {REPAIR_LAZY, {}};
+
+        // 构建 stripe_id -> Stripe* 映射
+        unordered_map<int, Stripe*> sid_map;
+        for (Stripe* s : stripe_list)
+            sid_map[s->getStripeId()] = s;
+
+        unordered_set<int> next_set(next_fail_ids.begin(), next_fail_ids.end());
+        unordered_set<int> cur_set(_current_failed.begin(), _current_failed.end());
+
+        // 找出所有危险条带，收集其中需要修复的节点
+        unordered_set<int> nodes_to_repair_set;
+
+        for (auto& [sid, s] : sid_map) {
+            const vector<int>& pl = s->getPlacement();
+
+            // 当前在该条带中故障的节点
+            vector<int> cur_in_stripe, next_in_stripe;
+            for (int nid : pl) {
+                if (cur_set.count(nid))  cur_in_stripe.push_back(nid);
+                if (next_set.count(nid)) next_in_stripe.push_back(nid);
+            }
+
+            if (cur_in_stripe.empty()) continue;
+
+            // 条带级判断：当前故障 + 预测故障 > 容错 → 危险
+            if ((int)cur_in_stripe.size() + (int)next_in_stripe.size() > tolerance) {
+                if (verbose)
+                    printf("    [TraceDriven] Stripe-%d DANGER: cur=%d + next=%d > tol=%d\n",
+                           sid, (int)cur_in_stripe.size(),
+                           (int)next_in_stripe.size(), tolerance);
+                for (int nid : cur_in_stripe)
+                    nodes_to_repair_set.insert(nid);
+            }
+        }
+
+        if (nodes_to_repair_set.empty()) return {REPAIR_LAZY, {}};
+
+        vector<int> nodes_to_repair(nodes_to_repair_set.begin(), nodes_to_repair_set.end());
+        sort(nodes_to_repair.begin(), nodes_to_repair.end());
+
+        // 如果需要修复的节点 == 所有故障节点，算作全量修复
+        if (nodes_to_repair.size() == _current_failed.size())
+            return {REPAIR_IMMEDIATE, nodes_to_repair};
+        return {REPAIR_PARTIAL, nodes_to_repair};
+    }
+
+    // 保留旧接口兼容性
     RepairDecision decideTraceDriven(const vector<int>& next_fail_ids) {
         int cur  = (int)_current_failed.size();
         int next = (int)next_fail_ids.size();
         if (cur == 0 && next == 0) return REPAIR_LAZY;
-        if (cur + next >= tolerance) return REPAIR_IMMEDIATE;
+        if (cur + next > tolerance) return REPAIR_IMMEDIATE;
         return REPAIR_LAZY;
     }
 
@@ -213,17 +306,24 @@ public:
 
         vector<StripeRisk> stripe_risks = computeStripeRisks(stripe_list);
 
+        // build stripe_id -> Stripe* map for safe lookup
+        unordered_map<int, Stripe*> sid_map_sd;
+        for (Stripe* s : stripe_list)
+            sid_map_sd[s->getStripeId()] = s;
+
         vector<StripeRisk> critical_stripes, high_risk_stripes;
         for (auto& sr : stripe_risks) {
             if (sr.critical) {
                 critical_stripes.push_back(sr);
             } else if (sr.risk_score >= stripe_risk_threshold) {
                 int future_hits = 0;
-                const vector<int>& pl = stripe_list[sr.stripe_id]->getPlacement();
+                auto sit = sid_map_sd.find(sr.stripe_id);
+                if (sit == sid_map_sd.end()) continue;
+                const vector<int>& pl = sit->second->getPlacement();
                 for (int nid : next_fail_ids)
                     if (find(pl.begin(), pl.end(), nid) != pl.end())
                         future_hits++;
-                if (sr.fail_count + future_hits >= tolerance)
+                if (sr.fail_count + future_hits > tolerance)
                     critical_stripes.push_back(sr);
                 else
                     high_risk_stripes.push_back(sr);
@@ -278,6 +378,11 @@ public:
         vector<StripeRisk> stripe_risks = computeStripeRisks(stripe_list);
         vector<int> next_fails = future_fail_windows.empty() ? vector<int>{} : future_fail_windows[0];
 
+        // build stripe_id -> Stripe* map for safe lookup
+        unordered_map<int, Stripe*> sid_map;
+        for (Stripe* s : stripe_list)
+            sid_map[s->getStripeId()] = s;
+
         vector<StripeRisk> must_repair_stripes;
         for (auto& sr : stripe_risks) {
             if (sr.critical) {
@@ -285,13 +390,15 @@ public:
                 continue;
             }
             int future_hits = 0;
+            auto sit = sid_map.find(sr.stripe_id);
+            if (sit == sid_map.end()) continue;
             for (int i = 0; i < (int)future_fail_windows.size() && i < lookahead; i++) {
-                const vector<int>& pl = stripe_list[sr.stripe_id]->getPlacement();
+                const vector<int>& pl = sit->second->getPlacement();
                 for (int nid : future_fail_windows[i])
                     if (find(pl.begin(), pl.end(), nid) != pl.end())
                         future_hits++;
             }
-            if (sr.fail_count + future_hits >= tolerance)
+            if (sr.fail_count + future_hits > tolerance)
                 must_repair_stripes.push_back(sr);
         }
 
@@ -346,7 +453,7 @@ private:
             sr.fail_count   = fail_count;
             sr.tolerance    = tolerance;
             sr.risk_score   = (double)fail_count / tolerance;
-            sr.critical     = (fail_count >= tolerance);
+            sr.critical     = (fail_count > tolerance);
             sr.failed_nodes = failed_in_stripe;
             risks.push_back(sr);
         }

@@ -14,7 +14,8 @@
 #include "common/Stripe.hh"
 #include "common/TraceReader.hh"
 #include "common/RepairScheduler.hh"
-#include "RepairScheduler_new.hh"   // 新增调度器
+#include "RepairScheduler_new.hh"
+#include "MLPredictor.hh"
 
 #include "ec/ECBase.hh"
 #include "ec/Clay.hh"
@@ -32,6 +33,7 @@
 #include <cstdio>
 #include <iostream>
 #include <iomanip>
+// ECDAG 不再直接使用，但 ParallelSolution 内部依赖，保留间接引用即可
 
 using namespace std;
 
@@ -59,65 +61,84 @@ vector<Stripe*> loadPlacement(string filepath) {
     return stripe_list;
 }
 
-pair<double, double> computeRepairLoadForStripe(string code, int ecn, int eck, int ecw,
-                                                Stripe* curStripe,
-                                                vector<int> failnodeids,
-                                                string scenario, int method,
-                                                Config* conf, ECBase* ec) {
-    int fail_num = failnodeids.size();
-    if (fail_num == 0) return {0.0, 0.0};
-
-    int real_num_agents = conf->_agents_num + fail_num;
-    int standby_size = fail_num;
-
-    ParallelSolution* sol = new ParallelSolution(1, standby_size, real_num_agents, method);
-    sol->init({curStripe}, ec, code, conf);
-
-    ECDAG* ecdag = curStripe->genRepairECDAG(ec, failnodeids);
-    curStripe->refreshECDAG(ecdag);
-
-    vector<vector<int>> loadtable = vector<vector<int>>(sol->_cluster_size, {0, 0});
-
-    if (fail_num == 1) {
-        unordered_map<int, int> coloring;
-        vector<int> placement(real_num_agents);
-        for (int i = 0; i < real_num_agents; i++) placement[i] = i;
-        sol->genColoringForSingleFailure(curStripe, coloring, failnodeids[0],
-                                         real_num_agents, scenario, placement);
-    } else {
-        sol->genColoringForMultipleFailureLevelNew(curStripe, failnodeids,
-                                                    scenario, loadtable, method);
-    }
-
-    double load = curStripe->getLoad() * 1.0 / ecw;
-    double bdwt = curStripe->getBdwt() * 1.0 / ecw;
-    delete sol;
-    return {load, bdwt};
-}
-
 // =================================================================================
-// 辅助：针对一组节点，批量计算所有受影响stripe的修复代价
+// 批处理修复代价计算（复用 Sim_parallel 的完整流程）
+//   1. 筛选受影响的stripe子集
+//   2. ParallelSolution::genRepairBatches 生成批处理修复方案
+//   3. 从 RepairBatch 统计 load/bdwt 累加到 scheduler
 // =================================================================================
 void applyRepairCost(const vector<int>& repaired_nodes,
                      const vector<Stripe*>& stripe_list,
                      string code, int ecn, int eck, int ecw,
                      string scenario, int method, Config* conf, ECBase* ec,
-                     RepairSchedulerNew& scheduler)
+                     RepairSchedulerNew& scheduler,
+                     bool verbose = false)
 {
+    if (repaired_nodes.empty()) return;
+
+    int fail_num     = (int)repaired_nodes.size();
+    int num_agents   = conf->_agents_num;
+    int standby_size = fail_num;
+
+    // Step 1: 筛选包含故障节点且未超出容错的stripe
+    vector<Stripe*> affected_stripes;
     for (Stripe* s : stripe_list) {
-        const auto& placement = s->getPlacement();
-        vector<int> stripe_failed;
-        for (int nid : repaired_nodes) {
+        const vector<int>& placement = s->getPlacement();
+        int hits = 0;
+        for (int nid : repaired_nodes)
             if (find(placement.begin(), placement.end(), nid) != placement.end())
-                stripe_failed.push_back(nid);
-        }
-        if (!stripe_failed.empty() && (int)stripe_failed.size() <= (ecn - eck)) {
-            auto cost = computeRepairLoadForStripe(code, ecn, eck, ecw, s,
-                                                    stripe_failed, scenario,
-                                                    method, conf, ec);
-            scheduler.recordRepairLoad(cost.first, cost.second);
+                hits++;
+        if (hits > 0 && hits <= (ecn - eck))
+            affected_stripes.push_back(s);
+    }
+    if (affected_stripes.empty()) return;
+
+    if (verbose) {
+        cout << "  [Repair] nodes: ";
+        for (int nid : repaired_nodes) cout << "Node-" << nid << " ";
+        cout << "\n  [Repair] affected stripes: " << affected_stripes.size() << " stripes:" << endl;
+        for (Stripe* s : affected_stripes) {
+            const vector<int>& pl = s->getPlacement();
+            // 列出该条带中哪些节点在被修复
+            vector<int> stripe_failed;
+            for (int nid : repaired_nodes)
+                if (find(pl.begin(), pl.end(), nid) != pl.end())
+                    stripe_failed.push_back(nid);
+            printf("    Stripe-%-4d: repaired nodes [", s->getStripeId());
+            for (int i = 0; i < (int)stripe_failed.size(); i++) {
+                if (i) cout << ",";
+                cout << stripe_failed[i];
+            }
+            printf("]  (n=%d tol=%d)\n",
+                   ecn, ecn - eck);
         }
     }
+
+    // Step 2: 初始化 ParallelSolution，batchsize=1 保持精确统计
+    ParallelSolution* sol = new ParallelSolution(1, standby_size, num_agents, method);
+    sol->init(affected_stripes, ec, code, conf);
+
+    // Step 3: 生成修复批次（enqueue=false，结果存入 _batch_list）
+    sol->genRepairBatches(fail_num, repaired_nodes, num_agents, scenario, false);
+
+    // Step 4: 统计所有批次的 load/bdwt
+    vector<RepairBatch*> batches = sol->getRepairBatches();
+    int total_load = 0, total_bdwt = 0;
+    for (RepairBatch* batch : batches) {
+        total_load += batch->getLoad();
+        total_bdwt += batch->getBdwt();
+    }
+
+    if (verbose) {
+        printf("  [Cost] batches=%d load=%.2f blks bdwt=%.2f blks\n",
+               (int)batches.size(),
+               1.0 * total_load / ecw,
+               1.0 * total_bdwt / ecw);
+    }
+
+    scheduler.recordRepairLoad(1.0 * total_load / ecw,
+                               1.0 * total_bdwt / ecw);
+    delete sol;
 }
 
 // =================================================================================
@@ -148,17 +169,15 @@ int checkStripeDataLoss(const vector<int>& current_failed_nodes,
 // 通用的数据丢失应急处理
 // =================================================================================
 void handleDataLoss(RepairSchedulerNew& scheduler,
-                    const vector<Stripe*>& stripe_list,
-                    string code, int ecn, int eck, int ecw,
-                    string scenario, int method, Config* conf, ECBase* ec,
                     bool verbose, int loss_stripes)
 {
-    scheduler.recordDataLoss();
-    vector<int> failed = scheduler.executeFullRepair();
-    if (verbose)
-        cout << "  *** DATA LOSS! " << loss_stripes << " stripes lost. "
-             << "Emergency repair: " << failed.size() << " nodes" << endl;
-    applyRepairCost(failed, stripe_list, code, ecn, eck, ecw, scenario, method, conf, ec, scheduler);
+    // 只记录丢失事件和条带数，不修复，坏节点继续留在 _current_failed
+    // 后续这些节点涉及的其他条带若变危险，再触发正常修复流程
+    scheduler.recordDataLoss(loss_stripes);
+    if (verbose) {
+        printf("  *** DATA LOSS! %d stripes lost (failed nodes remain, will repair when other stripes at risk) ***\n",
+               loss_stripes);
+    }
 }
 
 // =================================================================================
@@ -195,28 +214,61 @@ RepairStats runOriginalStrategy(int strategy, TraceReader& reader,
         }
 
         if (loss_stripes > 0) {
-            handleDataLoss(scheduler, stripe_list, code, ecn, eck, ecw,
-                           scenario, method, conf, ec, verbose, loss_stripes);
-            reader.advance();
-            continue;
+            handleDataLoss(scheduler, verbose, loss_stripes);
+            // nodes remain in _current_failed, continue to normal decision
         }
 
-        RepairDecision decision;
-        if (strategy == 0)      decision = scheduler.decideImmediate();
-        else if (strategy == 1) decision = scheduler.decideLazy();
-        else {
+        if (strategy == 0) {
+            // Immediate：有故障就修
+            RepairDecision decision = scheduler.decideImmediate();
+            if (decision == REPAIR_IMMEDIATE) {
+                vector<int> failed = scheduler.executeFullRepair();
+                if (verbose)
+                    printf("  -> REPAIR %d nodes  [Reason: Immediate]\n", (int)failed.size());
+                applyRepairCost(failed, stripe_list, code, ecn, eck, ecw,
+                                scenario, method, conf, ec, scheduler);
+            }
+        } else if (strategy == 1) {
+            // Lazy：条带级，某条带故障数 >= tolerance 才修
+            auto result_lazy = scheduler.decideLazy(stripe_list);
+            RepairDecision decision = result_lazy.first;
+            vector<int> nodes_to_repair = result_lazy.second;
+            if (decision == REPAIR_IMMEDIATE) {
+                vector<int> repaired = scheduler.executePartialRepair(nodes_to_repair);
+                if (verbose)
+                    printf("  -> REPAIR %d nodes  [Reason: Lazy stripe-level, some stripe cur >= tolerance=%d]\n",
+                           (int)repaired.size(), ecn - eck);
+                applyRepairCost(repaired, stripe_list, code, ecn, eck, ecw,
+                                scenario, method, conf, ec, scheduler);
+            } else {
+                if (verbose)
+                    printf("  -> SKIP  [Lazy: no stripe has cur >= tolerance=%d]\n", ecn - eck);
+            }
+        } else {
+            // TraceDriven：条带级决策
             TraceEvent* next = reader.peekNextEvent();
             vector<int> next_ids = next ? next->fail_node_ids : vector<int>{};
-            decision = scheduler.decideTraceDriven(next_ids);
-        }
+            auto result_td = scheduler.decideTraceDrivenStripe(stripe_list, next_ids);
+            RepairDecision decision = result_td.first;
+            vector<int> nodes_to_repair = result_td.second;
 
-        if (decision == REPAIR_IMMEDIATE) {
-            vector<int> failed = scheduler.executeFullRepair();
-            if (verbose) cout << "  -> REPAIR " << failed.size() << " nodes" << endl;
-            applyRepairCost(failed, stripe_list, code, ecn, eck, ecw,
-                            scenario, method, conf, ec, scheduler);
-        } else {
-            if (verbose) cout << "  -> SKIP" << endl;
+            if (decision == REPAIR_IMMEDIATE || decision == REPAIR_PARTIAL) {
+                vector<int> repaired = scheduler.executePartialRepair(nodes_to_repair);
+                if (verbose) {
+                    printf("  -> REPAIR %d/%d nodes  [Reason: TraceDriven stripe-level, "
+                           "dangerous stripes need repair]\n",
+                           (int)repaired.size(), scheduler.getCurrentFailureCount() + (int)repaired.size());
+                    cout << "     Repaired nodes: ";
+                    for (int nid : repaired) cout << "Node-" << nid << " ";
+                    cout << endl;
+                }
+                applyRepairCost(repaired, stripe_list, code, ecn, eck, ecw,
+                                scenario, method, conf, ec, scheduler);
+            } else {
+                if (verbose)
+                    printf("  -> SKIP  [No dangerous stripe: all stripes safe with cur+next <= tolerance=%d]\n",
+                           ecn - eck);
+            }
         }
 
         reader.advance();
@@ -266,10 +318,8 @@ RepairStats runRiskAwarePartial(TraceReader& reader,
                  << " loss_stripes=" << loss_stripes << endl;
 
         if (loss_stripes > 0) {
-            handleDataLoss(scheduler, stripe_list, code, ecn, eck, ecw,
-                           scenario, method, conf, ec, verbose, loss_stripes);
-            reader.advance();
-            continue;
+            handleDataLoss(scheduler, verbose, loss_stripes);
+            // nodes remain in _current_failed, continue to normal decision
         }
 
         // 收集未来多步故障窗口（最多看5步）
@@ -349,17 +399,17 @@ RepairStats runStripeDifferentiated(TraceReader& reader,
                  << " loss_stripes=" << loss_stripes << endl;
 
         if (loss_stripes > 0) {
-            handleDataLoss(scheduler, stripe_list, code, ecn, eck, ecw,
-                           scenario, method, conf, ec, verbose, loss_stripes);
-            reader.advance();
-            continue;
+            handleDataLoss(scheduler, verbose, loss_stripes);
+            // nodes remain in _current_failed, continue to normal decision
         }
 
         TraceEvent* next_event = reader.peekNextEvent();
         vector<int> next_ids = next_event ? next_event->fail_node_ids : vector<int>{};
 
-        auto [decision, nodes_to_repair] = scheduler.decideStripeDifferentiated(
+        auto result_sd = scheduler.decideStripeDifferentiated(
             stripe_list, next_ids, stripe_risk_threshold);
+        RepairDecision decision = result_sd.first;
+        vector<int> nodes_to_repair = result_sd.second;
 
         if (decision == REPAIR_IMMEDIATE || decision == REPAIR_PARTIAL) {
             vector<int> repaired;
@@ -433,10 +483,8 @@ RepairStats runCombined(TraceReader& reader,
                  << " loss_stripes=" << loss_stripes << endl;
 
         if (loss_stripes > 0) {
-            handleDataLoss(scheduler, stripe_list, code, ecn, eck, ecw,
-                           scenario, method, conf, ec, verbose, loss_stripes);
-            reader.advance();
-            continue;
+            handleDataLoss(scheduler, verbose, loss_stripes);
+            // nodes remain in _current_failed, continue to normal decision
         }
 
         // 收集未来多步故障窗口
@@ -448,9 +496,11 @@ RepairStats runCombined(TraceReader& reader,
             tmp_reader.advance();
         }
 
-        auto [decision, nodes_to_repair] = scheduler.decideCombined(
+        auto result_cb = scheduler.decideCombined(
             stripe_list, future_windows,
             threshold_partial, threshold_full, stripe_risk_thr);
+        RepairDecision decision = result_cb.first;
+        vector<int> nodes_to_repair = result_cb.second;
 
         if (decision == REPAIR_IMMEDIATE) {
             vector<int> failed = scheduler.executeFullRepair();
@@ -480,6 +530,119 @@ RepairStats runCombined(TraceReader& reader,
 }
 
 // =================================================================================
+// Strategy 6: MLDriven
+//   决策逻辑与 TraceDriven 完全一致：cur + pred > tolerance 才修
+//   唯一区别：next_ids 来自 MLPredictor（有误报/漏报），而非真实 trace
+// =================================================================================
+RepairStats runMLDriven(TraceReader& reader,
+                        string code, int ecn, int eck, int ecw,
+                        const vector<Stripe*>& stripe_list, ECBase* ec,
+                        int num_agents, string scenario, int method,
+                        Config* conf, bool verbose,
+                        double fpr, double fnr,
+                        int seed = 42)
+{
+    RepairSchedulerNew scheduler(ecn, eck, ecw);
+    reader.reset();
+
+    // 初始化 ML 预测器
+    MLPredictor predictor(num_agents, fpr, fnr, seed);
+
+    if (verbose) {
+        cout << "\n======================================================" << endl;
+        cout << "  Strategy: MLDriven" << endl;
+        printf("  FPR=%.4f  FNR=%.4f\n", fpr, fnr);
+        cout << "======================================================" << endl;
+    }
+
+    while (reader.hasCurrentEvent()) {
+        TraceEvent* event = reader.getCurrentEvent();
+        scheduler.addFailures(event->fail_node_ids);
+        int loss_stripes = checkStripeDataLoss(
+            scheduler.getCurrentFailedNodes(), stripe_list, ecn, eck);
+
+        if (verbose)
+            cout << "[Day " << event->timestamp << "] new_fails=" << event->fail_node_ids.size()
+                 << " total_failed=" << scheduler.getCurrentFailureCount()
+                 << " loss_stripes=" << loss_stripes << endl;
+
+        if (loss_stripes > 0) {
+            handleDataLoss(scheduler, verbose, loss_stripes);
+            // nodes remain in _current_failed, continue to normal decision
+        }
+
+        // ML预测下一步故障（仅用于决策，注入误报/漏报）
+        TraceEvent* next_real = reader.peekNextEvent();
+        vector<int> pred_ids  = predictor.predictNextFailures(
+            next_real, scheduler.getCurrentFailedNodes());
+
+        if (verbose) {
+            // 打印预测 vs 真实对比
+            vector<int> real_next = next_real ? next_real->fail_node_ids : vector<int>{};
+            unordered_set<int> real_set(real_next.begin(), real_next.end());
+            unordered_set<int> pred_set(pred_ids.begin(), pred_ids.end());
+            vector<int> tp, fp, fn;
+            for (int nid : pred_ids)
+                (real_set.count(nid) ? tp : fp).push_back(nid);
+            for (int nid : real_next)
+                if (!pred_set.count(nid)) fn.push_back(nid);
+            printf("+-- [Day %d] ML Prediction: real_next=%d pred=%d  TP=%d FP=%d FN=%d\n",
+                   event->timestamp, (int)real_next.size(), (int)pred_ids.size(),
+                   (int)tp.size(), (int)fp.size(), (int)fn.size());
+            if (!fp.empty()) {
+                cout << "|  FP nodes: ";
+                for (int nid : fp) cout << "Node-" << nid << " ";
+                cout << " <- false alarm, may trigger unnecessary repair" << endl;
+            }
+            if (!fn.empty()) {
+                cout << "|  FN nodes: ";
+                for (int nid : fn) cout << "Node-" << nid << " ";
+                cout << " <- missed, repair may be delayed" << endl;
+            }
+        }
+
+        // 条带级决策：与 TraceDriven 完全一致，只是 next_ids 来自 ML 预测
+        auto result_ml = scheduler.decideTraceDrivenStripe(stripe_list, pred_ids);
+        RepairDecision decision = result_ml.first;
+        vector<int> nodes_to_repair = result_ml.second;
+
+        if (decision == REPAIR_IMMEDIATE || decision == REPAIR_PARTIAL) {
+            // 修复的是真实故障节点（nodes_to_repair 来自 _current_failed）
+            vector<int> repaired = scheduler.executePartialRepair(nodes_to_repair);
+            if (verbose) {
+                printf("  -> REPAIR %d/%d nodes  [Reason: ML stripe-level, "
+                       "dangerous stripes detected with pred_ids]\n",
+                       (int)repaired.size(),
+                       scheduler.getCurrentFailureCount() + (int)repaired.size());
+                cout << "     Repaired nodes: ";
+                for (int nid : repaired) cout << "Node-" << nid << " ";
+                cout << endl;
+            }
+            applyRepairCost(repaired, stripe_list, code, ecn, eck, ecw,
+                            scenario, method, conf, ec, scheduler, verbose);
+        } else {
+            if (verbose)
+                printf("  -> SKIP  [No dangerous stripe with pred_ids, safe to wait]\n");
+        }
+
+        reader.advance();
+    }
+
+    if (scheduler.getCurrentFailureCount() > 0) {
+        vector<int> failed = scheduler.executeFullRepair();
+        applyRepairCost(failed, stripe_list, code, ecn, eck, ecw,
+                        scenario, method, conf, ec, scheduler, verbose);
+    }
+
+    if (verbose) predictor.printStats();
+
+    // 把预测器统计挂到 stats 的 avg_risk 字段（复用字段存 actual FPR）
+    RepairStats stats = scheduler.getStats();
+    stats.avg_risk_at_repair = predictor.getStats().fpr();
+    return stats;
+}
+
+// =================================================================================
 // 打印详细对比表
 // =================================================================================
 void printComparisonTable(const string names[], const RepairStats stats[], int n,
@@ -491,22 +654,22 @@ void printComparisonTable(const string names[], const RepairStats stats[], int n
     cout << "  Trace events: " << event_count << endl;
     cout << "============================================================" << endl;
 
-    printf("%-22s | %6s | %10s | %10s | %8s | %7s | %7s | %5s\n",
+    printf("%-22s | %6s | %10s | %10s | %8s | %10s | %7s | %5s\n",
            "Strategy", "Rounds", "Load(blks)", "Bdwt(blks)",
-           "DataLoss", "MaxFail", "Partial", "Skips");
-    printf("%-22s-|-%6s-|-%10s-|-%10s-|-%8s-|-%7s-|-%7s-|-%5s\n",
+           "LossEvents", "LostStripes", "MaxFail", "Skips");
+    printf("%-22s-|-%6s-|-%10s-|-%10s-|-%8s-|-%10s-|-%7s-|-%5s\n",
            "----------------------", "------", "----------", "----------",
-           "--------", "-------", "-------", "-----");
+           "----------", "-----------", "-------", "-----");
 
     for (int i = 0; i < n; i++) {
-        printf("%-22s | %6d | %10.2f | %10.2f | %8d | %7d | %7d | %5d\n",
+        printf("%-22s | %6d | %10.2f | %10.2f | %8d | %10d | %7d | %5d\n",
                names[i].c_str(),
                stats[i].total_repair_rounds,
                stats[i].total_repair_load,
                stats[i].total_repair_bdwt,
                stats[i].data_loss_events,
+               stats[i].lost_stripes_count,
                stats[i].max_concurrent_failures,
-               stats[i].partial_repair_count,
                stats[i].skipped_repair_count);
     }
     cout << "============================================================" << endl;
@@ -537,8 +700,34 @@ void printComparisonTable(const string names[], const RepairStats stats[], int n
 // =================================================================================
 int main(int argc, char** argv) {
     if (argc < 10) {
-        cout << "Usage: ./RepairSimulator_new code ecn eck ecw num_agents "
-             << "trace_file method scenario placement_file" << endl;
+        cout << "Usage: ./RepairSimulator_new" << endl;
+        cout << "  Required:" << endl;
+        cout << "    1. code           (e.g. Clay)" << endl;
+        cout << "    2. ecn            (e.g. 14)" << endl;
+        cout << "    3. eck            (e.g. 10)" << endl;
+        cout << "    4. ecw            (e.g. 4)" << endl;
+        cout << "    5. num_agents     (e.g. 40)" << endl;
+        cout << "    6. trace_file     (e.g. trace.txt)" << endl;
+        cout << "    7. method         (e.g. 1)" << endl;
+        cout << "    8. scenario       (e.g. standby)" << endl;
+        cout << "    9. placement_file (e.g. placement.txt)" << endl;
+        cout << "  Optional:" << endl;
+        cout << "   10. threshold_partial  (default 0.5,  unused by ML strategies)" << endl;
+        cout << "   11. threshold_full     (default 0.8,  unused by ML strategies)" << endl;
+        cout << "   12. stripe_risk_thr    (default 0.75, unused by ML strategies)" << endl;
+        cout << "   13. ml_fpr_low         (default 0.002, ML-Low false positive rate)" << endl;
+        cout << "   14. ml_fpr_high        (default 0.025, ML-High false positive rate)" << endl;
+        cout << "   15. ml_fnr             (default 0.05,  both ML strategies false negative rate)" << endl;
+        cout << endl;
+        cout << "Examples:" << endl;
+        cout << "  # Default ML params:" << endl;
+        cout << "  ./RepairSimulator_new Clay 14 10 4 40 trace.txt 1 standby placement.txt" << endl;
+        cout << "  # FNR sensitivity scan (fix FPR, vary FNR):" << endl;
+        cout << "      ./RepairSimulator_new Clay 14 10 4 40 trace.txt 1 standby placement.txt" << endl;
+        cout << "          0.5 0.8 0.75 0.002 0.025 0.10" << endl;
+        cout << "  # FPR sensitivity scan (fix FNR, vary FPR):" << endl;
+        cout << "      ./RepairSimulator_new Clay 14 10 4 40 trace.txt 1 standby placement.txt" << endl;
+        cout << "          0.5 0.8 0.75 0.010 0.010 0.05" << endl;
         return 0;
     }
 
@@ -552,10 +741,26 @@ int main(int argc, char** argv) {
     string scenario      = argv[8];
     string placement_file = argv[9];
 
-    // 可选参数：控制新策略的阈值
+    // 可选参数（argv[10]~[15]）：
+    //   [10] threshold_partial  风险分阈值（部分修复）  默认 0.5  （仅旧策略使用，ML不用）
+    //   [11] threshold_full     风险分阈值（全量修复）  默认 0.8  （仅旧策略使用，ML不用）
+    //   [12] stripe_risk_thr    条带风险阈值            默认 0.75 （仅旧策略使用，ML不用）
+    //   [13] ml_fpr_low         ML-Low 误报率           默认 0.002 (0.2%)
+    //   [14] ml_fpr_high        ML-High 误报率          默认 0.025 (2.5%)
+    //   [15] ml_fnr             两种ML策略共用漏报率    默认 0.05  (5%)
+    //
+    // 实验用法示例：
+    //   FNR敏感性扫描（固定FPR，改变FNR）：
+    //     ./RepairSimulator_new Clay 14 10 4 40 trace.txt 1 standby placement.txt     //         0.5 0.8 0.75 0.002 0.025 <fnr>
+    //
+    //   FPR敏感性扫描（固定FNR，改变FPR）：
+    //     ./RepairSimulator_new Clay 14 10 4 40 trace.txt 1 standby placement.txt     //         0.5 0.8 0.75 <fpr_low> <fpr_high> 0.05
     double threshold_partial = (argc > 10) ? atof(argv[10]) : 0.5;
     double threshold_full    = (argc > 11) ? atof(argv[11]) : 0.8;
     double stripe_risk_thr   = (argc > 12) ? atof(argv[12]) : 0.75;
+    double ml_fpr_low        = (argc > 13) ? atof(argv[13]) : 0.002;
+    double ml_fpr_high       = (argc > 14) ? atof(argv[14]) : 0.025;
+    double ml_fnr            = (argc > 15) ? atof(argv[15]) : 0.05;
 
     cout << "============================================" << endl;
     cout << "  Extended Repair Strategy Simulator" << endl;
@@ -564,9 +769,8 @@ int main(int argc, char** argv) {
     cout << "Nodes: " << num_agents << " | Fault tolerance: " << (ecn - eck) << endl;
     cout << "Trace: " << trace_file << endl;
     cout << "Scenario: " << scenario << " | Method: " << method << endl;
-    cout << "RiskAware thresholds: partial=" << threshold_partial
-         << " full=" << threshold_full << endl;
-    cout << "Stripe risk threshold: " << stripe_risk_thr << endl;
+    printf("ML params: fpr_low=%.4f  fpr_high=%.4f  fnr=%.4f\n",
+           ml_fpr_low, ml_fpr_high, ml_fnr);
 
     // 初始化
     string conf_path = "conf/sysSetting.xml";
@@ -598,58 +802,50 @@ int main(int argc, char** argv) {
     else { cerr << "Unknown code: " << code << endl; return 1; }
 
     // ============================================================
-    // 运行全部6种策略
+    // 运行5种策略
     // ============================================================
-    const int NUM_STRATEGIES = 6;
+    const int NUM_STRATEGIES = 5;
     string names[NUM_STRATEGIES] = {
         "Immediate",
         "Lazy",
-        "TraceDriven",
-        "RiskAwarePartial",
-        "StripeDiff",
-        "Combined"
+        "Perfect Prediction",  // FPR=0 FNR=0，完美预测上界
+        "ML-Low FPR",          // FPR=0.2%  FNR=5%
+        "ML-High FPR",         // FPR=2.5%  FNR=5%
     };
     RepairStats stats[NUM_STRATEGIES];
 
-    bool verbose = true; // 设为true输出详细日志
+    bool verbose = false; // 设为true输出每步详细日志
 
     cout << "\nRunning strategies..." << endl;
-    cout << "  [4/6] RiskAwarePartial (thr_p=" << threshold_partial
-         << " thr_f=" << threshold_full << ")..." << endl;
-    stats[3] = runRiskAwarePartial(reader, code, ecn, eck, ecw,
-                                    stripe_list, ec, num_agents, scenario,
-                                    method, conf, verbose,
-                                    threshold_partial, threshold_full);
 
-    cout << "  [5/6] StripeDifferentiated (stripe_thr=" << stripe_risk_thr << ")..." << endl;
-    stats[4] = runStripeDifferentiated(reader, code, ecn, eck, ecw,
-                                        stripe_list, ec, num_agents, scenario,
-                                        method, conf, verbose,
-                                        stripe_risk_thr);
+    cout << "  [1/5] Immediate..." << endl;
+    stats[0] = runOriginalStrategy(0, reader, code, ecn, eck, ecw,
+                                   stripe_list, ec, num_agents, scenario,
+                                   method, conf, verbose);
 
-    cout << "  [6/6] Combined..." << endl;
-    stats[5] = runCombined(reader, code, ecn, eck, ecw,
+    cout << "  [2/5] Lazy..." << endl;
+    stats[1] = runOriginalStrategy(1, reader, code, ecn, eck, ecw,
+                                   stripe_list, ec, num_agents, scenario,
+                                   method, conf, verbose);
+
+    cout << "  [3/5] Perfect Prediction (TraceDriven)..." << endl;
+    stats[2] = runOriginalStrategy(2, reader, code, ecn, eck, ecw,
+                                   stripe_list, ec, num_agents, scenario,
+                                   method, conf, verbose);
+
+    cout << "  [4/5] ML-Low FPR (fpr=" << ml_fpr_low
+         << " fnr=" << ml_fnr << ")..." << endl;
+    stats[3] = runMLDriven(reader, code, ecn, eck, ecw,
                            stripe_list, ec, num_agents, scenario,
                            method, conf, verbose,
-                           threshold_partial, threshold_full, stripe_risk_thr);
+                           ml_fpr_low, ml_fnr);
 
-
-    cout << "  [1/6] Immediate..." << endl;
-    stats[0] = runOriginalStrategy(0, reader, code, ecn, eck, ecw,
-                                    stripe_list, ec, num_agents, scenario,
-                                    method, conf, verbose);
-
-    cout << "  [2/6] Lazy..." << endl;
-    stats[1] = runOriginalStrategy(1, reader, code, ecn, eck, ecw,
-                                    stripe_list, ec, num_agents, scenario,
-                                    method, conf, verbose);
-
-    cout << "  [3/6] TraceDriven..." << endl;
-    stats[2] = runOriginalStrategy(2, reader, code, ecn, eck, ecw,
-                                    stripe_list, ec, num_agents, scenario,
-                                    method, conf, verbose);
-
-    
+    cout << "  [5/5] ML-High FPR (fpr=" << ml_fpr_high
+         << " fnr=" << ml_fnr << ")..." << endl;
+    stats[4] = runMLDriven(reader, code, ecn, eck, ecw,
+                           stripe_list, ec, num_agents, scenario,
+                           method, conf, verbose,
+                           ml_fpr_high, ml_fnr, 123);
 
     // ============================================================
     // 输出对比表
@@ -661,20 +857,21 @@ int main(int argc, char** argv) {
     // Pareto分析：Load Saving vs Data Loss
     // ============================================================
     cout << "\n--- Pareto Analysis (Load Saving vs Safety) ---" << endl;
-    printf("%-22s | %10s | %8s | %8s | %s\n",
-           "Strategy", "LoadSaving%", "DataLoss", "Partial", "Note");
+    printf("%-22s | %10s | %8s | %8s | %8s | %s\n",
+           "Strategy", "LoadSaving%", "DataLoss", "Partial", "ActualFPR", "Note");
     for (int i = 0; i < NUM_STRATEGIES; i++) {
         double save = (stats[0].total_repair_load > 0)
             ? (1.0 - stats[i].total_repair_load / stats[0].total_repair_load) * 100
             : 0.0;
         string note = "";
-        if (stats[i].data_loss_events == 0)           note = "✓ Safe";
-        else if (stats[i].data_loss_events <= 2)      note = "~ Low risk";
-        else                                           note = "✗ Risky";
-        printf("%-22s | %10.1f | %8d | %8d | %s\n",
+        if (stats[i].data_loss_events == 0)           note = "Safe";
+        else if (stats[i].data_loss_events <= 2)      note = "Low risk";
+        else                                           note = "Risky";
+        printf("%-22s | %10.1f | %8d | %8d | %8.4f | %s\n",
                names[i].c_str(), save,
                stats[i].data_loss_events,
                stats[i].partial_repair_count,
+               stats[i].avg_risk_at_repair,   // ML策略复用此字段存actual FPR
                note.c_str());
     }
 

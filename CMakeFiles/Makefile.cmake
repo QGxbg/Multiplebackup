@@ -77,6 +77,8 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/CMakeFiles/NewgenMLP.dir/DependInfo.cmake"
   "src/CMakeFiles/RepairSimulator_new.dir/DependInfo.cmake"
   "src/CMakeFiles/RepairSimulator.dir/DependInfo.cmake"
+  "src/CMakeFiles/GenPredictedTrace.dir/DependInfo.cmake"
+  "src/CMakeFiles/GenTrace.dir/DependInfo.cmake"
   "src/common/CMakeFiles/common.dir/DependInfo.cmake"
   "src/dist/CMakeFiles/dist.dir/DependInfo.cmake"
   "src/ec/CMakeFiles/ec.dir/DependInfo.cmake"

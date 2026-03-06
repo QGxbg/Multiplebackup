@@ -1,16 +1,448 @@
 ============================================
   Extended Repair Strategy Simulator
 ============================================
-Code: Clay (14,10) ecw=4
+Code: Clay (14,10) ecw=256
 Nodes: 40 | Fault tolerance: 4
 Trace: trace.csv
-Scenario: standby | Method: 1
+Scenario: scatter | Method: 1
 RiskAware thresholds: partial=0.5 full=0.8
 Stripe risk threshold: 0.75
 TraceReader: Loaded 51 events from trace.csv
 Loaded 100 stripes
 
 Running strategies...
+  [1/6] Immediate...
+
+======================================================
+  Strategy: Immediate
+======================================================
+[Day 0] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 41
+[Day 1] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 2] new_fails=2 total_failed=2 loss_stripes=0
+  -> REPAIR 2 nodes
+[INFO] num batches = 29
+[Day 3] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 35
+[Day 4] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 5] new_fails=2 total_failed=2 loss_stripes=0
+  -> REPAIR 2 nodes
+[INFO] num batches = 32
+[Day 6] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 41
+[Day 7] new_fails=2 total_failed=2 loss_stripes=0
+  -> REPAIR 2 nodes
+[INFO] num batches = 31
+[Day 8] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 9] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 10] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 35
+[Day 11] new_fails=5 total_failed=5 loss_stripes=0
+  -> REPAIR 5 nodes
+[INFO] num batches = 45
+[Day 12] new_fails=2 total_failed=2 loss_stripes=0
+  -> REPAIR 2 nodes
+[INFO] num batches = 36
+[Day 13] new_fails=2 total_failed=2 loss_stripes=0
+  -> REPAIR 2 nodes
+[INFO] num batches = 28
+[Day 14] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 35
+[Day 15] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 39
+[Day 16] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 38
+[Day 17] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 18] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 19] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 20] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 34
+[Day 21] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 44
+[Day 22] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 43
+[Day 23] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 24] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 25] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 26] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 43
+[Day 27] new_fails=5 total_failed=5 loss_stripes=0
+  -> REPAIR 5 nodes
+[INFO] num batches = 47
+[Day 28] new_fails=2 total_failed=2 loss_stripes=0
+  -> REPAIR 2 nodes
+[INFO] num batches = 29
+[Day 29] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 36
+[Day 30] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 31] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 32] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 39
+[Day 33] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 36
+[Day 34] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 38
+[Day 35] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 36] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 37] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 38] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 44
+[Day 39] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 39
+[Day 40] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 41] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 35
+[Day 42] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 43] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 44] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 45] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 46] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 47] new_fails=2 total_failed=2 loss_stripes=0
+  -> REPAIR 2 nodes
+[INFO] num batches = 30
+[Day 48] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 33
+[Day 49] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 50] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 36
+  [2/6] Lazy...
+
+======================================================
+  Strategy: Lazy
+======================================================
+[Day 0] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 41
+[Day 1] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 2] new_fails=2 total_failed=3 loss_stripes=0
+  -> SKIP
+[Day 3] new_fails=3 total_failed=6 loss_stripes=0
+  -> REPAIR 6 nodes
+[INFO] num batches = 43
+[Day 4] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 5] new_fails=2 total_failed=3 loss_stripes=0
+  -> SKIP
+[Day 6] new_fails=4 total_failed=7 loss_stripes=6
+  *** DATA LOSS! 6 stripes lost. Emergency repair: 7 nodes
+[INFO] num batches = 45
+[Day 7] new_fails=2 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 8] new_fails=1 total_failed=3 loss_stripes=0
+  -> SKIP
+[Day 9] new_fails=1 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 44
+[Day 10] new_fails=3 total_failed=3 loss_stripes=0
+  -> SKIP
+[Day 11] new_fails=5 total_failed=7 loss_stripes=3
+  *** DATA LOSS! 3 stripes lost. Emergency repair: 7 nodes
+[INFO] num batches = 46
+[Day 12] new_fails=2 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 13] new_fails=2 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 44
+[Day 14] new_fails=3 total_failed=3 loss_stripes=0
+  -> SKIP
+[Day 15] new_fails=3 total_failed=6 loss_stripes=1
+  *** DATA LOSS! 1 stripes lost. Emergency repair: 6 nodes
+[INFO] num batches = 47
+[Day 16] new_fails=3 total_failed=3 loss_stripes=0
+  -> SKIP
+[Day 17] new_fails=1 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 41
+[Day 18] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 19] new_fails=1 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 20] new_fails=3 total_failed=5 loss_stripes=0
+  -> REPAIR 5 nodes
+[INFO] num batches = 44
+[Day 21] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 44
+[Day 22] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 43
+[Day 23] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 24] new_fails=1 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 25] new_fails=1 total_failed=3 loss_stripes=0
+  -> SKIP
+[Day 26] new_fails=4 total_failed=7 loss_stripes=4
+  *** DATA LOSS! 4 stripes lost. Emergency repair: 7 nodes
+[INFO] num batches = 46
+[Day 27] new_fails=5 total_failed=5 loss_stripes=0
+  -> REPAIR 5 nodes
+[INFO] num batches = 47
+[Day 28] new_fails=2 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 29] new_fails=3 total_failed=5 loss_stripes=1
+  *** DATA LOSS! 1 stripes lost. Emergency repair: 5 nodes
+[INFO] num batches = 46
+[Day 30] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 31] new_fails=1 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 32] new_fails=4 total_failed=6 loss_stripes=0
+  -> REPAIR 6 nodes
+[INFO] num batches = 47
+[Day 33] new_fails=3 total_failed=3 loss_stripes=0
+  -> SKIP
+[Day 34] new_fails=4 total_failed=7 loss_stripes=3
+  *** DATA LOSS! 3 stripes lost. Emergency repair: 7 nodes
+[INFO] num batches = 46
+[Day 35] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 36] new_fails=1 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 37] new_fails=1 total_failed=3 loss_stripes=0
+  -> SKIP
+[Day 38] new_fails=4 total_failed=7 loss_stripes=2
+  *** DATA LOSS! 2 stripes lost. Emergency repair: 7 nodes
+[INFO] num batches = 48
+[Day 39] new_fails=3 total_failed=3 loss_stripes=0
+  -> SKIP
+[Day 40] new_fails=1 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 44
+[Day 41] new_fails=3 total_failed=3 loss_stripes=0
+  -> SKIP
+[Day 42] new_fails=1 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 38
+[Day 43] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 44] new_fails=1 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 45] new_fails=1 total_failed=3 loss_stripes=0
+  -> SKIP
+[Day 46] new_fails=1 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 43
+[Day 47] new_fails=2 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 48] new_fails=3 total_failed=5 loss_stripes=1
+  *** DATA LOSS! 1 stripes lost. Emergency repair: 5 nodes
+[INFO] num batches = 44
+[Day 49] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 50] new_fails=3 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 41
+  [3/6] TraceDriven...
+
+======================================================
+  Strategy: TraceDriven
+======================================================
+[Day 0] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 41
+[Day 1] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 2] new_fails=2 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 35
+[Day 3] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 35
+[Day 4] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 5] new_fails=2 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 39
+[Day 6] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 41
+[Day 7] new_fails=2 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 8] new_fails=1 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 40
+[Day 9] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 10] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 35
+[Day 11] new_fails=5 total_failed=5 loss_stripes=0
+  -> REPAIR 5 nodes
+[INFO] num batches = 45
+[Day 12] new_fails=2 total_failed=2 loss_stripes=0
+  -> REPAIR 2 nodes
+[INFO] num batches = 36
+[Day 13] new_fails=2 total_failed=2 loss_stripes=0
+  -> REPAIR 2 nodes
+[INFO] num batches = 28
+[Day 14] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 35
+[Day 15] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 39
+[Day 16] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 38
+[Day 17] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 18] new_fails=1 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 19] new_fails=1 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 37
+[Day 20] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 34
+[Day 21] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 44
+[Day 22] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 43
+[Day 23] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 24] new_fails=1 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 25] new_fails=1 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 36
+[Day 26] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 43
+[Day 27] new_fails=5 total_failed=5 loss_stripes=0
+  -> REPAIR 5 nodes
+[INFO] num batches = 47
+[Day 28] new_fails=2 total_failed=2 loss_stripes=0
+  -> REPAIR 2 nodes
+[INFO] num batches = 29
+[Day 29] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 36
+[Day 30] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 31] new_fails=1 total_failed=2 loss_stripes=0
+  -> REPAIR 2 nodes
+[INFO] num batches = 27
+[Day 32] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 39
+[Day 33] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 36
+[Day 34] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 38
+[Day 35] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 36] new_fails=1 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 37] new_fails=1 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 35
+[Day 38] new_fails=4 total_failed=4 loss_stripes=0
+  -> REPAIR 4 nodes
+[INFO] num batches = 44
+[Day 39] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 39
+[Day 40] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 41] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 35
+[Day 42] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 43] new_fails=1 total_failed=2 loss_stripes=0
+  -> SKIP
+[Day 44] new_fails=1 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 31
+[Day 45] new_fails=1 total_failed=1 loss_stripes=0
+  -> SKIP
+[Day 46] new_fails=1 total_failed=2 loss_stripes=0
+  -> REPAIR 2 nodes
+[INFO] num batches = 30
+[Day 47] new_fails=2 total_failed=2 loss_stripes=0
+  -> REPAIR 2 nodes
+[INFO] num batches = 30
+[Day 48] new_fails=3 total_failed=3 loss_stripes=0
+  -> REPAIR 3 nodes
+[INFO] num batches = 33
+[Day 49] new_fails=1 total_failed=1 loss_stripes=0
+  -> REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 50] new_fails=3 total_failed=3 loss_stripes=0
+  -> SKIP
+[INFO] num batches = 36
   [4/6] RiskAwarePartial (thr_p=0.5 thr_f=0.8)...
 
 ======================================================
@@ -20,156 +452,207 @@ Running strategies...
 [Day 0] new_fails=4 total_failed=4 loss_stripes=0
     [RiskAware] cur=4 tol=4 lookahead=5 trend=4.00 risk=1.000
   -> FULL REPAIR 4 nodes
+[INFO] num batches = 41
 [Day 1] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=2.50 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 2] new_fails=2 total_failed=2 loss_stripes=0
     [RiskAware] cur=2 tol=4 lookahead=3 trend=2.33 risk=1.000
   -> FULL REPAIR 2 nodes
+[INFO] num batches = 29
 [Day 3] new_fails=3 total_failed=3 loss_stripes=0
     [RiskAware] cur=3 tol=4 lookahead=5 trend=2.00 risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 35
 [Day 4] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=2.00 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 5] new_fails=2 total_failed=2 loss_stripes=0
     [RiskAware] cur=2 tol=4 lookahead=3 trend=2.00 risk=1.000
   -> FULL REPAIR 2 nodes
+[INFO] num batches = 32
 [Day 6] new_fails=4 total_failed=4 loss_stripes=0
     [RiskAware] cur=4 tol=4 lookahead=5 trend=2.33 risk=1.000
   -> FULL REPAIR 4 nodes
+[INFO] num batches = 41
 [Day 7] new_fails=2 total_failed=2 loss_stripes=0
     [RiskAware] cur=2 tol=4 lookahead=3 trend=2.67 risk=1.000
   -> FULL REPAIR 2 nodes
+[INFO] num batches = 31
 [Day 8] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=2.33 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 9] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=1.33 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 10] new_fails=3 total_failed=3 loss_stripes=0
     [RiskAware] cur=3 tol=4 lookahead=5 trend=1.67 risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 35
 [Day 11] new_fails=5 total_failed=5 loss_stripes=0
     [RiskAware] cur=5 tol=4 lookahead=5 trend=3.00 risk=1.000
   -> FULL REPAIR 5 nodes
+[INFO] num batches = 45
 [Day 12] new_fails=2 total_failed=2 loss_stripes=0
     [RiskAware] cur=2 tol=4 lookahead=3 trend=3.33 risk=1.000
   -> FULL REPAIR 2 nodes
+[INFO] num batches = 36
 [Day 13] new_fails=2 total_failed=2 loss_stripes=0
     [RiskAware] cur=2 tol=4 lookahead=3 trend=3.00 risk=1.000
   -> FULL REPAIR 2 nodes
+[INFO] num batches = 28
 [Day 14] new_fails=3 total_failed=3 loss_stripes=0
     [RiskAware] cur=3 tol=4 lookahead=5 trend=2.33 risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 35
 [Day 15] new_fails=3 total_failed=3 loss_stripes=0
     [RiskAware] cur=3 tol=4 lookahead=5 trend=2.67 risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 39
 [Day 16] new_fails=3 total_failed=3 loss_stripes=0
     [RiskAware] cur=3 tol=4 lookahead=5 trend=3.00 risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 38
 [Day 17] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=2.33 risk=0.903
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 18] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=1.67 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 19] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=1.00 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 20] new_fails=3 total_failed=3 loss_stripes=0
     [RiskAware] cur=3 tol=4 lookahead=5 trend=1.67 risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 34
 [Day 21] new_fails=4 total_failed=4 loss_stripes=0
     [RiskAware] cur=4 tol=4 lookahead=5 trend=2.67 risk=1.000
   -> FULL REPAIR 4 nodes
+[INFO] num batches = 44
 [Day 22] new_fails=4 total_failed=4 loss_stripes=0
     [RiskAware] cur=4 tol=4 lookahead=5 trend=3.67 risk=1.000
   -> FULL REPAIR 4 nodes
+[INFO] num batches = 43
 [Day 23] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=3.00 risk=0.903
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 24] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=2.00 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 25] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=1.00 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 26] new_fails=4 total_failed=4 loss_stripes=0
     [RiskAware] cur=4 tol=4 lookahead=5 trend=2.00 risk=1.000
   -> FULL REPAIR 4 nodes
+[INFO] num batches = 43
 [Day 27] new_fails=5 total_failed=5 loss_stripes=0
     [RiskAware] cur=5 tol=4 lookahead=5 trend=3.33 risk=1.000
   -> FULL REPAIR 5 nodes
+[INFO] num batches = 47
 [Day 28] new_fails=2 total_failed=2 loss_stripes=0
     [RiskAware] cur=2 tol=4 lookahead=3 trend=3.67 risk=1.000
   -> FULL REPAIR 2 nodes
+[INFO] num batches = 29
 [Day 29] new_fails=3 total_failed=3 loss_stripes=0
     [RiskAware] cur=3 tol=4 lookahead=5 trend=3.33 risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 36
 [Day 30] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=2.00 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 31] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=1.67 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 32] new_fails=4 total_failed=4 loss_stripes=0
     [RiskAware] cur=4 tol=4 lookahead=5 trend=2.00 risk=1.000
   -> FULL REPAIR 4 nodes
+[INFO] num batches = 39
 [Day 33] new_fails=3 total_failed=3 loss_stripes=0
     [RiskAware] cur=3 tol=4 lookahead=5 trend=2.67 risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 36
 [Day 34] new_fails=4 total_failed=4 loss_stripes=0
     [RiskAware] cur=4 tol=4 lookahead=5 trend=3.67 risk=1.000
   -> FULL REPAIR 4 nodes
+[INFO] num batches = 38
 [Day 35] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=2.67 risk=0.903
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 36] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=2.00 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 37] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=1.00 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 38] new_fails=4 total_failed=4 loss_stripes=0
     [RiskAware] cur=4 tol=4 lookahead=5 trend=2.00 risk=1.000
   -> FULL REPAIR 4 nodes
+[INFO] num batches = 44
 [Day 39] new_fails=3 total_failed=3 loss_stripes=0
     [RiskAware] cur=3 tol=4 lookahead=5 trend=2.67 risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 39
 [Day 40] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=2.67 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 41] new_fails=3 total_failed=3 loss_stripes=0
     [RiskAware] cur=3 tol=4 lookahead=5 trend=2.33 risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 35
 [Day 42] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=1.67 risk=0.903
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 43] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=1.67 risk=0.903
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 44] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=1.00 risk=0.903
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 45] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=1.00 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 46] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=1.00 risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 47] new_fails=2 total_failed=2 loss_stripes=0
     [RiskAware] cur=2 tol=4 lookahead=3 trend=1.33 risk=1.000
   -> FULL REPAIR 2 nodes
+[INFO] num batches = 30
 [Day 48] new_fails=3 total_failed=3 loss_stripes=0
     [RiskAware] cur=3 tol=4 lookahead=5 trend=2.00 risk=0.913
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 33
 [Day 49] new_fails=1 total_failed=1 loss_stripes=0
     [RiskAware] cur=1 tol=4 lookahead=2 trend=2.00 risk=0.888
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 50] new_fails=3 total_failed=3 loss_stripes=0
     [RiskAware] cur=3 tol=4 lookahead=5 trend=2.33 risk=0.300
   -> SKIP
+[INFO] num batches = 36
   [5/6] StripeDifferentiated (stripe_thr=0.75)...
 
 ======================================================
@@ -179,46 +662,60 @@ Running strategies...
 [Day 0] new_fails=4 total_failed=4 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/4 nodes
      Protected stripes via node repair: [34 ]
+genRepairBatchesForSingleFailure start
 [Day 1] new_fails=1 total_failed=4 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/4 nodes
      Protected stripes via node repair: [15 ]
+genRepairBatchesForSingleFailure start
 [Day 2] new_fails=2 total_failed=5 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 2/5 nodes
      Protected stripes via node repair: [13 23 ]
+[INFO] num batches = 32
 [Day 3] new_fails=3 total_failed=6 loss_stripes=1
   *** DATA LOSS! 1 stripes lost. Emergency repair: 6 nodes
+[INFO] num batches = 42
 [Day 4] new_fails=1 total_failed=1 loss_stripes=0
   -> SKIP (no critical stripes)
 [Day 5] new_fails=2 total_failed=3 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/3 nodes
      Protected stripes via node repair: [26 ]
+genRepairBatchesForSingleFailure start
 [Day 6] new_fails=4 total_failed=6 loss_stripes=2
   *** DATA LOSS! 2 stripes lost. Emergency repair: 6 nodes
+[INFO] num batches = 46
 [Day 7] new_fails=2 total_failed=2 loss_stripes=0
   -> SKIP (no critical stripes)
 [Day 8] new_fails=1 total_failed=3 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/3 nodes
      Protected stripes via node repair: [27 ]
+genRepairBatchesForSingleFailure start
 [Day 9] new_fails=1 total_failed=3 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/3 nodes
      Protected stripes via node repair: [0 ]
+genRepairBatchesForSingleFailure start
 [Day 10] new_fails=3 total_failed=5 loss_stripes=1
   *** DATA LOSS! 1 stripes lost. Emergency repair: 5 nodes
+[INFO] num batches = 46
 [Day 11] new_fails=5 total_failed=5 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 2/5 nodes
      Protected stripes via node repair: [20 15 ]
+[INFO] num batches = 29
 [Day 12] new_fails=2 total_failed=5 loss_stripes=2
   *** DATA LOSS! 2 stripes lost. Emergency repair: 5 nodes
+[INFO] num batches = 46
 [Day 13] new_fails=2 total_failed=2 loss_stripes=0
   -> SKIP (no critical stripes)
 [Day 14] new_fails=3 total_failed=5 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 2/5 nodes
      Protected stripes via node repair: [8 23 ]
+[INFO] num batches = 28
 [Day 15] new_fails=3 total_failed=6 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 3/6 nodes
      Protected stripes via node repair: [22 30 26 ]
+[INFO] num batches = 39
 [Day 16] new_fails=3 total_failed=6 loss_stripes=1
   *** DATA LOSS! 1 stripes lost. Emergency repair: 6 nodes
+[INFO] num batches = 46
 [Day 17] new_fails=1 total_failed=1 loss_stripes=0
   -> SKIP (no critical stripes)
 [Day 18] new_fails=1 total_failed=2 loss_stripes=0
@@ -226,32 +723,42 @@ Running strategies...
 [Day 19] new_fails=1 total_failed=3 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/3 nodes
      Protected stripes via node repair: [3 ]
+genRepairBatchesForSingleFailure start
 [Day 20] new_fails=3 total_failed=5 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 3/5 nodes
      Protected stripes via node repair: [21 23 8 ]
+[INFO] num batches = 37
 [Day 21] new_fails=4 total_failed=6 loss_stripes=1
   *** DATA LOSS! 1 stripes lost. Emergency repair: 6 nodes
+[INFO] num batches = 47
 [Day 22] new_fails=4 total_failed=4 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/4 nodes
      Protected stripes via node repair: [7 ]
+genRepairBatchesForSingleFailure start
 [Day 23] new_fails=1 total_failed=4 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/4 nodes
      Protected stripes via node repair: [10 ]
+genRepairBatchesForSingleFailure start
 [Day 24] new_fails=1 total_failed=4 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/4 nodes
      Protected stripes via node repair: [17 ]
+genRepairBatchesForSingleFailure start
 [Day 25] new_fails=1 total_failed=4 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 2/4 nodes
      Protected stripes via node repair: [21 32 ]
+[INFO] num batches = 28
 [Day 26] new_fails=4 total_failed=5 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 3/5 nodes
      Protected stripes via node repair: [19 7 24 ]
+[INFO] num batches = 39
 [Day 27] new_fails=5 total_failed=7 loss_stripes=1
   *** DATA LOSS! 1 stripes lost. Emergency repair: 7 nodes
+[INFO] num batches = 47
 [Day 28] new_fails=2 total_failed=2 loss_stripes=0
   -> SKIP (no critical stripes)
 [Day 29] new_fails=3 total_failed=5 loss_stripes=1
   *** DATA LOSS! 1 stripes lost. Emergency repair: 5 nodes
+[INFO] num batches = 46
 [Day 30] new_fails=1 total_failed=1 loss_stripes=0
   -> SKIP (no critical stripes)
 [Day 31] new_fails=1 total_failed=2 loss_stripes=0
@@ -259,57 +766,76 @@ Running strategies...
 [Day 32] new_fails=4 total_failed=6 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 2/6 nodes
      Protected stripes via node repair: [0 28 ]
+[INFO] num batches = 32
 [Day 33] new_fails=3 total_failed=7 loss_stripes=2
   *** DATA LOSS! 2 stripes lost. Emergency repair: 7 nodes
+[INFO] num batches = 47
 [Day 34] new_fails=4 total_failed=4 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/4 nodes
      Protected stripes via node repair: [10 ]
+genRepairBatchesForSingleFailure start
 [Day 35] new_fails=1 total_failed=4 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/4 nodes
      Protected stripes via node repair: [36 ]
+genRepairBatchesForSingleFailure start
 [Day 36] new_fails=1 total_failed=4 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/4 nodes
      Protected stripes via node repair: [4 ]
+genRepairBatchesForSingleFailure start
 [Day 37] new_fails=1 total_failed=3 loss_stripes=0
   -> SKIP (no critical stripes)
 [Day 38] new_fails=4 total_failed=7 loss_stripes=4
   *** DATA LOSS! 4 stripes lost. Emergency repair: 7 nodes
+[INFO] num batches = 47
 [Day 39] new_fails=3 total_failed=3 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/3 nodes
      Protected stripes via node repair: [8 ]
+genRepairBatchesForSingleFailure start
 [Day 40] new_fails=1 total_failed=3 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/3 nodes
      Protected stripes via node repair: [38 ]
+genRepairBatchesForSingleFailure start
 [Day 41] new_fails=3 total_failed=5 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/5 nodes
      Protected stripes via node repair: [19 ]
+genRepairBatchesForSingleFailure start
 [Day 42] new_fails=1 total_failed=5 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 2/5 nodes
      Protected stripes via node repair: [29 20 ]
+[INFO] num batches = 29
 [Day 43] new_fails=1 total_failed=4 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/4 nodes
      Protected stripes via node repair: [16 ]
+genRepairBatchesForSingleFailure start
 [Day 44] new_fails=1 total_failed=4 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/4 nodes
      Protected stripes via node repair: [38 ]
+genRepairBatchesForSingleFailure start
 [Day 45] new_fails=1 total_failed=4 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/4 nodes
      Protected stripes via node repair: [26 ]
+genRepairBatchesForSingleFailure start
 [Day 46] new_fails=1 total_failed=4 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/4 nodes
      Protected stripes via node repair: [19 ]
+genRepairBatchesForSingleFailure start
 [Day 47] new_fails=2 total_failed=5 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 2/5 nodes
      Protected stripes via node repair: [28 8 ]
+[INFO] num batches = 30
 [Day 48] new_fails=3 total_failed=5 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/5 nodes
      Protected stripes via node repair: [0 ]
+genRepairBatchesForSingleFailure start
 [Day 49] new_fails=1 total_failed=5 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 2/5 nodes
      Protected stripes via node repair: [13 35 ]
+[INFO] num batches = 32
 [Day 50] new_fails=3 total_failed=6 loss_stripes=0
   -> STRIPE-DRIVEN PARTIAL REPAIR 1/6 nodes
      Protected stripes via node repair: [2 ]
+genRepairBatchesForSingleFailure start
+[INFO] num batches = 44
   [6/6] Combined...
 
 ======================================================
@@ -319,81 +845,241 @@ Running strategies...
 [Day 0] new_fails=4 total_failed=4 loss_stripes=0
     [Combined] cur=4 tol=4 lookahead=5 trend=4.00 global_risk=1.000
   -> FULL REPAIR 4 nodes
+[INFO] num batches = 41
 [Day 1] new_fails=1 total_failed=1 loss_stripes=0
     [Combined] cur=1 tol=4 lookahead=2 trend=2.50 global_risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 2] new_fails=2 total_failed=2 loss_stripes=0
     [Combined] cur=2 tol=4 lookahead=3 trend=2.33 global_risk=1.000
   -> FULL REPAIR 2 nodes
+[INFO] num batches = 29
 [Day 3] new_fails=3 total_failed=3 loss_stripes=0
     [Combined] cur=3 tol=4 lookahead=5 trend=2.00 global_risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 35
 [Day 4] new_fails=1 total_failed=1 loss_stripes=0
     [Combined] cur=1 tol=4 lookahead=2 trend=2.00 global_risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 5] new_fails=2 total_failed=2 loss_stripes=0
     [Combined] cur=2 tol=4 lookahead=3 trend=2.00 global_risk=1.000
   -> FULL REPAIR 2 nodes
+[INFO] num batches = 32
 [Day 6] new_fails=4 total_failed=4 loss_stripes=0
     [Combined] cur=4 tol=4 lookahead=5 trend=2.33 global_risk=1.000
   -> FULL REPAIR 4 nodes
+[INFO] num batches = 41
 [Day 7] new_fails=2 total_failed=2 loss_stripes=0
     [Combined] cur=2 tol=4 lookahead=3 trend=2.67 global_risk=1.000
   -> FULL REPAIR 2 nodes
+[INFO] num batches = 31
 [Day 8] new_fails=1 total_failed=1 loss_stripes=0
     [Combined] cur=1 tol=4 lookahead=2 trend=2.33 global_risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 9] new_fails=1 total_failed=1 loss_stripes=0
     [Combined] cur=1 tol=4 lookahead=2 trend=1.33 global_risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 10] new_fails=3 total_failed=3 loss_stripes=0
     [Combined] cur=3 tol=4 lookahead=5 trend=1.67 global_risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 35
 [Day 11] new_fails=5 total_failed=5 loss_stripes=0
     [Combined] cur=5 tol=4 lookahead=5 trend=3.00 global_risk=1.000
   -> FULL REPAIR 5 nodes
+[INFO] num batches = 45
 [Day 12] new_fails=2 total_failed=2 loss_stripes=0
     [Combined] cur=2 tol=4 lookahead=3 trend=3.33 global_risk=1.000
   -> FULL REPAIR 2 nodes
+[INFO] num batches = 36
 [Day 13] new_fails=2 total_failed=2 loss_stripes=0
     [Combined] cur=2 tol=4 lookahead=3 trend=3.00 global_risk=1.000
   -> FULL REPAIR 2 nodes
+[INFO] num batches = 28
 [Day 14] new_fails=3 total_failed=3 loss_stripes=0
     [Combined] cur=3 tol=4 lookahead=5 trend=2.33 global_risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 35
 [Day 15] new_fails=3 total_failed=3 loss_stripes=0
     [Combined] cur=3 tol=4 lookahead=5 trend=2.67 global_risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 39
 [Day 16] new_fails=3 total_failed=3 loss_stripes=0
     [Combined] cur=3 tol=4 lookahead=5 trend=3.00 global_risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 38
 [Day 17] new_fails=1 total_failed=1 loss_stripes=0
     [Combined] cur=1 tol=4 lookahead=2 trend=2.33 global_risk=0.903
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 18] new_fails=1 total_failed=1 loss_stripes=0
     [Combined] cur=1 tol=4 lookahead=2 trend=1.67 global_risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 19] new_fails=1 total_failed=1 loss_stripes=0
     [Combined] cur=1 tol=4 lookahead=2 trend=1.00 global_risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 20] new_fails=3 total_failed=3 loss_stripes=0
     [Combined] cur=3 tol=4 lookahead=5 trend=1.67 global_risk=1.000
   -> FULL REPAIR 3 nodes
+[INFO] num batches = 34
 [Day 21] new_fails=4 total_failed=4 loss_stripes=0
     [Combined] cur=4 tol=4 lookahead=5 trend=2.67 global_risk=1.000
   -> FULL REPAIR 4 nodes
+[INFO] num batches = 44
 [Day 22] new_fails=4 total_failed=4 loss_stripes=0
     [Combined] cur=4 tol=4 lookahead=5 trend=3.67 global_risk=1.000
   -> FULL REPAIR 4 nodes
+[INFO] num batches = 43
 [Day 23] new_fails=1 total_failed=1 loss_stripes=0
     [Combined] cur=1 tol=4 lookahead=2 trend=3.00 global_risk=0.903
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 24] new_fails=1 total_failed=1 loss_stripes=0
     [Combined] cur=1 tol=4 lookahead=2 trend=2.00 global_risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 25] new_fails=1 total_failed=1 loss_stripes=0
     [Combined] cur=1 tol=4 lookahead=2 trend=1.00 global_risk=1.000
   -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
 [Day 26] new_fails=4 total_failed=4 loss_stripes=0
     [Combined] cur=4 tol=4 lookahead=5 trend=2.00 global_risk=1.000
   -> FULL REPAIR 4 nodes
+[INFO] num batches = 43
+[Day 27] new_fails=5 total_failed=5 loss_stripes=0
+    [Combined] cur=5 tol=4 lookahead=5 trend=3.33 global_risk=1.000
+  -> FULL REPAIR 5 nodes
+[INFO] num batches = 47
+[Day 28] new_fails=2 total_failed=2 loss_stripes=0
+    [Combined] cur=2 tol=4 lookahead=3 trend=3.67 global_risk=1.000
+  -> FULL REPAIR 2 nodes
+[INFO] num batches = 29
+[Day 29] new_fails=3 total_failed=3 loss_stripes=0
+    [Combined] cur=3 tol=4 lookahead=5 trend=3.33 global_risk=1.000
+  -> FULL REPAIR 3 nodes
+[INFO] num batches = 36
+[Day 30] new_fails=1 total_failed=1 loss_stripes=0
+    [Combined] cur=1 tol=4 lookahead=2 trend=2.00 global_risk=1.000
+  -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 31] new_fails=1 total_failed=1 loss_stripes=0
+    [Combined] cur=1 tol=4 lookahead=2 trend=1.67 global_risk=1.000
+  -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 32] new_fails=4 total_failed=4 loss_stripes=0
+    [Combined] cur=4 tol=4 lookahead=5 trend=2.00 global_risk=1.000
+  -> FULL REPAIR 4 nodes
+[INFO] num batches = 39
+[Day 33] new_fails=3 total_failed=3 loss_stripes=0
+    [Combined] cur=3 tol=4 lookahead=5 trend=2.67 global_risk=1.000
+  -> FULL REPAIR 3 nodes
+[INFO] num batches = 36
+[Day 34] new_fails=4 total_failed=4 loss_stripes=0
+    [Combined] cur=4 tol=4 lookahead=5 trend=3.67 global_risk=1.000
+  -> FULL REPAIR 4 nodes
+[INFO] num batches = 38
+[Day 35] new_fails=1 total_failed=1 loss_stripes=0
+    [Combined] cur=1 tol=4 lookahead=2 trend=2.67 global_risk=0.903
+  -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 36] new_fails=1 total_failed=1 loss_stripes=0
+    [Combined] cur=1 tol=4 lookahead=2 trend=2.00 global_risk=1.000
+  -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 37] new_fails=1 total_failed=1 loss_stripes=0
+    [Combined] cur=1 tol=4 lookahead=2 trend=1.00 global_risk=1.000
+  -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 38] new_fails=4 total_failed=4 loss_stripes=0
+    [Combined] cur=4 tol=4 lookahead=5 trend=2.00 global_risk=1.000
+  -> FULL REPAIR 4 nodes
+[INFO] num batches = 44
+[Day 39] new_fails=3 total_failed=3 loss_stripes=0
+    [Combined] cur=3 tol=4 lookahead=5 trend=2.67 global_risk=1.000
+  -> FULL REPAIR 3 nodes
+[INFO] num batches = 39
+[Day 40] new_fails=1 total_failed=1 loss_stripes=0
+    [Combined] cur=1 tol=4 lookahead=2 trend=2.67 global_risk=1.000
+  -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 41] new_fails=3 total_failed=3 loss_stripes=0
+    [Combined] cur=3 tol=4 lookahead=5 trend=2.33 global_risk=1.000
+  -> FULL REPAIR 3 nodes
+[INFO] num batches = 35
+[Day 42] new_fails=1 total_failed=1 loss_stripes=0
+    [Combined] cur=1 tol=4 lookahead=2 trend=1.67 global_risk=0.903
+  -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 43] new_fails=1 total_failed=1 loss_stripes=0
+    [Combined] cur=1 tol=4 lookahead=2 trend=1.67 global_risk=0.903
+  -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 44] new_fails=1 total_failed=1 loss_stripes=0
+    [Combined] cur=1 tol=4 lookahead=2 trend=1.00 global_risk=0.903
+  -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 45] new_fails=1 total_failed=1 loss_stripes=0
+    [Combined] cur=1 tol=4 lookahead=2 trend=1.00 global_risk=1.000
+  -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 46] new_fails=1 total_failed=1 loss_stripes=0
+    [Combined] cur=1 tol=4 lookahead=2 trend=1.00 global_risk=1.000
+  -> FULL REPAIR 1 nodes
+genRepairBatchesForSingleFailure start
+[Day 47] new_fails=2 total_failed=2 loss_stripes=0
+    [Combined] cur=2 tol=4 lookahead=3 trend=1.33 global_risk=1.000
+  -> FULL REPAIR 2 nodes
+[INFO] num batches = 30
+[Day 48] new_fails=3 total_failed=3 loss_stripes=0
+    [Combined] cur=3 tol=4 lookahead=5 trend=2.00 global_risk=0.913
+  -> COMBINED PARTIAL REPAIR 2 nodes (remaining: 1)
+[INFO] num batches = 29
+[Day 49] new_fails=1 total_failed=2 loss_stripes=0
+    [Combined] cur=2 tol=4 lookahead=3 trend=2.00 global_risk=0.757
+  -> COMBINED PARTIAL REPAIR 1 nodes (remaining: 1)
+genRepairBatchesForSingleFailure start
+[Day 50] new_fails=3 total_failed=4 loss_stripes=0
+    [Combined] cur=4 tol=4 lookahead=5 trend=2.33 global_risk=0.300
+  -> SKIP
+[INFO] num batches = 39
+
+============================================================
+                  COMPARISON SUMMARY
+  Code: Clay (14,10)
+  Trace events: 51
+============================================================
+Strategy               | Rounds | Load(blks) | Bdwt(blks) | DataLoss | MaxFail | Partial | Skips
+-----------------------|--------|------------|------------|----------|---------|---------|------
+Immediate              |     51 |    1816.36 |   21294.70 |        0 |       5 |       0 |     0
+Lazy                   |     22 |    1797.85 |   20407.24 |        8 |       7 |       0 |     0
+TraceDriven            |     38 |    1980.69 |   21708.98 |        0 |       5 |       0 |     0
+RiskAwarePartial       |     51 |    1815.86 |   21292.18 |        0 |       5 |       0 |     1
+StripeDiff             |     43 |    1640.93 |   19856.02 |       10 |       7 |      32 |     9
+Combined               |     51 |    1815.38 |   21273.78 |        0 |       5 |       2 |     1
+============================================================
+
+Load savings vs Immediate:
+  Lazy                  : +1.0% (data_loss=8, partial_repairs=0)
+  TraceDriven           : -9.0% (data_loss=0, partial_repairs=0)
+  RiskAwarePartial      : +0.0% (data_loss=0, partial_repairs=0)
+  StripeDiff            : +9.7% (data_loss=10, partial_repairs=32)
+  Combined              : +0.1% (data_loss=0, partial_repairs=2)
+
+Safety improvement vs Lazy:
+  TraceDriven           : data_loss reduced by 8 events
+  RiskAwarePartial      : data_loss reduced by 8 events
+  StripeDiff            : data_loss reduced by -2 events
+  Combined              : data_loss reduced by 8 events
+
+--- Pareto Analysis (Load Saving vs Safety) ---
+Strategy               | LoadSaving% | DataLoss |  Partial | Note
+Immediate              |        0.0 |        0 |        0 | ✓ Safe
+Lazy                   |        1.0 |        8 |        0 | ✗ Risky
+TraceDriven            |       -9.0 |        0 |        0 | ✓ Safe
+RiskAwarePartial       |        0.0 |        0 |        0 | ✓ Safe
+StripeDiff             |        9.7 |       10 |       32 | ✗ Risky
+Combined               |        0.1 |        0 |        2 | ✓ Safe

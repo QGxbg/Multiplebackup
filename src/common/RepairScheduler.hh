@@ -9,30 +9,34 @@
 
 using namespace std;
 
-enum RepairDecision {
-    REPAIR_IMMEDIATE,   // 立即修复
-    REPAIR_LAZY,        // 延迟修复
-    REPAIR_PARTIAL      // 部分修复（新增）
+enum RepairDecision
+{
+    REPAIR_IMMEDIATE, // 立即修复
+    REPAIR_LAZY,      // 延迟修复
+    REPAIR_PARTIAL    // 部分修复（新增）
 };
 
-struct RepairStats {
-    int total_repair_rounds;       // 总修复轮次
-    double total_repair_load;      // 总修复负载(blocks)
-    double total_repair_bdwt;      // 总修复带宽(blocks)
-    int data_loss_events;          // 数据丢失事件数
-    int lazy_skip_count;           // 延迟跳过次数
-    int max_concurrent_failures;   // 最大同时故障数
+struct RepairStats
+{
+    int total_repair_rounds;     // 总修复轮次
+    double total_repair_load;    // 总修复负载(blocks)
+    double total_repair_bdwt;    // 总修复带宽(blocks)
+    int data_loss_events;        // 数据丢失事件数
+    int lazy_skip_count;         // 延迟跳过次数
+    int max_concurrent_failures; // 最大同时故障数
     // 新增字段
-    int partial_repair_count = 0;     // 部分修复次数
-    int skipped_repair_count = 0;     // 跳过修复次数
-    double avg_risk_at_repair = 0.0;  // 触发修复时的平均风险分
+    int partial_repair_count = 0;    // 部分修复次数
+    int skipped_repair_count = 0;    // 跳过修复次数
+    double avg_risk_at_repair = 0.0; // 触发修复时的平均风险分
+    int lost_stripes_count = 0;      // 累计丢失条带数
 };
 
-class RepairScheduler {
+class RepairScheduler
+{
     int _ecn;
     int _eck;
     int _ecw;
-    int _fault_tolerance;          // ecn - eck, 最大容错数
+    int _fault_tolerance; // ecn - eck, 最大容错数
     set<int> _current_failed_nodes;
     RepairStats _stats;
 
@@ -50,7 +54,7 @@ public:
     RepairDecision decideLazy();
 
     // Trace-Driven: 根据下一时间段预测决定
-    RepairDecision decideTraceDriven(TraceEvent* next_event);
+    RepairDecision decideTraceDriven(TraceEvent *next_event);
 
     // 执行修复: 清空故障节点, 返回修复的节点列表
     vector<int> executeRepair();

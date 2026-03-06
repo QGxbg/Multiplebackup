@@ -377,6 +377,32 @@ RepairSimulator/fast:
 .PHONY : RepairSimulator/fast
 
 #=============================================================================
+# Target rules for targets named GenPredictedTrace
+
+# Build rule for target.
+GenPredictedTrace: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GenPredictedTrace
+.PHONY : GenPredictedTrace
+
+# fast build rule for target.
+GenPredictedTrace/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenPredictedTrace.dir/build.make src/CMakeFiles/GenPredictedTrace.dir/build
+.PHONY : GenPredictedTrace/fast
+
+#=============================================================================
+# Target rules for targets named GenTrace
+
+# Build rule for target.
+GenTrace: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GenTrace
+.PHONY : GenTrace
+
+# fast build rule for target.
+GenTrace/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenTrace.dir/build.make src/CMakeFiles/GenTrace.dir/build
+.PHONY : GenTrace/fast
+
+#=============================================================================
 # Target rules for targets named common
 
 # Build rule for target.
@@ -465,6 +491,8 @@ help:
 	@echo "... Brute_Force"
 	@echo "... CodeTest"
 	@echo "... GenData"
+	@echo "... GenPredictedTrace"
+	@echo "... GenTrace"
 	@echo "... MulSim_centralize"
 	@echo "... MulSim_offline"
 	@echo "... MulSim_parallel"

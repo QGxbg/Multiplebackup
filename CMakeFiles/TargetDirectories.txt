@@ -20,6 +20,8 @@
 /home/lx/Multiple_ParaRC/src/CMakeFiles/NewgenMLP.dir
 /home/lx/Multiple_ParaRC/src/CMakeFiles/RepairSimulator_new.dir
 /home/lx/Multiple_ParaRC/src/CMakeFiles/RepairSimulator.dir
+/home/lx/Multiple_ParaRC/src/CMakeFiles/GenPredictedTrace.dir
+/home/lx/Multiple_ParaRC/src/CMakeFiles/GenTrace.dir
 /home/lx/Multiple_ParaRC/src/CMakeFiles/edit_cache.dir
 /home/lx/Multiple_ParaRC/src/CMakeFiles/rebuild_cache.dir
 /home/lx/Multiple_ParaRC/src/common/CMakeFiles/common.dir

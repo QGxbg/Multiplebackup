@@ -396,6 +396,34 @@ RepairSimulator/fast:
 	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator.dir/build.make src/CMakeFiles/RepairSimulator.dir/build
 .PHONY : RepairSimulator/fast
 
+# Convenience name for target.
+src/CMakeFiles/GenPredictedTrace.dir/rule:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/GenPredictedTrace.dir/rule
+.PHONY : src/CMakeFiles/GenPredictedTrace.dir/rule
+
+# Convenience name for target.
+GenPredictedTrace: src/CMakeFiles/GenPredictedTrace.dir/rule
+.PHONY : GenPredictedTrace
+
+# fast build rule for target.
+GenPredictedTrace/fast:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenPredictedTrace.dir/build.make src/CMakeFiles/GenPredictedTrace.dir/build
+.PHONY : GenPredictedTrace/fast
+
+# Convenience name for target.
+src/CMakeFiles/GenTrace.dir/rule:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/GenTrace.dir/rule
+.PHONY : src/CMakeFiles/GenTrace.dir/rule
+
+# Convenience name for target.
+GenTrace: src/CMakeFiles/GenTrace.dir/rule
+.PHONY : GenTrace
+
+# fast build rule for target.
+GenTrace/fast:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenTrace.dir/build.make src/CMakeFiles/GenTrace.dir/build
+.PHONY : GenTrace/fast
+
 Brute_Force.o: Brute_Force.cc.o
 .PHONY : Brute_Force.o
 
@@ -467,6 +495,54 @@ GenData.s: GenData.cc.s
 GenData.cc.s:
 	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenData.dir/build.make src/CMakeFiles/GenData.dir/GenData.cc.s
 .PHONY : GenData.cc.s
+
+GenPredictedTrace.o: GenPredictedTrace.cc.o
+.PHONY : GenPredictedTrace.o
+
+# target to build an object file
+GenPredictedTrace.cc.o:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenPredictedTrace.dir/build.make src/CMakeFiles/GenPredictedTrace.dir/GenPredictedTrace.cc.o
+.PHONY : GenPredictedTrace.cc.o
+
+GenPredictedTrace.i: GenPredictedTrace.cc.i
+.PHONY : GenPredictedTrace.i
+
+# target to preprocess a source file
+GenPredictedTrace.cc.i:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenPredictedTrace.dir/build.make src/CMakeFiles/GenPredictedTrace.dir/GenPredictedTrace.cc.i
+.PHONY : GenPredictedTrace.cc.i
+
+GenPredictedTrace.s: GenPredictedTrace.cc.s
+.PHONY : GenPredictedTrace.s
+
+# target to generate assembly for a file
+GenPredictedTrace.cc.s:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenPredictedTrace.dir/build.make src/CMakeFiles/GenPredictedTrace.dir/GenPredictedTrace.cc.s
+.PHONY : GenPredictedTrace.cc.s
+
+GenTrace.o: GenTrace.cc.o
+.PHONY : GenTrace.o
+
+# target to build an object file
+GenTrace.cc.o:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenTrace.dir/build.make src/CMakeFiles/GenTrace.dir/GenTrace.cc.o
+.PHONY : GenTrace.cc.o
+
+GenTrace.i: GenTrace.cc.i
+.PHONY : GenTrace.i
+
+# target to preprocess a source file
+GenTrace.cc.i:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenTrace.dir/build.make src/CMakeFiles/GenTrace.dir/GenTrace.cc.i
+.PHONY : GenTrace.cc.i
+
+GenTrace.s: GenTrace.cc.s
+.PHONY : GenTrace.s
+
+# target to generate assembly for a file
+GenTrace.cc.s:
+	cd /home/lx/Multiple_ParaRC && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenTrace.dir/build.make src/CMakeFiles/GenTrace.dir/GenTrace.cc.s
+.PHONY : GenTrace.cc.s
 
 MulSim_centralize.o: MulSim_centralize.cc.o
 .PHONY : MulSim_centralize.o
@@ -887,6 +963,8 @@ help:
 	@echo "... Brute_Force"
 	@echo "... CodeTest"
 	@echo "... GenData"
+	@echo "... GenPredictedTrace"
+	@echo "... GenTrace"
 	@echo "... MulSim_centralize"
 	@echo "... MulSim_offline"
 	@echo "... MulSim_parallel"
@@ -913,6 +991,12 @@ help:
 	@echo "... GenData.o"
 	@echo "... GenData.i"
 	@echo "... GenData.s"
+	@echo "... GenPredictedTrace.o"
+	@echo "... GenPredictedTrace.i"
+	@echo "... GenPredictedTrace.s"
+	@echo "... GenTrace.o"
+	@echo "... GenTrace.i"
+	@echo "... GenTrace.s"
 	@echo "... MulSim_centralize.o"
 	@echo "... MulSim_centralize.i"
 	@echo "... MulSim_centralize.s"
