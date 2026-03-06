@@ -1,9 +1,0 @@
-第一次实验结果（最后三行）：
-overall load: 2637 subblocks
-overall bdwt: 80585 subblocks
-get repair batch latency: 453343 ms
-
-修改文件后的实验结果（最后三行）：
-overall load: 2459 subblocks
-overall bdwt: 79387 subblocks
-get repair batch latency: 455340 ms

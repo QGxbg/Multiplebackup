@@ -1,0 +1,1 @@
+/usr/bin/g++  -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -g -rdynamic CMakeFiles/GenTrace.dir/GenTrace.cc.o -o ../GenTrace  -lpthread 

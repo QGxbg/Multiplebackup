@@ -90,6 +90,26 @@
   "file": "/home/lx/Multiple_ParaRC/src/NewgenMLP.cc"
 },
 {
+  "directory": "/home/lx/Multiple_ParaRC/build/src",
+  "command": "/usr/bin/g++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -g -std=gnu++11 -o CMakeFiles/RepairSimulator_new.dir/RepairSimulator_new.cc.o -c /home/lx/Multiple_ParaRC/src/RepairSimulator_new.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/RepairSimulator_new.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/build/src",
+  "command": "/usr/bin/g++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -g -std=gnu++11 -o CMakeFiles/RepairSimulator.dir/RepairSimulator.cc.o -c /home/lx/Multiple_ParaRC/src/RepairSimulator.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/RepairSimulator.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/build/src",
+  "command": "/usr/bin/g++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -g -std=gnu++11 -o CMakeFiles/GenPredictedTrace.dir/GenPredictedTrace.cc.o -c /home/lx/Multiple_ParaRC/src/GenPredictedTrace.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/GenPredictedTrace.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/build/src",
+  "command": "/usr/bin/g++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -g -std=gnu++11 -o CMakeFiles/GenTrace.dir/GenTrace.cc.o -c /home/lx/Multiple_ParaRC/src/GenTrace.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/GenTrace.cc"
+},
+{
   "directory": "/home/lx/Multiple_ParaRC/build/src/common",
   "command": "/usr/bin/g++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -g -std=gnu++11 -o CMakeFiles/common.dir/Config.cc.o -c /home/lx/Multiple_ParaRC/src/common/Config.cc",
   "file": "/home/lx/Multiple_ParaRC/src/common/Config.cc"
@@ -106,6 +126,11 @@
 },
 {
   "directory": "/home/lx/Multiple_ParaRC/build/src/common",
+  "command": "/usr/bin/g++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -g -std=gnu++11 -o CMakeFiles/common.dir/RepairScheduler.cc.o -c /home/lx/Multiple_ParaRC/src/common/RepairScheduler.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/common/RepairScheduler.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/build/src/common",
   "command": "/usr/bin/g++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -g -std=gnu++11 -o CMakeFiles/common.dir/Stripe.cc.o -c /home/lx/Multiple_ParaRC/src/common/Stripe.cc",
   "file": "/home/lx/Multiple_ParaRC/src/common/Stripe.cc"
 },
@@ -113,6 +138,11 @@
   "directory": "/home/lx/Multiple_ParaRC/build/src/common",
   "command": "/usr/bin/g++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -g -std=gnu++11 -o CMakeFiles/common.dir/StripeStore.cc.o -c /home/lx/Multiple_ParaRC/src/common/StripeStore.cc",
   "file": "/home/lx/Multiple_ParaRC/src/common/StripeStore.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/build/src/common",
+  "command": "/usr/bin/g++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -g -std=gnu++11 -o CMakeFiles/common.dir/TraceReader.cc.o -c /home/lx/Multiple_ParaRC/src/common/TraceReader.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/common/TraceReader.cc"
 },
 {
   "directory": "/home/lx/Multiple_ParaRC/build/src/common",

@@ -718,16 +718,20 @@ int main(int argc, char** argv) {
         cout << "   13. ml_fpr_low         (default 0.002, ML-Low false positive rate)" << endl;
         cout << "   14. ml_fpr_high        (default 0.025, ML-High false positive rate)" << endl;
         cout << "   15. ml_fnr             (default 0.05,  both ML strategies false negative rate)" << endl;
+        cout << "   16. run_mode            (default 0)" << endl;
+        cout << "         0 = all 5 strategies" << endl;
+        cout << "         1 = baseline only  (Immediate / Lazy / Perfect)" << endl;
+        cout << "         2 = ML only        (ML-Low / ML-High, skip baseline)" << endl;
         cout << endl;
         cout << "Examples:" << endl;
-        cout << "  # Default ML params:" << endl;
+        cout << "  # Run all strategies (default):" << endl;
         cout << "  ./RepairSimulator_new Clay 14 10 4 40 trace.txt 1 standby placement.txt" << endl;
-        cout << "  # FNR sensitivity scan (fix FPR, vary FNR):" << endl;
-        cout << "      ./RepairSimulator_new Clay 14 10 4 40 trace.txt 1 standby placement.txt" << endl;
-        cout << "          0.5 0.8 0.75 0.002 0.025 0.10" << endl;
-        cout << "  # FPR sensitivity scan (fix FNR, vary FPR):" << endl;
-        cout << "      ./RepairSimulator_new Clay 14 10 4 40 trace.txt 1 standby placement.txt" << endl;
-        cout << "          0.5 0.8 0.75 0.010 0.010 0.05" << endl;
+        cout << "  # Run baseline only once:" << endl;
+        cout << "  ./RepairSimulator_new Clay 14 10 4 40 trace.txt 1 standby placement.txt 0.5 0.8 0.75 0.002 0.025 0.05 1" << endl;
+        cout << "  # FNR scan - ML only:" << endl;
+        cout << "  ./RepairSimulator_new Clay 14 10 4 40 trace.txt 1 standby placement.txt 0.5 0.8 0.75 0.002 0.025 <fnr> 2" << endl;
+        cout << "  # FPR scan - ML only:" << endl;
+        cout << "  ./RepairSimulator_new Clay 14 10 4 40 trace.txt 1 standby placement.txt 0.5 0.8 0.75 <fpr> <fpr> 0.05 2" << endl;
         return 0;
     }
 
@@ -761,6 +765,8 @@ int main(int argc, char** argv) {
     double ml_fpr_low        = (argc > 13) ? atof(argv[13]) : 0.002;
     double ml_fpr_high       = (argc > 14) ? atof(argv[14]) : 0.025;
     double ml_fnr            = (argc > 15) ? atof(argv[15]) : 0.05;
+    // run_mode: 0=全部, 1=仅基准(Immediate/Lazy/Perfect), 2=仅ML(ML-Low/ML-High)
+    int    run_mode          = (argc > 16) ? atoi(argv[16]) : 0;
 
     cout << "============================================" << endl;
     cout << "  Extended Repair Strategy Simulator" << endl;
@@ -771,6 +777,8 @@ int main(int argc, char** argv) {
     cout << "Scenario: " << scenario << " | Method: " << method << endl;
     printf("ML params: fpr_low=%.4f  fpr_high=%.4f  fnr=%.4f\n",
            ml_fpr_low, ml_fpr_high, ml_fnr);
+    const char* mode_str[] = {"All strategies", "Baseline only", "ML only"};
+    printf("Run mode: %d (%s)\n", run_mode, mode_str[run_mode]);
 
     // 初始化
     string conf_path = "conf/sysSetting.xml";
@@ -818,48 +826,73 @@ int main(int argc, char** argv) {
 
     cout << "\nRunning strategies..." << endl;
 
-    cout << "  [1/5] Immediate..." << endl;
-    stats[0] = runOriginalStrategy(0, reader, code, ecn, eck, ecw,
-                                   stripe_list, ec, num_agents, scenario,
-                                   method, conf, verbose);
+    if (run_mode == 0 || run_mode == 1) {
+        cout << "  [1/3] Immediate..." << endl;
+        stats[0] = runOriginalStrategy(0, reader, code, ecn, eck, ecw,
+                                       stripe_list, ec, num_agents, scenario,
+                                       method, conf, verbose);
 
-    cout << "  [2/5] Lazy..." << endl;
-    stats[1] = runOriginalStrategy(1, reader, code, ecn, eck, ecw,
-                                   stripe_list, ec, num_agents, scenario,
-                                   method, conf, verbose);
+        cout << "  [2/3] Lazy..." << endl;
+        stats[1] = runOriginalStrategy(1, reader, code, ecn, eck, ecw,
+                                       stripe_list, ec, num_agents, scenario,
+                                       method, conf, verbose);
 
-    cout << "  [3/5] Perfect Prediction (TraceDriven)..." << endl;
-    stats[2] = runOriginalStrategy(2, reader, code, ecn, eck, ecw,
-                                   stripe_list, ec, num_agents, scenario,
-                                   method, conf, verbose);
+        cout << "  [3/3] Perfect Prediction (TraceDriven)..." << endl;
+        stats[2] = runOriginalStrategy(2, reader, code, ecn, eck, ecw,
+                                       stripe_list, ec, num_agents, scenario,
+                                       method, conf, verbose);
+    }
 
-    cout << "  [4/5] ML-Low FPR (fpr=" << ml_fpr_low
-         << " fnr=" << ml_fnr << ")..." << endl;
-    stats[3] = runMLDriven(reader, code, ecn, eck, ecw,
-                           stripe_list, ec, num_agents, scenario,
-                           method, conf, verbose,
-                           ml_fpr_low, ml_fnr);
+    if (run_mode == 0 || run_mode == 2) {
+        printf("  [ML-Low]  fpr=%.4f fnr=%.4f ...\n", ml_fpr_low, ml_fnr);
+        stats[3] = runMLDriven(reader, code, ecn, eck, ecw,
+                               stripe_list, ec, num_agents, scenario,
+                               method, conf, verbose,
+                               ml_fpr_low, ml_fnr);
 
-    cout << "  [5/5] ML-High FPR (fpr=" << ml_fpr_high
-         << " fnr=" << ml_fnr << ")..." << endl;
-    stats[4] = runMLDriven(reader, code, ecn, eck, ecw,
-                           stripe_list, ec, num_agents, scenario,
-                           method, conf, verbose,
-                           ml_fpr_high, ml_fnr, 123);
+        printf("  [ML-High] fpr=%.4f fnr=%.4f ...\n", ml_fpr_high, ml_fnr);
+        stats[4] = runMLDriven(reader, code, ecn, eck, ecw,
+                               stripe_list, ec, num_agents, scenario,
+                               method, conf, verbose,
+                               ml_fpr_high, ml_fnr, 123);
+    }
 
     // ============================================================
     // 输出对比表
     // ============================================================
-    printComparisonTable(names, stats, NUM_STRATEGIES,
-                         reader.getEventCount(), code, ecn, eck);
+    if (run_mode == 0) {
+        // 全部策略输出
+        printComparisonTable(names, stats, NUM_STRATEGIES,
+                             reader.getEventCount(), code, ecn, eck);
+    } else if (run_mode == 1) {
+        // 只输出基准三种
+        printComparisonTable(names, stats, 3,
+                             reader.getEventCount(), code, ecn, eck);
+    } else {
+        // 只输出 ML 两种（紧凑格式，方便脚本grep）
+        printf("\n[ML Results] fpr_low=%.4f fpr_high=%.4f fnr=%.4f\n",
+               ml_fpr_low, ml_fpr_high, ml_fnr);
+        printf("%-22s | %10s | %10s | %8s | %10s\n",
+               "Strategy", "Load(blks)", "Bdwt(blks)", "LossEvents", "LostStripes");
+        printf("%-22s | %10.2f | %10.2f | %8d | %10d\n",
+               names[3].c_str(),
+               stats[3].total_repair_load, stats[3].total_repair_bdwt,
+               stats[3].data_loss_events,  stats[3].lost_stripes_count);
+        printf("%-22s | %10.2f | %10.2f | %8d | %10d\n",
+               names[4].c_str(),
+               stats[4].total_repair_load, stats[4].total_repair_bdwt,
+               stats[4].data_loss_events,  stats[4].lost_stripes_count);
+    }
 
     // ============================================================
     // Pareto分析：Load Saving vs Data Loss
     // ============================================================
+    if (run_mode != 2) {
     cout << "\n--- Pareto Analysis (Load Saving vs Safety) ---" << endl;
     printf("%-22s | %10s | %8s | %8s | %8s | %s\n",
            "Strategy", "LoadSaving%", "DataLoss", "Partial", "ActualFPR", "Note");
-    for (int i = 0; i < NUM_STRATEGIES; i++) {
+    int pareto_n = (run_mode == 1) ? 3 : NUM_STRATEGIES;
+    for (int i = 0; i < pareto_n; i++) {
         double save = (stats[0].total_repair_load > 0)
             ? (1.0 - stats[i].total_repair_load / stats[0].total_repair_load) * 100
             : 0.0;
@@ -874,6 +907,7 @@ int main(int argc, char** argv) {
                stats[i].avg_risk_at_repair,   // ML策略复用此字段存actual FPR
                note.c_str());
     }
+    } // end if run_mode != 2
 
     if (conf) delete conf;
     return 0;

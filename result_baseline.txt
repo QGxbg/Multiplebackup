@@ -1,0 +1,41 @@
+============================================
+  Extended Repair Strategy Simulator
+============================================
+Code: Clay (14,10) ecw=4
+Nodes: 40 | Fault tolerance: 4
+Trace: trace_burst_s1.txt
+Scenario: standby | Method: 1
+ML params: fpr_low=0.0020  fpr_high=0.0250  fnr=0.0500
+Run mode: 1 (Baseline only)
+TraceReader: Loaded 206 events from trace_burst_s1.txt
+Loaded 100 stripes
+
+Running strategies...
+  [1/3] Immediate...
+  [2/3] Lazy...
+  [3/3] Perfect Prediction (TraceDriven)...
+
+============================================================
+                  COMPARISON SUMMARY
+  Code: Clay (14,10)
+  Trace events: 206
+============================================================
+Strategy               | Rounds | Load(blks) | Bdwt(blks) | LossEvents | LostStripes | MaxFail | Skips
+-----------------------|--------|------------|------------|------------|-------------|---------|------
+Immediate              |    206 |  630228.00 | 3445394.75 |        0 |          0 |       5 |     0
+Lazy                   |     65 |  477056.75 | 3620562.00 |       15 |         32 |       8 |     0
+Perfect Prediction     |     73 |  498114.75 | 3693400.75 |        0 |          0 |       7 |     0
+============================================================
+
+Load savings vs Immediate:
+  Lazy                  : +24.3% (data_loss=15, partial_repairs=64)
+  Perfect Prediction    : +21.0% (data_loss=0, partial_repairs=72)
+
+Safety improvement vs Lazy:
+  Perfect Prediction    : data_loss reduced by 15 events
+
+--- Pareto Analysis (Load Saving vs Safety) ---
+Strategy               | LoadSaving% | DataLoss |  Partial | ActualFPR | Note
+Immediate              |        0.0 |        0 |        0 |   0.0000 | Safe
+Lazy                   |       24.3 |       15 |       64 |   0.0000 | Risky
+Perfect Prediction     |       21.0 |        0 |       72 |   0.0000 | Safe

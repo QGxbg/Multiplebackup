@@ -368,6 +368,62 @@ NewgenMLP/fast:
 	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/NewgenMLP.dir/build.make src/CMakeFiles/NewgenMLP.dir/build
 .PHONY : NewgenMLP/fast
 
+# Convenience name for target.
+src/CMakeFiles/RepairSimulator_new.dir/rule:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/RepairSimulator_new.dir/rule
+.PHONY : src/CMakeFiles/RepairSimulator_new.dir/rule
+
+# Convenience name for target.
+RepairSimulator_new: src/CMakeFiles/RepairSimulator_new.dir/rule
+.PHONY : RepairSimulator_new
+
+# fast build rule for target.
+RepairSimulator_new/fast:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator_new.dir/build.make src/CMakeFiles/RepairSimulator_new.dir/build
+.PHONY : RepairSimulator_new/fast
+
+# Convenience name for target.
+src/CMakeFiles/RepairSimulator.dir/rule:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/RepairSimulator.dir/rule
+.PHONY : src/CMakeFiles/RepairSimulator.dir/rule
+
+# Convenience name for target.
+RepairSimulator: src/CMakeFiles/RepairSimulator.dir/rule
+.PHONY : RepairSimulator
+
+# fast build rule for target.
+RepairSimulator/fast:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator.dir/build.make src/CMakeFiles/RepairSimulator.dir/build
+.PHONY : RepairSimulator/fast
+
+# Convenience name for target.
+src/CMakeFiles/GenPredictedTrace.dir/rule:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/GenPredictedTrace.dir/rule
+.PHONY : src/CMakeFiles/GenPredictedTrace.dir/rule
+
+# Convenience name for target.
+GenPredictedTrace: src/CMakeFiles/GenPredictedTrace.dir/rule
+.PHONY : GenPredictedTrace
+
+# fast build rule for target.
+GenPredictedTrace/fast:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenPredictedTrace.dir/build.make src/CMakeFiles/GenPredictedTrace.dir/build
+.PHONY : GenPredictedTrace/fast
+
+# Convenience name for target.
+src/CMakeFiles/GenTrace.dir/rule:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/GenTrace.dir/rule
+.PHONY : src/CMakeFiles/GenTrace.dir/rule
+
+# Convenience name for target.
+GenTrace: src/CMakeFiles/GenTrace.dir/rule
+.PHONY : GenTrace
+
+# fast build rule for target.
+GenTrace/fast:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenTrace.dir/build.make src/CMakeFiles/GenTrace.dir/build
+.PHONY : GenTrace/fast
+
 Brute_Force.o: Brute_Force.cc.o
 .PHONY : Brute_Force.o
 
@@ -439,6 +495,54 @@ GenData.s: GenData.cc.s
 GenData.cc.s:
 	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenData.dir/build.make src/CMakeFiles/GenData.dir/GenData.cc.s
 .PHONY : GenData.cc.s
+
+GenPredictedTrace.o: GenPredictedTrace.cc.o
+.PHONY : GenPredictedTrace.o
+
+# target to build an object file
+GenPredictedTrace.cc.o:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenPredictedTrace.dir/build.make src/CMakeFiles/GenPredictedTrace.dir/GenPredictedTrace.cc.o
+.PHONY : GenPredictedTrace.cc.o
+
+GenPredictedTrace.i: GenPredictedTrace.cc.i
+.PHONY : GenPredictedTrace.i
+
+# target to preprocess a source file
+GenPredictedTrace.cc.i:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenPredictedTrace.dir/build.make src/CMakeFiles/GenPredictedTrace.dir/GenPredictedTrace.cc.i
+.PHONY : GenPredictedTrace.cc.i
+
+GenPredictedTrace.s: GenPredictedTrace.cc.s
+.PHONY : GenPredictedTrace.s
+
+# target to generate assembly for a file
+GenPredictedTrace.cc.s:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenPredictedTrace.dir/build.make src/CMakeFiles/GenPredictedTrace.dir/GenPredictedTrace.cc.s
+.PHONY : GenPredictedTrace.cc.s
+
+GenTrace.o: GenTrace.cc.o
+.PHONY : GenTrace.o
+
+# target to build an object file
+GenTrace.cc.o:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenTrace.dir/build.make src/CMakeFiles/GenTrace.dir/GenTrace.cc.o
+.PHONY : GenTrace.cc.o
+
+GenTrace.i: GenTrace.cc.i
+.PHONY : GenTrace.i
+
+# target to preprocess a source file
+GenTrace.cc.i:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenTrace.dir/build.make src/CMakeFiles/GenTrace.dir/GenTrace.cc.i
+.PHONY : GenTrace.cc.i
+
+GenTrace.s: GenTrace.cc.s
+.PHONY : GenTrace.s
+
+# target to generate assembly for a file
+GenTrace.cc.s:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenTrace.dir/build.make src/CMakeFiles/GenTrace.dir/GenTrace.cc.s
+.PHONY : GenTrace.cc.s
 
 MulSim_centralize.o: MulSim_centralize.cc.o
 .PHONY : MulSim_centralize.o
@@ -680,6 +784,54 @@ ParaCoordinator.cc.s:
 	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ParaCoordinator.dir/build.make src/CMakeFiles/ParaCoordinator.dir/ParaCoordinator.cc.s
 .PHONY : ParaCoordinator.cc.s
 
+RepairSimulator.o: RepairSimulator.cc.o
+.PHONY : RepairSimulator.o
+
+# target to build an object file
+RepairSimulator.cc.o:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator.dir/build.make src/CMakeFiles/RepairSimulator.dir/RepairSimulator.cc.o
+.PHONY : RepairSimulator.cc.o
+
+RepairSimulator.i: RepairSimulator.cc.i
+.PHONY : RepairSimulator.i
+
+# target to preprocess a source file
+RepairSimulator.cc.i:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator.dir/build.make src/CMakeFiles/RepairSimulator.dir/RepairSimulator.cc.i
+.PHONY : RepairSimulator.cc.i
+
+RepairSimulator.s: RepairSimulator.cc.s
+.PHONY : RepairSimulator.s
+
+# target to generate assembly for a file
+RepairSimulator.cc.s:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator.dir/build.make src/CMakeFiles/RepairSimulator.dir/RepairSimulator.cc.s
+.PHONY : RepairSimulator.cc.s
+
+RepairSimulator_new.o: RepairSimulator_new.cc.o
+.PHONY : RepairSimulator_new.o
+
+# target to build an object file
+RepairSimulator_new.cc.o:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator_new.dir/build.make src/CMakeFiles/RepairSimulator_new.dir/RepairSimulator_new.cc.o
+.PHONY : RepairSimulator_new.cc.o
+
+RepairSimulator_new.i: RepairSimulator_new.cc.i
+.PHONY : RepairSimulator_new.i
+
+# target to preprocess a source file
+RepairSimulator_new.cc.i:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator_new.dir/build.make src/CMakeFiles/RepairSimulator_new.dir/RepairSimulator_new.cc.i
+.PHONY : RepairSimulator_new.cc.i
+
+RepairSimulator_new.s: RepairSimulator_new.cc.s
+.PHONY : RepairSimulator_new.s
+
+# target to generate assembly for a file
+RepairSimulator_new.cc.s:
+	cd /home/lx/Multiple_ParaRC/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator_new.dir/build.make src/CMakeFiles/RepairSimulator_new.dir/RepairSimulator_new.cc.s
+.PHONY : RepairSimulator_new.cc.s
+
 Sim_centralize.o: Sim_centralize.cc.o
 .PHONY : Sim_centralize.o
 
@@ -811,6 +963,8 @@ help:
 	@echo "... Brute_Force"
 	@echo "... CodeTest"
 	@echo "... GenData"
+	@echo "... GenPredictedTrace"
+	@echo "... GenTrace"
 	@echo "... MulSim_centralize"
 	@echo "... MulSim_offline"
 	@echo "... MulSim_parallel"
@@ -821,6 +975,8 @@ help:
 	@echo "... NewgenMLP"
 	@echo "... ParaAgent"
 	@echo "... ParaCoordinator"
+	@echo "... RepairSimulator"
+	@echo "... RepairSimulator_new"
 	@echo "... Sim_centralize"
 	@echo "... Sim_multiple"
 	@echo "... Sim_offline"
@@ -835,6 +991,12 @@ help:
 	@echo "... GenData.o"
 	@echo "... GenData.i"
 	@echo "... GenData.s"
+	@echo "... GenPredictedTrace.o"
+	@echo "... GenPredictedTrace.i"
+	@echo "... GenPredictedTrace.s"
+	@echo "... GenTrace.o"
+	@echo "... GenTrace.i"
+	@echo "... GenTrace.s"
 	@echo "... MulSim_centralize.o"
 	@echo "... MulSim_centralize.i"
 	@echo "... MulSim_centralize.s"
@@ -865,6 +1027,12 @@ help:
 	@echo "... ParaCoordinator.o"
 	@echo "... ParaCoordinator.i"
 	@echo "... ParaCoordinator.s"
+	@echo "... RepairSimulator.o"
+	@echo "... RepairSimulator.i"
+	@echo "... RepairSimulator.s"
+	@echo "... RepairSimulator_new.o"
+	@echo "... RepairSimulator_new.i"
+	@echo "... RepairSimulator_new.s"
 	@echo "... Sim_centralize.o"
 	@echo "... Sim_centralize.i"
 	@echo "... Sim_centralize.s"

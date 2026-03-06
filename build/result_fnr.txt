@@ -1,0 +1,72 @@
+=== FNR=0.00 ===
+============================================
+  Extended Repair Strategy Simulator
+============================================
+Code: Clay (14,10) ecw=4
+Nodes: 40 | Fault tolerance: 4
+Trace: trace_burst_s1.txt
+Scenario: standby | Method: 1
+=== FNR=0.01 ===
+============================================
+  Extended Repair Strategy Simulator
+============================================
+Code: Clay (14,10) ecw=4
+Nodes: 40 | Fault tolerance: 4
+Trace: trace_burst_s1.txt
+Scenario: standby | Method: 1
+=== FNR=0.02 ===
+============================================
+  Extended Repair Strategy Simulator
+============================================
+Code: Clay (14,10) ecw=4
+Nodes: 40 | Fault tolerance: 4
+Trace: trace_burst_s1.txt
+Scenario: standby | Method: 1
+=== FNR=0.05 ===
+============================================
+  Extended Repair Strategy Simulator
+============================================
+Code: Clay (14,10) ecw=4
+Nodes: 40 | Fault tolerance: 4
+Trace: trace_burst_s1.txt
+Scenario: standby | Method: 1
+=== FNR=0.08 ===
+============================================
+  Extended Repair Strategy Simulator
+============================================
+Code: Clay (14,10) ecw=4
+Nodes: 40 | Fault tolerance: 4
+Trace: trace_burst_s1.txt
+Scenario: standby | Method: 1
+=== FNR=0.10 ===
+============================================
+  Extended Repair Strategy Simulator
+============================================
+Code: Clay (14,10) ecw=4
+Nodes: 40 | Fault tolerance: 4
+Trace: trace_burst_s1.txt
+Scenario: standby | Method: 1
+=== FNR=0.15 ===
+============================================
+  Extended Repair Strategy Simulator
+============================================
+Code: Clay (14,10) ecw=4
+Nodes: 40 | Fault tolerance: 4
+Trace: trace_burst_s1.txt
+Scenario: standby | Method: 1
+=== FNR=0.20 ===
+============================================
+  Extended Repair Strategy Simulator
+============================================
+Code: Clay (14,10) ecw=4
+Nodes: 40 | Fault tolerance: 4
+Trace: trace_burst_s1.txt
+Scenario: standby | Method: 1
+=== FNR=0.25 ===
+============================================
+  Extended Repair Strategy Simulator
+============================================
+Code: Clay (14,10) ecw=4
+Nodes: 40 | Fault tolerance: 4
+Trace: trace_burst_s1.txt
+Scenario: standby | Method: 1

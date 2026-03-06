@@ -351,6 +351,58 @@ NewgenMLP/fast:
 .PHONY : NewgenMLP/fast
 
 #=============================================================================
+# Target rules for targets named RepairSimulator_new
+
+# Build rule for target.
+RepairSimulator_new: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 RepairSimulator_new
+.PHONY : RepairSimulator_new
+
+# fast build rule for target.
+RepairSimulator_new/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator_new.dir/build.make src/CMakeFiles/RepairSimulator_new.dir/build
+.PHONY : RepairSimulator_new/fast
+
+#=============================================================================
+# Target rules for targets named RepairSimulator
+
+# Build rule for target.
+RepairSimulator: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 RepairSimulator
+.PHONY : RepairSimulator
+
+# fast build rule for target.
+RepairSimulator/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/RepairSimulator.dir/build.make src/CMakeFiles/RepairSimulator.dir/build
+.PHONY : RepairSimulator/fast
+
+#=============================================================================
+# Target rules for targets named GenPredictedTrace
+
+# Build rule for target.
+GenPredictedTrace: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GenPredictedTrace
+.PHONY : GenPredictedTrace
+
+# fast build rule for target.
+GenPredictedTrace/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenPredictedTrace.dir/build.make src/CMakeFiles/GenPredictedTrace.dir/build
+.PHONY : GenPredictedTrace/fast
+
+#=============================================================================
+# Target rules for targets named GenTrace
+
+# Build rule for target.
+GenTrace: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GenTrace
+.PHONY : GenTrace
+
+# fast build rule for target.
+GenTrace/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/GenTrace.dir/build.make src/CMakeFiles/GenTrace.dir/build
+.PHONY : GenTrace/fast
+
+#=============================================================================
 # Target rules for targets named common
 
 # Build rule for target.
@@ -439,6 +491,8 @@ help:
 	@echo "... Brute_Force"
 	@echo "... CodeTest"
 	@echo "... GenData"
+	@echo "... GenPredictedTrace"
+	@echo "... GenTrace"
 	@echo "... MulSim_centralize"
 	@echo "... MulSim_offline"
 	@echo "... MulSim_parallel"
@@ -449,6 +503,8 @@ help:
 	@echo "... NewgenMLP"
 	@echo "... ParaAgent"
 	@echo "... ParaCoordinator"
+	@echo "... RepairSimulator"
+	@echo "... RepairSimulator_new"
 	@echo "... Sim_centralize"
 	@echo "... Sim_multiple"
 	@echo "... Sim_offline"

@@ -321,4 +321,8 @@ src/CMakeFiles/MulSim_parallel.dir/MulSim_parallel.cc.o: \
  /home/lx/Multiple_ParaRC/src/sol/../common/../util/DistUtil.hh \
  /home/lx/Multiple_ParaRC/src/sol/SolutionBase.hh \
  /usr/include/c++/11/unordered_set \
- /usr/include/c++/11/bits/unordered_set.h
+ /usr/include/c++/11/bits/unordered_set.h /usr/include/c++/11/random \
+ /usr/include/c++/11/bits/random.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h \
+ /usr/include/c++/11/bits/random.tcc /usr/include/c++/11/numeric \
+ /usr/include/c++/11/bits/stl_numeric.h

@@ -18,6 +18,10 @@
 /home/lx/Multiple_ParaRC/build/src/CMakeFiles/NewBruteForce.dir
 /home/lx/Multiple_ParaRC/build/src/CMakeFiles/genMLP.dir
 /home/lx/Multiple_ParaRC/build/src/CMakeFiles/NewgenMLP.dir
+/home/lx/Multiple_ParaRC/build/src/CMakeFiles/RepairSimulator_new.dir
+/home/lx/Multiple_ParaRC/build/src/CMakeFiles/RepairSimulator.dir
+/home/lx/Multiple_ParaRC/build/src/CMakeFiles/GenPredictedTrace.dir
+/home/lx/Multiple_ParaRC/build/src/CMakeFiles/GenTrace.dir
 /home/lx/Multiple_ParaRC/build/src/CMakeFiles/edit_cache.dir
 /home/lx/Multiple_ParaRC/build/src/CMakeFiles/rebuild_cache.dir
 /home/lx/Multiple_ParaRC/build/src/common/CMakeFiles/common.dir
