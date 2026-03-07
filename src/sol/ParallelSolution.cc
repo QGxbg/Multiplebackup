@@ -56,7 +56,7 @@ void dumpTable(vector<vector<int>> table)
 void ParallelSolution::genRepairBatches(int num_failures, vector<int> fail_node_list, int num_agents, string scenario, bool enqueue)
 {
     // We assume that the replacement node ids are the same with the failed ids
-    LOG << "ParallelSolution::genRepairBatches begin" << endl;
+    //LOG << "ParallelSolution::genRepairBatches begin" << endl;
     int ecn = _ec->_n;
     int eck = _ec->_k;
     int ecw = _ec->_w;
@@ -2075,7 +2075,7 @@ void ParallelSolution::genColoringForMultipleFailureLevelNew(Stripe *stripe, vec
 
 void ParallelSolution::GloballyMLPLevel(Stripe *stripe, const vector<int> &itm_idx, unordered_map<int, int> &coloring, const vector<int> &candidates, vector<vector<int>> &loadTable)
 {
-    LOG << "[DEBUG] GloballyMLPLevel MLP: stripe " << stripe->getStripeId() << endl;
+    //LOG << "[DEBUG] GloballyMLPLevel MLP: stripe " << stripe->getStripeId() << endl;
 
     // 1. init information and blank solution
     ECDAG *ecdag = stripe->getECDAG();
@@ -3020,7 +3020,7 @@ void ParallelSolution::improve_multiple(vector<int> fail_node_ids, string scenar
 
             //cout<<"!!!!!!!!!!2270 hang t_color:"<<t_color<<endl;
 
-            stripe->dumpLoad(_num_agents + _standby_size);
+            //stripe->dumpLoad(_num_agents + _standby_size);
         }
         // record information
         batch->evaluateBatch(_num_agents + _standby_size);
@@ -3362,7 +3362,7 @@ void ParallelSolution::improve_multipleNew(vector<int> fail_node_ids, string sce
 
             //cout<<"!!!!!!!!!!2270 hang t_color:"<<t_color<<endl;
 
-            stripe->dumpLoad(_num_agents + _standby_size);
+            //stripe->dumpLoad(_num_agents + _standby_size);
         }
         // record information
         batch->evaluateBatch(_num_agents + _standby_size);
@@ -4392,7 +4392,7 @@ void ParallelSolution::genRepairBatchesForMultipleFailure(vector<int> fail_node_
 void ParallelSolution::genRepairBatchesForMultipleFailureNew(vector<int> fail_node_ids, int num_agents, string scenario, int method)
 {
     //if(DEBUG_ENABLE)
-    LOG << "ParallelSolution::genRepairBatchesForMultipleFailureNew begin" << endl;
+    //LOG << "ParallelSolution::genRepairBatchesForMultipleFailureNew begin" << endl;
     //cout << "[INFO] fail_node_id = " << fail_node_ids << endl;
     // 0. we first figure out stripes that stores a block in $fail_node_id
     filterFailedStripes(fail_node_ids);
@@ -4457,7 +4457,7 @@ void ParallelSolution::genRepairBatchesForMultipleFailureNew(vector<int> fail_no
 
             //genColoringForMultipleFailureLevel(curstripe, coloring, fail_node_ids, num_agents, scenario,nodeidlist ,method);
             //genColoringForMultipleFailureLevelGlobal(curstripe, coloring, fail_node_ids,scenario,loadtable ,method); //zhangJL add
-            LOG << "[INFO] INIT STRIPE= " << stripeidx << " fail_num = " << curstripe->_fail_blk_idxs.size() << endl;
+            //LOG << "[INFO] INIT STRIPE= " << stripeidx << " fail_num = " << curstripe->_fail_blk_idxs.size() << endl;
 
             // method = 1;
             // if (curstripe ->_fail_blk_idxs.size() == 2 || curstripe ->_fail_blk_idxs.size() == 1) {
@@ -4485,9 +4485,9 @@ void ParallelSolution::genRepairBatchesForMultipleFailureNew(vector<int> fail_no
                     curstripe->setColoring(coloring_hyper);
                     curstripe->evaluateColoring();
                 }
-                LOG << "[INFO] INIT STRIPE= " << stripeidx << endl;
-                LOG << "load_hyper = " << load_hyper << " , "
-                    << "load_multi = " << load_multi << endl;
+                // LOG << "[INFO] INIT STRIPE= " << stripeidx << endl;
+                // LOG << "load_hyper = " << load_hyper << " , "
+                //     << "load_multi = " << load_multi << endl;
             }
             else
             {
@@ -4496,7 +4496,7 @@ void ParallelSolution::genRepairBatchesForMultipleFailureNew(vector<int> fail_no
 
             //genColoringForMultipleFailureLevelNN(curstripe,coloring,fail_node_ids,scenario,loadtable,method);
 
-            curstripe->dumpLoad(_cluster_size);
+            //curstripe->dumpLoad(_cluster_size);
             //curstripe->dumpTrans(_cluster_size);
 
             // 1.3 insert curstripe into cur_stripe_list
@@ -4506,7 +4506,7 @@ void ParallelSolution::genRepairBatchesForMultipleFailureNew(vector<int> fail_no
         }
         RepairBatch *curbatch = new RepairBatch(batchid, cur_stripe_list);
         curbatch->evaluateBatch(_cluster_size);
-        curbatch->dumpLoad(_cluster_size);
+        //curbatch->dumpLoad(_cluster_size);
 
         if (_batch_request)
         {
@@ -4516,7 +4516,7 @@ void ParallelSolution::genRepairBatchesForMultipleFailureNew(vector<int> fail_no
         {
             _batch_list.push_back(curbatch);
         }
-        curbatch->dump();
+        //curbatch->dump();
     }
 }
 
@@ -4702,13 +4702,13 @@ void ParallelSolution::genRepairBatchesForMultipleFailureNewTest(vector<int> fai
                 genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids, scenario, loadtable, method);
             }
 
-            curstripe->dumpLoad(_cluster_size);
+            //curstripe->dumpLoad(_cluster_size);
             cur_stripe_list.push_back(curstripe);
         }
 
         RepairBatch *curbatch = new RepairBatch(batchid, cur_stripe_list);
         curbatch->evaluateBatch(_cluster_size);
-        curbatch->dumpLoad(_cluster_size);
+        //curbatch->dumpLoad(_cluster_size);
 
         if (_batch_request)
         {
@@ -5011,13 +5011,13 @@ void ParallelSolution::genRepairBatchesForMultipleFailureNewFire(vector<int> fai
             // 注意：loadtable 会在函数内部被累加更新
             //genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids, scenario, loadtable, 1);
 
-            curstripe->dumpLoad(_cluster_size);
+            //curstripe->dumpLoad(_cluster_size);
             cur_stripe_list.push_back(curstripe);
         }
 
         RepairBatch *curbatch = new RepairBatch(batchid, cur_stripe_list);
         curbatch->evaluateBatch(_cluster_size);
-        curbatch->dumpLoad(_cluster_size);
+        //curbatch->dumpLoad(_cluster_size);
 
         if (_batch_request)
         {

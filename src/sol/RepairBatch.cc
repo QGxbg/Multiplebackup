@@ -211,10 +211,10 @@ void RepairBatch::dump(int num_agents) {
         }
         LOG << endl;
     }
-    LOG << "    stirpe num = "  << _stripe_list.size();
-    LOG << "    load="<< _load;
-    LOG << "    avgload = " << _load*1.0/ _stripe_list.size() << endl << endl;
-    dumpLoad(num_agents);
+    // LOG << "    stirpe num = "  << _stripe_list.size();
+    // LOG << "    load="<< _load;
+    // LOG << "    avgload = " << _load*1.0/ _stripe_list.size() << endl << endl;
+    // dumpLoad(num_agents);
 }
 
 void RepairBatch::genRepairTasks(int ecn, int eck, int ecw, Config* conf, 
