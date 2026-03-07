@@ -5,3 +5,11 @@
 # res
 
 # */*/log/*
+build/
+CMakeFiles/
+CMakeCache.txt
+*.o
+*.a
+Makefile
+.cache/
+.vscode/
