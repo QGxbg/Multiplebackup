@@ -1150,17 +1150,17 @@ void Stripe::genLevel0(int batchid, int ecn, int eck, int ecw,
 
     // 2. generate tasks for realidx
     // 2.1 for read
-    cout <<"767 HANG"<<endl;
+    //cout <<"767 HANG"<<endl;
     for (auto item: blkidx2readdagidxlist) {
         int blkidx = item.first;
-        cout <<"770 HANG " <<blkidx <<" "<< _blklist.size()<<endl;
+        //cout <<"770 HANG " <<blkidx <<" "<< _blklist.size()<<endl;
         string blkname = _blklist[blkidx];
-        cout <<"772 HANG"<<endl;
+        //cout <<"772 HANG"<<endl;
         vector<int> dagidxlist = item.second;
         int mycolor = _coloring[dagidxlist[0]];
 
         sort(dagidxlist.begin(), dagidxlist.end());
-        LOG<<"775 HANG"<<endl;
+        //LOG<<"775 HANG"<<endl;
         vector<pair<bool, bool>> usagelist;
         for (int i=0; i<dagidxlist.size(); i++)
             usagelist.push_back(readdagidx2usage[dagidxlist[i]]);

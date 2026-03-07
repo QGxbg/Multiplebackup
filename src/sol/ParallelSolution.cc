@@ -82,8 +82,8 @@ void ParallelSolution::genRepairBatches(int num_failures, vector<int> fail_node_
         //cout<<"genRepairBatchesForMultipleFailure start"<<endl;
         //cout<<fail_node_list.size()<<"  "<<num_agents<<endl;
         //genRepairBatchesForMultipleFailure(fail_node_list, num_agents, scenario , _method);
-        genRepairBatchesForMultipleFailureNew(fail_node_list, num_agents, scenario, 1);
-        //genRepairBatchesForMultipleFailureNewFire(fail_node_list, num_agents, scenario, 1);
+        //genRepairBatchesForMultipleFailureNew(fail_node_list, num_agents, scenario, 1);
+        genRepairBatchesForMultipleFailureNewFire(fail_node_list, num_agents, scenario, 1);
 
         //genRepairBatchesForMultipleFailure
         //cout<<"genRepairBatchesForMultipleFailure end"<<endl;

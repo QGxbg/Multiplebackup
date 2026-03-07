@@ -2430,6 +2430,8 @@ void Clay::decode_chunks(vector<int> want_to_read,
 
     int num_erasures = erased_chunks.size();
     assert(num_erasures > 0);
+    // cout<<"Clay::decode_layered() num_erasures: "<<num_erasures<<endl;
+    // cout<<"Clay::decode_layered() _m: "<<_m<<endl;
     assert(num_erasures == _m);
 
     Erasure_t** erasures = (Erasure_t**)calloc(num_erasures, sizeof(Erasure_t*));

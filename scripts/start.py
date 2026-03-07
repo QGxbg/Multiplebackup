@@ -55,7 +55,14 @@ for attr in res:
                 slave=entrysplit[0]
                 slavelist.append(slave)
 
-print(slavelist)
+print("Starting controller redis...")
+# Stop any existing redis (including system service running as root)
+os.system("sudo systemctl stop redis 2>/dev/null ; sudo systemctl stop redis-server 2>/dev/null ; sudo killall redis-server 2>/dev/null || true")
+os.system("sleep 1")
+# Start redis bound to all interfaces so agents on other nodes can connect back
+os.system("redis-server --daemonize yes --protected-mode no --bind 0.0.0.0")
+os.system("sleep 1")
+os.system("redis-cli -h 127.0.0.1 -p 6379 flushall")
 
 ## start
 #print("start coordinator")
@@ -99,13 +106,21 @@ for slave in slavelist:
     #print(cmd)
     #os.system(cmd)
 
-    #cmd="ssh "+slave+" \"echo 'hustdlmm1037' | sudo -S service redis restart\""
+    # cmd="ssh "+slave+" \"echo 'hustdlmm1037' | sudo -S service redis restart\""
     # cmd="ssh "+slave+" \"sudo service redis restart\""
     # print(cmd)
     # os.system(cmd)
+    
+    # Attempt to start redis if it's not already running
+    os.system("ssh " + slave + " \"redis-server --daemonize yes 2>/dev/null || sudo service redis-server start 2>/dev/null || sudo service redis start 2>/dev/null\"")
+
     os.system("ssh " + slave + " \"redis-cli flushall \"")
 
-    os.system("ssh " + slave + " \"killall ParaAgent \"")
+    os.system("ssh " + slave + " \"killall -9 ParaAgent \"")
+    
+    # Try to remove the file to avoid 'Text file busy' during scp
+    os.system("ssh " + slave + " \"rm -f "+proj_dir+"/ParaAgent\"")
+    
     command="scp "+proj_dir+"/ParaAgent "+slave+":"+proj_dir+"/"
     #command="scp "+proj_dir+"/build/ParaAgent "+slave+":"+proj_dir+"/build/"
     os.system(command)

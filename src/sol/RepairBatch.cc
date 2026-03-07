@@ -323,7 +323,7 @@ void RepairBatch::genRepairTasks(int ecn, int eck, int ecw, Config* conf,
     for (auto item: nodeid2internalidx) {
         int nodeid = item.first;
         NodeBatchTask* nbtask = batchtaskmap[nodeid];
-        cout<<"326hang nodeid:"<<nodeid<<endl;
+        //cout<<"326hang nodeid:"<<nodeid<<endl;
         thrds[tid++] = thread([=]{nbtask->waitFinishFlag(nodeid, coorIp);});
     }
     for (int i=0; i<tid; i++) {

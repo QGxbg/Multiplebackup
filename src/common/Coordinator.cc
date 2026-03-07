@@ -170,7 +170,7 @@ void Coordinator::repair() {
 	
 	
 	int id_test = curbatch -> getBatchId();
-	cout <<"cur batch id = "<<id_test<<endl;
+	//cout <<"cur batch id = "<<id_test<<endl;
 	batch_list.push_back(curbatch);
         gettimeofday(&time3, NULL);
         batchid++;
@@ -193,7 +193,7 @@ void Coordinator::repair() {
     {
         batch_list[i]->dump();
 
-        cout<<"!!!!!!"<<endl;
+        //cout<<"!!!!!!"<<endl;
         cout << "gen batch duration = " << gen_batch_vec[i] << endl;
         cout << "repair batch duration = " << repair_batch_vec[i] << endl;
         cout << "avg time = " << repair_batch_vec[i] / batch_list[i]->getStripeList().size()  << endl;

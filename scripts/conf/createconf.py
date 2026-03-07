@@ -74,24 +74,27 @@ repairnodes=[]
 # get controller
 f=open(cluster_dir+"/controller","r")
 for line in f:
-    controller=line[:-1]
-    clusternodes.append(controller)
+    controller=line.strip()
+    if controller:
+        clusternodes.append(controller)
 f.close()
 
 # get datanodes
 f=open(cluster_dir+"/agents","r")
 for line in f:
-    agent=line[:-1]
-    clusternodes.append(agent)
-    datanodes.append(agent)
+    agent=line.strip()
+    if agent:
+        clusternodes.append(agent)
+        datanodes.append(agent)
 f.close()
 
 # get clients
 f=open(cluster_dir+"/newnodes","r")
 for line in f:
-    node=line[:-1]
-    clusternodes.append(node)
-    repairnodes.append(node)
+    node=line.strip()
+    if node:
+        clusternodes.append(node)
+        repairnodes.append(node)
 f.close()
 
 print(controller)

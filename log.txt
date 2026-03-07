@@ -1,0 +1,2229 @@
+StripeStore::StripeStore start
+/home/lx/Multiple_ParaRC/stripeStore/placement
+StripeStore::placement 1
+ 0 3 1 2
+StripeStore::StripeStore end
+OfflineSolution::genRepairBatchesForMuitipleFailure start
+fail_node_id = 0 1 
+stripes to repair: 1
+num batches = 1
+OfflineSolution::genOfflineColoringForMultipleFailure start
+fail_node_ids:0 1 
+number of intermediate vertices: 2
+DEBUG concact 32767 choose 5
+DEBUG concact 32765 choose 4
+itm_idx.size: 2, itm_offline_coloring.size: 0
+StripeStore::StripeStore start
+/home/lx/Multiple_ParaRC/stripeStore/placement
+StripeStore::placement 1
+ 0 3 1 2
+StripeStore::StripeStore end
+OfflineSolution::genRepairBatchesForMuitipleFailure start
+fail_node_id = 0 1 
+stripes to repair: 1
+num batches = 1
+OfflineSolution::genOfflineColoringForMultipleFailure start
+fail_node_ids:0 1 
+number of intermediate vertices: 2
+DEBUG concact 32767 choose 5
+DEBUG concact 32765 choose 4
+itm_idx.size: 2, itm_offline_coloring.size: 2
+dagidx: 0, blkidx: 3
+dagidx: 2, blkidx: 3
+OfflineSolution::genRepairBatchesForMuitipleFailure end
+RepairBatch 0: 
+    stripe 0: 0 3 1 2   newnode=-1
+    stirpe num = 1    load=2    avgload = 2
+
+OfflineSolution::genRepairBatcOfflineSolution::genRepairBatchesForMuitipleFailure end
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 1 3 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 3, nodeid: 2, dagidxlist: 3 (0, 1) 
+    blk: 1, nodeid: 3, dagidxlist: 1 (1, 0) 
+SEND: 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 3, sendto: 3 
+RECV: 
+recvin: 3, dagidxlist: 3 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.21
+Task::dump0:0    ReadTask: blockname: RSPIPE-421-0-3, dagidxlist: 3 (0, 1) 
+Task::dump0:0    SendTask:             dagidx: 3, sendto: 3 
+
+Task::dump0:0    ReadTask: blockname: RSPIPE-421-0-1, dagidxlist: 1 (1, 0) 
+Task::dump0:0    RecvTask: dagidx: 3 
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 0; srclist: 1 3 ; coefs: 2 1 ; usage: (0, 1) 
+            Compute: dstidx 2; srclist: 1 3 ; coefs: 3 1 ; usage: (0, 1) 
+
+Task::dump0:0    SendTask:             dagidx: 0, sendto: 5 
+            dagidx: 2, sendto: 4 
+
+Task::dump0:0    RecvTask: dagidx: 2 
+Task::dump0:0    PersistTask: RSPIPE-421-0-2, collect: 2 
+
+Task::dump0:0    RecvTask: dagidx: 0 
+Task::dump0:0    PersistTask: RSPIPE-421-0-0, collect: 0 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.12
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 1.938
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 41.202
+RepairBatch::genRepairTasks.time5-time6.clean: 0.056
+RepairBatch 0: 
+    stripe 0: 0 3 1 2   newnode=-1
+    stirpe num = 1    load=2    avgload = 2
+
+Coordinator::repair. genbatch  = 3.267
+Coordinator::repair. repairbatch = 43.562
+StripeStore::StripeStore start
+/home/lx/Multiple_ParaRC/stripeStore/placement
+StripeStore::placement 1
+ 2 3 1 0
+StripeStore::StripeStore end
+OfflineSolution::genRepairBatchesForMuitipleFailure start
+fail_node_id = 0 1 
+stripes to repair: 1
+num batches = 1
+OfflineSolution::genOfflineColoringForMultipleFailure start
+fail_node_ids:0 1 
+number of intermediate vertices: 2
+DEBUG concact 32765 choose 5
+DEBUG concact 32764 choose 4
+itm_idx.size: 2, itm_offline_coloring.size: 2
+dagidx: 2, blkidx: 3
+dagidx: 3, blkidx: 3
+OfflineSolution::genRepairBatchesForMuitipleFailure end
+RepairBatch 0: 
+    stripe 0: 2 3 1 0   newnode=-1
+    stirpe num = 1    load=2    avgload = Stripe::genRepairTasks start
+    stirpe num = 1    load=2    avgload = Stripe::genRepairTasks start
+2
+
+OfflineSolution::genRepairBatchesForMuitipleFailure end
+OfflineSolution::genRepairBatchesForMuitipleFailure end
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 0 1 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 1, nodeid: 3, dagidxlist: 1 (1, 0) 
+    blk: 0, nodeid: 2, dagidxlist: 0 (0, 1) 
+SEND: 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 0, sendto: 3 
+RECV: 
+recvin: 3, dagidxlist: 0 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.317
+Task::dump0:0    ReadTask: blockname: RSPIPE-421-0-1, dagidxlist: 1 (1, 0) 
+Task::dump0:0    RecvTask: dagidx: 0 
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 2; srclist: 0 1 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 3; srclist: 0 1 ; coefs: 1 2 ; usage: (0, 1) 
+
+Task::dump0:0    SendTask:             dagidx: 2, sendto: 5 
+            dagidx: 3, sendto: 4 
+
+Task::dump0:0    ReadTask: blockname: RSPIPE-421-0-0, dagidxlist: 0 (0, 1) 
+Task::dump0:0    SendTask:             dagidx: 0, sendto: 3 
+
+Task::dump0:0    RecvTask: dagidx: 3 
+Task::dump0:0    PersistTask: RSPIPE-421-0-3, collect: 3 
+
+Task::dump0:0    RecvTask: dagidx: 2 
+Task::dump0:0    PersistTask: RSPIPE-421-0-2, collect: 2 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.164
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 1.879
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 33.494
+RepairBatch::genRepairTasks.time5-time6.clean: 0.08
+RepairBatch 0: 
+    stripe 0: 2 3 1 0   newnode=-1
+    stirpe num = 1    load=2    avgload = 2
+
+Coordinator::repair. genbatch  = 3.152
+Coordinator::repair. repairbatch = 35.975
+StripeStore::StripeStore start
+/home/lx/Multiple_ParaRC/stripeStore/placement
+StripeStore::placement 1
+ 3 1 2 0
+StripeStore::StripeStore end
+CentSolution::genRepairBatchesForMultipleFailure begin
+CentSolution::genRepairBatchesForMultipleFailure.num batches = 1
+CentSolution::genCentralizedColoringForSingleFailure start !
+CentSolution::genCentralizedColoringForMutipleFailure end !
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 0 2 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 2, nodeid: 2, dagidxlist: 2 (0, 1) 
+    blk: 0, nodeid: 3, dagidxlist: 0 (0, 1) 
+SEND: 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 2, sendto: 5 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 0, sendto: 5 
+RECV: 
+recvin: 5, dagidxlist: 0 2 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.215
+Task::dump0:0    ReadTask: blockname: RSCONV-421-0-2, dagidxlist: 2 (0, 1) 
+Task::dump0:0    SendTask:             dagidx: 2, sendto: 5 
+
+Task::dump0:0    ReadTask: blockname: RSCONV-421-0-0, dagidxlist: 0 (0, 1) 
+Task::dump0:0    SendTask:             dagidx: 0, sendto: 5 
+
+Task::dump0:0    RecvTask: dagidx: 0 2 
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 1; srclist: 0 2 ; coefs: 1 1 ; usage: (1, 0) 
+            Compute: dstidx 3; srclist: 0 2 ; coefs: 3 2 ; usage: (0, 1) 
+
+Task::dump0:0    SendTask:             dagidx: 3, sendto: 4 
+
+Task::dump0:0    PersistTask: RSCONV-421-0-1, collect: 1 
+
+Task::dump0:0    RecvTask: dagidx: 3 
+Task::dump0:0    PersistTask: RSCONV-421-0-3, collect: 3 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.144
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 1.934
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 24.698
+RepairBatch::genRepairTasks.time5-time6.clean: 0.056
+RepairBatch 0: 
+    stripe 0: 3 1 2 0   newnode=-1
+    stirpe num = 1    load=2    avgload = 2
+
+Coordinator::repair. genbatch  = 2.95
+Coordinator::repair. repairbatch = 27.081
+StripeStore::StripeStore start
+/home/lx/Multiple_ParaRC/stripeStore/placement
+StripeStore::placement 1
+ 1 0 3 2
+StripeStore::StripeStore end
+StripeStore::StripeStore start
+/home/lx/Multiple_ParaRC/stripeStore/placement
+StripeStore::placement 1
+ 1 3 2 0
+StripeStore::StripeStore end
+CentSolution::genRepairBatchesForMultipleFailure begin
+CentSolution::genRepairBatchesForMultipleFailure.num batches = 1
+CentSolution::genCentralizedColoringForSingleFailure start !
+CentSolution::genCentralizedColoringForMutipleFailure end !
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 8 11 4 10 7 5 9 6 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 1, nodeid: 3, dagidxlist: 4 (0, 1) 7 (0, 1) 5 (0, 1) 6 (0, 1) 
+    blk: 2, nodeid: 2, dagidxlist: 8 (0, 1) 11 (0, 1) 10 (0, 1) 9 (0, 1) 
+SEND: 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 4, sendto: 5 
+        dagidx: 7, sendto: 5 
+        dagidx: 5, sendto: 5 
+        dagidx: 6, sendto: 5 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 8, sendto: 5 
+        dagidx: 11, sendto: 5 
+        dagidx: 10, sendto: 5 
+        dagidx: 9, sendto: 5 
+RECV: 
+recvin: 5, dagidxlist: 8 11 4 10 7 5 9 6 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.358
+Task::dump0:0    ReadTask: blockname: Clay-424-0-1, dagidxlist: 4 (0, 1) 5 (0, 1) 6 (0, 1) 7 (0, 1) 
+Task::dump0:0    SendTask:             dagidx: 4, sendto: 5 
+            dagidx: 7, sendto: 5 
+            dagidx: 5, sendto: 5 
+            dagidx: 6, sendto: 5 
+
+Task::dump0:0    ReadTask: blockname: Clay-424-0-2, dagidxlist: 8 (0, 1) 9 (0, 1) 10 (0, 1) 11 (0, 1) 
+Task::dump0:0    SendTask:             dagidx: 8, sendto: 5 
+            dagidx: 11, sendto: 5 
+            dagidx: 10, sendto: 5 
+            dagidx: 9, sendto: 5 
+
+Task::dump0:0    RecvTask: dagidx: 8 11 4 10 7 5 9 6 
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 30; srclist: 6 10 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 18; srclist: 6 10 ; coefs: 1 1 ; usage: (1, 0) 
+
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 20; srclist: 4 18 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 27; srclist: 11 30 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 14; srclist: 11 30 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 2; srclist: 4 18 ; coefs: 142 142 ; usage: (1, 0) 
+
+Task::dump0:0    SendTask:             dagidx: 14, sendto: 4 
+
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 0; srclist: 20 8 ; coefs: 1 1 ; usage: (1, 0) 
+            Compute: dstidx 28; srclist: 20 8 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 15; srclist: 7 27 ; coefs: 3 1 ; usage: (0, 1) 
+            Compute: dstidx 19; srclist: 7 27 ; coefs: 1 1 ; usage: (1, 0) 
+
+Task::dump0:0    SendTask:             dagidx: 15, sendto: 4 
+
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 21; srclist: 5 19 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 25; srclist: 9 28 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 12; srclist: 9 28 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 3; srclist: 5 19 ; coefs: 142 142 ; usage: (1, 0) 
+
+Task::dump0:0    SendTask:             dagidx: 12, sendto: 4 
+
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 1; srclist: 21 25 ; coefs: 1 1 ; usage: (1, 0) 
+            Compute: dstidx 13; srclist: 21 25 ; coefs: 3 1 ; usage: (0, 1) 
+
+Task::dump0:0    SendTask:             dagidx: 13, sendto: 4 
+
+Task::dump0:0    PersistTask: Clay-424-0-0, collect: 0 1 2 3 
+
+Task::dump0:0    RecvTask: dagidx: 14 
+Task::dump0:0    RecvTask: dagidx: 15 
+Task::dump0:0    RecvTask: dagidx: 12 
+Task::dump0:0    RecvTask: dagidx: 13 
+Task::dump0:0    PersistTask: Clay-424-0-3, collect: 12 13 14 15 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.237
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 2.908
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 26.8
+RepairBatch::genRepairTasks.time5-time6.clean: 0.072
+RepairBatch 0: 
+    stripe 0: 1 3 2 0   newnode=-1
+    stirpe num = 1    load=8    avgload = 8
+
+Coordinator::repair. genbatch  = 3.129
+Coordinator::repair. repairbatch = 30.408
+StripeStore::StripeStore start
+/home/lx/Multiple_ParaRC/stripeStore/placement
+StripeStore::placement 10
+ 1 0 2 3
+ 1 0 3 2
+ 0 1 2 3
+ 0 2 1 3
+ 1 0 2 3
+ 1 3 0 2
+ 2 3 1 0
+ 0 3 2 1
+ 0 3 1 2
+ 2 0 1 3
+StripeStore::StripeStore end
+4
+4
+4
+4
+Stripe::genRepairTasks start
+Stripe::genRepairTasks start
+4
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 11 14 13 8 9 15 10 12 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 3, nodeid: 3, dagidxlist: 14 (1, 0) 13 (0, 1) 15 (1, 0) 12 (0, 1) 
+    blk: 2, nodeid: 2, dagidxlist: 11 (0, 1) 8 (1, 0) 9 (1, 0) 10 (1, 0) 
+SEND: 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 13, sendto: 2 
+        dagidx: 12, sendto: 2 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 11, sendto: 3 
+RECV: 
+recvin: 2, dagidxlist: 13 12 
+recvin: 3, dagidxlist: 11 
+790 HANG
+4
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 11 14 13 8 9 15 10 12 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 3, nodeid: 2, dagidxlist: 14 (1, 0) 13 (1, 0) 15 (1, 0) 12 (1, 0) 
+    blk: 2, nodeid: 3, dagidxlist: 11 (0, 1) 8 (1, 0) 9 (0, 1) 10 (1, 0) 
+SEND: 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 11, sendto: 2 
+        dagidx: 9, sendto: 2 
+RECV: 
+recvin: 2, dagidxlist: 11 9 
+790 HANG
+813 HANG
+827 HANG
+4EAD VIRT:
+Stripe::genLStripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.649
+Task::dump0:0    ReadTask: blockname: Clay-424-0-3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (1, 0) 15 (1, 0) 
+Task::dump0:0    ReadTask: blockname: Clay-424-0-3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (1, 0) 15 (1, 0) 
+4
+Task::dump0:0    SendTask:             dagidx: 13, sendto: 2 
+            dagidx: 12, sendto: 2 
+
+Task::dump0:0    RecvTask: dagidx: 11 
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 30; srclist: 14 11 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 27; srclist: 14 11 ; coefs: 1 2 ; usage: (1, 0) 
+
+Task::dump0:0    SendTask:             dagidx: 30, sendto: 2 
+
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 7; srclist: 27 15 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 19; srclist: 27 15 ; coefs: 245 244 ; usage: (1, 0) 
+
+Task::dump0:0    SendTask:             dagidx: 7, sendto: 4 
+
+Task::dump0:0    RecvTask: dagidx: 21 
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 3; srclist: 21 19 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 5; srclist: 21 19 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump0:0    SendTask:             dagidx: 3, sendto: 5 
+            dagidx: 5, sendto: 4 
+
+Task::dump0:1    ReadTask: blockname: Clay-424-1-2, dagidxlist: 8 (1, 0) 9 (0, 1) 10 (1, 0) 11 (0, 1) 
+Task::dump0:1    SendTask:             dagidx: 11, sendto: 2 
+            dagidx: 9, sendto: 2 
+
+Task::dump0:1    RecvTask: dagidx: 30 28 
+Task::dump0:1    ComputeTask: 
+            Compute: dstidx 20; srclist: 8 28 ; coefs: 244 244 ; usage: (1, 0) 
+            Compute: dstidx 0; srclist: 8 28 ; coefs: 245 244 ; usage: (0, 1) 
+            Compute: dstidx 18; srclist: 10 30 ; coefs: 245 244 ; usage: (1, 0) 
+            Compute: dstidx 6; srclist: 10 30 ; coefs: 244 244 ; usage: (0, 1) 
+
+Task::dump0:1    SendTask:             dagidx: 0, sendto: 5 
+            dagidx: 6, sendto: 4 
+
+Task::dump0:1    ComputeTask: 
+            Compute: dstidx 2; srclist: 20 18 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 4; srclist: 20 18 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump0:1    SendTask:             dagidx: 2, sendto: 5 
+            dagidx: 4, sendto: 4 
+
+Task::dump0:0    ReadTask: blockname: Clay-424-0-2, dagidxlist: 8 (1, 0) 9 (1, 0) 10 (1, 0) 11 (0, 1) 
+Task::dump0:0    SendTask:             dagidx: 11, sendto: 3 
+
+Task::dump0:0    RecvTask: dagidx: 13 12 
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 28; srclist: 12 9 ; coefs: 1 1 ; usage: (1, 0) 
+            Compute: dstidx 25; srclist: 12 9 ; coefs: 1 2 ; usage: (1, 0) 
+
+Task::dump0:0    RecvTask: dagidx: 30 
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 1; srclist: 25 13 ; coefs: 245 244 ; usage: (0, 1) 
+            Compute: dstidx 20; srclist: 8 28 ; coefs: 244 244 ; usage: (1, 0) 
+            Compute: dstidx 0; srclist: 8 28 ; coefs: 245 244 ; usage: (0, 1) 
+            Compute: dstidx 21; srclist: 25 13 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 18; srclist: 10 30 ; coefs: 245 244 ; usage: (1, 0) 
+            Compute: dstidx 6; srclist: 10 30 ; coefs: 244 244 ; usage: (0, 1) 
+
+Task::dump0:0    SendTask:             dagidx: 1, sendto: 5 
+            dagidx: 0, sendto: 5 
+            dagidx: 21, sendto: 3 
+            dagidx: 6, sendto: 4 
+
+Task::dump0:0    ComputeTask: 
+            Compute: dstidx 2; srclist: 20 18 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 4; srclist: 20 18 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump0:0    SendTask:             dagidx: 2, sendto: 5 
+            dagidx: 4, sendto: 4 
+
+Task::dump0:1    ReadTask: blockname: Clay-424-1-3, dagidxlist: 12 (1, 0) 13 (1, 0) 14 (1, 0) 15 (1, 0) 
+Task::dump0:1    RecvTask: dagidx: 11 9 
+Task::dump0:1    ComputeTask: 
+            Compute: dstidx 30; srclist: 14 11 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 28; srclist: 12 9 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 25; srclist: 12 9 ; coefs: 1 2 ; usage: (1, 0) 
+            Compute: dstidx 27; srclist: 14 11 ; coefs: 1 2 ; usage: (1, 0) 
+
+Task::dump0:1    SendTask:             dagidx: 30, sendto: 3 
+            dagidx: 28, sendto: 3 
+
+Task::dump0:1    ComputeTask: 
+            Compute: dstidx 1; srclist: 25 13 ; coefs: 245 244 ; usage: (0, 1) 
+            Compute: dstidx 21; srclist: 25 13 ; coefs: 244 244 ; usage: (1, 0) 
+            Compute: dstidx 7; srclist: 27 15 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 19; srclist: 27 15 ; coefs: 245 244 ; usage: (1, 0) 
+
+Task::dump0:1    SendTask:             dagidx: 1, sendto: 5 
+            dagidx: 7, sendto: 4 
+
+Task::dump0:1    ComputeTask: 
+            Compute: dstidx 3; srclist: 21 19 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 5; srclist: 21 19 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump0:1    SendTask:             dagidx: 3, sendto: 5 
+            dagidx: 5, sendto: 4 
+
+T
+T
+Task::dump0:0    RecvTask: dagidx: 7 6 
+Task::dump0:0    RecvTask: dagidx: 5 4 
+Task::dump0:0    PersistTask: Clay-424-0-1, collect: 4 5 6 7 
+
+Task::dump0:1    RecvTask: dagidx: 7 6 
+Task::dump0:1    RecvTask: dagidx: 5 4 
+Task::dump0:1    PersistTask: Clay-424-1-1, collect: 4 5 6 7 
+
+Task::dump0:0    RecvTask: dagidx: 1 0 
+Task::dump0:0    RecvTask: dagidx: 3 2 
+Task::dump0:0    PersistTask: Clay-424-0-0, collect: 0 1 2 3 
+
+Task::dump0:1    RecvTask: dagidx: 1 0 
+Task::dump0:1    RecvTask: dagidx: 3 2 
+Task::dump0:1    PersistTask: Clay-424-1-0, collect: 0 1 2 3 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.476
+4
+4
+4
+4
+4
+4
+4
+4
+4
+4
+4
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 3.062
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 46.057
+RepairBatch::genRepairTasks.time5-time6.clean: 0.087
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 11 14 13 8 9 15 10 12 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 3, nodeid: 3, dagidxlist: 14 (1, 0) 13 (0, 1) 15 (1, 0) 12 (0, 1) 
+    blk: 2, nodeid: 2, dagidxlist: 11 (0, 1) 8 (1, 0) 9 (1, 0) 10 (1, 0) 
+SEND: 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 13, sendto: 2 
+        dagidx: 12, sendto: 2 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 11, sendto: 3 
+RECV: 
+recvin: 2, dagidxlist: 13 12 
+recvin: 3, dagidxlist: 11 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 13 5 14 15 7 4 12 6 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 1, nodeid: 2, dagidxlist: 5 (1, 0) 7 (1, 0) 4 (1, 0) 6 (1, 0) 
+    blk: 3, nodeid: 3, dagidxlist: 13 (0, 1) 14 (0, 1) 15 (0, 1) 12 (0, 1) 
+SEND: 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 13, sendto: 2 
+        dagidx: 14, sendto: 2 
+        dagidx: 15, sendto: 2 
+        dagidx: 12, sendto: 2 
+RECV: 
+recvin: 2, dagidxlist: 13 14 15 12 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.613
+Task::dump1:2    ReadTask: blockname: Clay-424-2-3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (1, 0) 15 (1, 0) 
+Task::dump1:2    SendTask:             dagidx: 13, sendto: 2 
+            dagidx: 12, sendto: 2 
+
+Task::dump1:2    RecvTask: dagidx: 11 
+Task::dump1:2    ComputeTask: 
+            Compute: dstidx 30; srclist: 14 11 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 27; srclist: 14 11 ; coefs: 1 2 ; usage: (1, 0) 
+
+Task::dump1:2    SendTask:             dagidx: 30, sendto: 2 
+
+Task::dump1:2    ComputeTask: 
+            Compute: dstidx 7; srclist: 27 15 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 19; srclist: 27 15 ; coefs: 245 244 ; usage: (1, 0) 
+
+Task::dump1:2    SendTask:             dagidx: 7, sendto: 5 
+
+Task::dump1:2    RecvTask: dagidx: 21 
+Task::dump1:2    ComputeTask: 
+            Compute: dstidx 3; srclist: 21 19 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 5; srclist: 21 19 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump1:2    SendTask:             dagidx: 3, sendto: 4 
+            dagidx: 5, sendto: 5 
+
+Task::dump1:3    ReadTask: blockname: Clay-424-3-3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (0, 1) 15 (0, 1) 
+Task::dump1:3    SendTask:             dagidx: 13, sendto: 2 
+            dagidx: 14, sendto: 2 
+            dagidx: 15, sendto: 2 
+            dagidx: 12, sendto: 2 
+
+Task::dump1:2    ReadTask: blockname: Clay-424-2-2, dagidxlist: 8 (1, 0) 9 (1, 0) 10 (1, 0) 11 (0, 1) 
+Task::dump1:2    SendTask:             dagidx: 11, sendto: 3 
+
+Task::dump1:2    RecvTask: dagidx: 13 12 
+Task::dump1:2    ComputeTask: 
+            Compute: dstidx 28; srclist: 12 9 ; coefs: 1 1 ; usage: (1, 0) 
+            Compute: dstidx 25; srclist: 12 9 ; coefs: 1 2 ; usage: (1, 0) 
+
+Task::dump1:2    RecvTask: dagidx: 30 
+Task::dump1:2    ComputeTask: 
+            Compute: dstidx 1; srclist: 25 13 ; coefs: 245 244 ; usage: (0, 1) 
+            Compute: dstidx 20; srclist: 8 28 ; coefs: 244 244 ; usage: (1, 0) 
+            Compute: dstidx 0; srclist: 8 28 ; coefs: 245 244 ; usage: (0, 1) 
+            Compute: dstidx 21; srclist: 25 13 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 18; srclist: 10 30 ; coefs: 245 244 ; usage: (1, 0) 
+            Compute: dstidx 6; srclist: 10 30 ; coefs: 244 244 ; usage: (0, 1) 
+
+Task::dump1:2    SendTask:             dagidx: 1, sendto: 4 
+            dagidx: 0, sendto: 4 
+            dagidx: 21, sendto: 3 
+            dagidx: 6, sendto: 5 
+
+Task::dump1:2    ComputeTask: 
+            Compute: dstidx 2; srclist: 20 18 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 4; srclist: 20 18 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump1:2    SendTask:             dagidx: 2, sendto: 4 
+            dagidx: 4, sendto: 5 
+
+Task::dump1:3    ReadTask: blockname: Clay-424-3-1, dagidxlist: 4 (1, 0) 5 (1, 0) 6 (1, 0) 7 (1, 0) 
+Task::dump1:3    RecvTask: dagidx: 13 14 15 12 
+Task::dump1:3    ComputeTask: 
+            Compute: dstidx 27; srclist: 7 15 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 19; srclist: 7 15 ; coefs: 2 1 ; usage: (1, 0) 
+
+Task::dump1:3    ComputeTask: 
+            Compute: dstidx 30; srclist: 14 27 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 21; srclist: 5 19 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 11; srclist: 14 27 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 3; srclist: 5 19 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump1:3    SendTask:             dagidx: 11, sendto: 4 
+            dagidx: 3, sendto: 5 
+
+Task::dump1:3    ComputeTask: 
+            Compute: dstidx 1; srclist: 21 13 ; coefs: 2 1 ; usage: (0, 1) 
+            Compute: dstidx 25; srclist: 21 13 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 18; srclist: 6 30 ; coefs: 2 1 ; usage: (1, 0) 
+            Compute: dstidx 10; srclist: 6 30 ; coefs: 3 1 ; usage: (0, 1) 
+
+Task::dump1:3    SendTask:             dagidx: 1, sendto: 5 
+            dagidx: 10, sendto: 4 
+
+Task::dump1:3    ComputeTask: 
+            Compute: dstidx 20; srclist: 4 18 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 28; srclist: 12 25 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 2; srclist: 4 18 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 9; srclist: 12 25 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump1:3    SendTask:             dagidx: 2, sendto: 5 
+            dagidx: 9, sendto: 4 
+
+Task::dump1:3    ComputeTask: 
+            Compute: dstidx 8; srclist: 20 28 ; coefs: 3 1 ; usage: (0, 1) 
+            Compute: dstidx 0; srclist: 20 28 ; coefs: 2 1 ; usage: (0, 1) 
+
+Task::dump1:3    SendTask:             dagidx: 8, sendto: 4 
+            dagidx: 0, sendto: 5 
+
+Task::dump1:2    RecvTask: dagidx: 7 6 
+Task::dump1:2    RecvTask: dagidx: 5 4 
+Task::dump1:2    PersistTask: Clay-424-2-1, collect: 4 5 6 7 
+
+Task::dump1:3    RecvTask: dagidx: 3 
+Task::dump1:3    RecvTask: dagidx: 1 
+Task::dump1:3    RecvTask: dagidx: 2 
+Task::dump1:3    RecvTask: dagidx: 0 
+Task::dump1:3    PersistTask: Clay-424-3-0, collect: 0 1 2 3 
+
+Task::dump1:2    RecvTask: dagidx: 1 0 
+Task::dump1:2    RecvTask: dagidx: 3 2 
+Task::dump1:2    PersistTask: Clay-424-2-0, collect: 0 1 2 3 
+
+Task::dump1:3    RecvTask: dagidx: 11 
+Task::dump1:3    RecvTask: dagidx: 10 
+Task::dump1:3    RecvTask: dagidx: 9 
+Task::dump1:3    RecvTask: dagidx: 8 
+Task::dump1:3    PersistTask: Clay-424-3-2, collect: 8 9 10 11 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.424
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 2.849
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 49.964
+RepairBatch::genRepairTasks.time5-time6.clean: 0.095
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 11 14 13 8 9 15 10 12 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 3, nodeid: 3, dagidxlist: 14 (1, 0) 13 (0, 1) 15 (1, 0) 12 (0, 1) 
+    blk: 2, nodeid: 2, dagidxlist: 11 (0, 1) 8 (1, 0) 9 (1, 0) 10 (1, 0) 
+SEND: 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 13, sendto: 2 
+        dagidx: 12, sendto: 2 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 11, sendto: 3 
+RECV: 
+recvin: 2, dagidxlist: 13 12 
+recvin: 3, dagidxlist: 11 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 13 5 14 15 7 4 12 6 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 1, nodeid: 3, dagidxlist: 5 (1, 0) 7 (1, 0) 4 (1, 0) 6 (1, 0) 
+    blk: 3, nodeid: 2, dagidxlist: 13 (0, 1) 14 (0, 1) 15 (0, 1) 12 (0, 1) 
+SEND: 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 13, sendto: 3 
+        dagidx: 14, sendto: 3 
+        dagidx: 15, sendto: 3 
+        dagidx: 12, sendto: 3 
+RECV: 
+recvin: 3, dagidxlist: 13 14 15 12 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.607
+Task::dump2:4    ReadTask: blockname: Clay-424-4-3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (1, 0) 15 (1, 0) 
+Task::dump2:4    SendTask:             dagidx: 13, sendto: 2 
+            dagidx: 12, sendto: 2 
+
+Task::dump2:4    RecvTask: dagidx: 11 
+Task::dump2:4    ComputeTask: 
+            Compute: dstidx 30; srclist: 14 11 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 27; srclist: 14 11 ; coefs: 1 2 ; usage: (1, 0) 
+
+Task::dump2:4    SendTask:             dagidx: 30, sendto: 2 
+
+Task::dump2:4    ComputeTask: 
+            Compute: dstidx 7; srclist: 27 15 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 19; srclist: 27 15 ; coefs: 245 244 ; usage: (1, 0) 
+
+Task::dump2:4    SendTask:             dagidx: 7, sendto: 5 
+
+Task::dump2:4    RecvTask: dagidx: 21 
+Task::dump2:4    ComputeTask: 
+            Compute: dstidx 3; srclist: 21 19 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 5; srclist: 21 19 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump2:4    SendTask:             dagidx: 3, sendto: 4 
+            dagidx: 5, sendto: 5 
+
+Task::dump2:5    ReadTask: blockname: Clay-424-5-1, dagidxlist: 4 (1, 0) 5 (1, 0) 6 (1, 0) 7 (1, 0) 
+Task::dump2:5    RecvTask: dagidx: 13 14 15 12 
+Task::dump2:5    ComputeTask: 
+            Compute: dstidx 27; srclist: 7 15 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 19; srclist: 7 15 ; coefs: 2 1 ; usage: (1, 0) 
+
+Task::dump2:5    ComputeTask: 
+            Compute: dstidx 30; srclist: 14 27 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 21; srclist: 5 19 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 11; srclist: 14 27 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 3; srclist: 5 19 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump2:5    SendTask:             dagidx: 11, sendto: 4 
+            dagidx: 3, sendto: 5 
+
+Task::dump2:5    ComputeTask: 
+            Compute: dstidx 1; srclist: 21 13 ; coefs: 2 1 ; usage: (0, 1) 
+            Compute: dstidx 25; srclist: 21 13 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 18; srclist: 6 30 ; coefs: 2 1 ; usage: (1, 0) 
+            Compute: dstidx 10; srclist: 6 30 ; coefs: 3 1 ; usage: (0, 1) 
+
+Task::dump2:5    SendTask:             dagidx: 1, sendto: 5 
+            dagidx: 10, sendto: 4 
+
+Task::dump2:5    ComputeTask: 
+            Compute: dstidx 20; srclist: 4 18 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 28; srclist: 12 25 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 2; srclist: 4 18 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 9; srclist: 12 25 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump2:5    SendTask:             dagidx: 2, sendto: 5 
+            dagidx: 9, sendto: 4 
+
+Task::dump2:5    ComputeTask: 
+            Compute: dstidx 8; srclist: 20 28 ; coefs: 3 1 ; usage: (0, 1) 
+            Compute: dstidx 0; srclist: 20 28 ; coefs: 2 1 ; usage: (0, 1) 
+
+Task::dump2:5    SendTask:             dagidx: 8, sendto: 4 
+            dagidx: 0, sendto: 5 
+
+Task::dump2:4    ReadTask: blockname: Clay-424-4-2, dagidxlist: 8 (1, 0) 9 (1, 0) 10 (1, 0) 11 (0, 1) 
+Task::dump2:4    SendTask:             dagidx: 11, sendto: 3 
+
+Task::dump2:4    RecvTask: dagidx: 13 12 
+Task::dump2:4    ComputeTask: 
+            Compute: dstidx 28; srclist: 12 9 ; coefs: 1 1 ; usage: (1, 0) 
+            Compute: dstidx 25; srclist: 12 9 ; coefs: 1 2 ; usage: (1, 0) 
+
+Task::dump2:4    RecvTask: dagidx: 30 
+Task::dump2:4    ComputeTask: 
+            Compute: dstidx 1; srclist: 25 13 ; coefs: 245 244 ; usage: (0, 1) 
+            Compute: dstidx 20; srclist: 8 28 ; coefs: 244 244 ; usage: (1, 0) 
+            Compute: dstidx 0; srclist: 8 28 ; coefs: 245 244 ; usage: (0, 1) 
+            Compute: dstidx 21; srclist: 25 13 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 18; srclist: 10 30 ; coefs: 245 244 ; usage: (1, 0) 
+            Compute: dstidx 6; srclist: 10 30 ; coefs: 244 244 ; usage: (0, 1) 
+
+Task::dump2:4    SendTask:             dagidx: 1, sendto: 4 
+            dagidx: 0, sendto: 4 
+            dagidx: 21, sendto: 3 
+            dagidx: 6, sendto: 5 
+
+Task::dump2:4    ComputeTask: 
+            Compute: dstidx 2; srclist: 20 18 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 4; srclist: 20 18 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump2:4    SendTask:             dagidx: 2, sendto: 4 
+            dagidx: 4, sendto: 5 
+
+Task::dump2:5    ReadTask: blockname: Clay-424-5-3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (0, 1) 15 (0, 1) 
+Task::dump2:5    SendTask:             dagidx: 13, sendto: 3 
+            dagidx: 14, sendto: 3 
+            dagidx: 15, sendto: 3 
+            dagidx: 12, sendto: 3 
+
+Task::dump2:4    RecvTask: dagidx: 7 6 
+Task::dump2:4    RecvTask: dagidx: 5 4 
+Task::dump2:4    PersistTask: Clay-424-4-1, collect: 4 5 6 7 
+
+Task::dump2:5    RecvTask: dagidx: 3 
+Task::dump2:5    RecvTask: dagidx: 1 
+Task::dump2:5    RecvTask: dagidx: 2 
+Task::dump2:5    RecvTask: dagidx: 0 
+Task::dump2:5    PersistTask: Clay-424-5-0, collect: 0 1 2 3 
+
+Task::dump2:4    RecvTask: dagidx: 1 0 
+Task::dump2:4    RecvTask: dagidx: 3 2 
+Task::dump2:4    PersistTask: Clay-424-4-0, collect: 0 1 2 3 
+
+Task::dump2:5    RecvTask: dagidx: 11 
+Task::dump2:5    RecvTask: dagidx: 10 
+Task::dump2:5    RecvTask: dagidx: 9 
+Task::dump2:5    RecvTask: dagidx: 8 
+Task::dump2:5    PersistTask: Clay-424-5-2, collect: 8 9 10 11 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.447
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 2.94
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 43.053
+RepairBatch::genRepairTasks.time5-time6.clean: 0.081
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 1 3 0 5 2 4 7 6 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 1, nodeid: 3, dagidxlist: 5 (1, 0) 4 (0, 1) 7 (1, 0) 6 (0, 1) 
+    blk: 0, nodeid: 2, dagidxlist: 1 (1, 0) 3 (0, 1) 0 (1, 0) 2 (1, 0) 
+SEND: 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 4, sendto: 2 
+        dagidx: 6, sendto: 2 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 3, sendto: 3 
+RECV: 
+recvin: 2, dagidxlist: 4 6 
+recvin: 3, dagidxlist: 3 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 8 11 4 10 7 5 9 6 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 1, nodeid: 3, dagidxlist: 4 (1, 0) 7 (1, 0) 5 (1, 0) 6 (1, 0) 
+    blk: 2, nodeid: 2, dagidxlist: 8 (0, 1) 11 (0, 1) 10 (0, 1) 9 (0, 1) 
+SEND: 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 8, sendto: 3 
+        dagidx: 11, sendto: 3 
+        dagidx: 10, sendto: 3 
+        dagidx: 9, sendto: 3 
+RECV: 
+recvin: 3, dagidxlist: 8 11 10 9 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.584
+Task::dump3:6    ReadTask: blockname: Clay-424-6-1, dagidxlist: 4 (0, 1) 5 (1, 0) 6 (0, 1) 7 (1, 0) 
+Task::dump3:6    SendTask:             dagidx: 4, sendto: 2 
+            dagidx: 6, sendto: 2 
+
+Task::dump3:6    RecvTask: dagidx: 3 
+Task::dump3:6    ComputeTask: 
+            Compute: dstidx 19; srclist: 5 3 ; coefs: 1 2 ; usage: (1, 0) 
+            Compute: dstidx 21; srclist: 5 3 ; coefs: 1 1 ; usage: (0, 1) 
+
+Task::dump3:6    SendTask:             dagidx: 21, sendto: 2 
+
+Task::dump3:6    ComputeTask: 
+            Compute: dstidx 27; srclist: 19 7 ; coefs: 1 1 ; usage: (1, 0) 
+            Compute: dstidx 15; srclist: 19 7 ; coefs: 1 2 ; usage: (0, 1) 
+
+Task::dump3:6    SendTask:             dagidx: 15, sendto: 5 
+
+Task::dump3:6    RecvTask: dagidx: 30 
+Task::dump3:6    ComputeTask: 
+            Compute: dstidx 11; srclist: 30 27 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 14; srclist: 30 27 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump3:6    SendTask:             dagidx: 11, sendto: 4 
+            dagidx: 14, sendto: 5 
+
+Task::dump3:7    ReadTask: blockname: Clay-424-7-1, dagidxlist: 4 (1, 0) 5 (1, 0) 6 (1, 0) 7 (1, 0) 
+Task::dump3:7    RecvTask: dagidx: 8 11 10 9 
+Task::dump3:7    ComputeTask: 
+            Compute: dstidx 30; srclist: 6 10 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 18; srclist: 6 10 ; coefs: 1 1 ; usage: (1, 0) 
+
+Task::dump3:7    ComputeTask: 
+            Compute: dstidx 20; srclist: 4 18 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 27; srclist: 11 30 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 14; srclist: 11 30 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 2; srclist: 4 18 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump3:7    SendTask:             dagidx: 14, sendto: 4 
+            dagidx: 2, sendto: 5 
+
+Task::dump3:7    ComputeTask: 
+            Compute: dstidx 0; srclist: 20 8 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 28; srclist: 20 8 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 15; srclist: 7 27 ; coefs: 3 1 ; usage: (0, 1) 
+            Compute: dstidx 19; srclist: 7 27 ; coefs: 1 1 ; usage: (1, 0) 
+
+Task::dump3:7    SendTask:             dagidx: 0, sendto: 5 
+            dagidx: 15, sendto: 4 
+
+Task::dump3:7    ComputeTask: 
+            Compute: dstidx 21; srclist: 5 19 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 25; srclist: 9 28 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 12; srclist: 9 28 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 3; srclist: 5 19 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump3:7    SendTask:             dagidx: 12, sendto: 4 
+            dagidx: 3, sendto: 5 
+
+Task::dump3:7    ComputeTask: 
+            Compute: dstidx 1; srclist: 21 25 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 13; srclist: 21 25 ; coefs: 3 1 ; usage: (0, 1) 
+
+Task::dump3:7    SendTask:             dagidx: 1, sendto: 5 
+            dagidx: 13, sendto: 4 
+
+Task::dump3:6    ReadTask: blockname: Clay-424-6-0, dagidxlist: 0 (1, 0) 1 (1, 0) 2 (1, 0) 3 (0, 1) 
+Task::dump3:6    SendTask:             dagidx: 3, sendto: 3 
+
+Task::dump3:6    RecvTask: dagidx: 4 6 
+Task::dump3:6    ComputeTask: 
+            Compute: dstidx 18; srclist: 4 2 ; coefs: 1 2 ; usage: (1, 0) 
+            Compute: dstidx 20; srclist: 4 2 ; coefs: 1 1 ; usage: (1, 0) 
+
+Task::dump3:6    RecvTask: dagidx: 21 
+Task::dump3:6    ComputeTask: 
+            Compute: dstidx 25; srclist: 1 21 ; coefs: 1 1 ; usage: (1, 0) 
+            Compute: dstidx 30; srclist: 18 6 ; coefs: 1 2 ; usage: (0, 1) 
+            Compute: dstidx 8; srclist: 0 20 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 28; srclist: 0 20 ; coefs: 1 2 ; usage: (1, 0) 
+            Compute: dstidx 10; srclist: 18 6 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 13; srclist: 1 21 ; coefs: 1 2 ; usage: (0, 1) 
+
+Task::dump3:6    SendTask:             dagidx: 30, sendto: 3 
+            dagidx: 8, sendto: 4 
+            dagidx: 10, sendto: 4 
+            dagidx: 13, sendto: 5 
+
+Task::dump3:6    ComputeTask: 
+            Compute: dstidx 9; srclist: 28 25 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 12; srclist: 28 25 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump3:6    SendTask:             dagidx: 9, sendto: 4 
+            dagidx: 12, sendto: 5 
+
+Task::dump3:7    ReadTask: blockname: Clay-424-7-2, dagidxlist: 8 (0, 1) 9 (0, 1) 10 (0, 1) 11 (0, 1) 
+Task::dump3:7    SendTask:             dagidx: 8, sendto: 3 
+            dagidx: 11, sendto: 3 
+            dagidx: 10, sendto: 3 
+            dagidx: 9, sendto: 3 
+
+Task::dump3:6    RecvTask: dagidx: 15 13 
+Task::dump3:6    RecvTask: dagidx: 14 12 
+Task::dump3:6    PersistTask: Clay-424-6-3, collect: 12 13 14 15 
+
+Task::dump3:7    RecvTask: dagidx: 2 
+Task::dump3:7    RecvTask: dagidx: 0 
+Task::dump3:7    RecvTask: dagidx: 3 
+Task::dump3:7    RecvTask: dagidx: 1 
+Task::dump3:7    PersistTask: Clay-424-7-0, collect: 0 1 2 3 
+
+Task::dump3:6    RecvTask: dagidx: 8 10 
+Task::dump3:6    RecvTask: dagidx: 11 9 
+Task::dump3:6    PersistTask: Clay-424-6-2, collect: 8 9 10 11 
+
+Task::dump3:7    RecvTask: dagidx: 14 
+Task::dump3:7    RecvTask: dagidx: 15 
+Task::dump3:7    RecvTask: dagidx: 12 
+Task::dump3:7    RecvTask: dagidx: 13 
+Task::dump3:7    PersistTask: Clay-424-7-3, collect: 12 13 14 15 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.723
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 2.96
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 43.691
+RepairBatch::genRepairTasks.time5-time6.clean: 0.096
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 13 5 14 15 7 4 12 6 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 1, nodeid: 3, dagidxlist: 5 (1, 0) 7 (1, 0) 4 (1, 0) 6 (1, 0) 
+    blk: 3, nodeid: 2, dagidxlist: 13 (0, 1) 14 (0, 1) 15 (0, 1) 12 (0, 1) 
+SEND: 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 13, sendto: 3 
+        dagidx: 14, sendto: 3 
+        dagidx: 15, sendto: 3 
+        dagidx: 12, sendto: 3 
+RECV: 
+recvin: 3, dagidxlist: 13 14 15 12 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 3 12 0 13 14 1 2 15 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 3, nodeid: 3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (0, 1) 15 (0, 1) 
+    blk: 0, nodeid: 2, dagidxlist: 3 (1, 0) 0 (1, 0) 1 (1, 0) 2 (1, 0) 
+SEND: 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 12, sendto: 2 
+        dagidx: 13, sendto: 2 
+        dagidx: 14, sendto: 2 
+        dagidx: 15, sendto: 2 
+RECV: 
+recvin: 2, dagidxlist: 12 13 14 15 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.609
+Task::dump4:8    ReadTask: blockname: Clay-424-8-1, dagidxlist: 4 (1, 0) 5 (1, 0) 6 (1, 0) 7 (1, 0) 
+Task::dump4:8    RecvTask: dagidx: 13 14 15 12 
+Task::dump4:8    ComputeTask: 
+            Compute: dstidx 27; srclist: 7 15 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 19; srclist: 7 15 ; coefs: 2 1 ; usage: (1, 0) 
+
+Task::dump4:8    ComputeTask: 
+            Compute: dstidx 30; srclist: 14 27 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 21; srclist: 5 19 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 11; srclist: 14 27 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 3; srclist: 5 19 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump4:8    SendTask:             dagidx: 11, sendto: 4 
+            dagidx: 3, sendto: 5 
+
+Task::dump4:8    ComputeTask: 
+            Compute: dstidx 1; srclist: 21 13 ; coefs: 2 1 ; usage: (0, 1) 
+            Compute: dstidx 25; srclist: 21 13 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 18; srclist: 6 30 ; coefs: 2 1 ; usage: (1, 0) 
+            Compute: dstidx 10; srclist: 6 30 ; coefs: 3 1 ; usage: (0, 1) 
+
+Task::dump4:8    SendTask:             dagidx: 1, sendto: 5 
+            dagidx: 10, sendto: 4 
+
+Task::dump4:8    ComputeTask: 
+            Compute: dstidx 20; srclist: 4 18 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 28; srclist: 12 25 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 2; srclist: 4 18 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 9; srclist: 12 25 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump4:8    SendTask:             dagidx: 2, sendto: 5 
+            dagidx: 9, sendto: 4 
+
+Task::dump4:8    ComputeTask: 
+            Compute: dstidx 8; srclist: 20 28 ; coefs: 3 1 ; usage: (0, 1) 
+            Compute: dstidx 0; srclist: 20 28 ; coefs: 2 1 ; usage: (0, 1) 
+
+Task::dump4:8    SendTask:             dagidx: 8, sendto: 4 
+            dagidx: 0, sendto: 5 
+
+Task::dump4:9    ReadTask: blockname: Clay-424-9-3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (0, 1) 15 (0, 1) 
+Task::dump4:9    SendTask:             dagidx: 12, sendto: 2 
+            dagidx: 13, sendto: 2 
+            dagidx: 14, sendto: 2 
+            dagidx: 15, sendto: 2 
+
+Task::dump4:8    ReadTask: blockname: Clay-424-8-3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (0, 1) 15 (0, 1) 
+Task::dump4:8    SendTask:             dagidx: 13, sendto: 3 
+            dagidx: 14, sendto: 3 
+            dagidx: 15, sendto: 3 
+            dagidx: 12, sendto: 3 
+
+Task::dump4:9    ReadTask: blockname: Clay-424-9-0, dagidxlist: 0 (1, 0) 1 (1, 0) 2 (1, 0) 3 (1, 0) 
+Task::dump4:9    RecvTask: dagidx: 12 13 14 15 
+Task::dump4:9    ComputeTask: 
+            Compute: dstidx 25; srclist: 1 13 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 21; srclist: 1 13 ; coefs: 142 142 ; usage: (1, 0) 
+
+Task::dump4:9    ComputeTask: 
+            Compute: dstidx 19; srclist: 3 21 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 28; srclist: 12 25 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 9; srclist: 12 25 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 5; srclist: 3 21 ; coefs: 1 1 ; usage: (0, 1) 
+
+Task::dump4:9    SendTask:             dagidx: 9, sendto: 4 
+            dagidx: 5, sendto: 5 
+
+Task::dump4:9    ComputeTask: 
+            Compute: dstidx 20; srclist: 0 28 ; coefs: 142 142 ; usage: (1, 0) 
+            Compute: dstidx 8; srclist: 0 28 ; coefs: 143 142 ; usage: (0, 1) 
+            Compute: dstidx 27; srclist: 19 15 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 7; srclist: 19 15 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump4:9    SendTask:             dagidx: 8, sendto: 4 
+            dagidx: 7, sendto: 5 
+
+Task::dump4:9    ComputeTask: 
+            Compute: dstidx 18; srclist: 2 20 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 11; srclist: 14 27 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 4; srclist: 2 20 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 30; srclist: 14 27 ; coefs: 143 142 ; usage: (1, 0) 
+
+Task::dump4:9    SendTask:             dagidx: 11, sendto: 4 
+            dagidx: 4, sendto: 5 
+
+Task::dump4:9    ComputeTask: 
+            Compute: dstidx 10; srclist: 18 30 ; coefs: 143 142 ; usage: (0, 1) 
+            Compute: dstidx 6; srclist: 18 30 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump4:9    SendTask:             dagidx: 10, sendto: 4 
+            dagidx: 6, sendto: 5 
+
+Task::dump4:8    RecvTask: dagidx: 3 
+Task::dump4:8    RecvTask: dagidx: 1 
+Task::dump4:8    RecvTask: dagidx: 2 
+Task::dump4:8    RecvTask: dagidx: 0 
+Task::dump4:8    PersistTask: Clay-424-8-0, collect: 0 1 2 3 
+
+Task::dump4:9    RecvTask: dagidx: 5 
+Task::dump4:9    RecvTask: dagidx: 7 
+Task::dump4:9    RecvTask: dagidx: 4 
+Task::dump4:9    RecvTask: dagidx: 6 
+Task::dump4:9    PersistTask: Clay-424-9-1, collect: 4 5 6 7 
+
+Task::dump4:8    RecvTask: dagidx: 11 
+Task::dump4:8    RecvTask: dagidx: 10 
+Task::dump4:8    RecvTask: dagidx: 9 
+Task::dump4:8    RecvTask: dagidx: 8 
+Task::dump4:8    PersistTask: Clay-424-8-2, collect: 8 9 10 11 
+
+Task::dump4:9    RecvTask: dagidx: 9 
+Task::dump4:9    RecvTask: dagidx: 8 
+Task::dump4:9    RecvTask: dagidx: 11 
+Task::dump4:9    RecvTask: dagidx: 10 
+Task::dump4:9    PersistTask: Clay-424-9-2, collect: 8 9 10 11 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.407
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 2.282
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 41.639
+RepairBatch::genRepairTasks.time5-time6.clean: 0.103
+RepairBatch 0: 
+    stripe 0: 1 0 2 3   newnode=-1
+    stripe 1: 1 0 3 2   newnode=-1
+    stirpe num = 2    load=13    avgload = 6.5
+
+RepairBatch 1: 
+    stripe 2: 0 1 2 3   newnode=-1
+    stripe 3: 0 2 1 3   newnode=-1
+    stirpe num = 2    load=15    avgload = 7.5
+
+RepairBatch 2: 
+    stripe 4: 1 0 2 3   newnode=-1
+    stripe 5: 1 3 0 2   newnode=-1
+    stirpe num = 2    load=14    avgload = 7
+
+RepairBatch 3: 
+    stripe 6: 2 3 1 0   newnode=-1
+    stripe 7: 0 3 2 1   newnode=-1
+    stirpe num = 2    load=14    avgload = 7
+
+RepairBatch 4: 
+    stripe 8: 0 3 1 2   newnode=-1
+    stripe 9: 2 0 1 3   newnode=-1
+    stirpe num = 2    load=12    avgload = 6
+
+Coordinator::repair. genbatch  = 3.944
+Coordinator::repair. repairbatch = 244.614
+StripeStore::StripeStore start
+/home/lx/Multiple_ParaRC/stripeStore/placement
+StripeStore::placement 10
+ 1 3 0 2
+ 1 0 2 3
+ 0 3 2 1
+ 3 2 1 0
+ 3 0 1 2
+ 0 3 2 1
+ 1 3 0 2
+ 2 1 3 0
+ 2 1 0 3
+ 1 0 2 3
+StripeStore::StripeStore end
+ParallelSolution::genRepairBatchesForMultipleFailureNew begin
+4
+4
+4
+4
+4
+4
+4
+4
+4
+4
+[INFO] Starting Simulated Annealing optimization...
+[INFO] SA Finished. Best Makespan found: 71
+4
+4
+4
+4
+RepairBatch 0: 
+    stripe 8: 2 1 0 3   newnode=-1
+    stripe 5: 0 3 2 1   newnode=-1
+    stirpe num = 2    load=13    avgload = 6.5
+
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 3 12 0 13 14 1 2 15 
+Stripe::genLevel0:virtidx: 
+ 12 0 13 14 1 2 15 
+4
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 3, nodeid: 3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (0, 1) 15 (0, 1) 
+    blk: 0, nodeid: 2, dagidxlist: 3 (1, 0) 0 (1, 0) 1 (1, 0) 2 (1, 0) 
+SEND: 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 12, sendto: 2 
+        dagidx: 13, sendto: 2 
+        dagidx: 14, sendto: 2 
+        dagidx: 15, sendto: 2 
+RECV: 
+recvin: 2, dagidxlist: 12 13 14 15 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+4
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 8 11 4 10 7 5 9 6 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 1, nodeid: 3, dagidxlist: 4 (1, 0) 7 (1, 0) 5 (1, 0) 6 (0, 1) 
+    blk: 2, nodeid: 2, dagidxlist: 8 (0, 1) 11 (1, 0) 10 (1, 0) 9 (0, 1) 
+SEND: 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 6, sendto: 2 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 8, sendto: 3 
+        dagidx: 9, sendto: 3 
+RECV: 
+recvin: 2, dagidxlist: 6 
+recvin: 3, dagidxlist: 8 9 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+4
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.669
+Task::dump0:8    ReadTask: blockname: Clay-424-8-3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (0, 1) 15 (0, 1) 
+Task::dump0:8    SendTask:             dagidx: 12, sendto: 2 
+            dagidx: 13, sendto: 2 
+            dagidx: 14, sendto: 2 
+            dagidx: 15, sendto: 2 
+
+Task::dump0:5    ReadTask: blockname: Clay-424-5-1, dagidxlist: 4 (1, 0) 5 (1, 0) 6 (0, 1) 7 (1, 0) 
+Task::dump0:5    SendTask:             dagidx: 6, sendto: 2 
+
+Task::dump0:5    RecvTask: dagidx: 8 9 
+Task::dump0:5    RecvTask: dagidx: 18 
+Task::dump0:5    ComputeTask: 
+            Compute: dstidx 20; srclist: 4 18 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 2; srclist: 4 18 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump0:5    SendTask:             dagidx: 2, sendto: 4 
+
+Task::dump0:5    RecvTask: dagidx: 27 
+4
+4
+Task::dump0:5    ComputeTask: 
+            Compute: dstidx 0; srclist: 20 8 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 28; srclist: 20 8 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 15; srclist: 7 27 ; coefs: 3 1 ; usage: (0, 1) 
+            Compute: dstidx 19; srclist: 7 27 ; coefs: 1 1 ; usage: (1, 0) 
+
+Task::dump0:5    SendTask:             dagidx: 0, sendto: 4 
+            dagidx: 15, sendto: 5 
+
+Task::dump0:5    ComputeTask: 
+            Compute: dstidx 21; srclist: 5 19 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 25; srclist: 9 28 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 12; srclist: 9 28 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 3; srclist: 5 19 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump0:5    SendTask:             dagidx: 12, sendto: 5 
+            dagidx: 3, sendto: 4 
+
+Task::dump0:5    ComputeTask: 
+            Compute: dstidx 1; srclist: 21 25 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 13; srclist: 21 25 ; coefs: 3 1 ; usage: (0, 1) 
+
+Task::dump0:5    SendTask:             dagidx: 1, sendto: 4 
+            dagidx: 13, sendto: 5 
+
+Task::dump0:8    ReadTask: blockname: Clay-424-8-0, dagidxlist: 0 (1, 0) 1 (1, 0) 2 (1, 0) 3 (1, 0) 
+Task::dump0:8    RecvTask: dagidx: 12 13 14 15 
+Task::dump0:8    ComputeTask: 
+            Compute: dstidx 25; srclist: 1 13 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 21; srclist: 1 13 ; coefs: 142 142 ; usage: (1, 0) 
+
+Task::dump0:8    ComputeTask: 
+            Compute: dstidx 19; srclist: 3 21 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 28; srclist: 12 25 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 9; srclist: 12 25 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 5; srclist: 3 21 ; coefs: 1 1 ; usage: (0, 1) 
+
+Task::dump0:8    SendTask:             dagidx: 9, sendto: 4 
+            dagidx: 5, sendto: 5 
+
+Task::dump0:8    ComputeTask: 
+            Compute: dstidx 20; srclist: 0 28 ; coefs: 142 142 ; usage: (1, 0) 
+            Compute: dstidx 8; srclist: 0 28 ; coefs: 143 142 ; usage: (0, 1) 
+            Compute: dstidx 27; srclist: 19 15 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 7; srclist: 19 15 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump0:8    SendTask:             dagidx: 8, sendto: 4 
+            dagidx: 7, sendto: 5 
+
+Task::dump0:8    ComputeTask: 
+            Compute: dstidx 18; srclist: 2 20 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 11; srclist: 14 27 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 4; srclist: 2 20 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 30; srclist: 14 27 ; coefs: 143 142 ; usage: (1, 0) 
+
+Task::dump0:8    SendTask:             dagidx: 11, sendto: 4 
+            dagidx: 4, sendto: 5 
+
+Task::dump0:8    ComputeTask: 
+            Compute: dstidx 10; srclist: 18 30 ; coefs: 143 142 ; usage: (0, 1) 
+            Compute: dstidx 6; srclist: 18 30 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump0:8    SendTask:             dagidx: 10, sendto: 4 
+            dagidx: 6, sendto: 5 
+
+Task::dump0:5    ReadTask: blockname: Clay-424-5-2, dagidxlist: 8 (0, 1) 9 (0, 1) 10 (1, 0) 11 (1, 0) 
+Task::dump0:5    SendTask:             dagidx: 8, sendto: 3 
+            dagidx: 9, sendto: 3 
+
+Task::dump0:5    RecvTask: dagidx: 6 
+Task::dump0:5    ComputeTask: 
+            Compute: dstidx 30; srclist: 6 10 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 18; srclist: 6 10 ; coefs: 1 1 ; usage: (0, 1) 
+
+Task::dump0:5    SendTask:             dagidx: 18, sendto: 3 
+
+Task::dump0:5    ComputeTask: 
+            Compute: dstidx 27; srclist: 11 30 ; coefs: 3 1 ; usage: (0, 1) 
+            Compute: dstidx 14; srclist: 11 30 ; coefs: 1 1 ; usage: (0, 1) 
+
+Task::dump0:5    ComputeTask: 
+            Compute: dstidx 27; srclist: 11 30 ; coefs: 3 1 ; usage: (0, 1) 
+            Compute: dstidx 14; srclist: 11 30 ; coefs: 1 1 ; usage: (0, 1) 
+
+RepairBatch 1: 
+    stripe :5    SendTask:             dagidx: 27, sendto: 3 
+            dagidx: 14, sendto: 5 
+
+    stripe 7: 2 1 3 0   newnode=-1
+    stripe 6:    RecvTask: dagidx: 5 
+    stripe 6: 1 3 0 2   newnode=-1
+    stirpe num = RecvTask: dagidx: 7 
+6.5
+
+.5
+Task::dump0:8    RecvTask: dagidx: 4 
+
+Task::dump0:8    RecvTask: dagidx: 6 
+Task::dump0:8    PersistTask: Clay-424-8-1, collect: 4 5 6 7 
+
+Task::dump0:5    RecvTask: dagidx: 14 
+Task::dump0:5    RecvTask: dagidx: 15 
+Task::dump0:5    RecvTask: dagidx: 12 
+Task::dump0:5    RecvTask: dagidx: 13 
+Task::dump0:5    PersistTask: Clay-424-5-3, collect: 12 13 14 15 
+
+Task::dump0:8    RecvTask: dagidx: 9 
+Task::dump0:8    RecvTask: dagidx: 8 
+Task::dump0:8    RecvTask: dagidx: 11 
+Task::dump0:8    RecvTask: dagidx: 10 
+Task::dump0:8    PersistTask: Clay-424-8-2, collect: 8 9 10 11 
+
+Task::dump0:5    RecvTask: dagidx: 2 
+Task::dump0:5    RecvTask: dagidx: 0 
+Task::dump0:5    RecvTask: dagidx: 3 
+Task::dump0:5    RecvTask: dagidx: 1 
+Task::dump0:5    RecvTask: dagidx: 124-5Task::dump0:5    PersistTask: Clay-424-5-0, collect: 0 1 2 3 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.539
+4
+4
+4
+RepairBatch 2: 
+    stripe 2: 0 3 2 1   newnode=-1
+    stripe 1: 1 0 2 3   newnode=-1
+    stirpe num = 2    load=14    avgload = 7
+
+4
+4
+4
+4
+RepairBatch 3: 
+    stripe 3: 3 2 1 0   newnode=-1
+    stripe 9: 1 0 2 3   newnode=-1
+    stirpe num = 2    load=13    avgload = 6.5
+
+4
+4
+4
+4
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 2.91
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch 4: 
+    stripe 4: 3 0 1 2   newnode=-1
+    stripe 0: 1 3 0 2   newnode=-1
+    stirpe num = 2    load=16    avgload = 8
+
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 45.099
+RepairBatch::genRepairTasks.time5-time6.clean: 0.134
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 1 9 2 8 11 3 10 0 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 2, nodeid: 3, dagidxlist: 9 (0, 1) 8 (0, 1) 11 (0, 1) 10 (0, 1) 
+    blk: 0, nodeid: 2, dagidxlist: 1 (1, 0) 2 (1, 0) 3 (1, 0) 0 (1, 0) 
+SEND: 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 9, sendto: 2 
+        dagidx: 8, sendto: 2 
+        dagidx: 11, sendto: 2 
+        dagidx: 10, sendto: 2 
+RECV: 
+recvin: 2, dagidxlist: 9 8 11 10 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 13 5 14 15 7 4 12 6 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 1, nodeid: 3, dagidxlist: 5 (1, 0) 7 (0, 1) 4 (1, 0) 6 (1, 0) 
+    blk: 3, nodeid: 2, dagidxlist: 13 (0, 1) 14 (1, 0) 15 (1, 0) 12 (0, 1) 
+SEND: 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 7, sendto: 2 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 13, sendto: 3 
+        dagidx: 12, sendto: 3 
+RECV: 
+recvin: 2, dagidxlist: 7 
+recvin: 3, dagidxlist: 13 12 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.594
+Task::dump1:7    ReadTask: blockname: Clay-424-7-2, dagidxlist: 8 (0, 1) 9 (0, 1) 10 (0, 1) 11 (0, 1) 
+Task::dump1:7    SendTask:             dagidx: 9, sendto: 2 
+            dagidx: 8, sendto: 2 
+            dagidx: 11, sendto: 2 
+            dagidx: 10, sendto: 2 
+
+Task::dump1:6    ReadTask: blockname: Clay-424-6-1, dagidxlist: 4 (1, 0) 5 (1, 0) 6 (1, 0) 7 (0, 1) 
+Task::dump1:6    SendTask:             dagidx: 7, sendto: 2 
+
+Task::dump1:6    RecvTask: dagidx: 13 12 
+Task::dump1:6    RecvTask: dagidx: 19 
+Task::dump1:6    ComputeTask: 
+            Compute: dstidx 21; srclist: 5 19 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 3; srclist: 5 19 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump1:6    SendTask:             dagidx: 3, sendto: 5 
+
+Task::dump1:6    RecvTask: dagidx: 30 
+Task::dump1:6    ComputeTask: 
+            Compute: dstidx 1; srclist: 21 13 ; coefs: 2 1 ; usage: (0, 1) 
+            Compute: dstidx 25; srclist: 21 13 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 18; srclist: 6 30 ; coefs: 2 1 ; usage: (1, 0) 
+            Compute: dstidx 10; srclist: 6 30 ; coefs: 3 1 ; usage: (0, 1) 
+
+Task::dump1:6    SendTask:             dagidx: 1, sendto: 5 
+            dagidx: 10, sendto: 4 
+
+Task::dump1:6    ComputeTask: 
+            Compute: dstidx 20; srclist: 4 18 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 28; srclist: 12 25 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 2; srclist: 4 18 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 9; srclist: 12 25 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump1:6    SendTask:             dagidx: 2, sendto: 5 
+            dagidx: 9, sendto: 4 
+
+Task::dump1:6    ComputeTask: 
+            Compute: dstidx 8; srclist: 20 28 ; coefs: 3 1 ; usage: (0, 1) 
+            Compute: dstidx 0; srclist: 20 28 ; coefs: 2 1 ; usage: (0, 1) 
+
+Task::dump1:6    SendTask:             dagidx: 8, sendto: 4 
+            dagidx: 0, sendto: 5 
+
+Task::dump1:7    ReadTask: blockname: Clay-424-7-0, dagidxlist: 0 (1, 0) 1 (1, 0) 2 (1, 0) 3 (1, 0) 
+Task::dump1:7    RecvTask: dagidx: 9 8 11 10 
+Task::dump1:7    ComputeTask: 
+            Compute: dstidx 28; srclist: 0 8 ; coefs: 3 2 ; usage: (1, 0) 
+            Compute: dstidx 20; srclist: 0 8 ; coefs: 1 1 ; usage: (1, 0) 
+
+Task::dump1:7    ComputeTask: 
+            Compute: dstidx 18; srclist: 2 20 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 25; srclist: 9 28 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 12; srclist: 9 28 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 4; srclist: 2 20 ; coefs: 1 1 ; usage: (0, 1) 
+
+Task::dump1:7    SendTask:             dagidx: 12, sendto: 4 
+            dagidx: 4, sendto: 5 
+
+Task::dump1:7    ComputeTask: 
+            Compute: dstidx 30; srclist: 18 10 ; coefs: 3 2 ; usage: (1, 0) 
+            Compute: dstidx 21; srclist: 1 25 ; coefs: 1 1 ; usage: (1, 0) 
+            Compute: dstidx 6; srclist: 18 10 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 13; srclist: 1 25 ; coefs: 3 2 ; usage: (0, 1) 
+
+Task::dump1:7    SendTask:             dagidx: 6, sendto: 5 
+            dagidx: 13, sendto: 4 
+
+Task::dump1:7    ComputeTask: 
+            Compute: dstidx 27; srclist: 11 30 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 14; srclist: 11 30 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 19; srclist: 3 21 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 5; srclist: 3 21 ; coefs: 1 1 ; usage: (0, 1) 
+
+Task::dump1:7    SendTask:             dagidx: 14, sendto: 4 
+            dagidx: 5, sendto: 5 
+
+Task::dump1:7    ComputeTask: 
+            Compute: dstidx 15; srclist: 19 27 ; coefs: 3 2 ; usage: (0, 1) 
+            Compute: dstidx 7; srclist: 19 27 ; coefs: 1 1 ; usage: (0, 1) 
+
+Task::dump1:7    SendTask:             dagidx: 15, sendto: 4 
+            dagidx: 7, sendto: 5 
+
+Task::dump1:6    ReadTask: blockname: Clay-424-6-3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (1, 0) 15 (1, 0) 
+Task::dump1:6    SendTask:             dagidx: 13, sendto: 3 
+            dagidx: 12, sendto: 3 
+
+Task::dump1:6    RecvTask: dagidx: 7 
+Task::dump1:6    ComputeTask: 
+            Compute: dstidx 27; srclist: 7 15 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 19; srclist: 7 15 ; coefs: 2 1 ; usage: (0, 1) 
+
+Task::dump1:6    SendTask:             dagidx: 19, sendto: 3 
+
+Task::dump1:6    ComputeTask: 
+            Compute: dstidx 30; srclist: 14 27 ; coefs: 143 142 ; usage: (0, 1) 
+            Compute: dstidx 11; srclist: 14 27 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump1:6    SendTask:             dagidx: 30, sendto: 3 
+            dagidx: 11, sendto: 4 
+
+Task::dump1:7    RecvTask: dagidx: 4 
+Task::dump1:7    RecvTask: dagidx: 6 
+Task::dump1:7    RecvTask: dagidx: 5 
+Task::dump1:7    RecvTask: dagidx: 7 
+Task::dump1:7    PersistTask: Clay-424-7-1, collect: 4 5 6 7 
+
+Task::dump1:6    RecvTask: dagidx: 3 
+Task::dump1:6    RecvTask: dagidx: 1 
+Task::dump1:6    RecvTask: dagidx: 2 
+Task::dump1:6    RecvTask: dagidx: 0 
+Task::dump1:6    PersistTask: Clay-424-6-0, collect: 0 1 2 3 
+
+Task::dump1:7    RecvTask: dagidx: 12 
+Task::dump1:7    RecvTask: dagidx: 13 
+Task::dump1:7    RecvTask: dagidx: 14 
+Task::dump1:7    RecvTask: dagidx: 15 
+Task::dump1:7    PersistTask: Clay-424-7-3, collect: 12 13 14 15 
+
+Task::dump1:6    RecvTask: dagidx: 11 
+Task::dump1:6    RecvTask: dagidx: 10 
+Task::dump1:6    RecvTask: dagidx: 9 
+Task::dump1:6    RecvTask: dagidx: 8 
+Task::dump1:6    PersistTask: Clay-424-6-2, collect: 8 9 10 11 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.475
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 2.605
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 39.812
+RepairBatch::genRepairTasks.time5-time6.clean: 0.11
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 8 11 4 10 7 5 9 6 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 1, nodeid: 3, dagidxlist: 4 (1, 0) 7 (1, 0) 5 (1, 0) 6 (1, 0) 
+    blk: 2, nodeid: 2, dagidxlist: 8 (0, 1) 11 (0, 1) 10 (0, 1) 9 (0, 1) 
+SEND: 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 8, sendto: 3 
+        dagidx: 11, sendto: 3 
+        dagidx: 10, sendto: 3 
+        dagidx: 9, sendto: 3 
+RECV: 
+recvin: 3, dagidxlist: 8 11 10 9 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 11 14 13 8 9 15 10 12 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 3, nodeid: 3, dagidxlist: 14 (1, 0) 13 (1, 0) 15 (1, 0) 12 (1, 0) 
+    blk: 2, nodeid: 2, dagidxlist: 11 (0, 1) 8 (1, 0) 9 (0, 1) 10 (1, 0) 
+SEND: 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 11, sendto: 3 
+        dagidx: 9, sendto: 3 
+RECV: 
+recvin: 3, dagidxlist: 11 9 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.576
+Task::dump2:2    ReadTask: blockname: Clay-424-2-1, dagidxlist: 4 (1, 0) 5 (1, 0) 6 (1, 0) 7 (1, 0) 
+Task::dump2:2    RecvTask: dagidx: 8 11 10 9 
+Task::dump2:2    ComputeTask: 
+            Compute: dstidx 30; srclist: 6 10 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 18; srclist: 6 10 ; coefs: 1 1 ; usage: (1, 0) 
+
+Task::dump2:2    ComputeTask: 
+            Compute: dstidx 20; srclist: 4 18 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 27; srclist: 11 30 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 14; srclist: 11 30 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 2; srclist: 4 18 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump2:2    SendTask:             dagidx: 14, sendto: 4 
+            dagidx: 2, sendto: 5 
+
+Task::dump2:2    ComputeTask: 
+            Compute: dstidx 0; srclist: 20 8 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 28; srclist: 20 8 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 15; srclist: 7 27 ; coefs: 3 1 ; usage: (0, 1) 
+            Compute: dstidx 19; srclist: 7 27 ; coefs: 1 1 ; usage: (1, 0) 
+
+Task::dump2:2    SendTask:             dagidx: 0, sendto: 5 
+            dagidx: 15, sendto: 4 
+
+Task::dump2:2    ComputeTask: 
+            Compute: dstidx 21; srclist: 5 19 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 25; srclist: 9 28 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 12; srclist: 9 28 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 3; srclist: 5 19 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump2:2    SendTask:             dagidx: 12, sendto: 4 
+            dagidx: 3, sendto: 5 
+
+Task::dump2:2    ComputeTask: 
+            Compute: dstidx 1; srclist: 21 25 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 13; srclist: 21 25 ; coefs: 3 1 ; usage: (0, 1) 
+
+Task::dump2:2    SendTask:             dagidx: 1, sendto: 5 
+            dagidx: 13, sendto: 4 
+
+Task::dump2:1    ReadTask: blockname: Clay-424-1-3, dagidxlist: 12 (1, 0) 13 (1, 0) 14 (1, 0) 15 (1, 0) 
+Task::dump2:1    RecvTask: dagidx: 11 9 
+Task::dump2:1    ComputeTask: 
+            Compute: dstidx 30; srclist: 14 11 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 28; srclist: 12 9 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 25; srclist: 12 9 ; coefs: 1 2 ; usage: (1, 0) 
+            Compute: dstidx 27; srclist: 14 11 ; coefs: 1 2 ; usage: (1, 0) 
+
+Task::dump2:1    SendTask:             dagidx: 30, sendto: 2 
+            dagidx: 28, sendto: 2 
+
+Task::dump2:1    ComputeTask: 
+            Compute: dstidx 1; srclist: 25 13 ; coefs: 245 244 ; usage: (0, 1) 
+            Compute: dstidx 21; srclist: 25 13 ; coefs: 244 244 ; usage: (1, 0) 
+            Compute: dstidx 7; srclist: 27 15 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 19; srclist: 27 15 ; coefs: 245 244 ; usage: (1, 0) 
+
+Task::dump2:1    SendTask:             dagidx: 1, sendto: 5 
+            dagidx: 7, sendto: 4 
+
+Task::dump2:1    ComputeTask: 
+            Compute: dstidx 3; srclist: 21 19 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 5; srclist: 21 19 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump2:1    SendTask:             dagidx: 3, sendto: 5 
+            dagidx: 5, sendto: 4 
+
+Task::dump2:2    ReadTask: blockname: Clay-424-2-2, dagidxlist: 8 (0, 1) 9 (0, 1) 10 (0, 1) 11 (0, 1) 
+Task::dump2:2    SendTask:             dagidx: 8, sendto: 3 
+            dagidx: 11, sendto: 3 
+            dagidx: 10, sendto: 3 
+            dagidx: 9, sendto: 3 
+
+Task::dump2:1    ReadTask: blockname: Clay-424-1-2, dagidxlist: 8 (1, 0) 9 (0, 1) 10 (1, 0) 11 (0, 1) 
+Task::dump2:1    SendTask:             dagidx: 11, sendto: 3 
+            dagidx: 9, sendto: 3 
+
+Task::dump2:1    RecvTask: dagidx: 30 28 
+Task::dump2:1    ComputeTask: 
+            Compute: dstidx 20; srclist: 8 28 ; coefs: 244 244 ; usage: (1, 0) 
+            Compute: dstidx 0; srclist: 8 28 ; coefs: 245 244 ; usage: (0, 1) 
+            Compute: dstidx 18; srclist: 10 30 ; coefs: 245 244 ; usage: (1, 0) 
+            Compute: dstidx 6; srclist: 10 30 ; coefs: 244 244 ; usage: (0, 1) 
+
+Task::dump2:1    SendTask:             dagidx: 0, sendto: 5 
+            dagidx: 6, sendto: 4 
+
+Task::dump2:1    ComputeTask: 
+            Compute: dstidx 2; srclist: 20 18 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 4; srclist: 20 18 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump2:1    SendTask:             dagidx: 2, sendto: 5 
+            dagidx: 4, sendto: 4 
+
+Task::dump2:2    RecvTask: dagidx: 2 
+Task::dump2:2    RecvTask: dagidx: 0 
+Task::dump2:2    RecvTask: dagidx: 3 
+Task::dump2:2    RecvTask: dagidx: 1 
+Task::dump2:2    PersistTask: Clay-424-2-0, collect: 0 1 2 3 
+
+Task::dump2:1    RecvTask: dagidx: 1 0 
+Task::dump2:1    RecvTask: dagidx: 3 2 
+Task::dump2:1    PersistTask: Clay-424-1-0, collect: 0 1 2 3 
+
+Task::dump2:2    RecvTask: dagidx: 14 
+Task::dump2:2    RecvTask: dagidx: 15 
+Task::dump2:2    RecvTask: dagidx: 12 
+Task::dump2:2    RecvTask: dagidx: 13 
+Task::dump2:2    PersistTask: Clay-424-2-3, collect: 12 13 14 15 
+
+Task::dump2:1    RecvTask: dagidx: 7 6 
+Task::dump2:1    RecvTask: dagidx: 5 4 
+Task::dump2:1    PersistTask: Clay-424-1-1, collect: 4 5 6 7 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.415
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 2.88
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 46.231
+RepairBatch::genRepairTasks.time5-time6.clean: 0.091
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 1 3 0 5 2 4 7 6 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 1, nodeid: 2, dagidxlist: 5 (1, 0) 4 (0, 1) 7 (1, 0) 6 (0, 1) 
+    blk: 0, nodeid: 3, dagidxlist: 1 (1, 0) 3 (0, 1) 0 (1, 0) 2 (1, 0) 
+SEND: 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 4, sendto: 3 
+        dagidx: 6, sendto: 3 
+    sendfrom: 3, dagidxlist: 
+        dagidx: 3, sendto: 2 
+RECV: 
+recvin: 3, dagidxlist: 4 6 
+recvin: 2, dagidxlist: 3 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 11 14 13 8 9 15 10 12 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 3, nodeid: 3, dagidxlist: 14 (1, 0) 13 (1, 0) 15 (1, 0) 12 (1, 0) 
+    blk: 2, nodeid: 2, dagidxlist: 11 (0, 1) 8 (1, 0) 9 (0, 1) 10 (1, 0) 
+SEND: 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 11, sendto: 3 
+        dagidx: 9, sendto: 3 
+RECV: 
+recvin: 3, dagidxlist: 11 9 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.541
+Task::dump3:3    ReadTask: blockname: Clay-424-3-1, dagidxlist: 4 (0, 1) 5 (1, 0) 6 (0, 1) 7 (1, 0) 
+Task::dump3:3    SendTask:             dagidx: 4, sendto: 3 
+            dagidx: 6, sendto: 3 
+
+Task::dump3:3    RecvTask: dagidx: 3 
+Task::dump3:3    ComputeTask: 
+            Compute: dstidx 19; srclist: 5 3 ; coefs: 1 2 ; usage: (1, 0) 
+            Compute: dstidx 21; srclist: 5 3 ; coefs: 1 1 ; usage: (0, 1) 
+
+Task::dump3:3    SendTask:             dagidx: 21, sendto: 3 
+
+Task::dump3:3    ComputeTask: 
+            Compute: dstidx 27; srclist: 19 7 ; coefs: 1 1 ; usage: (1, 0) 
+            Compute: dstidx 15; srclist: 19 7 ; coefs: 1 2 ; usage: (0, 1) 
+
+Task::dump3:3    SendTask:             dagidx: 15, sendto: 5 
+
+Task::dump3:3    RecvTask: dagidx: 30 
+Task::dump3:3    ComputeTask: 
+            Compute: dstidx 11; srclist: 30 27 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 14; srclist: 30 27 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump3:3    SendTask:             dagidx: 11, sendto: 4 
+            dagidx: 14, sendto: 5 
+
+Task::dump3:9    ReadTask: blockname: Clay-424-9-2, dagidxlist: 8 (1, 0) 9 (0, 1) 10 (1, 0) 11 (0, 1) 
+Task::dump3:9    SendTask:             dagidx: 11, sendto: 3 
+            dagidx: 9, sendto: 3 
+
+Task::dump3:9    RecvTask: dagidx: 30 28 
+Task::dump3:9    ComputeTask: 
+            Compute: dstidx 20; srclist: 8 28 ; coefs: 244 244 ; usage: (1, 0) 
+            Compute: dstidx 0; srclist: 8 28 ; coefs: 245 244 ; usage: (0, 1) 
+            Compute: dstidx 18; srclist: 10 30 ; coefs: 245 244 ; usage: (1, 0) 
+            Compute: dstidx 6; srclist: 10 30 ; coefs: 244 244 ; usage: (0, 1) 
+
+Task::dump3:9    SendTask:             dagidx: 0, sendto: 5 
+            dagidx: 6, sendto: 4 
+
+Task::dump3:9    ComputeTask: 
+            Compute: dstidx 2; srclist: 20 18 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 4; srclist: 20 18 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump3:9    SendTask:             dagidx: 2, sendto: 5 
+            dagidx: 4, sendto: 4 
+
+Task::dump3:3    ReadTask: blockname: Clay-424-3-0, dagidxlist: 0 (1, 0) 1 (1, 0) 2 (1, 0) 3 (0, 1) 
+Task::dump3:3    SendTask:             dagidx: 3, sendto: 2 
+
+Task::dump3:3    RecvTask: dagidx: 4 6 
+Task::dump3:3    ComputeTask: 
+            Compute: dstidx 18; srclist: 4 2 ; coefs: 1 2 ; usage: (1, 0) 
+            Compute: dstidx 20; srclist: 4 2 ; coefs: 1 1 ; usage: (1, 0) 
+
+Task::dump3:3    RecvTask: dagidx: 21 
+Task::dump3:3    ComputeTask: 
+            Compute: dstidx 25; srclist: 1 21 ; coefs: 1 1 ; usage: (1, 0) 
+            Compute: dstidx 30; srclist: 18 6 ; coefs: 1 2 ; usage: (0, 1) 
+            Compute: dstidx 8; srclist: 0 20 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 28; srclist: 0 20 ; coefs: 1 2 ; usage: (1, 0) 
+            Compute: dstidx 10; srclist: 18 6 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 13; srclist: 1 21 ; coefs: 1 2 ; usage: (0, 1) 
+
+Task::dump3:3    SendTask:             dagidx: 30, sendto: 2 
+            dagidx: 8, sendto: 4 
+            dagidx: 10, sendto: 4 
+            dagidx: 13, sendto: 5 
+
+Task::dump3:3    ComputeTask: 
+            Compute: dstidx 9; srclist: 28 25 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 12; srclist: 28 25 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump3:3    SendTask:             dagidx: 9, sendto: 4 
+            dagidx: 12, sendto: 5 
+
+Task::dump3:9    ReadTask: blockname: Clay-424-9-3, dagidxlist: 12 (1, 0) 13 (1, 0) 14 (1, 0) 15 (1, 0) 
+Task::dump3:9    RecvTask: dagidx: 11 9 
+Task::dump3:9    ComputeTask: 
+            Compute: dstidx 30; srclist: 14 11 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 28; srclist: 12 9 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 25; srclist: 12 9 ; coefs: 1 2 ; usage: (1, 0) 
+            Compute: dstidx 27; srclist: 14 11 ; coefs: 1 2 ; usage: (1, 0) 
+
+Task::dump3:9    SendTask:             dagidx: 30, sendto: 2 
+            dagidx: 28, sendto: 2 
+
+Task::dump3:9    ComputeTask: 
+            Compute: dstidx 1; srclist: 25 13 ; coefs: 245 244 ; usage: (0, 1) 
+            Compute: dstidx 21; srclist: 25 13 ; coefs: 244 244 ; usage: (1, 0) 
+            Compute: dstidx 7; srclist: 27 15 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 19; srclist: 27 15 ; coefs: 245 244 ; usage: (1, 0) 
+
+Task::dump3:9    SendTask:             dagidx: 1, sendto: 5 
+            dagidx: 7, sendto: 4 
+
+Task::dump3:9    ComputeTask: 
+            Compute: dstidx 3; srclist: 21 19 ; coefs: 244 244 ; usage: (0, 1) 
+            Compute: dstidx 5; srclist: 21 19 ; coefs: 245 244 ; usage: (0, 1) 
+
+Task::dump3:9    SendTask:             dagidx: 3, sendto: 5 
+            dagidx: 5, sendto: 4 
+
+Task::dump3:3    RecvTask: dagidx: 15 13 
+Task::dump3:3    RecvTask: dagidx: 14 12 
+Task::dump3:3    PersistTask: Clay-424-3-3, collect: 12 13 14 15 
+
+Task::dump3:9    RecvTask: dagidx: 1 0 
+Task::dump3:9    RecvTask: dagidx: 3 2 
+Task::dump3:9    PersistTask: Clay-424-9-0, collect: 0 1 2 3 
+
+Task::dump3:3    RecvTask: dagidx: 8 10 
+Task::dump3:3    RecvTask: dagidx: 11 9 
+Task::dump3:3    PersistTask: Clay-424-3-2, collect: 8 9 10 11 
+
+Task::dump3:9    RecvTask: dagidx: 7 6 
+Task::dump3:9    RecvTask: dagidx: 5 4 
+Task::dump3:9    PersistTask: Clay-424-9-1, collect: 4 5 6 7 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.432
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 2.64
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 44.278
+RepairBatch::genRepairTasks.time5-time6.clean: 0.119
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 3 12 0 13 14 1 2 15 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 3, nodeid: 2, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (0, 1) 15 (0, 1) 
+    blk: 0, nodeid: 3, dagidxlist: 3 (1, 0) 0 (1, 0) 1 (1, 0) 2 (1, 0) 
+SEND: 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 12, sendto: 3 
+        dagidx: 13, sendto: 3 
+        dagidx: 14, sendto: 3 
+        dagidx: 15, sendto: 3 
+RECV: 
+recvin: 3, dagidxlist: 12 13 14 15 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+Stripe::genRepairTasks start
+Stripe::genLevel0 start
+Stripe::genLevel0:realidx: 13 5 14 15 7 4 12 6 
+Stripe::genLevel0:virtidx: 
+READ: 
+    blk: 1, nodeid: 3, dagidxlist: 5 (1, 0) 7 (1, 0) 4 (1, 0) 6 (1, 0) 
+    blk: 3, nodeid: 2, dagidxlist: 13 (0, 1) 14 (0, 1) 15 (0, 1) 12 (0, 1) 
+SEND: 
+    sendfrom: 2, dagidxlist: 
+        dagidx: 13, sendto: 3 
+        dagidx: 14, sendto: 3 
+        dagidx: 15, sendto: 3 
+        dagidx: 12, sendto: 3 
+RECV: 
+recvin: 3, dagidxlist: 13 14 15 12 
+790 HANG
+813 HANG
+827 HANG
+READ VIRT:
+Stripe::genLevel0 end
+Stripe::genLastLevel start
+Stripe::genLastLevel end
+Stripe::genRepairTasks end
+RepairBatch::genRepairTasks.time1-time2.sort task time: 0.576
+Task::dump4:4    ReadTask: blockname: Clay-424-4-3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (0, 1) 15 (0, 1) 
+Task::dump4:4    SendTask:             dagidx: 12, sendto: 3 
+            dagidx: 13, sendto: 3 
+            dagidx: 14, sendto: 3 
+            dagidx: 15, sendto: 3 
+
+Task::dump4:0    ReadTask: blockname: Clay-424-0-3, dagidxlist: 12 (0, 1) 13 (0, 1) 14 (0, 1) 15 (0, 1) 
+Task::dump4:0    SendTask:             dagidx: 13, sendto: 3 
+            dagidx: 14, sendto: 3 
+            dagidx: 15, sendto: 3 
+            dagidx: 12, sendto: 3 
+
+Task::dump4:4    ReadTask: blockname: Clay-424-4-0, dagidxlist: 0 (1, 0) 1 (1, 0) 2 (1, 0) 3 (1, 0) 
+Task::dump4:4    RecvTask: dagidx: 12 13 14 15 
+Task::dump4:4    ComputeTask: 
+            Compute: dstidx 25; srclist: 1 13 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 21; srclist: 1 13 ; coefs: 142 142 ; usage: (1, 0) 
+
+Task::dump4:4    ComputeTask: 
+            Compute: dstidx 19; srclist: 3 21 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 28; srclist: 12 25 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 9; srclist: 12 25 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 5; srclist: 3 21 ; coefs: 1 1 ; usage: (0, 1) 
+
+Task::dump4:4    SendTask:             dagidx: 9, sendto: 5 
+            dagidx: 5, sendto: 4 
+
+Task::dump4:4    ComputeTask: 
+            Compute: dstidx 20; srclist: 0 28 ; coefs: 142 142 ; usage: (1, 0) 
+            Compute: dstidx 8; srclist: 0 28 ; coefs: 143 142 ; usage: (0, 1) 
+            Compute: dstidx 27; srclist: 19 15 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 7; srclist: 19 15 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump4:4    SendTask:             dagidx: 8, sendto: 5 
+            dagidx: 7, sendto: 4 
+
+Task::dump4:4    ComputeTask: 
+            Compute: dstidx 18; srclist: 2 20 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 11; srclist: 14 27 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 4; srclist: 2 20 ; coefs: 1 1 ; usage: (0, 1) 
+            Compute: dstidx 30; srclist: 14 27 ; coefs: 143 142 ; usage: (1, 0) 
+
+Task::dump4:4    SendTask:             dagidx: 11, sendto: 5 
+            dagidx: 4, sendto: 4 
+
+Task::dump4:4    ComputeTask: 
+            Compute: dstidx 10; srclist: 18 30 ; coefs: 143 142 ; usage: (0, 1) 
+            Compute: dstidx 6; srclist: 18 30 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump4:4    SendTask:             dagidx: 10, sendto: 5 
+            dagidx: 6, sendto: 4 
+
+Task::dump4:0    ReadTask: blockname: Clay-424-0-1, dagidxlist: 4 (1, 0) 5 (1, 0) 6 (1, 0) 7 (1, 0) 
+Task::dump4:0    RecvTask: dagidx: 13 14 15 12 
+Task::dump4:0    ComputeTask: 
+            Compute: dstidx 27; srclist: 7 15 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 19; srclist: 7 15 ; coefs: 2 1 ; usage: (1, 0) 
+
+Task::dump4:0    ComputeTask: 
+            Compute: dstidx 30; srclist: 14 27 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 21; srclist: 5 19 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 11; srclist: 14 27 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 3; srclist: 5 19 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump4:0    SendTask:             dagidx: 11, sendto: 5 
+            dagidx: 3, sendto: 4 
+
+Task::dump4:0    ComputeTask: 
+            Compute: dstidx 1; srclist: 21 13 ; coefs: 2 1 ; usage: (0, 1) 
+            Compute: dstidx 25; srclist: 21 13 ; coefs: 3 1 ; usage: (1, 0) 
+            Compute: dstidx 18; srclist: 6 30 ; coefs: 2 1 ; usage: (1, 0) 
+            Compute: dstidx 10; srclist: 6 30 ; coefs: 3 1 ; usage: (0, 1) 
+
+Task::dump4:0    SendTask:             dagidx: 1, sendto: 4 
+            dagidx: 10, sendto: 5 
+
+Task::dump4:0    ComputeTask: 
+            Compute: dstidx 20; srclist: 4 18 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 28; srclist: 12 25 ; coefs: 143 142 ; usage: (1, 0) 
+            Compute: dstidx 2; srclist: 4 18 ; coefs: 142 142 ; usage: (0, 1) 
+            Compute: dstidx 9; srclist: 12 25 ; coefs: 142 142 ; usage: (0, 1) 
+
+Task::dump4:0    SendTask:             dagidx: 2, sendto: 4 
+            dagidx: 9, sendto: 5 
+
+Task::dump4:0    ComputeTask: 
+            Compute: dstidx 8; srclist: 20 28 ; coefs: 3 1 ; usage: (0, 1) 
+            Compute: dstidx 0; srclist: 20 28 ; coefs: 2 1 ; usage: (0, 1) 
+
+Task::dump4:0    SendTask:             dagidx: 8, sendto: 5 
+            dagidx: 0, sendto: 4 
+
+Task::dump4:4    RecvTask: dagidx: 5 
+Task::dump4:4    RecvTask: dagidx: 7 
+Task::dump4:4    RecvTask: dagidx: 4 
+Task::dump4:4    RecvTask: dagidx: 6 
+Task::dump4:4    PersistTask: Clay-424-4-1, collect: 4 5 6 7 
+
+Task::dump4:0    RecvTask: dagidx: 3 
+Task::dump4:0    RecvTask: dagidx: 1 
+Task::dump4:0    RecvTask: dagidx: 2 
+Task::dump4:0    RecvTask: dagidx: 0 
+Task::dump4:0    PersistTask: Clay-424-0-0, collect: 0 1 2 3 
+
+Task::dump4:4    RecvTask: dagidx: 9 
+Task::dump4:4    RecvTask: dagidx: 8 
+Task::dump4:4    RecvTask: dagidx: 11 
+Task::dump4:4    RecvTask: dagidx: 10 
+Task::dump4:4    PersistTask: Clay-424-4-2, collect: 8 9 10 11 
+
+Task::dump4:0    RecvTask: dagidx: 11 
+Task::dump4:0    RecvTask: dagidx: 10 
+Task::dump4:0    RecvTask: dagidx: 9 
+Task::dump4:0    RecvTask: dagidx: 8 
+Task::dump4:0    PersistTask: Clay-424-0-2, collect: 8 9 10 11 
+
+RepairBatch::genRepairTasks.time2-time3.generate tasks for nodes: 0.429
+RepairBatch::genRepairTasks.time3-time4.send tasks for nodes: 2.518
+RepairBatch::genRepairTasks.node2internalidx.size = 4
+RepairBatch::genRepairTasks.batchtaskmap.size = 4
+RepairBatch::genRepairTasks.time4-time5.wait finish flag: 48.928
+RepairBatch::genRepairTasks.time5-time6.clean: 0.096
+RepairBatch 0: 
+    stripe 8: 2 1 0 3   newnode=-1
+    stripe 5: 0 3 2 1   newnode=-1
+    stirpe num = 2    load=13    avgload = 6.5
+
+RepairBatch 1: 
+    stripe 7: 2 1 3 0   newnode=-1
+    stripe 6: 1 3 0 2   newnode=-1
+    stirpe num = 2    load=13    avgload = 6.5
+
+RepairBatch 2: 
+    stripe 2: 0 3 2 1   newnode=-1
+    stripe 1: 1 0 2 3   newnode=-1
+    stirpe num = 2    load=14    avgload = 7
+
+RepairBatch 3: 
+    stripe 3: 3 2 1 0   newnode=-1
+    stripe 9: 1 0 2 3   newnode=-1
+    stirpe num = 2    load=13    avgload = 6.5
+
+RepairBatch 4: 
+    stripe 4: 3 0 1 2   newnode=-1
+    stripe 0: 1 3 0 2   newnode=-1
+    stirpe num = 2    load=16    avgload = 8
+
+Coordinator::repair. genbatch  = 81.052
+Coordinator::repair. repairbatch = 243.874

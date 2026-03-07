@@ -303,17 +303,23 @@ void OfflineSolution::genOfflineColoringForMultipleFailure(
     int num_agents, string scenario) {
   LOG << "OfflineSolution::genOfflineColoringForMultipleFailure start" << endl;
   // cout << "OfflineSolution::genOfflineColoringForMultipleFailure start" <<
-  // endl; LOG << "fail_node_id:"<<fail_node_id<<endl;
+  //endl; 
+  LOG << "fail_node_ids:";
+  for (int i = 0; i < fail_node_ids.size(); i++) {
+    LOG << fail_node_ids[i] << " ";
+  }
+  LOG << endl;
+
   //  map a sub-packet idx to a real physical node id
 
   ECDAG *ecdag = stripe->getECDAG();
   vector<int> curplacement = stripe->getPlacement();
 
-  // cout<<"curplacement:";
-  // for(int i=0;i<curplacement.size();i++){
-  //     cout<<curplacement[i]<<" ";
-  // }
-  // cout<<endl;
+  cout<<"curplacement:";  //0 3 1 2
+  for(int i=0;i<curplacement.size();i++){
+      cout<<curplacement[i]<<" ";
+  }
+  cout<<endl;
 
   int ecn = _ec->_n;
   int eck = _ec->_k;
@@ -327,7 +333,7 @@ void OfflineSolution::genOfflineColoringForMultipleFailure(
     }
   }
 
-  cout << "fail_block_idx:";
+  cout << "fail_block_idx:";  // 0 2
   for (int i = 0; i < fail_block_idx.size(); i++) {
     cout << fail_block_idx[i] << " ";
   }
@@ -416,7 +422,7 @@ void OfflineSolution::genOfflineColoringForMultipleFailure(
   int fail_block_idx_int = 0;
 
   for (int i = 0; i < fail_block_idx.size(); i++) {
-    fail_block_idx_int += pow(2, fail_block_idx[i]);
+    fail_block_idx_int += pow(2, curplacement[fail_block_idx[i]]);   // 0 and 2
   }
   cout << fail_block_idx_int << endl;
 
