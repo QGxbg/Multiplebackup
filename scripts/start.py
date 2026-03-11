@@ -127,3 +127,11 @@ for slave in slavelist:
 
     command="ssh "+slave+" \"cd "+proj_dir+"; ./ParaAgent &> "+proj_dir+"/agent_output &\""
     os.system(command)
+    
+    os.system("sleep 1")
+    check_cmd = "ssh " + slave + " \"ps aux | grep '[P]araAgent'\""
+    res = subprocess.Popen(['/bin/bash', '-c', check_cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    out, err = res.communicate()
+    if not out.strip():
+        print("ParaAgent failed to start on " + slave + ", restarting...")
+        os.system(command)

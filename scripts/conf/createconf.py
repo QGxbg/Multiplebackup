@@ -9,16 +9,17 @@
 #       7. eck [2]
 #       8. ecw [4]
 #       9. batch [3]
+#       10. batch_method [0]
 
 import os
 import sys
 import subprocess
 system = "Multiple_ParaRC"
 def usage():
-    print("python createconf.py cluster[lab] block_source[standalone|hdfs]")
+    print("python createconf.py cluster[lab] block_source[standalone|hdfs] blockMiB pktKB code ecn eck ecw batch batch_method")
 
 
-if len(sys.argv) < 10:
+if len(sys.argv) < 11:
     usage()
     exit()
 
@@ -31,6 +32,7 @@ ECN=int(sys.argv[6])
 ECK=int(sys.argv[7])
 ECW=int(sys.argv[8])
 BATCHSIZE=int(sys.argv[9])
+BATCHMETHOD=int(sys.argv[10])
 
 RECVGROUP=10
 SENDGROUP=10
@@ -160,6 +162,9 @@ for node in clusternodes:
     content.append(line)
 
     line="<attribute><name>batch.size</name><value>"+str(BATCHSIZE)+"</value></attribute>\n"
+    content.append(line)
+
+    line="<attribute><name>batch.method</name><value>"+str(BATCHMETHOD)+"</value></attribute>\n"
     content.append(line)
 
     line="<attribute><name>recvgroup.size</name><value>"+str(RECVGROUP)+"</value></attribute>\n"

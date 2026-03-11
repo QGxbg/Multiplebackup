@@ -11,7 +11,7 @@ CentSolution::CentSolution(int batchsize, int standbysize, int agentsnum) {
 
 void CentSolution::genRepairBatches(int num_failures,
                                     vector<int> fail_node_list, int num_agents,
-                                    string scenario, bool enqueue) {
+                                    string scenario, bool enqueue, int batch_method) {
   // We assume that the replacement node ids are the same with the failed ids
   // cout << "CentSolution::genRepairBatches" << endl;
 

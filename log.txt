@@ -2227,3 +2227,10 @@ RepairBatch 4:
 
 Coordinator::repair. genbatch  = 81.052
 Coordinator::repair. repairbatch = 243.874
+Worker::readInstructions 
+Worker::readInstructions 
+Worker::raedInstructions.batchid: 0, stripenum: 1
+    stripeid: 0, tasknum: 9
+Worker::recvBatchTasks batchid: 0, stripenum: 1
+Worker::readInstructions 
+Worker::readInstructions 

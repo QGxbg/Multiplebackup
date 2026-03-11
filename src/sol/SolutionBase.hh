@@ -59,7 +59,7 @@ class SolutionBase {
         // if scenario == standby, we only store repaired blocks in replacement nodes with id in fail_node_list
         // if scenario == scatter, we can store a block in any node
         // if enqueue == true, please add RepairBatch* into _batch_queue when _batch_request is set true
-        virtual void genRepairBatches(int num_failures, vector<int> fail_node_list, int num_agents, string scenario, bool enqueue) = 0;
+        virtual void genRepairBatches(int num_failures, vector<int> fail_node_list, int num_agents, string scenario, bool enqueue, int batch_method) = 0;
     
     };
 

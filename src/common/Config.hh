@@ -7,52 +7,52 @@
 using namespace tinyxml2;
 
 class Config {
-  public:
-    Config(std::string& filePath);
-    ~Config();
- 
-    //ip
-    unsigned int _localIp;
-    std::vector<unsigned int> _agentsIPs;
-    std::vector<unsigned int> _repairIPs;
-    std::unordered_map<unsigned int, int> _ip2agentid;
-    unsigned int _coorIp;
+public:
+  int _batchmethod;
+  Config(std::string &filePath);
+  ~Config();
 
-    // size
-    int _blkBytes;
-    int _pktBytes;
+  // ip
+  unsigned int _localIp;
+  std::vector<unsigned int> _agentsIPs;
+  std::vector<unsigned int> _repairIPs;
+  std::unordered_map<unsigned int, int> _ip2agentid;
+  unsigned int _coorIp;
 
-    int _sendGroupSize;
-    int _recvGroupSize;
-    int _computeGroupSize;
+  // size
+  int _blkBytes;
+  int _pktBytes;
 
-    // code
-    std::string _codeName;
-    int _ecn;
-    int _eck;
-    int _ecw;
+  int _sendGroupSize;
+  int _recvGroupSize;
+  int _computeGroupSize;
 
-    // batch size, only for centralize and offline
-    int _batch_size;
-    int _standby_size;
-    int _agents_num;
-    
-    //worker thread num
-    int _agWorkerThreadNum;
+  // code
+  std::string _codeName;
+  int _ecn;
+  int _eck;
+  int _ecw;
 
-    //coor thread num
-    int _coorThreadNum;
+  // batch size, only for centralize and offline
+  int _batch_size;
+  int _standby_size;
+  int _agents_num;
 
-    //cmddistributor thread num
-    int _distThreadNum;
+  // worker thread num
+  int _agWorkerThreadNum;
 
-    //path
-    std::string _blkDir;
-    std::string _ssDir;
-    std::string _tpDir;
-    
-    // network bandwidth
-    int _netbdwt;
+  // coor thread num
+  int _coorThreadNum;
 
+  // cmddistributor thread num
+  int _distThreadNum;
+
+  // path
+  std::string _blkDir;
+  std::string _ssDir;
+  std::string _tpDir;
+
+  // network bandwidth
+  int _netbdwt;
 };
 #endif

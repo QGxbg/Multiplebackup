@@ -16,14 +16,14 @@
 <attribute><name>code.ecn</name><value>4</value></attribute>
 <attribute><name>code.eck</name><value>2</value></attribute>
 <attribute><name>code.ecw</name><value>4</value></attribute>
-<attribute><name>batch.size</name><value>2</value></attribute>
+<attribute><name>batch.size</name><value>1</value></attribute>
 <attribute><name>recvgroup.size</name><value>10</value></attribute>
 <attribute><name>sendgroup.size</name><value>10</value></attribute>
 <attribute><name>computegroup.size</name><value>10</value></attribute>
 <attribute><name>controller.thread.num</name><value>4</value></attribute>
 <attribute><name>agent.thread.num</name><value>4</value></attribute>
 <attribute><name>cmddist.thread.num</name><value>4</value></attribute>
-<attribute><name>local.addr</name><value>192.168.233.102</value></attribute>
+<attribute><name>local.addr</name><value>192.168.233.104</value></attribute>
 <attribute><name>block.directory</name><value>/home/lx/Multiple_ParaRC/blkDir</value></attribute>
 <attribute><name>stripestore.directory</name><value>/home/lx/Multiple_ParaRC/stripeStore</value></attribute>
 <attribute><name>tradeoffpoint.directory</name><value>/home/lx/Multiple_ParaRC/offline</value></attribute>

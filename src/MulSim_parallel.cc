@@ -110,7 +110,7 @@ int main(int argc, char** argv) {
     gettimeofday(&time1,NULL);
     // 2. create a thread to generate repair batches
     //sol ->_method = method;
-    sol->genRepairBatches(failnodeid_size, failnodeids, num_agents, scenario, true);
+    sol->genRepairBatches(failnodeid_size, failnodeids, num_agents, scenario, true, method);
     
     gettimeofday(&time2,NULL);
     

@@ -28,6 +28,7 @@ class ParallelSolution : public SolutionBase {
         void genRepairBatchesForMultipleFailureNew(vector<int> fail_node_ids, int num_agents, string scenario,int method);
         void genRepairBatchesForMultipleFailureNewTest(vector<int> fail_node_ids, int num_agents, string scenario,int method);
         void genRepairBatchesForMultipleFailureNewFire(vector<int> fail_node_ids, int num_agents, string scenario,int method);
+        void genRepairBatchesForMultipleFailureRandom(vector<int> fail_node_ids, int num_agents, string scenario,int method);
         
         //void genOfflineColoringForSingleFailure(Stripe* stripe, unordered_map<int, int>& res, int fail_node_id, int num_agents, string scenario);
         //void genCentralizedColoringForSingleFailure(Stripe* stripe, unordered_map<int, int>& res, int fail_node_id, int num_agents, string scenario);
@@ -131,7 +132,7 @@ class ParallelSolution : public SolutionBase {
         ParallelSolution();
         ParallelSolution(int batchsize, int standbysize, int agentsnum ,int method);
         void ParallelSolution_standby(int batchsize, int standbysize, int agentsnum);
-        void genRepairBatches(int num_failures, vector<int> fail_node_list, int num_agents, string scenario, bool enqueue);
+        void genRepairBatches(int num_failures, vector<int> fail_node_list, int num_agents, string scenario, bool enqueue, int batch_method);
         //void dumpPlacement_improve(vector<RepairBatch*> batch_list);
 
         

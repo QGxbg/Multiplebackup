@@ -86,7 +86,7 @@ int main(int argc, char** argv) {
     sol->init(stripelist, ec, code, conf);
 
     // 2. create a thread to generate repair batches
-    thread genthread = thread([=]{sol->genRepairBatches(1, {fnid}, num_agents, scenario, true);});
+    thread genthread = thread([=]{sol->genRepairBatches(1, {fnid}, num_agents, scenario, true, 0);});
 
     // 3. get repair batches
     int overall_load = 0;

@@ -13,7 +13,7 @@ OfflineSolution::OfflineSolution(int batchsize, int standbysize,
 void OfflineSolution::genRepairBatches(int num_failures,
                                        vector<int> fail_node_list,
                                        int num_agents, string scenario,
-                                       bool enqueue) {
+                                       bool enqueue, int batch_method) {
   // We assume that the replacement node ids are the same with the failed ids
   // cout << "OfflineSolution::genRepairBatches" << endl;
 

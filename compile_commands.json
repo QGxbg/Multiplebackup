@@ -1,1 +1,292 @@
-build/compile_commands.json
+[
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/Sim_centralize.dir/Sim_centralize.cc.o -c /home/lx/Multiple_ParaRC/src/Sim_centralize.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/Sim_centralize.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/Sim_offline.dir/Sim_offline.cc.o -c /home/lx/Multiple_ParaRC/src/Sim_offline.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/Sim_offline.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/Sim_parallel.dir/Sim_parallel.cc.o -c /home/lx/Multiple_ParaRC/src/Sim_parallel.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/Sim_parallel.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/Sim_multiple.dir/Sim_multiple.cc.o -c /home/lx/Multiple_ParaRC/src/Sim_multiple.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/Sim_multiple.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/MulSim_centralize.dir/MulSim_centralize.cc.o -c /home/lx/Multiple_ParaRC/src/MulSim_centralize.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/MulSim_centralize.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/MulSim_offline.dir/MulSim_offline.cc.o -c /home/lx/Multiple_ParaRC/src/MulSim_offline.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/MulSim_offline.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/MulSim_parallel.dir/MulSim_parallel.cc.o -c /home/lx/Multiple_ParaRC/src/MulSim_parallel.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/MulSim_parallel.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ParaCoordinator.dir/ParaCoordinator.cc.o -c /home/lx/Multiple_ParaRC/src/ParaCoordinator.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ParaCoordinator.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ParaAgent.dir/ParaAgent.cc.o -c /home/lx/Multiple_ParaRC/src/ParaAgent.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ParaAgent.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/CodeTest.dir/CodeTest.cc.o -c /home/lx/Multiple_ParaRC/src/CodeTest.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/CodeTest.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/GenData.dir/GenData.cc.o -c /home/lx/Multiple_ParaRC/src/GenData.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/GenData.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/MultipleCoor.dir/MultipleCoor.cc.o -c /home/lx/Multiple_ParaRC/src/MultipleCoor.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/MultipleCoor.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/Multiple_Coloring.dir/Multiple_Coloring.cc.o -c /home/lx/Multiple_ParaRC/src/Multiple_Coloring.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/Multiple_Coloring.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/Multiple_Failure.dir/Multiple_Failure.cc.o -c /home/lx/Multiple_ParaRC/src/Multiple_Failure.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/Multiple_Failure.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/Brute_Force.dir/Brute_Force.cc.o -c /home/lx/Multiple_ParaRC/src/Brute_Force.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/Brute_Force.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/NewBruteForce.dir/NewBruteForce.cc.o -c /home/lx/Multiple_ParaRC/src/NewBruteForce.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/NewBruteForce.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/genMLP.dir/genMLP.cc.o -c /home/lx/Multiple_ParaRC/src/genMLP.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/genMLP.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/NewgenMLP.dir/NewgenMLP.cc.o -c /home/lx/Multiple_ParaRC/src/NewgenMLP.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/NewgenMLP.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/RepairSimulator_new.dir/RepairSimulator_new.cc.o -c /home/lx/Multiple_ParaRC/src/RepairSimulator_new.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/RepairSimulator_new.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/RepairSimulator.dir/RepairSimulator.cc.o -c /home/lx/Multiple_ParaRC/src/RepairSimulator.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/RepairSimulator.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/GenPredictedTrace.dir/GenPredictedTrace.cc.o -c /home/lx/Multiple_ParaRC/src/GenPredictedTrace.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/GenPredictedTrace.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/GenTrace.dir/GenTrace.cc.o -c /home/lx/Multiple_ParaRC/src/GenTrace.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/GenTrace.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/common",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/common.dir/Config.cc.o -c /home/lx/Multiple_ParaRC/src/common/Config.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/common/Config.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/common",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/common.dir/Coordinator.cc.o -c /home/lx/Multiple_ParaRC/src/common/Coordinator.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/common/Coordinator.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/common",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/common.dir/DataPacket.cc.o -c /home/lx/Multiple_ParaRC/src/common/DataPacket.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/common/DataPacket.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/common",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/common.dir/RepairScheduler.cc.o -c /home/lx/Multiple_ParaRC/src/common/RepairScheduler.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/common/RepairScheduler.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/common",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/common.dir/Stripe.cc.o -c /home/lx/Multiple_ParaRC/src/common/Stripe.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/common/Stripe.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/common",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/common.dir/StripeStore.cc.o -c /home/lx/Multiple_ParaRC/src/common/StripeStore.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/common/StripeStore.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/common",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/common.dir/TraceReader.cc.o -c /home/lx/Multiple_ParaRC/src/common/TraceReader.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/common/TraceReader.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/common",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/common.dir/TradeoffPoints.cc.o -c /home/lx/Multiple_ParaRC/src/common/TradeoffPoints.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/common/TradeoffPoints.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/common",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/common.dir/Worker.cc.o -c /home/lx/Multiple_ParaRC/src/common/Worker.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/common/Worker.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/dist",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/dist.dir/PRSolution.cc.o -c /home/lx/Multiple_ParaRC/src/dist/PRSolution.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/dist/PRSolution.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/dist",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/dist.dir/Solution.cc.o -c /home/lx/Multiple_ParaRC/src/dist/Solution.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/dist/Solution.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/ec",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ec.dir/BUTTERFLY.cc.o -c /home/lx/Multiple_ParaRC/src/ec/BUTTERFLY.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ec/BUTTERFLY.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/ec",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ec.dir/Clay.cc.o -c /home/lx/Multiple_ParaRC/src/ec/Clay.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ec/Clay.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/ec",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ec.dir/Computation.cc.o -c /home/lx/Multiple_ParaRC/src/ec/Computation.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ec/Computation.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/ec",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ec.dir/ECBase.cc.o -c /home/lx/Multiple_ParaRC/src/ec/ECBase.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ec/ECBase.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/ec",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ec.dir/ECDAG.cc.o -c /home/lx/Multiple_ParaRC/src/ec/ECDAG.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ec/ECDAG.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/ec",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ec.dir/ECNode.cc.o -c /home/lx/Multiple_ParaRC/src/ec/ECNode.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ec/ECNode.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/ec",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ec.dir/HHXORPlus.cc.o -c /home/lx/Multiple_ParaRC/src/ec/HHXORPlus.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ec/HHXORPlus.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/ec",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ec.dir/NodeBatchTask.cc.o -c /home/lx/Multiple_ParaRC/src/ec/NodeBatchTask.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ec/NodeBatchTask.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/ec",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ec.dir/RDP.cc.o -c /home/lx/Multiple_ParaRC/src/ec/RDP.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ec/RDP.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/ec",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ec.dir/RSCONV.cc.o -c /home/lx/Multiple_ParaRC/src/ec/RSCONV.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ec/RSCONV.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/ec",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ec.dir/RSPIPE.cc.o -c /home/lx/Multiple_ParaRC/src/ec/RSPIPE.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ec/RSPIPE.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/ec",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ec.dir/Task.cc.o -c /home/lx/Multiple_ParaRC/src/ec/Task.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ec/Task.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/ec",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/ec.dir/reed_sol.cc.o -c /home/lx/Multiple_ParaRC/src/ec/reed_sol.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/ec/reed_sol.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/sol",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/sol.dir/CentSolution.cc.o -c /home/lx/Multiple_ParaRC/src/sol/CentSolution.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/sol/CentSolution.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/sol",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/sol.dir/OfflineSolution.cc.o -c /home/lx/Multiple_ParaRC/src/sol/OfflineSolution.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/sol/OfflineSolution.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/sol",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/sol.dir/ParallelSolution.cc.o -c /home/lx/Multiple_ParaRC/src/sol/ParallelSolution.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/sol/ParallelSolution.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/sol",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/sol.dir/RepairBatch.cc.o -c /home/lx/Multiple_ParaRC/src/sol/RepairBatch.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/sol/RepairBatch.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/sol",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/sol.dir/SolutionBase.cc.o -c /home/lx/Multiple_ParaRC/src/sol/SolutionBase.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/sol/SolutionBase.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/protocol",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/protocol.dir/AGCommand.cc.o -c /home/lx/Multiple_ParaRC/src/protocol/AGCommand.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/protocol/AGCommand.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/util",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/util.dir/DistUtil.cc.o -c /home/lx/Multiple_ParaRC/src/util/DistUtil.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/util/DistUtil.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/util",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/util.dir/RedisUtil.cc.o -c /home/lx/Multiple_ParaRC/src/util/RedisUtil.cc",
+  "file": "/home/lx/Multiple_ParaRC/src/util/RedisUtil.cc"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/util",
+  "command": "/usr/bin/cc    -o CMakeFiles/util.dir/galois.c.o -c /home/lx/Multiple_ParaRC/src/util/galois.c",
+  "file": "/home/lx/Multiple_ParaRC/src/util/galois.c"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/util",
+  "command": "/usr/bin/cc    -o CMakeFiles/util.dir/jerasure.c.o -c /home/lx/Multiple_ParaRC/src/util/jerasure.c",
+  "file": "/home/lx/Multiple_ParaRC/src/util/jerasure.c"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/util",
+  "command": "/usr/bin/cc    -o CMakeFiles/util.dir/reed_sol.c.o -c /home/lx/Multiple_ParaRC/src/util/reed_sol.c",
+  "file": "/home/lx/Multiple_ParaRC/src/util/reed_sol.c"
+},
+{
+  "directory": "/home/lx/Multiple_ParaRC/src/util",
+  "command": "/usr/bin/c++    -O3 -mmmx -msse -mpclmul -msse4.2 -DINTEL_SSE4 -std=gnu++11 -o CMakeFiles/util.dir/tinyxml2.cpp.o -c /home/lx/Multiple_ParaRC/src/util/tinyxml2.cpp",
+  "file": "/home/lx/Multiple_ParaRC/src/util/tinyxml2.cpp"
+}
+]

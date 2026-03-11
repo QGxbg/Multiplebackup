@@ -4,6 +4,7 @@
 src/CMakeFiles/Sim_multiple.dir/Sim_multiple.cc.o
  /home/lx/Multiple_ParaRC/src/Sim_multiple.cc
  /usr/include/stdc-predef.h
+ /home/lx/Multiple_ParaRC/src/common/Config.hh
  /home/lx/Multiple_ParaRC/src/inc/include.hh
  /usr/include/c++/11/algorithm
  /usr/include/c++/11/utility
@@ -310,10 +311,6 @@ src/CMakeFiles/Sim_multiple.dir/Sim_multiple.cc.o
  /usr/include/c++/11/bits/locale_facets_nonio.tcc
  /usr/include/c++/11/bits/locale_conv.h
  /home/lx/Multiple_ParaRC/src/util/Logger.hh
- /home/lx/Multiple_ParaRC/src/util/DistUtil.hh
- /home/lx/Multiple_ParaRC/src/inc/include.hh
- /home/lx/Multiple_ParaRC/src/common/Config.hh
- /home/lx/Multiple_ParaRC/src/inc/include.hh
  /home/lx/Multiple_ParaRC/src/util/tinyxml2.h
  /usr/include/c++/11/climits
  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h
@@ -332,8 +329,7 @@ src/CMakeFiles/Sim_multiple.dir/Sim_multiple.cc.o
  /home/lx/Multiple_ParaRC/src/ec/Task.hh
  /home/lx/Multiple_ParaRC/src/util/RedisUtil.hh
  /home/lx/Multiple_ParaRC/src/inc/include.hh
- /home/lx/Multiple_ParaRC/src/ec/ECBase.hh
- /home/lx/Multiple_ParaRC/src/ec/Clay.hh
+ /home/lx/Multiple_ParaRC/src/ec/BUTTERFLY.hh
  /home/lx/Multiple_ParaRC/src/ec/Computation.hh
  /home/lx/Multiple_ParaRC/src/inc/include.hh
  /home/lx/Multiple_ParaRC/src/util/galois.h
@@ -360,18 +356,21 @@ src/CMakeFiles/Sim_multiple.dir/Sim_multiple.cc.o
  /usr/include/isa-l/mem_routines.h
  /usr/include/isa-l/raid.h
  /home/lx/Multiple_ParaRC/src/ec/ECBase.hh
- /home/lx/Multiple_ParaRC/src/util/reed_sol.h
- /home/lx/Multiple_ParaRC/src/ec/RDP.hh
- /home/lx/Multiple_ParaRC/src/ec/HHXORPlus.hh
  /usr/include/c++/11/map
  /usr/include/c++/11/bits/stl_map.h
  /usr/include/c++/11/bits/stl_multimap.h
- /home/lx/Multiple_ParaRC/src/ec/BUTTERFLY.hh
+ /home/lx/Multiple_ParaRC/src/ec/Clay.hh
+ /home/lx/Multiple_ParaRC/src/util/reed_sol.h
+ /home/lx/Multiple_ParaRC/src/ec/ECBase.hh
+ /home/lx/Multiple_ParaRC/src/ec/HHXORPlus.hh
+ /home/lx/Multiple_ParaRC/src/ec/RDP.hh
+ /home/lx/Multiple_ParaRC/src/inc/include.hh
+ /home/lx/Multiple_ParaRC/src/sol/CentSolution.hh
+ /home/lx/Multiple_ParaRC/src/ec/ECBase.hh
  /home/lx/Multiple_ParaRC/src/sol/SolutionBase.hh
  /home/lx/Multiple_ParaRC/src/common/Config.hh
  /home/lx/Multiple_ParaRC/src/common/Stripe.hh
  /home/lx/Multiple_ParaRC/src/inc/include.hh
- /home/lx/Multiple_ParaRC/src/ec/ECBase.hh
  /home/lx/Multiple_ParaRC/src/util/BlockingQueue.hh
  /usr/include/c++/11/condition_variable
  /usr/include/c++/11/bits/shared_ptr.h
@@ -388,13 +387,12 @@ src/CMakeFiles/Sim_multiple.dir/Sim_multiple.cc.o
  /home/lx/Multiple_ParaRC/src/util/RedisUtil.hh
  /home/lx/Multiple_ParaRC/src/protocol/AGCommand.hh
  /home/lx/Multiple_ParaRC/src/util/DistUtil.hh
+ /home/lx/Multiple_ParaRC/src/inc/include.hh
  /home/lx/Multiple_ParaRC/src/sol/OfflineSolution.hh
  /home/lx/Multiple_ParaRC/src/common/TradeoffPoints.hh
  /home/lx/Multiple_ParaRC/src/inc/include.hh
  /home/lx/Multiple_ParaRC/src/util/tinyxml2.h
  /home/lx/Multiple_ParaRC/src/util/DistUtil.hh
- /home/lx/Multiple_ParaRC/src/sol/SolutionBase.hh
- /home/lx/Multiple_ParaRC/src/sol/CentSolution.hh
  /home/lx/Multiple_ParaRC/src/sol/ParallelSolution.hh
  /usr/include/c++/11/unordered_set
  /usr/include/c++/11/bits/unordered_set.h
@@ -404,4 +402,6 @@ src/CMakeFiles/Sim_multiple.dir/Sim_multiple.cc.o
  /usr/include/c++/11/bits/random.tcc
  /usr/include/c++/11/numeric
  /usr/include/c++/11/bits/stl_numeric.h
+ /home/lx/Multiple_ParaRC/src/sol/SolutionBase.hh
+ /home/lx/Multiple_ParaRC/src/util/DistUtil.hh
 

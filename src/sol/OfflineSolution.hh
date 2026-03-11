@@ -24,7 +24,7 @@ class OfflineSolution : public SolutionBase {
         OfflineSolution();
         OfflineSolution(int batchsize, int standbysize, int agentsnum);
 
-        void genRepairBatches(int num_failures, vector<int> fail_node_list, int num_agents, string scenario, bool enqueue);
+        void genRepairBatches(int num_failures, vector<int> fail_node_list, int num_agents, string scenario, bool enqueue, int batch_method);
         void setTradeoffPoints(TradeoffPoints* tp);
 };
 

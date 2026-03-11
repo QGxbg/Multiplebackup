@@ -83,7 +83,7 @@ int main(int argc, char** argv) {
     sol->init(stripelist, ec, code, conf);
 
     // 2. generate repair batches
-    sol->genRepairBatches(1, {fnid}, num_agents, scenario, false);
+    sol->genRepairBatches(1, {fnid}, num_agents, scenario, false, 0);
 
     // 3. get repair batches
     vector<RepairBatch*> repairbatches = sol->getRepairBatches();
