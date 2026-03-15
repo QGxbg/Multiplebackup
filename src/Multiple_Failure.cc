@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
 
   string conf_path = "conf/sysSetting_example.xml";
   Config *conf = new Config(conf_path);
-  int num_agents = ecn + fail_num; //真正的agent_num
+  int num_agents = ecn + fail_num; // 真正的agent_num
   // int num_agents = ecn + standby_size; //standby_size / fail_num 替代了
   vector<int> placement(num_agents);
   for (int i = 0; i < num_agents; i++) {
@@ -104,21 +104,22 @@ int main(int argc, char **argv) {
     cout << "Non-supported code!" << endl;
     return 0;
   }
-  // ParallelSolution* sol = new ParallelSolution(1, standby_size, num_agents
-  // ,method); sol->init({currStripe}, ec, code, conf);
+  ParallelSolution *sol =
+      new ParallelSolution(1, standby_size, num_agents, method);
+  sol->init({currStripe}, ec, code, conf);
 
   // OfflineSolution *sol_offline =
   //     new OfflineSolution(1, standby_size, num_agents);
   // sol_offline->init({currStripe}, ec, code, conf);
 
-  CentSolution *sol_cent = new CentSolution(1, standby_size, num_agents);
-  sol_cent->init({currStripe}, ec, code, conf);
+  // CentSolution *sol_cent = new CentSolution(1, standby_size, num_agents);
+  // sol_cent->init({currStripe}, ec, code, conf);
 
   ECDAG *ecdag = currStripe->genRepairECDAG(ec, failnodeids);
   currStripe->refreshECDAG(ecdag);
-  cout << "ecdag -> dump:" << endl;
-  ecdag->dump();
-  ecdag->dumpTOPO();
+  // cout << "ecdag -> dump:" << endl;
+  // ecdag->dump();
+  // ecdag->dumpTOPO();
 
   cout << "------------------------------" << endl;
   // cout<<"ecdag->dumpTopo"<<endl;
@@ -162,35 +163,36 @@ int main(int argc, char **argv) {
   //   cout << endl;
   // cout<<"sol->_cluster_size:"<<sol->_cluster_size<<endl;
   // sol_offline->_cluster_size = num_agents;
-  sol_cent->_cluster_size = num_agents;
+  // sol_cent->_cluster_size = num_agents;
   //  vector<vector<int>> loadtable = vector<vector<int>> (sol->_cluster_size,
   //  {0,0});
   vector<vector<int>> loadtable =
-      vector<vector<int>>(sol_cent->_cluster_size, {0, 0});
+      vector<vector<int>>(sol->_cluster_size, {0, 0});
 
   unordered_map<int, int> coloring;
   double load = 0;
 
-  // if(fail_num == 1){
-  //     sol ->genColoringForSingleFailure(currStripe, coloring, failnodeids[0],
-  //     num_agents, scenario, placement);
-  // }else{
-  //     //sol->genColoringForMultipleFailureLevel(currStripe, coloring,
-  //     failnodeids, num_agents, scenario, placement,method);
-  //     sol->genColoringForMultipleFailureLevelNew(currStripe,failnodeids,scenario,loadtable,method);
-  //     load = currStripe ->getLoad();
-  //     cout <<"currStripe load :"<<currStripe ->getLoad()<<endl;
-  //     cout <<"currStripe bdwt :"<<currStripe ->getBdwt()<<endl;
-  // }
+  if (fail_num == 1) {
+    sol->genColoringForSingleFailure(currStripe, coloring, failnodeids[0],
+                                     num_agents, scenario, placement);
+  } else {
+    //     //sol->genColoringForMultipleFailureLevel(currStripe, coloring,
+    //     failnodeids, num_agents, scenario, placement,method);
+    sol->genColoringForMultipleFailureLevelNew(currStripe, failnodeids,
+                                               scenario, loadtable, method);
+    load = currStripe->getLoad();
+    cout << "currStripe load :" << currStripe->getLoad() << endl;
+    cout << "currStripe bdwt :" << currStripe->getBdwt() << endl;
+  }
   // sol->genColoringForMultipleFailureLevel(currStripe, coloring, failnodeids,
   // num_agents, "scatter", placement,greedy);
 
   // sol_offline->genOfflineColoringForMultipleFailure(
   //     currStripe, coloring, failnodeids, num_agents, "scatter");
 
-  string offline_solution_path = conf->_tpDir + "/" + code + "_" +
-                                 to_string(ecn) + "_" + to_string(eck) + "_" +
-                                 to_string(ecw) + ".xml";
+  // string offline_solution_path = conf->_tpDir + "/" + code + "_" +
+  //                                to_string(ecn) + "_" + to_string(eck) + "_"
+  //                                + to_string(ecw) + ".xml";
   // cout << offline_solution_path << endl;
   // TradeoffPoints *tp = new TradeoffPoints(offline_solution_path);
   // OfflineSolution* os = (OfflineSolution*)sol;
@@ -200,19 +202,19 @@ int main(int argc, char **argv) {
   //     currStripe, coloring, failnodeids, num_agents, "scatter");
 
   // sol_cent->setTradeoffPoints(tp);
-  sol_cent->genCentralizedColoringForMutipleFailure(
-      currStripe, coloring, failnodeids, num_agents, "scatter");
+  // sol_cent->genCentralizedColoringForMutipleFailure(
+  //     currStripe, coloring, failnodeids, num_agents, "scatter");
 
-  for (auto it : coloring) {
-    LOG << it.first << ":" << it.second << endl;
-  }
+  // for (auto it : coloring) {
+  //   LOG << it.first << ":" << it.second << endl;
+  // }
 
-  currStripe->setColoring(coloring);
+  // currStripe->setColoring(coloring);
   currStripe->evaluateColoring();
 
-  LOG << "after genColoringForMultipleFailureLevel " << endl;
-  currStripe->getECDAG()->dumpTOPO();
-  currStripe->getECDAG()->dump();
+  // LOG << "after genColoringForMultipleFailureLevel " << endl;
+  // currStripe->getECDAG()->dumpTOPO();
+  // currStripe->getECDAG()->dump();
   // currStripe->genRepairTasks(0, ecn, eck, ecw, {});
   gettimeofday(&time3, NULL);
 

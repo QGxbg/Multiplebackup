@@ -19,7 +19,7 @@ import time
 if len(sys.argv) < 9:
     print('''
     # usage:
-    # python gen_simulation_data_multiple.py
+    # python gen_standalone_data_multiple.py
     #   1. cluster [lab]
     #   2. number of stripes [100]
     #   3. code [Clay]
@@ -27,7 +27,8 @@ if len(sys.argv) < 9:
     #   5. eck [2]
     #   6. ecw [4]
     #   7. blkMB [1]
-    #   8. fail node ids [0,1]
+    #   8. must-exist node ids [0,1] (ends with , if avoid nodes follow)
+    #   9. avoid node ids [2]
     ''')
     exit()
 
@@ -38,7 +39,16 @@ ECN=int(sys.argv[4])
 ECK=int(sys.argv[5])
 ECW=int(sys.argv[6])
 BLKMB=int(sys.argv[7])
-FAILIDS=[int(arg) for arg in sys.argv[8:]]
+
+# Handle comma separator for MUST_EXIST and AVOID nodes
+args = sys.argv[8:]
+if ',' in args:
+    split_idx = args.index(',')
+    MUST_EXIST_IDS = [int(arg) for arg in args[:split_idx]]
+    AVOID_IDS = [int(arg) for arg in args[split_idx + 1:] if arg != ',']
+else:
+    MUST_EXIST_IDS = [int(arg) for arg in args]
+    AVOID_IDS = []
 
 BLKBYTES=BLKMB * 1048576
 system = "Multiple_ParaRC"
@@ -61,7 +71,6 @@ clusternodes=[]
 controller=""
 agentnodes=[]
 repairnodes=[]
-failnode=""
 
 # read controller
 f=open(cluster_dir+"/controller","r")
@@ -89,18 +98,11 @@ for line in f:
         repairnodes.append(node)
 f.close()
 
-# failnode=agentnodes[FAILID]
-failnodes = [agentnodes[FAILID] for FAILID in FAILIDS]
+must_exist_locs = [agentnodes[i] for i in MUST_EXIST_IDS]
+avoid_locs = [agentnodes[i] for i in AVOID_IDS]
 
-print("failnode ids: ",failnodes)
-
-# format of metadata file
-# each line includes the placement of a stripe
-# example of a line: stripe-name blk0:loc0 blk1:loc1 blk2:loc2 ...
-# meaning:
-#       stripe-name: the name of a stripe
-#       blki: the name of the i-th block
-#       loci: the ip of the physical nodes that stores the i-th block
+print("Must-exist nodes: ", MUST_EXIST_IDS, " (", must_exist_locs, ")")
+print("Avoid nodes: ", AVOID_IDS, " (", avoid_locs, ")")
 
 # the goal of this script is to generate placement of NSTRIPES stripes
 placement=[]
@@ -109,15 +111,21 @@ for stripeid in range(NSTRIPES):
     stripename = "{}-{}{}{}-{}".format(CODE, ECN, ECK, ECW, stripeid)
 
     blklist=[]
-    loclist=failnodes.copy()
+    loclist=must_exist_locs.copy()
 
-    for blkid in range(ECN-len(failnodes)):
-        tmpid = random.randint(0, len(agentnodes)-1)
-        tmploc = agentnodes[tmpid]
-        while tmploc in loclist:
-            tmpid = random.randint(0, len(agentnodes)-1)
-            tmploc = agentnodes[tmpid]
-        loclist.append(tmploc)
+    # Create a list of candidate agent nodes excluding must-exist and avoid nodes
+    candidates = []
+    for loc in agentnodes:
+        if loc not in loclist and loc not in avoid_locs:
+            candidates.append(loc)
+
+    if len(loclist) + len(candidates) < ECN:
+        print("Error: Not enough candidate nodes to satisfy constraints!")
+        exit(1)
+
+    random.shuffle(candidates)
+    num_to_add = ECN - len(loclist)
+    loclist.extend(candidates[:num_to_add])
 
     random.shuffle(loclist)
     print("stripe",stripeid,"source nodes: ", loclist)
@@ -133,13 +141,13 @@ for stripeid in range(NSTRIPES):
         line += blklist[i] + ":" + loclist[i] + " "
     line += "\n"
     placement.append(line)
-    print(line)
+    # print(line)
     
 
     # ssh to loclist[i] and generate a blklist[i]
     for i in range(len(blklist)):
        cmd = "ssh {} \"mkdir -p {}; dd if=/dev/urandom of={}/{} bs={} count=1 iflag=fullblock\"".format(loclist[i], blk_dir, blk_dir, blklist[i], BLKBYTES)
-       print(cmd)
+       # print(cmd)
        os.system(cmd)
 
 

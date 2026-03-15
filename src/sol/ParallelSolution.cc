@@ -1,5 +1,6 @@
 #include "ParallelSolution.hh"
 #include "OfflineSolution.hh"
+#include <cfloat>
 #include <iostream>
 
 ParallelSolution::ParallelSolution() {}
@@ -74,8 +75,8 @@ void ParallelSolution::genRepairBatches(int num_failures,
       genRepairBatchesForMultipleFailureNew(fail_node_list, num_agents,
                                             scenario, 1); // 0 1
     } else if (batch_method == 1) {
-      genRepairBatchesForMultipleFailureNewFire(fail_node_list, num_agents,
-                                                scenario, 1);
+      genRepairBatchesForMultipleFailureNewFireNew(fail_node_list, num_agents,
+                                                   scenario, 1);
     } else if (batch_method == 2) {
       genRepairBatchesForMultipleFailureRandom(fail_node_list, num_agents,
                                                scenario, 1);
@@ -85,8 +86,8 @@ void ParallelSolution::genRepairBatches(int num_failures,
         genRepairBatchesForMultipleFailureNew(fail_node_list, num_agents,
                                               scenario, 0);
       } else {
-        genRepairBatchesForMultipleFailureNewFire(fail_node_list, num_agents,
-                                                  scenario, 1);
+        genRepairBatchesForMultipleFailureNewFireNew(fail_node_list, num_agents,
+                                                     scenario, 1);
       }
     }
   } else {
@@ -94,8 +95,8 @@ void ParallelSolution::genRepairBatches(int num_failures,
       genRepairBatchesForMultipleFailureNew(fail_node_list, num_agents,
                                             scenario, 1);
     } else if (batch_method == 1) {
-      genRepairBatchesForMultipleFailureNewFire(fail_node_list, num_agents,
-                                                scenario, 1);
+      genRepairBatchesForMultipleFailureNewFireNew(fail_node_list, num_agents,
+                                                   scenario, 1);
     } else if (batch_method == 2) {
       genRepairBatchesForMultipleFailureRandom(fail_node_list, num_agents,
                                                scenario, 1);
@@ -2041,7 +2042,7 @@ void ParallelSolution::genColoringForMultipleFailureLevelNew(
   vector<int> itm_idx = ecdag->genItmIdxs();
   // stripe->dumpPlacement();
 
-  LOG << stripe->_nodelist.size() << endl;
+  // LOG << stripe->_nodelist.size() << endl;
 
   vector<int> candidates;
   // for (int i=0; i < _cluster_size; i++) { //所有可用节点的
@@ -4706,14 +4707,14 @@ void ParallelSolution::genRepairBatchesForMultipleFailureNewTest(
     } else {
       _batch_list.push_back(curbatch);
     }
-    curbatch->dump();
+    // curbatch->dump();
   }
 }
 
 void ParallelSolution::genRepairBatchesForMultipleFailureNewFire(
     vector<int> fail_node_ids, int num_agents, string scenario, int method) {
-  LOG << "ParallelSolution::genRepairBatchesForMultipleFailureNew begin"
-      << endl;
+  // LOG << "ParallelSolution::genRepairBatchesForMultipleFailureNew begin"
+  //     << endl;
 
   // 0. 找出受节点故障影响需要修复的所有条带
   filterFailedStripes(fail_node_ids);
@@ -4910,7 +4911,8 @@ void ParallelSolution::genRepairBatchesForMultipleFailureNewFire(
     }
 
     balanced_batches = best_solution;
-    LOG << "[INFO] SA Finished. Best Makespan found: " << best_energy << endl;
+    // LOG << "[INFO] SA Finished. Best Makespan found: " << best_energy <<
+    // endl;
   }
 
   // =========================================================================
@@ -4995,7 +4997,456 @@ void ParallelSolution::genRepairBatchesForMultipleFailureNewFire(
     } else {
       _batch_list.push_back(curbatch);
     }
-    curbatch->dump();
+    // curbatch->dump();
+  }
+}
+
+// ============================================================
+//  工具函数：计算一个批次当前的瓶颈值（叠加前）
+// ============================================================
+static int
+calcBatchBottleneck(const vector<vector<int>> &batch_load, // [node][0=in,1=out]
+                    int cluster_size) {
+  int bottleneck = 0;
+  for (int v = 0; v < cluster_size; ++v)
+    bottleneck =
+        std::max(bottleneck, std::max(batch_load[v][0], batch_load[v][1]));
+  return bottleneck;
+}
+
+// ============================================================
+//  工具函数：计算条带与批次之间的互补度（余弦相似度）
+//
+//  直觉：批次在某节点的"空余带宽"越大，而该条带在同一节点
+//  的负载越高，说明二者越互补，得分越高。
+//
+//  slack[v]       = max(0, batch_bottleneck - max(batch_in[v], batch_out[v]))
+//  stripe_load[v] = max(stripe_in[v], stripe_out[v])
+//  score          = dot(slack, stripe_load) / (||slack||₂ · ||stripe_load||₂)
+//
+//  返回值 ∈ [0, 1]，越高越互补；边界情况返回 0.0。
+// ============================================================
+static double calcComplementarity(
+    const vector<vector<int>> &batch_load,  // [node][0=in,1=out]
+    const vector<vector<int>> &stripe_load, // [node][0=in,1=out]
+    int cluster_size,
+    int batch_bottleneck) // 叠加前批次已有瓶颈
+{
+  double dot = 0.0;
+  double norm_slack = 0.0;
+  double norm_stripe = 0.0;
+
+  for (int v = 0; v < cluster_size; ++v) {
+    // 批次在节点 v 上距离当前瓶颈的空余带宽
+    int node_peak = std::max(batch_load[v][0], batch_load[v][1]);
+    double slack = std::max(0, batch_bottleneck - node_peak);
+
+    // 条带在节点 v 上的单向最大负载
+    double s_load = std::max(stripe_load[v][0], stripe_load[v][1]);
+
+    dot += slack * s_load;
+    norm_slack += slack * slack;
+    norm_stripe += s_load * s_load;
+  }
+
+  // 任一向量为零向量时（批次已全满载 / 条带空负载），互补度无意义
+  if (norm_slack < 1e-9 || norm_stripe < 1e-9)
+    return 0.0;
+
+  return dot / (std::sqrt(norm_slack) * std::sqrt(norm_stripe));
+}
+
+// ============================================================
+//  改进后的贪心二维装箱：互补感知版本
+//
+//  两阶段决策：
+//    Phase-A  找出叠加后瓶颈最小的所有候选批次
+//    Phase-B  在候选中选互补度最高的批次
+//
+//  相比原始版本的改进：
+//    原始：只看"加进去之后最坏有多差" → 容易把重叠节点堆在一起
+//    改进：同等瓶颈下，优先选"节点负载互补"的批次 → 填谷而非叠峰
+// ============================================================
+void ParallelSolution::greedyBinPackWithComplementarity(
+    const vector<Stripe *> &sorted_stripes,
+    const std::unordered_map<Stripe *, vector<vector<int>>> &stripe_dummy_loads,
+    vector<vector<Stripe *>> &balanced_batches,
+    vector<vector<vector<int>>> &batch_node_loads) {
+  const int num_batches = (int)balanced_batches.size();
+  const int cluster_size = _cluster_size;
+
+  for (Stripe *cur_s : sorted_stripes) {
+
+    const auto &s_load = stripe_dummy_loads.at(cur_s); // [node][0=in,1=out]
+
+    // ── Phase-A：计算各批次叠加后瓶颈，找全局最小值 ──────────
+    int min_bottleneck = INT_MAX;
+
+    // 记录每个批次的模拟瓶颈，供两个阶段共享
+    vector<int> sim_bottleneck(num_batches, INT_MAX);
+
+    for (int b = 0; b < num_batches; ++b) {
+      if ((int)balanced_batches[b].size() >= _batch_size)
+        continue;
+
+      int bn = 0;
+      for (int v = 0; v < cluster_size; ++v) {
+        int sim_in = batch_node_loads[b][v][0] + s_load[v][0];
+        int sim_out = batch_node_loads[b][v][1] + s_load[v][1];
+        bn = std::max(bn, std::max(sim_in, sim_out));
+      }
+      sim_bottleneck[b] = bn;
+      min_bottleneck = std::min(min_bottleneck, bn);
+    }
+
+    // ── Phase-B：在同等瓶颈的候选中选互补度最高的批次 ──────────
+    int best_batch_idx = -1;
+    double best_comp_score = -1.0;
+
+    for (int b = 0; b < num_batches; ++b) {
+      if (sim_bottleneck[b] != min_bottleneck)
+        continue; // 不在最优候选集中，跳过
+
+      // 计算叠加前的批次瓶颈（用于求 slack 向量）
+      int cur_bn = calcBatchBottleneck(batch_node_loads[b], cluster_size);
+
+      double comp = calcComplementarity(batch_node_loads[b], s_load,
+                                        cluster_size, cur_bn);
+
+      if (best_batch_idx == -1 || comp > best_comp_score) {
+        best_comp_score = comp;
+        best_batch_idx = b;
+      }
+    }
+
+    // ── 装箱并更新累积负载 ───────────────────────────────────
+    balanced_batches[best_batch_idx].push_back(cur_s);
+    for (int v = 0; v < cluster_size; ++v) {
+      batch_node_loads[best_batch_idx][v][0] += s_load[v][0];
+      batch_node_loads[best_batch_idx][v][1] += s_load[v][1];
+    }
+  }
+}
+
+void ParallelSolution::genRepairBatchesForMultipleFailureNewFireNew(
+    vector<int> fail_node_ids, int num_agents, string scenario, int method) {
+  LOG << "ParallelSolution::genRepairBatchesForMultipleFailureNewFireNew begin"
+      << endl;
+
+  // 0. 找出受节点故障影响需要修复的所有条带
+  filterFailedStripes(fail_node_ids);
+  vector<Stripe *> stripes_to_repair_vec;
+  for (auto idx : _stripes_to_repair) {
+    stripes_to_repair_vec.push_back(_stripe_list[idx]);
+  }
+
+  if (stripes_to_repair_vec.empty())
+    return;
+
+  // =========================================================================
+  // 【优化 1】：精准探测每个条带在独立环境下的真实瓶颈时间 (Max(in, out))
+  // =========================================================================
+  std::unordered_map<Stripe *, int> stripe_bottleneck_weight;
+  std::unordered_map<Stripe *, vector<vector<int>>>
+      stripe_dummy_loads; // 缓存试跑的拓扑图
+
+  for (auto stripe : stripes_to_repair_vec) {
+    ECDAG *curecdag = stripe->genRepairECDAG(_ec, fail_node_ids);
+    stripe->refreshECDAG(curecdag);
+
+    vector<vector<int>> dummy_loadtable(_cluster_size, vector<int>(2, 0));
+    // 使用策略 0 进行一轮预演以获取底层拓扑开销
+    genColoringForMultipleFailureLevelNew(stripe, fail_node_ids, scenario,
+                                          dummy_loadtable, 0);
+
+    stripe_dummy_loads[stripe] = dummy_loadtable;
+
+    int b_neck = 0;
+    for (const auto &node_load : dummy_loadtable) {
+      // 核心改变：修复时间取决于 max(in, out)
+      int node_max_io = std::max(node_load[0], node_load[1]);
+      if (node_max_io > b_neck) {
+        b_neck = node_max_io;
+      }
+    }
+    stripe_bottleneck_weight[stripe] = b_neck;
+  }
+
+  // 按单条带的最大耗时降序排列 (Heavy-first)
+  std::sort(stripes_to_repair_vec.begin(), stripes_to_repair_vec.end(),
+            [&stripe_bottleneck_weight](Stripe *a, Stripe *b) {
+              return stripe_bottleneck_weight[a] > stripe_bottleneck_weight[b];
+            });
+
+  // 1. 计算需要的 Batch 总数
+  _num_batches = stripes_to_repair_vec.size() / _batch_size;
+  if (stripes_to_repair_vec.size() % _batch_size != 0)
+    _num_batches += 1;
+  // cout << "[INFO] num batches = " << _num_batches << endl;
+
+  // =========================================================================
+  // 【优化 2】：基于二维状态推演的极限装箱算法 (构建极其优秀的贪心初始解)
+  // =========================================================================
+  vector<vector<Stripe *>> balanced_batches(_num_batches);
+  // 记录每个 batch 当前累计的独立 in 和 out 状态
+  vector<vector<vector<int>>> batch_node_loads(
+      _num_batches, vector<vector<int>>(_cluster_size, vector<int>(2, 0)));
+
+  // ── 替换为互补感知装箱 ───────────────────────────────────────
+  // greedyBinPackWithComplementarity(
+  //     stripes_to_repair_vec, // 已按 bottleneck 降序排列
+  //     stripe_dummy_loads, balanced_batches, batch_node_loads);
+  for (size_t i = 0; i < stripes_to_repair_vec.size(); ++i) {
+    Stripe *cur_s = stripes_to_repair_vec[i];
+    const auto &s_load = stripe_dummy_loads[cur_s]; // [node][0=in, 1=out]
+
+    // ── Phase-A：计算各批次叠加后瓶颈，找全局最小值 ──────────
+    int min_bottleneck = INT_MAX;
+    std::vector<int> sim_bottleneck(_num_batches, INT_MAX);
+
+    for (int b = 0; b < _num_batches; ++b) {
+      if ((int)balanced_batches[b].size() >= _batch_size)
+        continue;
+
+      int bn = 0;
+      for (int v = 0; v < _cluster_size; ++v) {
+        int sim_in = batch_node_loads[b][v][0] + s_load[v][0];
+        int sim_out = batch_node_loads[b][v][1] + s_load[v][1];
+        bn = std::max(bn, std::max(sim_in, sim_out));
+      }
+      sim_bottleneck[b] = bn;
+      min_bottleneck = std::min(min_bottleneck, bn);
+    }
+
+    // ── Phase-B：候选集内选叠加后节点负载方差最小的批次 ────────
+    //
+    //  每个节点的"叠加后负载" = max(sim_in, sim_out)
+    //  方差越小 → 负载分布越均匀 → 木桶效应越弱
+    //
+    int best_batch_idx = -1;
+    double best_variance = DBL_MAX;
+
+    for (int b = 0; b < _num_batches; ++b) {
+      if (sim_bottleneck[b] != min_bottleneck)
+        continue; // 不在候选集，跳过
+
+      // 计算叠加后各节点峰值负载
+      double mean = 0.0;
+      std::vector<int> node_peaks(_cluster_size);
+      for (int v = 0; v < _cluster_size; ++v) {
+        int sim_in = batch_node_loads[b][v][0] + s_load[v][0];
+        int sim_out = batch_node_loads[b][v][1] + s_load[v][1];
+        node_peaks[v] = std::max(sim_in, sim_out);
+        mean += node_peaks[v];
+      }
+      mean /= _cluster_size;
+
+      // 计算方差
+      double var = 0.0;
+      for (int v = 0; v < _cluster_size; ++v) {
+        double diff = node_peaks[v] - mean;
+        var += diff * diff;
+      }
+      var /= _cluster_size;
+
+      if (best_batch_idx == -1 || var < best_variance) {
+        best_variance = var;
+        best_batch_idx = b;
+      }
+    }
+
+    // ── 装箱并更新累积负载 ───────────────────────────────────
+    balanced_batches[best_batch_idx].push_back(cur_s);
+    for (int v = 0; v < _cluster_size; ++v) {
+      batch_node_loads[best_batch_idx][v][0] += s_load[v][0];
+      batch_node_loads[best_batch_idx][v][1] += s_load[v][1];
+    }
+  }
+
+  // =========================================================================
+  // 【优化 4】：基于模拟退火 (Simulated Annealing) 的全局最优搜索
+  // =========================================================================
+
+  if (_num_batches > 1) {
+    // LOG << "[INFO] Starting Simulated Annealing optimization..." << endl;
+
+    // 评估函数：计算当前调度方案所有批次的瓶颈总时间 (Energy)
+    auto calculate_total_makespan =
+        [&](const vector<vector<Stripe *>> &current_batches) {
+          int total_time = 0;
+          for (const auto &batch : current_batches) {
+            vector<vector<int>> current_batch_load(_cluster_size,
+                                                   vector<int>(2, 0));
+            for (Stripe *s : batch) {
+              for (int node_id = 0; node_id < _cluster_size; ++node_id) {
+                current_batch_load[node_id][0] +=
+                    stripe_dummy_loads[s][node_id][0];
+                current_batch_load[node_id][1] +=
+                    stripe_dummy_loads[s][node_id][1];
+              }
+            }
+            int batch_bottleneck = 0;
+            for (const auto &node_load : current_batch_load) {
+              batch_bottleneck = std::max(batch_bottleneck,
+                                          std::max(node_load[0], node_load[1]));
+            }
+            total_time += batch_bottleneck;
+          }
+          return total_time;
+        };
+
+    // 退火参数配置
+    double current_temp = 1000.0;
+    double cooling_rate = 0.95;
+    double final_temp = 0.1;
+    int iter_per_temp = 50;
+
+    vector<vector<Stripe *>> current_solution = balanced_batches;
+    vector<vector<Stripe *>> best_solution = balanced_batches;
+
+    int current_energy = calculate_total_makespan(current_solution);
+    int best_energy = current_energy;
+
+    // 随机数发生器
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::default_random_engine generator(seed);
+    std::uniform_real_distribution<double> distribution(0.0, 1.0);
+
+    while (current_temp > final_temp) {
+      for (int i = 0; i < iter_per_temp; ++i) {
+        // 随机抽取两个 Batch
+        std::uniform_int_distribution<int> batch_dist(0, _num_batches - 1);
+        int b1 = batch_dist(generator);
+        int b2 = batch_dist(generator);
+        while (b1 == b2) {
+          b2 = batch_dist(generator);
+        }
+
+        if (current_solution[b1].empty() || current_solution[b2].empty())
+          continue;
+
+        // 随机抽取两个 Stripe 准备互换
+        std::uniform_int_distribution<int> s1_dist(
+            0, current_solution[b1].size() - 1);
+        std::uniform_int_distribution<int> s2_dist(
+            0, current_solution[b2].size() - 1);
+        int s1_idx = s1_dist(generator);
+        int s2_idx = s2_dist(generator);
+
+        // 执行邻域动作 (Swap)
+        vector<vector<Stripe *>> neighbor_solution = current_solution;
+        std::swap(neighbor_solution[b1][s1_idx], neighbor_solution[b2][s2_idx]);
+
+        int neighbor_energy = calculate_total_makespan(neighbor_solution);
+
+        // Metropolis 准则判断
+        if (neighbor_energy < current_energy) {
+          current_solution = neighbor_solution;
+          current_energy = neighbor_energy;
+          if (current_energy < best_energy) {
+            best_solution = current_solution;
+            best_energy = current_energy;
+          }
+        } else {
+          double delta = neighbor_energy - current_energy;
+          double acceptance_probability = exp(-delta / current_temp);
+          if (distribution(generator) < acceptance_probability) {
+            current_solution = neighbor_solution;
+            current_energy = neighbor_energy;
+          }
+        }
+      }
+      current_temp *= cooling_rate; // 降温
+    }
+
+    balanced_batches = best_solution;
+    // LOG << "[INFO] SA Finished. Best Makespan found: " << best_energy <<
+    // endl;
+  }
+
+  // =========================================================================
+  // 【优化 3】：遍历并执行微观自适应路由算法
+  // =========================================================================
+  for (int batchid = 0; batchid < _num_batches; batchid++) {
+    // cout << "[INFO] INIT BATCH = " << batchid << endl;
+
+    vector<Stripe *> cur_stripe_list;
+    vector<vector<int>> loadtable(_cluster_size, vector<int>(2, 0));
+
+    vector<Stripe *> &allocated_stripes = balanced_batches[batchid];
+
+    for (size_t i = 0; i < allocated_stripes.size(); i++) {
+      Stripe *curstripe = allocated_stripes[i];
+
+      ECDAG *curecdag = curstripe->genRepairECDAG(_ec, fail_node_ids);
+      curstripe->refreshECDAG(curecdag);
+
+      if (method == 1) {
+        auto get_max_time = [](const vector<vector<int>> &lt) {
+          int max_node_time = 0;
+          for (const auto &node_load : lt) {
+            int current_node_max = std::max(node_load[0], node_load[1]);
+            if (current_node_max > max_node_time) {
+              max_node_time = current_node_max;
+            }
+          }
+          return max_node_time;
+        };
+
+        // 模拟策略 0 (Hyper)
+        vector<vector<int>> loadtable_hyper = loadtable;
+        genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids,
+                                              scenario, loadtable_hyper, 0);
+        int time_hyper = get_max_time(loadtable_hyper);
+        int total_load_hyper = curstripe->_load;
+        unordered_map<int, int> coloring_hyper = curstripe->_coloring;
+
+        // 模拟策略 1 (Multi)
+        vector<vector<int>> loadtable_multi = loadtable;
+        genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids,
+                                              scenario, loadtable_multi, 1);
+        int time_multi = get_max_time(loadtable_multi);
+        int total_load_multi = curstripe->_load;
+        unordered_map<int, int> coloring_multi = curstripe->_coloring;
+
+        // 核心决策逻辑：谁压低了当前批次的单点时间，就选谁
+        if (time_multi < time_hyper || (time_multi == time_hyper &&
+                                        total_load_multi <= total_load_hyper)) {
+          curstripe->_coloring = coloring_multi;
+          curstripe->setColoring(coloring_multi);
+          curstripe->evaluateColoring();
+          loadtable = loadtable_multi;
+        } else {
+          curstripe->_coloring = coloring_hyper;
+          curstripe->setColoring(coloring_hyper);
+          curstripe->evaluateColoring();
+          loadtable = loadtable_hyper;
+        }
+      } else {
+        genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids,
+                                              scenario, loadtable, method);
+      }
+
+      // 2. 【修改点】：不再比较 Hyper(0) 和 Multi(1)
+      // 直接调用 method = 1 进行着色和负载更新
+      // 注意：loadtable 会在函数内部被累加更新
+      // genColoringForMultipleFailureLevelNew(curstripe, fail_node_ids,
+      // scenario, loadtable, 1);
+
+      // curstripe->dumpLoad(_cluster_size);
+      cur_stripe_list.push_back(curstripe);
+    }
+
+    RepairBatch *curbatch = new RepairBatch(batchid, cur_stripe_list);
+    curbatch->evaluateBatch(_cluster_size);
+    // curbatch->dumpLoad(_cluster_size);
+
+    if (_batch_request) {
+      _batch_queue.push(curbatch);
+    } else {
+      _batch_list.push_back(curbatch);
+    }
+    // curbatch->dump();
   }
 }
 

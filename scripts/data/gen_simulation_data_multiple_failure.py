@@ -46,6 +46,7 @@ if ',' in args:
     AOVID = [int(arg) for arg in args[split_idx + 1:] if arg != ',']
 else:
     FAILIDS = [int(arg) for arg in args]
+    AOVID = []   # 未传逗号时默认无需回避节点
 
 print("Fail node ids = ", FAILIDS)
 print("Avoid node ids = ", AOVID)

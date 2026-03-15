@@ -260,32 +260,30 @@ src/sol/CMakeFiles/sol.dir/ParallelSolution.cc.o: \
  /home/lx/Multiple_ParaRC/src/sol/../ec/../inc/include.hh \
  /home/lx/Multiple_ParaRC/src/sol/../ec/ECDAG.hh \
  /home/lx/Multiple_ParaRC/src/sol/../ec/ECNode.hh \
- /home/lx/Multiple_ParaRC/src/sol/SolutionBase.hh \
- /home/lx/Multiple_ParaRC/src/sol/../common/Config.hh \
+ /home/lx/Multiple_ParaRC/src/sol/RepairBatch.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../inc/include.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../ec/ECDAG.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../ec/NodeBatchTask.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../ec/Task.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../ec/../util/RedisUtil.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../ec/../util/../inc/include.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../ec/../protocol/AGCommand.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../ec/../protocol/../inc/include.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../ec/../protocol/../util/RedisUtil.hh \
  /home/lx/Multiple_ParaRC/src/sol/../common/Stripe.hh \
  /home/lx/Multiple_ParaRC/src/sol/../common/../ec/ECBase.hh \
  /home/lx/Multiple_ParaRC/src/sol/../common/../ec/ECDAG.hh \
  /home/lx/Multiple_ParaRC/src/sol/../common/../ec/Task.hh \
- /home/lx/Multiple_ParaRC/src/sol/../common/../ec/../inc/include.hh \
- /home/lx/Multiple_ParaRC/src/sol/../common/../ec/../util/RedisUtil.hh \
- /home/lx/Multiple_ParaRC/src/sol/../common/../ec/../util/../inc/include.hh \
- /home/lx/Multiple_ParaRC/src/sol/../inc/include.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../common/Config.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../protocol/AGCommand.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../util/DistUtil.hh \
+ /home/lx/Multiple_ParaRC/src/sol/SolutionBase.hh \
  /home/lx/Multiple_ParaRC/src/sol/../util/BlockingQueue.hh \
  /usr/include/c++/11/condition_variable \
  /usr/include/c++/11/bits/shared_ptr.h \
  /usr/include/c++/11/bits/shared_ptr_base.h \
  /usr/include/c++/11/bits/allocated_ptr.h \
- /usr/include/c++/11/ext/concurrence.h \
- /home/lx/Multiple_ParaRC/src/sol/RepairBatch.hh \
- /home/lx/Multiple_ParaRC/src/sol/../ec/ECDAG.hh \
- /home/lx/Multiple_ParaRC/src/sol/../ec/NodeBatchTask.hh \
- /home/lx/Multiple_ParaRC/src/sol/../ec/Task.hh \
- /home/lx/Multiple_ParaRC/src/sol/../ec/../protocol/AGCommand.hh \
- /home/lx/Multiple_ParaRC/src/sol/../ec/../protocol/../inc/include.hh \
- /home/lx/Multiple_ParaRC/src/sol/../ec/../protocol/../util/RedisUtil.hh \
- /home/lx/Multiple_ParaRC/src/sol/../protocol/AGCommand.hh \
- /home/lx/Multiple_ParaRC/src/sol/../util/DistUtil.hh \
- /usr/include/c++/11/unordered_set \
+ /usr/include/c++/11/ext/concurrence.h /usr/include/c++/11/unordered_set \
  /usr/include/c++/11/bits/unordered_set.h /usr/include/c++/11/random \
  /usr/include/c++/11/bits/random.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h \
@@ -298,4 +296,6 @@ src/sol/CMakeFiles/sol.dir/ParallelSolution.cc.o: \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/mwaitintrin.h \
  /usr/include/c++/11/bits/random.tcc /usr/include/c++/11/numeric \
  /usr/include/c++/11/bits/stl_numeric.h \
- /home/lx/Multiple_ParaRC/src/sol/OfflineSolution.hh
+ /home/lx/Multiple_ParaRC/src/sol/OfflineSolution.hh \
+ /usr/include/c++/11/cfloat \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h

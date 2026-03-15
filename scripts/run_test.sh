@@ -24,8 +24,11 @@ BATCH_SIZE=2                    # batch size
 NSTRIPES=10                     # number of stripes
 
 # Failure scenario
-# Provide Node IDs that will fail, separated by space
+# FAIL_IDS: Node IDs that will fail
+# MUST_EXIST_IDS: Node IDs that must be in the stripe but will NOT fail
 FAIL_IDS="0 1"
+MUST_EXIST_IDS="2 3"
+AVOID_IDS=""
 
 # ==============================================================================
 # Test Execution Steps
@@ -59,8 +62,15 @@ echo "Data cleanup finished."
 echo ""
 
 echo ">>> Step 3: Generating data blocks (data/gen_standalone_data_multiple.py) ..."
-python3 ${SCRIPTS_DIR}/data/gen_standalone_data_multiple.py \
-    ${CLUSTER} ${NSTRIPES} ${CODE} ${ECN} ${ECK} ${ECW} ${BLK_MB} ${FAIL_IDS}
+# Combine MUST_EXIST_IDS and FAIL_IDS for the generator
+# If AVOID_IDS is set, add a comma separator
+if [ -n "$AVOID_IDS" ]; then
+    python3 ${SCRIPTS_DIR}/data/gen_standalone_data_multiple.py \
+        ${CLUSTER} ${NSTRIPES} ${CODE} ${ECN} ${ECK} ${ECW} ${BLK_MB} ${MUST_EXIST_IDS} ${FAIL_IDS} , ${AVOID_IDS}
+else
+    python3 ${SCRIPTS_DIR}/data/gen_standalone_data_multiple.py \
+        ${CLUSTER} ${NSTRIPES} ${CODE} ${ECN} ${ECK} ${ECW} ${BLK_MB} ${MUST_EXIST_IDS} ${FAIL_IDS}
+fi
 
 if [ $? -ne 0 ]; then
     echo "Error in Step 2. Exiting..."

@@ -316,17 +316,8 @@ src/CMakeFiles/RepairSimulator_new.dir/RepairSimulator_new.cc.o: \
  /home/lx/Multiple_ParaRC/src/sol/../common/../util/tinyxml2.h \
  /home/lx/Multiple_ParaRC/src/sol/../common/../util/DistUtil.hh \
  /home/lx/Multiple_ParaRC/src/sol/../ec/ECBase.hh \
- /home/lx/Multiple_ParaRC/src/sol/SolutionBase.hh \
- /home/lx/Multiple_ParaRC/src/sol/../common/Config.hh \
- /home/lx/Multiple_ParaRC/src/sol/../common/Stripe.hh \
- /home/lx/Multiple_ParaRC/src/sol/../inc/include.hh \
- /home/lx/Multiple_ParaRC/src/sol/../util/BlockingQueue.hh \
- /usr/include/c++/11/condition_variable \
- /usr/include/c++/11/bits/shared_ptr.h \
- /usr/include/c++/11/bits/shared_ptr_base.h \
- /usr/include/c++/11/bits/allocated_ptr.h \
- /usr/include/c++/11/ext/concurrence.h \
  /home/lx/Multiple_ParaRC/src/sol/RepairBatch.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../inc/include.hh \
  /home/lx/Multiple_ParaRC/src/sol/../ec/ECDAG.hh \
  /home/lx/Multiple_ParaRC/src/sol/../ec/NodeBatchTask.hh \
  /home/lx/Multiple_ParaRC/src/sol/../ec/Task.hh \
@@ -334,7 +325,16 @@ src/CMakeFiles/RepairSimulator_new.dir/RepairSimulator_new.cc.o: \
  /home/lx/Multiple_ParaRC/src/sol/../ec/../protocol/AGCommand.hh \
  /home/lx/Multiple_ParaRC/src/sol/../ec/../protocol/../inc/include.hh \
  /home/lx/Multiple_ParaRC/src/sol/../ec/../protocol/../util/RedisUtil.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../common/Stripe.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../common/Config.hh \
  /home/lx/Multiple_ParaRC/src/sol/../protocol/AGCommand.hh \
  /home/lx/Multiple_ParaRC/src/sol/../util/DistUtil.hh \
+ /home/lx/Multiple_ParaRC/src/sol/SolutionBase.hh \
+ /home/lx/Multiple_ParaRC/src/sol/../util/BlockingQueue.hh \
+ /usr/include/c++/11/condition_variable \
+ /usr/include/c++/11/bits/shared_ptr.h \
+ /usr/include/c++/11/bits/shared_ptr_base.h \
+ /usr/include/c++/11/bits/allocated_ptr.h \
+ /usr/include/c++/11/ext/concurrence.h \
  /home/lx/Multiple_ParaRC/src/sol/RepairBatch.hh \
  /home/lx/Multiple_ParaRC/src/sol/SolutionBase.hh
