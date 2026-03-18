@@ -55,6 +55,7 @@ class Coordinator {
         vector<RepairBatch*> genRepairSolution();
         int genRepairSolutionAsync();
         void repair();
+        void setHeterogeneous(bool is_hetero, const vector<double>& bws);
 };
 
 #endif

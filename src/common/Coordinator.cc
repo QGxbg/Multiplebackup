@@ -209,3 +209,10 @@ void Coordinator::repair() {
   LOG << "Coordinator::repair. repairbatch = " << repairtime << endl;
   cout << "Coordinator::repair. overall  = " << overall << endl;
 }
+
+void Coordinator::setHeterogeneous(bool is_hetero, const vector<double>& bws) {
+  if (_sol) {
+    _sol->_is_heterogeneous = is_hetero;
+    _sol->_node_bandwidths = bws;
+  }
+}
